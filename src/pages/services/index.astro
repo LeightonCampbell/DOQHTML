@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const canonical = 'https://www.dealsofquality.com/services/';
+
+interface ServiceItem {
+  name: string;
+  description: string;
+  icon: string;
+  href: string;
+  isHot?: boolean;
+}
+interface Category {
+  title: string;
+  items: ServiceItem[];
+}
+
+// ── Icon path constants ────────────────────────────────────────────────────
+const icons = {
+  wrench:    'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+  paint:     'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
+  home:      'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+  leaf:      'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  droplet:   'M12 3C8 7.5 5 11 5 14.5a7 7 0 0014 0C19 11 16 7.5 12 3z',
+  fence:     'M3 21V7m0 0l3-4m-3 4h18M21 21V7m0 0l-3-4M9 21V11m0 0V7m0 4h6m0 10V11m0 0V7',
+  star:      'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
+  broom:     'M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4',
+  cleaning:  'M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16',
+  window:    'M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2',
+  truck:     'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0',
+  bolt:      'M13 10V3L4 14h7v7l9-11h-7z',
+  lightbulb: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
+  fire:      'M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z',
+  chip:      'M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18',
+  tv:        'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  wifi:      'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0',
+  shield:    'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  bell:      'M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9',
+  desktop:   'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  printer:   'M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z',
+  database:  'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
+  globe:     'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  support:   'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z',
+};
+
+const categories: Category[] = [
+  {
+    title: 'Home Improvement & Outdoor',
+    items: [
+      { name: 'Handyman Services',          description: 'Furniture assembly, repairs & odd jobs',          icon: icons.wrench,  href: '/handyman-services/' },
+      { name: 'Painting (Interior & Exterior)', description: 'Interior and exterior painting services',     icon: icons.paint,   href: '/painting/' },
+      { name: 'Kitchen Remodeling',         description: 'Complete kitchen renovation services',            icon: icons.home,    href: '/kitchen-remodeling/',    isHot: true },
+      { name: 'Bathroom Remodeling',        description: 'Bathroom renovation and remodeling',              icon: icons.droplet, href: '/bathroom-remodeling/' },
+      { name: 'Landscaping',                description: 'Landscape design and maintenance',                icon: icons.leaf,    href: '/landscaping/' },
+      { name: 'Smart Irrigation',           description: 'Smart irrigation system installation',            icon: icons.droplet, href: '/smart-irrigation/' },
+      { name: 'Fence & Gate Installation',  description: 'Fence and gate installation services',            icon: icons.fence,   href: '/fence-gate-installation/' },
+      { name: 'Holiday Lighting',           description: 'Holiday lighting installation and removal',       icon: icons.star,    href: '/holiday-lighting/' },
+    ],
+  },
+  {
+    title: 'Cleaning & Property Care',
+    items: [
+      { name: 'House Cleaning / Maid Service', description: 'Professional house cleaning and maid services', icon: icons.broom,    href: '/house-cleaning/', isHot: true },
+      { name: 'Carpet Cleaning',               description: 'Professional carpet cleaning services',         icon: icons.cleaning, href: '/carpet-cleaning/' },
+      { name: 'Window Cleaning',               description: 'Interior and exterior window cleaning',         icon: icons.window,   href: '/window-cleaning/' },
+      { name: 'Gutter Cleaning',               description: 'Professional gutter cleaning services',         icon: icons.droplet,  href: '/gutter-cleaning/' },
+      { name: 'Pressure Washing',              description: 'Exterior cleaning & maintenance',               icon: icons.droplet,  href: '/pressure-washing/' },
+      { name: 'Junk Removal',                  description: 'Junk and debris removal services',              icon: icons.truck,    href: '/junk-removal/' },
+    ],
+  },
+  {
+    title: 'Repairs & Electrical',
+    items: [
+      { name: 'Plumbing Services',         description: 'Repairs, installations & emergencies',         icon: icons.droplet,  href: '/plumbing/' },
+      { name: 'Electrical Services',       description: 'Safe, licensed electrical work',               icon: icons.bolt,     href: '/electrical/' },
+      { name: 'Light Fixture Replacement', description: 'Safe, licensed electrical work',               icon: icons.lightbulb,href: '/light-fixture-replacement/' },
+      { name: 'HVAC (Heating & Air)',       description: 'HVAC installation, repair, and maintenance',  icon: icons.fire,     href: '/hvac/' },
+      { name: 'Appliance Repair',          description: 'Professional appliance repair services',       icon: icons.wrench,   href: '/appliance-repair/' },
+      { name: 'Roofing',                   description: 'Roofing installation and repair',              icon: icons.home,     href: '/roofing/' },
+      { name: 'Drywall Repair',            description: 'Drywall installation and repair',              icon: icons.chip,     href: '/drywall-repair/' },
+    ],
+  },
+  {
+    title: 'TV Mounting & Entertainment',
+    items: [
+      { name: 'TV Mounting (up to 50")',   description: 'Professional TV mounting for TVs up to 50 inches',      icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
+      { name: 'TV Mounting (51" to 65")',  description: 'Professional TV mounting for 51 to 65 inch TVs',        icon: icons.tv, href: '/services/tv-mounting-los-angeles/', isHot: true },
+      { name: 'TV Mounting (over 65")',    description: 'Professional TV mounting for large TVs over 65 inches', icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
+      { name: 'TV Dismount & Remount',     description: 'TV removal and reinstallation services',                icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
+      { name: 'TV Cable Concealment',      description: 'Hide and organize TV cables professionally',            icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
+      { name: 'Soundbar Installation',     description: 'Professional soundbar installation and setup',          icon: icons.tv, href: '/soundbar-installation/' },
+      { name: 'Home Theater Setup',        description: 'Surround sound & streaming setup',                      icon: icons.tv, href: '/home-theater-setup/' },
+      { name: 'Surround Sound',            description: 'Surround sound system installation',                    icon: icons.tv, href: '/surround-sound/' },
+      { name: 'Gaming Setup',              description: 'Gaming console setup and optimization',                 icon: icons.tv, href: '/gaming-setup/' },
+      { name: 'Streaming Setup',           description: 'Streaming device setup and configuration',              icon: icons.tv, href: '/streaming-setup/' },
+    ],
+  },
+  {
+    title: 'Smart Home & Security',
+    items: [
+      { name: 'Wi-Fi & Networking',      description: 'Setup, optimization & dead zones',             icon: icons.wifi,   href: '/router-setup/',        isHot: true },
+      { name: 'Security Camera Setup',   description: 'Professional camera installation',              icon: icons.shield, href: '/security-cameras/',    isHot: true },
+      { name: 'Video Doorbell Setup',    description: 'Video doorbell installation',                   icon: icons.bell,   href: '/video-doorbell/' },
+      { name: 'Smart Lock Install',      description: 'Smart lock installation and setup',             icon: icons.shield, href: '/smart-lock/' },
+      { name: 'Smart Thermostats',       description: 'Smart thermostat installation',                 icon: icons.chip,   href: '/smart-thermostats/' },
+      { name: 'Smart Home Integration',  description: 'Complete smart home system integration',        icon: icons.home,   href: '/smart-home-integration/' },
+      { name: 'Motion Sensors',          description: 'Motion sensor installation and setup',          icon: icons.shield, href: '/motion-sensors/' },
+      { name: 'Smoke Detector Install',  description: 'Smoke detector installation and testing',       icon: icons.bell,   href: '/smoke-detector/' },
+    ],
+  },
+  {
+    title: 'Computers & Printers',
+    items: [
+      { name: 'Computer Repair',  description: 'PC and Mac repair services',             icon: icons.desktop,  href: '/computer-repair/' },
+      { name: 'Virus Removal',    description: 'Virus and malware removal services',     icon: icons.shield,   href: '/virus-removal/' },
+      { name: 'Printer Setup',    description: 'Printer installation and configuration', icon: icons.printer,  href: '/printer-setup/' },
+      { name: 'Data Backup',      description: 'Data backup and recovery services',      icon: icons.database, href: '/data-backup/' },
+    ],
+  },
+  {
+    title: 'Business Services',
+    items: [
+      { name: 'Website Design',       description: 'Professional website design for businesses', icon: icons.globe,   href: '/website-design/' },
+      { name: 'Remote Support',       description: 'Remote technical support services',          icon: icons.support, href: '/remote-support/' },
+      { name: 'Business IT Solutions',description: 'Complete IT solutions for businesses',       icon: icons.chip,    href: '/business-it/' },
+      { name: 'Custom Solutions',     description: 'Custom technology solutions',                icon: icons.star,    href: '/custom-solutions/' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="All Services | Premium Home Services | Deals Of Quality"
+  description="Browse all home services — from cleaning and handyman to smart home, electrical, and more. Fast, reliable, vetted local pros."
+  canonical={canonical}
+>
+  <!-- HERO -->
+  <section class="services-dir-hero border-b border-slate-200 bg-white pb-8 pt-24 text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+      Your Next Project, Handled.
+    </h1>
+    <p class="mx-auto mt-3 max-w-xl text-base text-slate-500">
+      Select a service to view more details or book a vetted local pros.
+    </p>
+  </section>
+
+  <!-- CATEGORY DIRECTORY GRID -->
+  <section class="bg-white px-6 py-14 sm:px-10 lg:px-16">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+        {categories.map((cat) => (
+          <div>
+            <h2 class="mb-5 text-xl font-semibold text-[#004080]">{cat.title}</h2>
+            <ul class="space-y-0">
+              {cat.items.map((item) => (
+                <li>
+                  <a href={item.href} class="group flex items-start gap-3 py-2.5 transition-colors hover:text-[#0073e6]">
+                    <!-- Icon -->
+                    <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 text-slate-400 transition-colors group-hover:text-[#0073e6]" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d={item.icon} />
+                      </svg>
+                    </span>
+                    <!-- Text -->
+                    <span class="flex flex-col">
+                      <span class="flex items-center gap-2">
+                        <span class="text-sm font-medium text-slate-800 transition-colors group-hover:text-[#0073e6]">
+                          {item.name}
+                        </span>
+                        {item.isHot && (
+                          <span class="inline-flex items-center rounded-sm bg-orange-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-500">
+                            Hot
+                          </span>
+                        )}
+                      </span>
+                      <span class="mt-0.5 text-xs text-slate-500">{item.description}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE CTA BAR -->
+  <div class="mobile-cta">
+    <a href="tel:+18185847389" class="btn-outline" style="flex:1; text-align:center; padding:0.75rem 1rem; font-size:0.9rem;">📞 Call Now</a>
+    <button type="button" data-open-quote class="btn-primary" style="flex:1; text-align:center; padding:0.75rem 1rem; font-size:0.9rem;">Get Free Quote</button>
+  </div>
+
+  <style>
+    .services-dir-hero {
+      /* Extend under the navbar gracefully */
+      margin-top: -4rem;
+      padding-top: calc(4rem + 3rem);
+    }
+  </style>
+</BaseLayout>

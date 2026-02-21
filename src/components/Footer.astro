@@ -2,57 +2,47 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-slate-200 bg-slate-50">
-  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-    <!-- Newsletter -->
-    <section class="mb-12 text-center">
-      <h2 class="text-lg font-semibold text-slate-900">Stay updated with quality tips</h2>
-      <p class="mt-1 text-sm text-slate-600">Get weekly insights, service updates, and exclusive offers directly in your inbox.</p>
-      <form class="mx-auto mt-4 flex max-w-sm gap-2" action="#" method="post" aria-label="Newsletter signup">
-        <label for="footer-email" class="sr-only">Email address</label>
-        <input
-          id="footer-email"
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          required
-          class="min-w-0 flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]"
-        />
-        <button type="submit" class="rounded-lg bg-[#f97415] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">
-          Sign up
-        </button>
-      </form>
-      <p class="mt-3 text-xs text-slate-500">
-        By signing up, you agree to our <a href="/terms/" class="underline hover:text-[#f97415]">terms</a> and <a href="/privacy/" class="underline hover:text-[#f97415]">privacy policy</a>.
-      </p>
-    </section>
-
-    <!-- CTA -->
-    <section class="mb-12 rounded-2xl bg-slate-900 px-6 py-10 text-center text-white sm:px-10">
-      <h2 class="text-xl font-semibold">Ready to Transform Your Home?</h2>
-      <p class="mt-2 text-slate-300">
-        Schedule your service today and experience premium home services from carefully vetted professionals.
-      </p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-        <a href="tel:+18185847389" class="inline-flex items-center rounded-lg bg-[#f97415] px-5 py-2.5 font-semibold text-white hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 focus:ring-offset-slate-900">
-          Call Now
-        </a>
-        <a href="/#get-quote" class="inline-flex items-center rounded-lg border border-white/30 px-5 py-2.5 font-semibold text-white hover:bg-white/10">
-          Get Free Quote
-        </a>
-      </div>
-      <p class="mt-4 text-lg font-medium">
-        <a href="tel:+18185847389" class="hover:underline">(818) 584-7389</a>
-      </p>
-    </section>
-
-    <!-- Legal -->
-    <div class="flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-8">
-      <p class="text-sm text-slate-600">© {currentYear} Deals of Quality. All rights reserved.</p>
-      <div class="flex gap-6 text-sm">
-        <a href="/terms/" class="text-slate-600 hover:text-[#f97415]">Terms</a>
-        <a href="/privacy/" class="text-slate-600 hover:text-[#f97415]">Privacy</a>
-      </div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo inline-block" aria-label="Deals of Quality – Home">
+        <img src="/images/logo-light.png" alt="Deals of Quality" class="h-8 w-auto max-h-10 object-contain object-left" width="140" height="32" />
+      </a>
+      <p>Your trusted partner for premium home services and smart technology.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Home Services</h4>
+      <ul>
+        <li><a href="/plumbing/">Plumbing</a></li>
+        <li><a href="/electrical/">Electrical</a></li>
+        <li><a href="/handyman-services/">Handyman Services</a></li>
+        <li><a href="/house-cleaning/">House Cleaning</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Smart Home</h4>
+      <ul>
+        <li><a href="/services/tv-mounting-los-angeles/">TV Mounting</a></li>
+        <li><a href="/router-setup/">Wi-Fi & Network</a></li>
+        <li><a href="/security-cameras/">Security Cameras</a></li>
+        <li><a href="/smart-home-integration/">Smart Home</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/#faq">FAQs</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/join-as-pro/">Join as a Pro</a></li>
+        <li><a href="/contact/">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Deals of Quality, LLC | Copyright © {currentYear}. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="/terms/">Terms of Service</a>
+      <a href="/privacy/">Privacy Policy</a>
     </div>
   </div>
 </footer>

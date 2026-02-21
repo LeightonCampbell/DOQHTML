@@ -1,0 +1,144 @@
+---
+/**
+ * Global Quote and Booking modals using native <dialog>.
+ * Trigger: any button with data-open-quote or data-open-booking.
+ */
+const quoteServiceOptions = [
+  'TV Mounting',
+  'Plumbing',
+  'Electrical',
+  'House Cleaning',
+  'Handyman',
+  'Security Cameras',
+  'Wi-Fi Setup',
+  'Smart Home',
+  'Other',
+];
+---
+
+<!-- Quote Modal -->
+<dialog id="quote-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm" aria-labelledby="quote-modal-title" aria-describedby="quote-modal-desc">
+  <div class="relative max-h-[90vh] w-full max-w-lg overflow-y-auto sm:max-w-md">
+    <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#f97415]" aria-label="Close quote modal" data-close-dialog="quote-modal">
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="p-6 pr-14 pt-10">
+      <h2 id="quote-modal-title" class="text-xl font-semibold text-slate-900">Request a Quote</h2>
+      <p id="quote-modal-desc" class="mt-1 text-sm text-slate-500">We’ll get back to you with a custom quote.</p>
+      <form class="mt-6 space-y-4" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
+        <div>
+          <label for="quote-name" class="block text-sm font-medium text-slate-700">Name</label>
+          <input type="text" id="quote-name" name="name" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" />
+        </div>
+        <div>
+          <label for="quote-phone" class="block text-sm font-medium text-slate-700">Phone</label>
+          <input type="tel" id="quote-phone" name="phone" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" />
+        </div>
+        <div>
+          <label for="quote-email" class="block text-sm font-medium text-slate-700">Email</label>
+          <input type="email" id="quote-email" name="email" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" />
+        </div>
+        <div>
+          <label for="quote-service" class="block text-sm font-medium text-slate-700">Service Needed</label>
+          <select id="quote-service" name="service" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]">
+            <option value="">Select a service</option>
+            {quoteServiceOptions.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for="quote-details" class="block text-sm font-medium text-slate-700">Details</label>
+          <textarea id="quote-details" name="details" rows="4" class="mt-1 w-full resize-y rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" placeholder="Describe your project or request..."></textarea>
+        </div>
+        <button type="submit" class="w-full rounded-lg bg-[#f97415] py-3 font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">
+          Send Request
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- Booking Modal -->
+<dialog id="booking-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm" aria-labelledby="booking-modal-title" aria-describedby="booking-modal-desc">
+  <div class="relative max-h-[90vh] w-full max-w-lg overflow-y-auto sm:max-w-md">
+    <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#f97415]" aria-label="Close booking modal" data-close-dialog="booking-modal">
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="p-6 pr-14 pt-10">
+      <h2 id="booking-modal-title" class="text-xl font-semibold text-slate-900">Book a Service</h2>
+      <p id="booking-modal-desc" class="mt-1 text-sm text-slate-500">Choose a time that works for you.</p>
+      <div class="mt-6 flex min-h-[200px] items-center justify-center rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center text-slate-500">
+        Embed Scheduling Widget Here (e.g., Housecall Pro / Calendly)
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    var QUOTE_ID = 'quote-modal';
+    var BOOKING_ID = 'booking-modal';
+
+    function lockBodyScroll(lock) {
+      document.body.style.overflow = lock ? 'hidden' : '';
+    }
+
+    function openDialog(id) {
+      var dialog = document.getElementById(id);
+      if (dialog && typeof dialog.showModal === 'function') {
+        dialog.showModal();
+        lockBodyScroll(true);
+      }
+    }
+
+    function closeDialog(id) {
+      var dialog = document.getElementById(id);
+      if (dialog && typeof dialog.close === 'function') {
+        dialog.close();
+        lockBodyScroll(false);
+      }
+    }
+
+    // Open: buttons with data-open-quote or data-open-booking
+    document.addEventListener('click', function (e) {
+      var openQuote = e.target.closest('[data-open-quote]');
+      var openBooking = e.target.closest('[data-open-booking]');
+      if (openQuote) {
+        e.preventDefault();
+        openDialog(QUOTE_ID);
+      }
+      if (openBooking) {
+        e.preventDefault();
+        openDialog(BOOKING_ID);
+      }
+    });
+
+    // Close: X button (data-close-dialog) or backdrop click
+    document.addEventListener('click', function (e) {
+      var closeBtn = e.target.closest('[data-close-dialog]');
+      if (closeBtn) {
+        var id = closeBtn.getAttribute('data-close-dialog');
+        if (id) closeDialog(id);
+        return;
+      }
+      var dialog = e.target;
+      if (dialog && dialog.nodeName === 'DIALOG' && dialog.open && dialog.id && (dialog.id === QUOTE_ID || dialog.id === BOOKING_ID)) {
+        closeDialog(dialog.id);
+      }
+    });
+
+    // Close on Escape (native for dialog) and ensure body unlock when closed
+    document.addEventListener('close', function (e) {
+      var dialog = e.target;
+      if (dialog && dialog.nodeName === 'DIALOG' && (dialog.id === QUOTE_ID || dialog.id === BOOKING_ID)) {
+        lockBodyScroll(false);
+      }
+    });
+  })();
+</script>

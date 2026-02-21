@@ -1,5 +1,7 @@
 ---
-const currentPath = Astro.url.pathname;
+const pathname = Astro.url.pathname;
+const isHomePage = pathname === '/';
+const currentPath = pathname;
 const navLinks = [
   { href: '/services/', label: 'Services' },
   { href: '/faqs/', label: 'FAQs' },
@@ -11,25 +13,41 @@ const phone = 'tel:+18185847389';
 
 <header
   id="site-header"
-  class="header-transparent sticky top-0 z-50 w-full transition-colors duration-200"
+  class:list={[
+    'sticky top-0 z-50 w-full transition-colors duration-200',
+    isHomePage ? 'header-transparent' : 'site-header-scrolled header-solid',
+  ]}
+  data-transparent-header={isHomePage ? 'true' : undefined}
   aria-label="Site header"
 >
   <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-    <a href="/" class="header-logo-wrap relative flex h-10 min-w-[140px] items-center transition opacity-90 hover:opacity-100" aria-label="DoQuality – Home">
-      <img
-        src="/images/logo-light.png"
-        alt="DoQuality – Smart, Fast, Reliable"
-        width="160"
-        height="48"
-        class="header-logo header-logo--light absolute left-0 top-1/2 h-8 w-auto max-h-10 -translate-y-1/2 object-contain object-left"
-      />
-      <img
-        src="/images/logo-dark.png"
-        alt="DoQuality – Smart, Fast, Reliable"
-        width="160"
-        height="48"
-        class="header-logo header-logo--dark absolute left-0 top-1/2 h-8 w-auto max-h-10 -translate-y-1/2 object-contain object-left"
-      />
+    <a href="/" class="header-logo-wrap relative flex h-10 min-w-[140px] items-center bg-transparent transition opacity-90 hover:opacity-100" aria-label="DoQuality – Home">
+      {isHomePage ? (
+        <>
+          <img
+            src="/images/logo-light.png"
+            alt="DoQuality – Smart, Fast, Reliable"
+            width="160"
+            height="48"
+            class="header-logo header-logo--light absolute left-0 top-1/2 h-8 w-auto max-h-10 -translate-y-1/2 object-contain object-left"
+          />
+          <img
+            src="/images/logo-dark.png"
+            alt="DoQuality – Smart, Fast, Reliable"
+            width="160"
+            height="48"
+            class="header-logo header-logo--dark absolute left-0 top-1/2 h-8 w-auto max-h-10 -translate-y-1/2 object-contain object-left"
+          />
+        </>
+      ) : (
+        <img
+          src="/images/logo-dark.png"
+          alt="DoQuality – Smart, Fast, Reliable"
+          width="160"
+          height="48"
+          class="header-logo h-8 w-auto max-h-10 object-contain object-left"
+        />
+      )}
     </a>
 
     <nav class="hidden items-center gap-8 md:flex" aria-label="Main navigation">
@@ -46,14 +64,14 @@ const phone = 'tel:+18185847389';
 
     <div class="flex items-center gap-4">
       <a href={phone} class="header-phone hidden items-center gap-2 text-sm font-medium transition hover:opacity-90 sm:flex" aria-label="Call (818) 584-7389">
-        <span class="header-phone-text">(818) 584-7389</span>
-        <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <svg class="header-phone-icon h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
+        <span class="header-phone-text">(818) 584-7389</span>
       </a>
       <a
         href={ctaHref}
-        class="header-cta rounded-lg px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 focus:ring-offset-transparent"
+        class="header-cta hidden rounded-lg px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 focus:ring-offset-transparent md:inline-flex"
       >
         Find a Pro
       </a>
@@ -95,12 +113,16 @@ const phone = 'tel:+18185847389';
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link { color: rgba(255, 255, 255, 0.95); }
-  #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link--active { color: #f97415; }
+  #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link:hover,
+  #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link--active { color: #0073e6; }
   #site-header.header-transparent:not(.site-header-scrolled) .header-phone-text { color: rgba(255, 255, 255, 0.95); }
-  #site-header.header-transparent:not(.site-header-scrolled) .header-cta { background-color: #f97415; }
-  #site-header.header-transparent:not(.site-header-scrolled) .header-cta:hover { background-color: #ea580c; }
+  #site-header.header-transparent:not(.site-header-scrolled) .header-phone-icon { color: #fff; }
+  #site-header.header-transparent:not(.site-header-scrolled) .header-cta { background-color: #0073e6; }
+  #site-header.header-transparent:not(.site-header-scrolled) .header-cta:hover { background-color: #0062cc; }
   #site-header.header-transparent:not(.site-header-scrolled) .header-menu-btn { color: rgba(255, 255, 255, 0.9); }
-  /* No box behind logo in first state – hero shows through; use transparent PNG for no visible logo bg */
+  /* Logo: no background on container or images so transparent PNGs render correctly */
+  #site-header .header-logo-wrap,
+  #site-header .header-logo { background: none !important; background-color: transparent !important; }
   #site-header.header-transparent:not(.site-header-scrolled) .header-logo-wrap { background: transparent !important; }
   #site-header.header-transparent:not(.site-header-scrolled) .header-logo--light { display: block !important; visibility: visible !important; opacity: 1 !important; }
   #site-header.header-transparent:not(.site-header-scrolled) .header-logo--dark { display: none !important; visibility: hidden !important; opacity: 0 !important; }
@@ -112,13 +134,13 @@ const phone = 'tel:+18185847389';
   }
   #site-header.site-header-scrolled .header-nav-link { color: #334155; }
   #site-header.site-header-scrolled .header-nav-link:hover,
-  #site-header.site-header-scrolled .header-nav-link--active { color: #f97415; }
+  #site-header.site-header-scrolled .header-nav-link--active { color: #0073e6; }
   #site-header.site-header-scrolled .header-phone-text { color: #334155; }
-  #site-header.site-header-scrolled .header-cta { background-color: #f97415; color: #fff; }
-  #site-header.site-header-scrolled .header-cta:hover { background-color: #ea580c; }
+  #site-header.site-header-scrolled .header-phone-icon { color: #334155; }
+  #site-header.site-header-scrolled .header-cta { background-color: #004080; color: #fff; }
+  #site-header.site-header-scrolled .header-cta:hover { background-color: #003366; }
   #site-header.site-header-scrolled .header-menu-btn { color: #475569; }
-  /* Match logo wrap to white header so dark logo’s baked-in background blends */
-  #site-header.site-header-scrolled .header-logo-wrap { background: #fff !important; }
+  #site-header.site-header-scrolled .header-logo-wrap { background: transparent !important; }
   #site-header.site-header-scrolled .header-logo--light { display: none !important; visibility: hidden !important; opacity: 0 !important; }
   #site-header.site-header-scrolled .header-logo--dark {
     display: block !important;
@@ -137,6 +159,7 @@ const phone = 'tel:+18185847389';
 
     function updateHeader() {
       if (!header) return;
+      if (header.getAttribute('data-transparent-header') !== 'true') return;
       if (window.scrollY >= scrollThreshold) {
         header.classList.add('site-header-scrolled');
       } else {
