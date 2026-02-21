@@ -16,49 +16,109 @@ const quoteServiceOptions = [
 ];
 ---
 
-<!-- Quote Modal -->
+<style is:global>
+  .modal-dialog {
+    margin: auto;
+    inset: 0;
+    width: fit-content;
+    max-width: calc(100vw - 2rem);
+    height: fit-content;
+    max-height: 90vh;
+    position: fixed;
+  }
+</style>
+
+<!-- Quote Modal (multi-step: Details → Contact) -->
 <dialog id="quote-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm" aria-labelledby="quote-modal-title" aria-describedby="quote-modal-desc">
   <div class="relative max-h-[90vh] w-full max-w-lg overflow-y-auto sm:max-w-md">
-    <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#f97415]" aria-label="Close quote modal" data-close-dialog="quote-modal">
+    <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#0073e6]" aria-label="Close quote modal" data-close-dialog="quote-modal">
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-    <div class="p-6 pr-14 pt-10">
-      <h2 id="quote-modal-title" class="text-xl font-semibold text-slate-900">Request a Quote</h2>
-      <p id="quote-modal-desc" class="mt-1 text-sm text-slate-500">We’ll get back to you with a custom quote.</p>
-      <form class="mt-6 space-y-4" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
-        <div>
-          <label for="quote-name" class="block text-sm font-medium text-slate-700">Name</label>
-          <input type="text" id="quote-name" name="name" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" />
+
+    <form id="quote-form" class="quote-modal-form" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
+      <input type="hidden" id="quote-hidden-service" name="service" value="" />
+      <input type="hidden" id="quote-hidden-zip" name="zip" value="" />
+
+      <!-- Step 1: Details -->
+      <div id="quote-step-details" class="quote-step">
+        <div class="h-1 w-full bg-slate-100"><div class="h-full w-1/2 bg-[#0073e6]" aria-hidden="true"></div></div>
+        <div class="p-6 pr-14 pt-6">
+          <h2 id="quote-modal-title" class="text-xl font-semibold text-slate-900">Details for your Quote</h2>
+          <p id="quote-modal-desc" class="mt-1 text-sm text-slate-500">Help us understand what you need.</p>
+
+          <div class="mt-6">
+            <span class="block text-sm font-medium text-slate-700">When do you need service?</span>
+            <div class="mt-2 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <label class="quote-timing-card flex cursor-pointer items-center gap-3 rounded-xl border-2 border-slate-200 bg-white p-3 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5">
+                <input type="radio" name="timing" value="asap" class="sr-only" />
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></span>
+                <span class="text-sm font-medium text-slate-800">As soon as possible</span>
+              </label>
+              <label class="quote-timing-card flex cursor-pointer items-center gap-3 rounded-xl border-2 border-slate-200 bg-white p-3 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5">
+                <input type="radio" name="timing" value="within-week" class="sr-only" />
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></span>
+                <span class="text-sm font-medium text-slate-800">Within a week</span>
+              </label>
+              <label class="quote-timing-card flex cursor-pointer items-center gap-3 rounded-xl border-2 border-slate-200 bg-white p-3 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5">
+                <input type="radio" name="timing" value="flexible" class="sr-only" />
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H4a1 1 0 00-1 1v10a1 1 0 001 1h2a1 1 0 001-1V6h6v10a1 1 0 001 1h2a1 1 0 001-1V6a1 1 0 00-1-1h-6zM19 8h-2v8h2a2 2 0 002-2v-4a2 2 0 00-2-2z" /></svg></span>
+                <span class="text-sm font-medium text-slate-800">Flexible timing</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <label for="quote-details" class="block text-sm font-medium text-slate-700">Tell us about your project</label>
+            <textarea id="quote-details" name="details" rows="4" class="mt-1 w-full resize-y rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" placeholder="Describe your project or request..."></textarea>
+          </div>
+
+          <div class="mt-8 flex items-center justify-between gap-4">
+            <button type="button" class="quote-back-btn rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-action="back">Back</button>
+            <button type="button" class="quote-continue-btn rounded-lg bg-[#f97415] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-quote-action="continue">Continue →</button>
+          </div>
         </div>
-        <div>
-          <label for="quote-phone" class="block text-sm font-medium text-slate-700">Phone</label>
-          <input type="tel" id="quote-phone" name="phone" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" />
+      </div>
+
+      <!-- Step 2: Contact -->
+      <div id="quote-step-contact" class="quote-step hidden">
+        <div class="h-1 w-full bg-[#0073e6]" aria-hidden="true"></div>
+        <div class="p-6 pr-14 pt-6">
+          <div class="flex items-start gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            </span>
+            <div>
+              <h2 class="text-xl font-semibold text-slate-900">Great News! We found 60+ Pros.</h2>
+              <p class="mt-1 text-sm text-slate-500">Complete your details to get a quote.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-4">
+            <div>
+              <label for="quote-name" class="block text-sm font-medium text-slate-700">Your Name</label>
+              <input type="text" id="quote-name" name="name" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="quote-email" class="block text-sm font-medium text-slate-700">Email address</label>
+              <input type="email" id="quote-email" name="email" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="quote-phone" class="block text-sm font-medium text-slate-700">Phone number</label>
+              <input type="tel" id="quote-phone" name="phone" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+          </div>
+
+          <div class="mt-8 flex items-center justify-between gap-4">
+            <button type="button" class="quote-back-btn rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-action="back">← Back</button>
+            <button type="submit" class="rounded-lg bg-[#f97415] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">Get My Free Quote</button>
+          </div>
+          <p class="mt-4 text-xs text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
         </div>
-        <div>
-          <label for="quote-email" class="block text-sm font-medium text-slate-700">Email</label>
-          <input type="email" id="quote-email" name="email" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" />
-        </div>
-        <div>
-          <label for="quote-service" class="block text-sm font-medium text-slate-700">Service Needed</label>
-          <select id="quote-service" name="service" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]">
-            <option value="">Select a service</option>
-            {quoteServiceOptions.map((opt) => (
-              <option value={opt}>{opt}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label for="quote-details" class="block text-sm font-medium text-slate-700">Details</label>
-          <textarea id="quote-details" name="details" rows="4" class="mt-1 w-full resize-y rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#f97415] focus:outline-none focus:ring-1 focus:ring-[#f97415]" placeholder="Describe your project or request..."></textarea>
-        </div>
-        <button type="submit" class="w-full rounded-lg bg-[#f97415] py-3 font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">
-          Send Request
-        </button>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </dialog>
 
@@ -138,7 +198,42 @@ const quoteServiceOptions = [
       var dialog = e.target;
       if (dialog && dialog.nodeName === 'DIALOG' && (dialog.id === QUOTE_ID || dialog.id === BOOKING_ID)) {
         lockBodyScroll(false);
+        if (dialog.id === QUOTE_ID) {
+          var stepDetails = document.getElementById('quote-step-details');
+          var stepContact = document.getElementById('quote-step-contact');
+          if (stepDetails && stepContact) {
+            stepDetails.classList.remove('hidden');
+            stepContact.classList.add('hidden');
+          }
+        }
       }
     });
+
+    // Quote modal: multi-step Continue / Back
+    var quoteForm = document.getElementById('quote-form');
+    var stepDetails = document.getElementById('quote-step-details');
+    var stepContact = document.getElementById('quote-step-contact');
+
+    if (quoteForm && stepDetails && stepContact) {
+      quoteForm.addEventListener('click', function (e) {
+        var continueBtn = e.target.closest('[data-quote-action="continue"]');
+        var backBtn = e.target.closest('[data-quote-action="back"]');
+        if (continueBtn) {
+          e.preventDefault();
+          stepDetails.classList.add('hidden');
+          stepContact.classList.remove('hidden');
+          return;
+        }
+        if (backBtn) {
+          e.preventDefault();
+          if (stepContact.classList.contains('hidden')) {
+            closeDialog(QUOTE_ID);
+          } else {
+            stepContact.classList.add('hidden');
+            stepDetails.classList.remove('hidden');
+          }
+        }
+      });
+    }
   })();
 </script>

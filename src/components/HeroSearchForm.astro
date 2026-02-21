@@ -36,6 +36,7 @@ const serviceOptions = [
           autocomplete="off"
           class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-slate-900 placeholder-slate-500 transition focus:border-[#f97415] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#f97415]/20"
         />
+        <p id="hero-error-service" class="hero-form-error mt-1 text-sm text-red-600" role="alert" aria-live="polite"></p>
         <datalist id="hero-services-list">
           {serviceOptions.map((option) => (
             <option value={option} />
@@ -57,6 +58,7 @@ const serviceOptions = [
           autocomplete="postal-code"
           class="w-full rounded-xl border border-slate-200 bg-slate-50/50 py-3.5 pl-4 pr-12 text-slate-900 placeholder-slate-500 transition focus:border-[#f97415] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#f97415]/20"
         />
+        <p id="hero-error-zip" class="hero-form-error mt-1 text-sm text-red-600" role="alert" aria-live="polite"></p>
         <button
           type="button"
           id="hero-search-location-btn"
@@ -138,17 +140,64 @@ const serviceOptions = [
       this.value = this.value.replace(/\D/g, '').slice(0, 5);
     });
 
-    // Form submit: redirect to /services/?q=...&zip=... (or dispatch event for future modal)
+    // Form submit: validate service + zip; show errors or open quote modal
+    const serviceInput = form.querySelector('[name="q"]');
+    const errorService = document.getElementById('hero-error-service');
+    const errorZip = document.getElementById('hero-error-zip');
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      const service = (form.querySelector('[name="q"]') && form.querySelector('[name="q"]').value) || '';
-      const zip = (form.querySelector('[name="zip"]') && form.querySelector('[name="zip"]').value) || '';
-      const params = new URLSearchParams();
-      if (service) params.set('q', service.trim());
-      if (zip) params.set('zip', zip.trim());
-      const query = params.toString();
-      const target = query ? '/services/?' + query : '/services/';
-      window.location.href = target;
+      const service = (serviceInput && serviceInput.value) ? serviceInput.value.trim() : '';
+      const zip = (zipInput && zipInput.value) ? zipInput.value.trim() : '';
+
+      // Clear previous errors
+      if (errorService) {
+        errorService.textContent = '';
+        errorService.classList.remove('hero-form-error-visible');
+      }
+      if (errorZip) {
+        errorZip.textContent = '';
+        errorZip.classList.remove('hero-form-error-visible');
+      }
+
+      let hasError = false;
+      if (!service) {
+        hasError = true;
+        if (errorService) {
+          errorService.textContent = 'Please select or enter a service type.';
+          errorService.classList.add('hero-form-error-visible');
+        }
+      }
+      if (!zip) {
+        hasError = true;
+        if (errorZip) {
+          errorZip.textContent = 'Please enter your ZIP code.';
+          errorZip.classList.add('hero-form-error-visible');
+        }
+      }
+
+      if (hasError) return;
+
+      const hiddenService = document.getElementById('quote-hidden-service');
+      const hiddenZip = document.getElementById('quote-hidden-zip');
+      const quoteModal = document.getElementById('quote-modal');
+      if (hiddenService) hiddenService.value = service;
+      if (hiddenZip) hiddenZip.value = zip;
+      if (quoteModal && typeof quoteModal.showModal === 'function') {
+        quoteModal.showModal();
+        document.body.style.overflow = 'hidden';
+      }
     });
   })();
 </script>
+
+<style>
+  .hero-form-error {
+    opacity: 0;
+    min-height: 0;
+    transition: opacity 0.3s ease-out;
+  }
+  .hero-form-error.hero-form-error-visible {
+    opacity: 1;
+  }
+</style>

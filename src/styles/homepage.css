@@ -145,6 +145,7 @@
 #main-content section { padding: 5rem 5%; }
 
 .section-label {
+  font-family: var(--sans);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -154,8 +155,9 @@
 }
 
 .section-title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
   line-height: 1.15;
   color: var(--navy);
   margin-bottom: 0.75rem;
@@ -206,7 +208,7 @@
 .service-card.hot::after {
   content: 'HOT';
   position: absolute; top: 14px; right: 14px;
-  background: var(--amber);
+  background: #f97415;
   color: white;
   font-size: 0.65rem; font-weight: 700;
   letter-spacing: 0.08em;
@@ -237,54 +239,87 @@
 }
 
 /* ── PROCESS ── */
-.process { background: var(--white); }
+.process { background: #e8eef5; }
 
 .process-steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   position: relative;
+  align-items: start;
 }
 
 .process-steps::before {
   content: '';
   position: absolute;
-  top: 32px; left: calc(16.67% + 16px); right: calc(16.67% + 16px);
+  top: 60px;
+  left: calc(16.67% + 70px);
+  right: calc(16.67% + 70px);
   height: 2px;
-  background: linear-gradient(to right, var(--teal), var(--teal));
-  opacity: 0.25;
+  background: var(--gray-300);
 }
 
 .process-step {
   text-align: center;
-  padding: 2rem 1.5rem;
-}
-
-.step-number {
-  width: 64px; height: 64px;
-  background: var(--navy);
-  color: var(--white);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  margin: 0 auto 1.25rem;
+  padding: 0 0.5rem 2rem;
   position: relative;
   z-index: 1;
 }
 
-.step-number.highlight { background: var(--teal); }
+.process-step-icon-wrap {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  background: var(--white);
+  border: 2px solid #0073e6;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.process-step-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  background: #0073e6;
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.process-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0073e6;
+}
+
+.process-step-svg {
+  width: 48px;
+  height: 48px;
+}
 
 .process-step h3 {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
-  margin-bottom: 0.6rem;
-  color: var(--navy);
+  margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .process-step p {
   font-size: 0.9rem;
   color: var(--gray-500);
+  line-height: 1.5;
 }
 
 /* ── WHY US ── */
@@ -415,19 +450,24 @@
 }
 
 /* ── FAQ ── */
-.faq { background: var(--white); }
+.faq { background: var(--white); text-align: center; }
+
+.faq .section-header { text-align: center; margin-left: auto; margin-right: auto; }
+.faq .section-sub { margin-left: auto; margin-right: auto; }
 
 .faq-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
-  max-width: 900px;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .faq-item {
-  border: 1px solid var(--gray-100);
+  border: 1px solid var(--gray-300);
   border-radius: var(--radius);
   overflow: hidden;
+  background: var(--white);
 }
 
 .faq-question {
@@ -435,27 +475,36 @@
   font-weight: 500;
   font-size: 0.92rem;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   color: var(--navy);
   user-select: none;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
+  text-align: left;
 }
 
 .faq-question:hover { background: var(--gray-100); }
 
+.faq-item.open .faq-question { color: #0073e6; }
+
 .faq-chevron {
   flex-shrink: 0;
-  width: 20px; height: 20px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--gray-100);
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.65rem;
   transition: transform 0.25s, background 0.15s;
 }
 
 .faq-item.open .faq-chevron {
   transform: rotate(180deg);
-  background: var(--teal);
+  background: #0073e6;
   color: white;
 }
 

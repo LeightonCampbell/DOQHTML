@@ -16,7 +16,7 @@ const canonical = 'https://www.dealsofquality.com/';
     aria-labelledby="hero-heading"
   >
     <div
-      class="absolute inset-0 bg-cover bg-no-repeat"
+      class="hero-bg-image absolute inset-0 bg-cover bg-no-repeat"
       style="background-image: url('/images/hero-professional.png'); background-position: 82% center;"
     />
     <div
@@ -152,17 +152,32 @@ const canonical = 'https://www.dealsofquality.com/';
     </div>
     <div class="process-steps">
       <div class="process-step">
-        <div class="step-number">01</div>
+        <div class="process-step-icon-wrap">
+          <span class="process-step-badge">01</span>
+          <span class="process-step-icon" aria-hidden="true">
+            <svg class="process-step-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+          </span>
+        </div>
         <h3>Schedule Appointment</h3>
         <p>Book online or give us a call. Pick a time that works for your schedule.</p>
       </div>
       <div class="process-step">
-        <div class="step-number highlight">02</div>
+        <div class="process-step-icon-wrap">
+          <span class="process-step-badge">02</span>
+          <span class="process-step-icon" aria-hidden="true">
+            <svg class="process-step-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /><path d="M17 15l2 2 4-4" /></svg>
+          </span>
+        </div>
         <h3>Expert Arrives</h3>
         <p>Our verified professional arrives on time with all the tools needed.</p>
       </div>
       <div class="process-step">
-        <div class="step-number">03</div>
+        <div class="process-step-icon-wrap">
+          <span class="process-step-badge">03</span>
+          <span class="process-step-icon" aria-hidden="true">
+            <svg class="process-step-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </span>
+        </div>
         <h3>Enjoy & Relax</h3>
         <p>Your project is completed perfectly. 100% Satisfaction guaranteed.</p>
       </div>
@@ -427,6 +442,14 @@ const canonical = 'https://www.dealsofquality.com/';
     <a href="tel:+18185847389" class="btn-outline" style="flex:1; text-align:center; padding:0.75rem 1rem; font-size:0.9rem;">📞 Call Now</a>
     <a href="/#get-quote" class="btn-primary" style="flex:1; text-align:center; padding:0.75rem 1rem; font-size:0.9rem;">Get Free Quote</a>
   </div>
+
+  <style>
+    @media (max-width: 768px) {
+      .hero-bg-image {
+        background-position: center center !important;
+      }
+    }
+  </style>
 
   <script>
     document.querySelectorAll('[data-faq-toggle]').forEach(function (el) {

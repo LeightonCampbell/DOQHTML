@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const popularServices = [
+  { name: 'TV Mounting', href: '/services/tv-mounting-los-angeles/' },
+  { name: 'Smart Home', href: '/smart-home-integration/' },
+  { name: 'Plumbing', href: '/plumbing/' },
+  { name: 'Electrical', href: '/electrical/' },
+  { name: 'HVAC', href: '/hvac/' },
+  { name: 'Handyman Services', href: '/handyman-services/' },
+];
+---
+
+<BaseLayout
+  title="Page Not Found | Deals of Quality"
+  description="The page you're looking for doesn't exist. Return to Deals of Quality home or browse our services."
+  canonical="https://www.dealsofquality.com/404/"
+>
+  <div class="bg-white px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+    <!-- 404 main content -->
+    <section class="mx-auto max-w-2xl text-center">
+      <div class="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full border border-slate-200 bg-[#0073e6]/10 text-4xl font-bold text-[#004080]">
+        404
+      </div>
+      <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+        Oops! We can't find that page.
+      </h1>
+      <p class="mt-3 text-slate-500">
+        The page you're looking for might have been moved, deleted, or doesn't exist. Let's get you back on track.
+      </p>
+      <a
+        href="/"
+        class="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-[#f97415] px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        Return to Homepage
+      </a>
+    </section>
+
+    <!-- Popular Services -->
+    <section class="mx-auto mt-16 max-w-3xl">
+      <h2 class="mb-6 text-xl font-semibold text-[#004080]">
+        Popular Services
+      </h2>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {popularServices.map((service) => (
+          <a
+            href={service.href}
+            class="rounded-lg border border-slate-200 bg-white px-4 py-3 text-center text-sm font-medium text-slate-800 shadow-sm transition hover:border-[#0073e6]/40 hover:bg-slate-50 hover:text-[#0073e6]"
+          >
+            {service.name}
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="mx-auto mt-16 max-w-2xl text-center">
+      <p class="text-sm text-slate-500">
+        Need help finding what you're looking for?
+      </p>
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/services/"
+          class="inline-flex rounded-lg border-2 border-[#0073e6]/50 bg-white px-5 py-2.5 text-sm font-semibold text-[#004080] transition hover:border-[#0073e6] hover:bg-[#0073e6]/5 hover:text-[#0073e6]"
+        >
+          Browse All Services
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex rounded-lg border-2 border-[#0073e6]/50 bg-white px-5 py-2.5 text-sm font-semibold text-[#004080] transition hover:border-[#0073e6] hover:bg-[#0073e6]/5 hover:text-[#0073e6]"
+        >
+          Contact Us
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
