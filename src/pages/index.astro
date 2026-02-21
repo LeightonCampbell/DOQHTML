@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroQuoteForm from '../components/HeroQuoteForm.astro';
+const canonical = 'https://www.dealsofquality.com/';
+---
+
+<BaseLayout
+  title="Deals of Quality – Expert Home Services on Demand"
+  description="Trusted by 10,000+ homeowners. Fast, reliable, and vetted local pros for every essential home service need in Los Angeles. Get a free quote in minutes."
+  canonical={canonical}
+>
+  <!-- Hero: extends under the sticky header so transparent nav shows hero, not body -->
+  <section
+    id="get-quote"
+    class="hero-with-form relative -mt-16 min-h-[90vh] overflow-hidden bg-slate-800 pt-16"
+    aria-labelledby="hero-heading"
+  >
+    <!-- Background image: person positioned more to the right of hero -->
+    <div
+      class="absolute inset-0 bg-cover bg-no-repeat"
+      style="background-image: url('/images/hero-professional.png'); background-position: 82% center;"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-800/80"
+      aria-hidden="true"
+    />
+
+    <!-- Centered content + form -->
+    <div class="relative z-10 flex min-h-[calc(90vh-4rem)] flex-col items-center justify-center px-4 pb-28 pt-6 text-center sm:px-6 sm:pb-32 sm:pt-8 lg:px-8">
+      <!-- Trust badge -->
+      <p class="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+        <span class="text-[#f97415]" aria-hidden="true">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        </span>
+        Trusted by 10,000+ homeowners
+      </p>
+
+      <!-- Headline (centered) -->
+      <h1 id="hero-heading" class="max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+        Trusted Local Pros for Any Project
+        <span class="mt-2 block text-[#f97415]">Get a Quote in Minutes</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-slate-300">
+        Fast, reliable, and vetted local pros for every essential home service need.
+      </p>
+
+      <!-- Multistep form card (centered) -->
+      <div class="mt-8 w-full max-w-md">
+        <HeroQuoteForm />
+      </div>
+    </div>
+
+    <!-- Bottom status bar: dark bar with four trust items -->
+    <div
+      class="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-slate-900/95 backdrop-blur-sm"
+      role="list"
+      aria-label="Service guarantees"
+    >
+      <ul class="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-4 text-sm text-white sm:gap-x-12">
+        <li class="flex items-center gap-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#f97415]/20 text-[#f97415]" aria-hidden="true">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          Background Checked
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#f97415]/20 text-[#f97415]" aria-hidden="true">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          Licensed & Insured
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#f97415]/20 text-[#f97415]" aria-hidden="true">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          Satisfaction Guaranteed
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#f97415]/20 text-[#f97415]" aria-hidden="true">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          Same-Day Service Available
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Popular Services -->
+  <section class="border-t border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="services-heading">
+    <div class="mx-auto max-w-6xl">
+      <h2 id="services-heading" class="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Popular Services
+      </h2>
+      <p class="mt-2 text-slate-600">Expert help for your home's most important needs.</p>
+      <a href="/services/" class="mt-2 inline-block text-sm font-medium text-[#f97415] hover:text-[#ea580c]">
+        View all services →
+      </a>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        <li>
+          <a href="/house-cleaning/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">House Cleaning</h3>
+            <p class="mt-1 text-sm text-slate-600">Professional house cleaning and maid services.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/handyman-services/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">Handyman Services</h3>
+            <p class="mt-1 text-sm text-slate-600">Furniture assembly, repairs & odd jobs.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/plumbing/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">Plumbing Services</h3>
+            <p class="mt-1 text-sm text-slate-600">Repairs, installations & emergencies.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/security-cameras/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">Security Camera Setup</h3>
+            <p class="mt-1 text-sm text-slate-600">Professional camera installation.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/services/tv-mounting-los-angeles/" class="block rounded-xl border border-[#f97415]/30 bg-[#f97415]/5 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">TV Mounting</h3>
+            <p class="mt-1 text-sm text-slate-600">Professional wall mounting for any TV size.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/electrical/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">Electrical Services</h3>
+            <p class="mt-1 text-sm text-slate-600">Safe, licensed electrical work.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/smart-home-integration/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">Smart Home Integration</h3>
+            <p class="mt-1 text-sm text-slate-600">Thermostats, locks, doorbells & more.</p>
+          </a>
+        </li>
+        <li>
+          <a href="/router-setup/" class="block rounded-xl border border-slate-200 p-5 transition hover:border-[#f97415]/50 hover:shadow-md">
+            <h3 class="font-semibold text-slate-900">Wi-Fi & Networking</h3>
+            <p class="mt-1 text-sm text-slate-600">Setup, optimization & dead zones.</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="border-t border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="process-heading">
+    <div class="mx-auto max-w-6xl">
+      <h2 id="process-heading" class="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Simple, Hassle-Free Process
+      </h2>
+      <p class="mt-2 text-slate-600">Getting expert home improvement has never been easier.</p>
+      <ol class="mt-12 grid gap-10 sm:grid-cols-3" role="list">
+        <li class="relative rounded-xl bg-white p-6 shadow-sm">
+          <span class="text-3xl font-bold text-[#f97415]/80">01</span>
+          <h3 class="mt-2 text-lg font-semibold text-slate-900">Schedule Appointment</h3>
+          <p class="mt-2 text-sm text-slate-600">Book online or give us a call. Pick a time that works for your schedule.</p>
+        </li>
+        <li class="relative rounded-xl bg-white p-6 shadow-sm">
+          <span class="text-3xl font-bold text-[#f97415]/80">02</span>
+          <h3 class="mt-2 text-lg font-semibold text-slate-900">Expert Arrives</h3>
+          <p class="mt-2 text-sm text-slate-600">Our verified professional arrives on time with all the tools needed.</p>
+        </li>
+        <li class="relative rounded-xl bg-white p-6 shadow-sm">
+          <span class="text-3xl font-bold text-[#f97415]/80">03</span>
+          <h3 class="mt-2 text-lg font-semibold text-slate-900">Enjoy & Relax</h3>
+          <p class="mt-2 text-sm text-slate-600">Your project is completed perfectly. 100% Satisfaction guaranteed.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Why LA Trusts -->
+  <section class="border-t border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="why-heading">
+    <div class="mx-auto max-w-6xl">
+      <h2 id="why-heading" class="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Why Los Angeles Trusts Deals of Quality
+      </h2>
+      <p class="mt-2 text-lg text-slate-600">We don't just find pros; we curate excellence.</p>
+      <p class="mt-2 text-slate-600">
+        In a city of millions, finding a contractor you can actually trust shouldn't be a gamble. We do the heavy lifting before they ever set foot in your home.
+      </p>
+      <ul class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        <li class="rounded-xl border border-slate-200 p-5">
+          <h3 class="font-semibold text-slate-900">The 5-Point Vetting Rigor</h3>
+          <p class="mt-2 text-sm text-slate-600">Every pro undergoes a manual background check and license verification. If they wouldn't work in our homes, they won't work in yours.</p>
+        </li>
+        <li class="rounded-xl border border-slate-200 p-5">
+          <h3 class="font-semibold text-slate-900">California Compliance Checked</h3>
+          <p class="mt-2 text-sm text-slate-600">We verify CSLB status and active insurance for every specialist, from HVAC to TV mounting.</p>
+        </li>
+        <li class="rounded-xl border border-slate-200 p-5">
+          <h3 class="font-semibold text-slate-900">Local Accountability</h3>
+          <p class="mt-2 text-sm text-slate-600">We focus exclusively on the LA area. We know local building codes in Pasadena and permit requirements in Santa Monica.</p>
+        </li>
+        <li class="rounded-xl border border-slate-200 p-5">
+          <h3 class="font-semibold text-slate-900">Performance Monitored</h3>
+          <p class="mt-2 text-sm text-slate-600">We continuously track customer satisfaction. Pros stay in the network based on current quality, not past reputation.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="border-t border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="testimonials-heading">
+    <div class="mx-auto max-w-6xl">
+      <h2 id="testimonials-heading" class="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Trusted by Thousands of Homeowners
+      </h2>
+      <p class="mt-2 text-slate-600">What customers say about our service.</p>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+        <li class="rounded-xl bg-white p-6 shadow-sm">
+          <p class="text-sm font-medium text-[#f97415]">TV Mounting & WiFi Setup</p>
+          <blockquote class="mt-2 text-slate-700">"In just 4 hours, we managed to install 3 TVs and set up new Wi-Fi in our new office. The pro was professional and knew exactly what he was doing."</blockquote>
+          <p class="mt-3 text-sm font-medium text-slate-900">Mark L.</p>
+          <p class="text-xs text-slate-500">Los Angeles, CA • Verified Customer</p>
+        </li>
+        <li class="rounded-xl bg-white p-6 shadow-sm">
+          <p class="text-sm font-medium text-[#f97415]">Plumbing Services</p>
+          <blockquote class="mt-2 text-slate-700">"I needed a kitchen faucet installation done quickly before hosting a dinner party. They came same-day, finished in under an hour, and the new faucet works perfectly. Worth every penny!"</blockquote>
+          <p class="mt-3 text-sm font-medium text-slate-900">Michael R.</p>
+          <p class="text-xs text-slate-500">Chicago, IL • Verified Customer</p>
+        </li>
+        <li class="rounded-xl bg-white p-6 shadow-sm">
+          <p class="text-sm font-medium text-[#f97415]">TV Mounting</p>
+          <blockquote class="mt-2 text-slate-700">"They mounted our 75-inch TV above the fireplace perfectly. The cables are hidden, everything is level, and they even helped us set up the soundbar. Couldn't be happier!"</blockquote>
+          <p class="mt-3 text-sm font-medium text-slate-900">David P.</p>
+          <p class="text-xs text-slate-500">Denver, CO • Verified Customer</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-t border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="faq-heading">
+    <div class="mx-auto max-w-3xl">
+      <h2 id="faq-heading" class="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Frequently Asked Questions
+      </h2>
+      <p class="mt-2 text-slate-600">Everything you need to know about our premium home services.</p>
+      <dl class="mt-10 space-y-6">
+        <div>
+          <dt class="text-base font-semibold text-slate-900">How do you vet your service professionals?</dt>
+          <dd class="mt-2 text-sm text-slate-600">Every pro undergoes a manual background check and license verification as part of our 5-point vetting process.</dd>
+        </div>
+        <div>
+          <dt class="text-base font-semibold text-slate-900">What's your service guarantee?</dt>
+          <dd class="mt-2 text-sm text-slate-600">We stand behind our work with a 100% satisfaction guarantee. If you're not happy, we'll make it right.</dd>
+        </div>
+        <div>
+          <dt class="text-base font-semibold text-slate-900">Are your professionals licensed and insured?</dt>
+          <dd class="mt-2 text-sm text-slate-600">Yes. We verify CSLB (Contractors State License Board) status and active insurance for every specialist.</dd>
+        </div>
+        <div>
+          <dt class="text-base font-semibold text-slate-900">How quickly can you schedule service?</dt>
+          <dd class="mt-2 text-sm text-slate-600">Same-day service is often available. Book online or call us to find a time that works for you.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+/**
+ * SEO-first Head component. Every page must pass explicit title, description, and canonical.
+ * Renders a single, hardcoded set of meta tags for maximum SEO control.
+ */
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+}
+
+const { title, description, canonical } = Astro.props;
+const siteName = 'Deals of Quality';
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={siteName} />
+
+<!-- Favicons: .ico for legacy, .png for modern -->
+<link rel="icon" href="/favicon.ico" sizes="32x32 16x16" />
+<link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
