@@ -34,6 +34,6 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={siteName} />
 
-<!-- Favicons: .ico for legacy, .png for modern -->
-<link rel="icon" href="/favicon.ico" sizes="32x32 16x16" />
-<link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
+<!-- Favicons: global site icon -->
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
