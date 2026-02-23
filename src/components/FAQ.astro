@@ -1,0 +1,45 @@
+---
+const faqs = [
+  { question: "How do you vet your service professionals?", answer: "We carefully screen every professional in our network. All pros undergo comprehensive background checks, license verification, insurance confirmation, and skills assessment. We only work with experienced, reliable professionals who share our commitment to quality service." },
+  { question: "What's your service guarantee?", answer: "We stand behind our work 100%. If you're not completely satisfied, we'll return to fix any issues at no additional charge. Our workmanship is guaranteed for at least 90 days, and many services include extended warranties. Your satisfaction is our top priority." },
+  { question: "Are your professionals licensed and insured?", answer: "Yes! All our professionals are fully licensed where required by law, background-checked, and carry comprehensive liability insurance. This protects you and ensures you're working with qualified, reputable service providers." },
+  { question: "How quickly can you schedule service?", answer: "We offer same-day service for many requests when you call before noon. For most services, we can typically schedule within 24-48 hours. Weekend and evening appointments are also available to fit your schedule. Emergency services may be available depending on your location." },
+  { question: "What types of home services do you offer?", answer: "We offer comprehensive premium home services including plumbing, electrical, HVAC, remodeling, painting, flooring, roofing, cleaning, landscaping, smart home installation, and much more. Browse our services page to see our complete range of offerings." },
+  { question: "How does pricing work?", answer: "We provide upfront, transparent pricing before any work begins. You'll receive a clear estimate that outlines all costs, and there are never any hidden fees or surprise charges. Payment is typically due upon completion of satisfactory work. Free estimates are available for larger projects." },
+  { question: "Can you handle large remodeling projects?", answer: "Absolutely! We coordinate everything from small repairs to complete home remodels. Our network includes experienced contractors for kitchen and bathroom remodels, additions, and whole-home renovations. We handle project management, permits, and ensure quality work from start to finish." },
+  { question: "Do you offer warranties on your work?", answer: "Yes, all our work comes with a satisfaction guarantee and warranty. Specific warranty terms vary by service type, but we typically offer at least 90 days on workmanship. Many services include manufacturer warranties as well. We'll clearly explain warranty coverage before work begins." },
+  { question: "What areas do you serve?", answer: "We serve customers nationwide through our carefully vetted network of local professionals. When you book a service, we match you with qualified pros in your area. Contact us to confirm availability in your specific location." },
+  { question: "How do I schedule a service?", answer: "You can schedule service in several ways: book online through our website, call us at (818) 584-7389, or use the search bar on our homepage to find and book a specific service. We'll confirm your appointment and connect you with a qualified professional in your area." },
+];
+---
+
+<section id="faq" class="section-padding bg-background" aria-labelledby="faq-heading">
+  <div class="container-max">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 id="faq-heading" class="font-display text-[35px] font-extrabold text-foreground mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-lg text-muted-foreground">
+        Everything you need to know about our premium home services
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq) => (
+        <details class="group bg-card border border-border rounded-xl px-6 shadow-none transition-shadow open:shadow-md">
+          <summary class="list-none font-display font-semibold text-foreground py-5 cursor-pointer flex items-center justify-between gap-4 text-left hover:text-accent transition-colors [&::-webkit-details-marker]:hidden">
+            <span>{faq.question}</span>
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-open:bg-accent group-open:text-accent-foreground group-open:rotate-180 transition-all duration-200">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="text-muted-foreground pb-5 leading-relaxed border-t border-border pt-1">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

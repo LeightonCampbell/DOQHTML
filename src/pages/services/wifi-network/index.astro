@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+const services = [
+  { title: 'Router Setup', href: '/router-setup/', benefit: 'Proper router configuration for maximum speed and security. Get the most out of your internet connection with expert setup.' },
+  { title: 'Network Optimization', href: '/network-optimization/', benefit: 'Boost your network performance and eliminate bottlenecks. Faster speeds and more reliable connections throughout your space.' },
+  { title: 'Dead Zone Elimination', href: '/dead-zone-elimination/', benefit: 'Say goodbye to WiFi dead zones. Professional solutions ensure strong, consistent coverage in every room of your home or office.' },
+  { title: 'Business Networks', href: '/business-networks/', benefit: 'Enterprise-grade network solutions for your business. Secure, scalable infrastructure that supports your growing operations.' },
+];
+---
+
+<BaseLayout title="WiFi & Network | Setup & Optimization Services | Deals Of Quality" description="Professional WiFi and network services. Router setup, network optimization, dead zone elimination, and business network solutions. Same-day service available." canonical="https://www.dealsofquality.com/services/wifi-network/">
+  <main class="min-h-screen bg-background">
+    <section class="bg-secondary/30 relative overflow-hidden pt-24 pb-12 md:pt-32 md:pb-16">
+      <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="lg:max-w-lg">
+            <h1 class="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">WiFi & Network</h1>
+            <p class="text-muted-foreground text-lg">Get fast, reliable internet throughout your home or office. We optimize networks for maximum performance.</p>
+          </div>
+          <div class="w-80 h-52 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center">
+            <svg class="w-32 h-32 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-padding bg-background">
+      <div class="container-max">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">Our WiFi & Network Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((s) => (
+            <a href={s.href} class="group bg-card border border-border rounded-xl p-6 block hover:border-accent/30 transition-colors">
+              <h3 class="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">{s.benefit}</p>
+            </a>
+          ))}
+        </div>
+        <div class="mt-10 text-center">
+          <button type="button" data-open-quote class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 font-medium">Get a Free Quote</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

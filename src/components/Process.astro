@@ -1,0 +1,55 @@
+---
+const steps = [
+  { step: "01", title: "Schedule Appointment", description: "Book online or give us a call. Pick a time that works for your schedule." },
+  { step: "02", title: "Expert Arrives", description: "Our verified professional arrives on time with all the tools needed." },
+  { step: "03", title: "Enjoy & Relax", description: "Your project is completed perfectly. 100% Satisfaction guaranteed." },
+];
+---
+
+<section id="process" class="section-padding bg-secondary">
+  <div class="container-max">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="font-display text-[35px] font-extrabold text-foreground mb-4">
+        Simple, Hassle-Free Process
+      </h2>
+      <p class="text-lg text-muted-foreground">Getting expert home improvement has never been easier</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+      {steps.map((step, index) => (
+        <div class="relative text-center animate-fade-in-up" style={index > 0 ? `animation-delay: ${index * 150}ms` : ''}>
+          {index < steps.length - 1 && (
+            <div class="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-border z-0" aria-hidden="true" />
+          )}
+          <div class="relative z-10 w-24 h-24 rounded-2xl bg-card border-2 border-accent shadow-lg flex items-center justify-center mx-auto mb-6">
+            {index === 0 && (
+              <svg class="w-10 h-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            )}
+            {index === 1 && (
+              <svg class="w-10 h-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <path d="M17 15l2 2 4-4" />
+              </svg>
+            )}
+            {index === 2 && (
+              <svg class="w-10 h-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            )}
+            <span class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-accent text-accent-foreground text-sm font-bold flex items-center justify-center">
+              {step.step}
+            </span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-foreground mb-3">
+            {step.title}
+          </h3>
+          <p class="text-muted-foreground leading-relaxed max-w-xs mx-auto">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

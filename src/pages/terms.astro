@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lastUpdated = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+
+<BaseLayout
+  title="Terms of Service | Deals Of Quality"
+  description="Terms of Service for Deals of Quality. Read our terms and conditions for using our tech support and home services."
+  canonical="https://www.dealsofquality.com/terms/"
+>
+  <main class="flex-1 bg-background">
+    <section class="hero-gradient relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
+      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="font-display text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
+            Terms of Service
+          </h1>
+          <p class="text-primary-foreground/80 text-lg">
+            Last updated: {lastUpdated}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding">
+      <div class="container-max max-w-4xl">
+        <div class="prose prose-lg max-w-none text-muted-foreground">
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">1. Agreement to Terms</h2>
+          <p class="mb-6">
+            By accessing or using the services provided by Deals of Quality, LLC ("Company," "we," "us," or "our"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">2. Services Provided</h2>
+          <p class="mb-6">
+            Deals of Quality provides professional tech support and home services, including but not limited to TV mounting, computer repair, Wi-Fi optimization, security camera installation, smart home setup, and related technology services. All services are performed by trained professionals and are subject to availability.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">3. Booking and Appointments</h2>
+          <p class="mb-6">
+            When you book a service with us, you agree to provide accurate information about your service needs and location. We reserve the right to reschedule or cancel appointments due to unforeseen circumstances. You will be notified of any changes as soon as possible.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">4. Pricing and Payment</h2>
+          <p class="mb-6">
+            Service prices are provided at the time of booking and are subject to change based on the complexity of the work required. Additional charges may apply for parts, materials, or services not included in the original quote. Payment is due upon completion of services unless otherwise agreed.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">5. Warranty and Guarantees</h2>
+          <p class="mb-6">
+            We stand behind our work and offer a satisfaction guarantee on all services. If you are not satisfied with our service, please contact us within 30 days of service completion, and we will work to resolve the issue. Warranties on parts and materials are subject to manufacturer terms.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">6. Limitation of Liability</h2>
+          <p class="mb-6">
+            Deals of Quality shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services. Our total liability shall not exceed the amount paid for the specific service in question.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">7. Customer Responsibilities</h2>
+          <p class="mb-6">
+            You agree to provide a safe working environment for our technicians, accurate information about your service needs, and timely access to the service location. You are responsible for backing up any data before computer or device-related services.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">8. Cancellation Policy</h2>
+          <p class="mb-6">
+            Appointments may be canceled or rescheduled with at least 24 hours notice without penalty. Cancellations made with less than 24 hours notice may be subject to a cancellation fee.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">9. Changes to Terms</h2>
+          <p class="mb-6">
+            We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting to our website. Your continued use of our services constitutes acceptance of any changes.
+          </p>
+
+          <h2 class="font-display text-2xl font-bold text-foreground mb-4">10. Contact Information</h2>
+          <p class="mb-6">
+            If you have any questions about these Terms of Service, please contact us at (818) 584-7389 or through our <a href="/contact/" class="text-accent hover:underline">contact page</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+const testimonials = [
+  { quote: "In just 4 hours, we managed to install 3 TVs and set up new Wi-Fi in our new office. The pro was professional and knew exactly what he was doing.", author: "Mark L.", location: "Los Angeles, CA", service: "TV Mounting & WiFi Setup" },
+  { quote: "Leighton is a brilliant IT problem solver. He is well-versed in all aspects of computer network technology. Highly recommend!", author: "John E.", location: "Dallas, TX", service: "Network Setup" },
+  { quote: "I needed a kitchen faucet installation done quickly before hosting a dinner party. They came same-day, finished in under an hour, and the new faucet works perfectly. Worth every penny!", author: "Michael R.", location: "Chicago, IL", service: "Plumbing Services" },
+  { quote: "Our bathroom remodel turned out amazing! The team was professional, cleaned up every day, and finished on time. The new tile work and fixtures look incredible.", author: "Jessica K.", location: "Phoenix, AZ", service: "Bathroom Remodeling" },
+  { quote: "Had a leaky pipe that was causing water damage. They came out the same day I called, fixed it properly, and even helped me understand what caused it. Great service!", author: "Robert T.", location: "Miami, FL", service: "Plumbing Repair" },
+  { quote: "The electrician installed new recessed lighting throughout our living room. The work was clean, professional, and they explained everything clearly. Our home looks so much brighter now!", author: "Amanda S.", location: "Seattle, WA", service: "Electrical Work" },
+  { quote: "They mounted our 75-inch TV above the fireplace perfectly. The cables are hidden, everything is level, and they even helped us set up the soundbar. Couldn't be happier!", author: "David P.", location: "Denver, CO", service: "TV Mounting" },
+  { quote: "Our AC stopped working during a heatwave. They had someone here within 2 hours, diagnosed the problem quickly, and got us cool again. Lifesavers!", author: "Maria G.", location: "Houston, TX", service: "HVAC Repair" },
+];
+const duplicatedReviews = [...testimonials, ...testimonials];
+const avatarGradients = ['bg-gradient-to-br from-blue-500 to-blue-600', 'bg-gradient-to-br from-orange-500 to-orange-600', 'bg-gradient-to-br from-green-500 to-green-600', 'bg-gradient-to-br from-purple-500 to-purple-600', 'bg-gradient-to-br from-pink-500 to-pink-600', 'bg-gradient-to-br from-indigo-500 to-indigo-600', 'bg-gradient-to-br from-teal-500 to-teal-600', 'bg-gradient-to-br from-cyan-500 to-cyan-600'];
+---
+
+<section class="section-padding bg-[#f8f9fa]" aria-labelledby="reviews-heading">
+  <div class="container-max">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 id="reviews-heading" class="text-[35px] font-extrabold text-[#1a1a1a] mb-3 font-display">
+        Trusted by Thousands of Homeowners
+      </h2>
+      <p class="text-lg text-[#6b7280] font-normal">
+        What customers say about our service
+      </p>
+    </div>
+
+    <div class="marquee-container overflow-hidden w-full relative" role="region" aria-label="Customer testimonials">
+      <div class="marquee-track flex gap-6 w-max">
+        {duplicatedReviews.map((t, i) => (
+          <article class="verified-review-card flex-shrink-0 w-80 bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="flex gap-1 mb-5" role="img" aria-label="5 out of 5 stars">
+              <svg class="w-5 h-5 text-[#ff6b35] fill-[#ff6b35]" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-5 h-5 text-[#ff6b35] fill-[#ff6b35]" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-5 h-5 text-[#ff6b35] fill-[#ff6b35]" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-5 h-5 text-[#ff6b35] fill-[#ff6b35]" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-5 h-5 text-[#ff6b35] fill-[#ff6b35]" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="absolute top-8 right-8 bg-[#e8f3ff] text-[#0066cc] px-3.5 py-1.5 rounded-full text-xs font-medium">
+              {t.service}
+            </span>
+            <blockquote class="text-[#374151] text-base leading-[1.7] mb-6 mt-3">
+              "{t.quote}"
+            </blockquote>
+            <div class="flex items-center gap-3 mt-6">
+              <div class={`w-12 h-12 rounded-full ${avatarGradients[i % avatarGradients.length]} flex items-center justify-center flex-shrink-0`}>
+                <span class="text-white font-semibold text-lg">{t.author[0]}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-semibold text-[#1a1a1a] text-[15px]">{t.author}</span>
+                  <svg class="w-4 h-4 text-[#10b981] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-label="Verified customer"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <span class="text-sm text-[#6b7280] mt-0.5 block">{t.location} • Verified Customer</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-container {
+    /* Mask edges so cards don't pop in/out; optional gradient fade */
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .verified-review-card {
+    position: relative;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

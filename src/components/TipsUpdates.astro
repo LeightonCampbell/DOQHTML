@@ -1,0 +1,42 @@
+---
+// Newsletter section – form only; no backend/dialog in Phase 2
+---
+
+<section class="py-16 md:py-20 bg-muted" aria-labelledby="tips-updates-heading">
+  <div class="container-max px-4 md:px-8 lg:px-16">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 id="tips-updates-heading" class="font-display text-[35px] font-extrabold text-foreground mb-4">
+        Stay updated with quality tips
+      </h2>
+      <p class="text-muted-foreground mb-8">
+        Get weekly insights, service updates, and exclusive offers directly in your inbox
+      </p>
+
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="#" method="post" aria-label="Newsletter signup" id="newsletter-form">
+        <label for="newsletter-email" class="sr-only">Email address for newsletter</label>
+        <input
+          type="email"
+          id="newsletter-email"
+          name="email"
+          placeholder="Enter your email address"
+          class="flex-1 h-12 bg-background border border-border rounded-md px-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          maxlength="255"
+          required
+        />
+        <button
+          type="submit"
+          class="h-12 px-8 rounded-md bg-cta text-cta-foreground font-semibold hover:bg-cta/90 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          Sign up
+        </button>
+      </form>
+
+      <p class="text-xs text-muted-foreground mt-4">
+        By signing up, you agree to our{" "}
+        <a href="/terms/" class="text-primary hover:underline">terms</a>
+        {" "}and{" "}
+        <a href="/privacy/" class="text-primary hover:underline">privacy policy</a>
+      </p>
+    </div>
+  </div>
+</section>

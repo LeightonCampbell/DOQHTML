@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Booking Confirmed | Deals Of Quality"
+  description="Your booking has been confirmed. We're looking forward to serving you."
+  canonical="https://www.dealsofquality.com/booking-confirmed/"
+>
+  <main class="min-h-screen bg-background">
+    <section class="pt-24 md:pt-32 pb-16 md:pb-24">
+      <div class="container-max px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="relative w-24 h-24 mx-auto mb-6">
+            <div class="absolute inset-0 rounded-full bg-success/10 animate-ping" />
+            <div class="relative w-full h-full rounded-full bg-success/20 flex items-center justify-center">
+              <svg class="w-16 h-16 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+          </div>
+          <h1 class="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Booking Confirmed!
+          </h1>
+          <p class="text-lg md:text-xl text-muted-foreground mb-12">
+            Your appointment is set. We'll send you a reminder and our Pro will reach out to confirm details.
+          </p>
+          <a href="/" class="inline-flex items-center justify-center rounded-md text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
+            Return to Home
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container-max px-4">
+        <div class="max-w-2xl mx-auto text-center">
+          <p class="text-muted-foreground">
+            Need to reschedule or have questions? <a href="tel:8185847389" class="text-primary hover:underline font-semibold">Call us at (818) 584-7389</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

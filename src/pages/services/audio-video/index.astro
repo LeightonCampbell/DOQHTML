@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+const services = [
+  { title: 'Home Theater', href: '/home-theater/', benefit: 'Cinema-quality entertainment in your home. Professional installation of projectors, screens, and audio systems.' },
+  { title: 'Surround Sound', href: '/surround-sound/', benefit: 'Immersive audio experience with perfectly positioned speakers. Transform your space into a premium entertainment zone.' },
+  { title: 'Streaming Setup', href: '/streaming-setup/', benefit: 'Access all your favorite content seamlessly. Expert configuration of streaming devices and smart TV apps.' },
+  { title: 'Gaming Console Setup', href: '/gaming-setup/', benefit: 'Optimize your gaming experience. Professional setup for consoles, displays, and audio for the ultimate gaming setup.' },
+];
+---
+
+<BaseLayout title="Audio & Video | Home Entertainment Services | Deals Of Quality" description="Professional audio and video installation. Home theater, surround sound, streaming setup, and gaming console configuration. Same-day service available." canonical="https://www.dealsofquality.com/services/audio-video/">
+  <main class="min-h-screen bg-background">
+    <section class="bg-secondary/30 relative overflow-hidden pt-24 pb-12 md:pt-32 md:pb-16">
+      <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="lg:max-w-lg">
+            <h1 class="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Audio & Video</h1>
+            <p class="text-muted-foreground text-lg">Create the ultimate entertainment experience. From home theaters to streaming setups, we've got you covered.</p>
+          </div>
+          <div class="w-80 h-52 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center">
+            <svg class="w-32 h-32 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-padding bg-background">
+      <div class="container-max">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">Our Audio & Video Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((s) => (
+            <a href={s.href} class="group bg-card border border-border rounded-xl p-6 block hover:border-accent/30 transition-colors">
+              <h3 class="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">{s.benefit}</p>
+            </a>
+          ))}
+        </div>
+        <div class="mt-10 text-center">
+          <button type="button" data-open-quote class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 font-medium">Get a Free Quote</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

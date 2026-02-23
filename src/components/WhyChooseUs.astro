@@ -1,0 +1,70 @@
+---
+const features = [
+  { title: "The 5-Point Vetting Rigor", description: "Every pro in our network undergoes a manual background check and license verification. If they wouldn't work in our homes, they won't work in yours.", badge: null },
+  { title: "California Compliance Checked", description: "We verify CSLB (Contractors State License Board) status and active insurance policies for every specialist, from HVAC to TV mounting.", badge: "Licensed & Insured" },
+  { title: "Local Accountability", description: "We focus exclusively on the LA area. We know the local building codes in Pasadena and the permit requirements in Santa Monica.", badge: null },
+  { title: "Performance Monitored", description: "We continuously track customer satisfaction. Our pros stay in the network based on their current quality, not their past reputation.", badge: null },
+];
+---
+
+<section class="section-padding bg-background px-4 md:px-8 lg:px-16" aria-labelledby="why-choose-us-heading">
+  <div class="container-max w-full">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 id="why-choose-us-heading" class="font-display text-[35px] font-extrabold text-foreground mb-4">
+        Why Los Angeles Trusts Deals of Quality
+      </h2>
+      <p class="text-xl text-accent font-semibold mb-4">
+        We don't just find pros; we curate excellence.
+      </p>
+      <p class="text-lg text-muted-foreground leading-relaxed">
+        In a city of millions, finding a contractor you can actually trust shouldn't be a gamble. We do the heavy lifting before they ever set foot in your home.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {features.map((feature) => (
+        <div class="group relative flex flex-col rounded-2xl border border-border bg-card p-6 md:p-7 hover:border-accent/40 hover:shadow-lg transition-all duration-300">
+          <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
+            {feature.title.startsWith("The 5-Point") && (
+              <svg class="w-7 h-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+            )}
+            {feature.title.startsWith("California") && (
+              <svg class="w-7 h-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            )}
+            {feature.title.startsWith("Local") && (
+              <svg class="w-7 h-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            )}
+            {feature.title.startsWith("Performance") && (
+              <svg class="w-7 h-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            )}
+          </div>
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <h3 class="font-display text-lg font-bold text-foreground">
+              {feature.title}
+            </h3>
+            {feature.badge && (
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold border border-accent/20">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {feature.badge}
+              </span>
+            )}
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed flex-1">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
