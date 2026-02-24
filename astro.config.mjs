@@ -4,12 +4,15 @@ import tailwind from '@astrojs/tailwind';
 
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.dealsofquality.com',
   output: 'static',
   trailingSlash: 'always',
   integrations: [tailwind(), sitemap()],
+
   // Legacy root-level service URLs → /services/ silo (301). No legacy sitemap.xml in repo;
   // redirects below match legacy React routes and servicesData; /services/[slug]/ and
   // /services/tv-mounting-[city]/ cover new Astro routes.
@@ -60,4 +63,6 @@ export default defineConfig({
     '/business-it-solutions/': '/services/business-it-solutions/',
     '/custom-solutions/': '/services/custom-solutions/',
   },
+
+  adapter: cloudflare(),
 });
