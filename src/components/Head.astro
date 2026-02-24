@@ -1,7 +1,8 @@
 ---
 /**
  * SEO-first Head component. Every page must pass explicit title, description, and canonical.
- * Renders a single, hardcoded set of meta tags for maximum SEO control.
+ * Canonical must be the exact absolute URL including a trailing slash (site uses trailingSlash: 'always')
+ * to avoid duplicate-content signals. Renders a single set of meta tags for maximum SEO control.
  */
 interface Props {
   title: string;

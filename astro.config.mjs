@@ -2,14 +2,19 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.dealsofquality.com',
   output: 'static',
   trailingSlash: 'always',
-  integrations: [tailwind()],
-  // Legacy root-level service URLs → /services/ silo (301). Matches all services in servicesData.
+  integrations: [tailwind(), sitemap()],
+  // Legacy root-level service URLs → /services/ silo (301). No legacy sitemap.xml in repo;
+  // redirects below match legacy React routes and servicesData; /services/[slug]/ and
+  // /services/tv-mounting-[city]/ cover new Astro routes.
   redirects: {
+    '/sitemap.xml': '/sitemap-index.xml',
     '/handyman-services/': '/services/handyman-services/',
     '/painting/': '/services/painting/',
     '/kitchen-remodeling/': '/services/kitchen-remodeling/',

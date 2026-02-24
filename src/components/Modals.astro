@@ -193,10 +193,10 @@ const bookingCategories = [
   </div>
 </dialog>
 
-<!-- Booking Modal (3-step: Service → ZIP → Contact & appointment) -->
+<!-- Booking Modal (4-step: Service → ZIP → Details → Contact) -->
 <dialog id="booking-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm sm:max-w-lg overflow-hidden" aria-labelledby="booking-modal-title" aria-describedby="booking-modal-desc">
   <div class="relative max-h-[90vh] w-full overflow-y-auto">
-    <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#f97415]" aria-label="Close booking modal" data-close-dialog="booking-modal">
+    <button type="button" class="modal-close absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#004080]" aria-label="Close booking modal" data-close-dialog="booking-modal">
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
@@ -209,21 +209,24 @@ const bookingCategories = [
       <input type="hidden" id="booking-hidden-service" name="service" value="" />
       <input type="hidden" id="booking-hidden-zip" name="zip" value="" />
 
+      <!-- Progress bar (4 steps: 25%, 50%, 75%, 100%) -->
       <div class="border-b border-slate-200 p-4">
         <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-          <div id="booking-progress-fill" class="h-full rounded-full bg-[#0073e6] transition-all duration-300" style="width: 33.33%"></div>
+          <div id="booking-progress-fill" class="h-full rounded-full bg-[#004080] transition-all duration-300" style="width: 25%"></div>
         </div>
-        <p id="booking-modal-desc" class="text-sm text-slate-500 mt-2 text-center">Step <span id="booking-step-indicator">1</span> of 3</p>
+        <p id="booking-modal-desc" class="text-sm text-slate-500 mt-2 text-center">Step <span id="booking-step-indicator">1</span> of 4</p>
       </div>
 
       <div class="p-6 pr-14">
-        <h2 id="booking-modal-title" class="font-display text-2xl font-bold text-slate-900 mb-6 text-center">Schedule a Service</h2>
-
         <!-- Step 1: Service selection -->
-        <div id="booking-step-1" class="booking-step space-y-4">
+        <div id="booking-step-1" class="booking-step space-y-6">
+          <div class="text-center">
+            <h2 id="booking-modal-title" class="font-display text-2xl font-bold text-slate-900 mb-2">What do you need help with?</h2>
+            <p class="text-slate-500">Select a service to get matched with the right pro</p>
+          </div>
           <div class="space-y-2">
-            <label for="booking-category" class="block text-sm font-medium text-slate-700">Service Category *</label>
-            <select id="booking-category" name="category_select" required class="h-12 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
+            <label for="booking-category" class="block text-sm font-medium text-slate-700 mb-0.5">Service Category *</label>
+            <select id="booking-category" name="category_select" required class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]">
               <option value="">Choose a category</option>
               {bookingCategories.map((cat) => (
                 <option value={cat.category}>{cat.category}</option>
@@ -231,8 +234,8 @@ const bookingCategories = [
             </select>
           </div>
           <div class="space-y-2">
-            <label for="booking-service" class="block text-sm font-medium text-slate-700">Specific Service *</label>
-            <select id="booking-service" name="service_select" required class="h-12 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
+            <label for="booking-service" class="block text-sm font-medium text-slate-700 mb-0.5">Specific Service *</label>
+            <select id="booking-service" name="service_select" required class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]">
               <option value="">Choose a service</option>
               {bookingCategories.map((cat) => (
                 <optgroup label={cat.category}>
@@ -248,73 +251,92 @@ const bookingCategories = [
         </div>
 
         <!-- Step 2: ZIP code -->
-        <div id="booking-step-2" class="booking-step hidden space-y-4">
-          <div class="text-center mb-4">
-            <h3 class="font-display text-xl font-bold text-slate-900 mb-1">Service Area (ZIP Code)</h3>
-            <p class="text-slate-500 text-sm">Enter your service location ZIP code</p>
+        <div id="booking-step-2" class="booking-step hidden space-y-6">
+          <div class="text-center">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">Where is the project located?</h2>
+            <p class="text-slate-500">Enter your service location ZIP code</p>
           </div>
-          <div class="space-y-2">
+          <div class="space-y-1.5">
             <label for="booking-zip" class="sr-only">ZIP code</label>
             <div class="relative">
               <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
               </span>
-              <input type="text" id="booking-zip" name="zip_input" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter ZIP code" class="h-14 w-full rounded-lg border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+              <input type="text" id="booking-zip" name="zip_input" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter ZIP code" class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 placeholder-slate-400 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
             </div>
             <p id="booking-zip-error" class="text-sm text-red-500 hidden"></p>
           </div>
-          <div class="flex gap-3 pt-2">
-            <button type="button" class="booking-back flex-1 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-booking-goto="1">← Back</button>
-            <button type="button" class="booking-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="3">Continue →</button>
+          <div class="flex w-full gap-3 pt-2">
+            <button type="button" class="booking-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2" data-booking-goto="1">← Back</button>
+            <button type="button" class="booking-next flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="3">Continue →</button>
           </div>
         </div>
 
-        <!-- Step 3: Contact & appointment details -->
-        <div id="booking-step-3" class="booking-step hidden space-y-4">
-          <div class="text-center mb-4">
-            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">Great News! There are <span id="booking-pro-counter">0</span>+ Pros available.</h2>
+        <!-- Step 3: Details (timing + project description) -->
+        <div id="booking-step-3" class="booking-step hidden space-y-6">
+          <div class="text-center">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">Details for your Service Request</h2>
+            <p class="text-slate-500">Help us understand what you need</p>
           </div>
-          <div class="space-y-4">
-            <div>
-              <label for="booking-name" class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-              <input type="text" id="booking-name" name="name" required placeholder="John Doe" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
-            <div>
-              <label for="booking-email" class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
-              <input type="email" id="booking-email" name="email" required placeholder="john@example.com" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
-            <div>
-              <label for="booking-phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
-              <input type="tel" id="booking-phone" name="phone" required placeholder="(818) 555-1234" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label for="booking-date" class="block text-sm font-medium text-slate-700 mb-1">Preferred Date</label>
-                <input type="date" id="booking-date" name="preferred_date" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+          <div class="space-y-3">
+            <fieldset>
+              <legend class="text-sm font-medium text-slate-700 mb-1">When do you need this done?</legend>
+              <div class="flex flex-wrap gap-3">
+                <label class="booking-timing-card flex flex-1 min-w-[100px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-4 py-3 transition has-[:checked]:border-[#004080] has-[:checked]:bg-blue-50 has-[:checked]:text-[#004080] has-[:checked]:font-semibold">
+                  <input type="radio" name="preferred_timing" value="asap" class="peer sr-only" />
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></span>
+                  <span class="text-center text-sm">As soon as possible</span>
+                </label>
+                <label class="booking-timing-card flex flex-1 min-w-[100px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-4 py-3 transition has-[:checked]:border-[#004080] has-[:checked]:bg-blue-50 has-[:checked]:text-[#004080] has-[:checked]:font-semibold">
+                  <input type="radio" name="preferred_timing" value="week" class="peer sr-only" checked />
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></span>
+                  <span class="text-center text-sm">Within a week</span>
+                </label>
+                <label class="booking-timing-card flex flex-1 min-w-[100px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-4 py-3 transition has-[:checked]:border-[#004080] has-[:checked]:bg-blue-50 has-[:checked]:text-[#004080] has-[:checked]:font-semibold">
+                  <input type="radio" name="preferred_timing" value="flexible" class="peer sr-only" />
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  </span>
+                  <span class="text-center text-sm">Flexible timing</span>
+                </label>
               </div>
-              <div>
-                <label for="booking-time" class="block text-sm font-medium text-slate-700 mb-1">Preferred Time</label>
-                <select id="booking-time" name="preferred_time" class="h-12 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
-                  <option value="">Select time</option>
-                  <option value="morning">Morning (8AM - 12PM)</option>
-                  <option value="afternoon">Afternoon (12PM - 5PM)</option>
-                  <option value="evening">Evening (5PM - 8PM)</option>
-                </select>
-              </div>
-            </div>
+            </fieldset>
             <div>
-              <label for="booking-address" class="block text-sm font-medium text-slate-700 mb-1">Service Address</label>
-              <input type="text" id="booking-address" name="address" placeholder="123 Main St, Los Angeles, CA" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
-            <div>
-              <label for="booking-details" class="block text-sm font-medium text-slate-700 mb-1">Additional Details (Optional)</label>
-              <textarea id="booking-details" name="details" rows="3" placeholder="Tell us about your specific needs or any special requirements..." class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]"></textarea>
+              <label for="booking-details" class="block text-sm font-medium text-slate-700 mb-0.5">Tell us about your project</label>
+              <textarea id="booking-details" name="details" rows="4" placeholder="Describe your project, any specific requirements, or questions you have..." class="w-full resize-y rounded-lg border border-slate-200 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]"></textarea>
             </div>
           </div>
-          <div class="flex gap-3 pt-2">
-            <button type="button" class="booking-back flex-1 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-booking-goto="2">← Back</button>
-            <button type="submit" class="flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">Submit Booking</button>
+          <div class="flex w-full gap-3 pt-2">
+            <button type="button" class="booking-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2" data-booking-goto="2">← Back</button>
+            <button type="button" class="booking-next flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="4">Continue →</button>
           </div>
+        </div>
+
+        <!-- Step 4: Contact info + submit -->
+        <div id="booking-step-4" class="booking-step hidden space-y-6">
+          <div class="w-full text-center">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News! There are <span id="booking-pro-counter">0</span>+ Pros available.</h2>
+            <p class="text-slate-500 w-full text-center">Complete your details to book your appointment</p>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <label for="booking-name" class="block text-sm font-medium text-slate-700 mb-0.5">Full Name *</label>
+              <input type="text" id="booking-name" name="name" required placeholder="John Doe" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+            </div>
+            <div>
+              <label for="booking-email" class="block text-sm font-medium text-slate-700 mb-0.5">Email Address *</label>
+              <input type="email" id="booking-email" name="email" required placeholder="john@example.com" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+            </div>
+            <div>
+              <label for="booking-phone" class="block text-sm font-medium text-slate-700 mb-0.5">Phone Number *</label>
+              <input type="tel" id="booking-phone" name="phone" required placeholder="(818) 555-1234" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+            </div>
+          </div>
+          <div class="flex w-full gap-3 pt-2">
+            <button type="button" class="booking-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2" data-booking-goto="3">← Back</button>
+            <button type="submit" class="flex-1 min-w-0 h-12 rounded-lg bg-[#004080] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#003366] focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2 whitespace-nowrap">Request Appointment</button>
+          </div>
+          <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
         </div>
       </div>
     </form>
@@ -326,7 +348,7 @@ const bookingCategories = [
     var QUOTE_ID = 'quote-modal';
     var BOOKING_ID = 'booking-modal';
     var TOTAL_STEPS = 4;
-    var BOOKING_STEPS = 3;
+    var BOOKING_STEPS = 4;
 
     function lockBodyScroll(lock) {
       document.body.style.overflow = lock ? 'hidden' : '';
@@ -399,6 +421,10 @@ const bookingCategories = [
         var el = document.getElementById('booking-step-' + i);
         if (el) el.classList.toggle('hidden', i !== step);
       }
+    }
+
+    function prevBookingStep(step) {
+      setBookingStep(step);
     }
 
     function resetBookingModal() {
@@ -665,7 +691,7 @@ const bookingCategories = [
       });
     }
 
-    // Booking modal: Next / Back and submit
+    // Booking modal: Next / Back (4 steps) and submit
     var bookingForm = document.getElementById('booking-form');
     if (bookingForm) {
       bookingForm.addEventListener('click', function (e) {
@@ -695,13 +721,13 @@ const bookingCategories = [
             if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
           }
           setBookingStep(goto);
-          if (goto === 3) animateCounter('booking-pro-counter', 25, 45);
+          if (goto === 4) animateCounter('booking-pro-counter', 25, 45);
           return;
         }
         if (backBtn) {
           e.preventDefault();
           var goto = parseInt(backBtn.getAttribute('data-booking-goto'), 10);
-          setBookingStep(goto);
+          prevBookingStep(goto);
         }
       });
 
