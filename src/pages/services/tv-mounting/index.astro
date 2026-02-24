@@ -16,18 +16,52 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
 >
   <main class="min-h-screen bg-background">
     <!-- Hero -->
-    <section
-      class="relative flex flex-col justify-end items-center text-center pt-24 pb-10 md:pt-32 md:pb-14 bg-cover bg-center min-h-[320px] md:min-h-[420px]"
-      style="background-image: url(/doquality-tv-mounting.jpg);"
-    >
-      <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
-      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10 flex flex-col items-center justify-end text-center">
-        <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-3">
-          TV Mounting Services
-        </h1>
-        <p class="text-white/90 max-w-3xl">
-          Professional wall mounting for any TV size. Same-day installation, wire hiding, and expert mounting across the greater LA area.
-        </p>
+    <section class="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-slate-50 via-blue-50/30 to-gray-50">
+      <div class="container-max px-4 md:px-8 lg:px-16">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div class="order-2 lg:order-1">
+            <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20 mb-6">
+              TV Mounting
+            </span>
+            <h1 class="font-display text-[25px] md:text-[31px] lg:text-[43px] font-bold text-foreground mb-6 leading-tight">
+              TV Mounting
+            </h1>
+            <p class="text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed">
+              Professional wall mounting for any TV size. Same-day installation, wire hiding, and expert mounting across the greater LA area.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button type="button" data-open-booking="true" data-service="TV Mounting" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+                Book Now
+              </button>
+              <button type="button" data-open-quote="true" data-service="TV Mounting" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-primary !text-[#004080] bg-transparent hover:bg-primary/10 transition-all">
+                Get a Free Quote
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-6 mt-8 pt-8 border-t border-border/50">
+              <div class="flex items-center gap-2 text-muted-foreground text-sm">
+                <svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                <span>Licensed & Insured</span>
+              </div>
+              <div class="flex items-center gap-2 text-muted-foreground text-sm">
+                <svg class="w-5 h-5 text-primary shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Vetted Pros</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2 relative">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl">
+              <img src="/doquality-tv-mounting.jpg" alt="" class="w-full h-[320px] md:h-[400px] object-cover" />
+              <div class="absolute bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-auto bg-white rounded-xl shadow-xl p-4 flex items-center gap-3">
+                <div class="flex gap-0.5">
+                  {[1,2,3,4,5].map(() => (
+                    <svg class="w-5 h-5 text-cta fill-cta" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  ))}
+                </div>
+                <span class="font-display font-bold text-foreground">5-Star Rated</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
