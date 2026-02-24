@@ -1,64 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-
+import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.dealsofquality.com',
-  output: 'static',
+  output: 'server',
+  adapter: cloudflare(),
   trailingSlash: 'always',
   integrations: [tailwind(), sitemap()],
-  // Legacy root-level service URLs → /services/ silo (301). No legacy sitemap.xml in repo;
-  // redirects below match legacy React routes and servicesData; /services/[slug]/ and
-  // /services/tv-mounting-[city]/ cover new Astro routes.
-  redirects: {
-    '/blog/': '/articles/',
-    '/sitemap.xml': '/sitemap-index.xml',
-    '/handyman-services/': '/services/handyman-services/',
-    '/painting/': '/services/painting/',
-    '/kitchen-remodeling/': '/services/kitchen-remodeling/',
-    '/bathroom-remodeling/': '/services/bathroom-remodeling/',
-    '/landscaping/': '/services/landscaping/',
-    '/smart-irrigation-installation/': '/services/smart-irrigation-installation/',
-    '/fence-installation/': '/services/fence-installation/',
-    '/holiday-lighting-installation/': '/services/holiday-lighting-installation/',
-    '/house-cleaning/': '/services/house-cleaning/',
-    '/carpet-cleaning/': '/services/carpet-cleaning/',
-    '/window-cleaning/': '/services/window-cleaning/',
-    '/gutter-cleaning/': '/services/gutter-cleaning/',
-    '/pressure-washing/': '/services/pressure-washing/',
-    '/junk-removal/': '/services/junk-removal/',
-    '/plumbing/': '/services/plumbing/',
-    '/electrical/': '/services/electrical/',
-    '/light-fixture-replacement/': '/services/light-fixture-replacement/',
-    '/hvac/': '/services/hvac/',
-    '/appliance-repair/': '/services/appliance-repair/',
-    '/roofing/': '/services/roofing/',
-    '/drywall-installation/': '/services/drywall-installation/',
-    '/router-setup/': '/services/router-setup/',
-    '/security-cameras/': '/services/security-cameras/',
-    '/video-doorbells/': '/services/video-doorbells/',
-    '/smart-locks/': '/services/smart-locks/',
-    '/smart-thermostats/': '/services/smart-thermostats/',
-    '/smart-home-integration/': '/services/smart-home-integration/',
-    '/motion-sensors/': '/services/motion-sensors/',
-    '/smoke-detector-installation/': '/services/smoke-detector-installation/',
-    '/tv-mounting/': '/services/tv-mounting/',
-    '/tv-cable-concealment/': '/services/tv-cable-concealment/',
-    '/soundbar-installation/': '/services/soundbar-installation/',
-    '/tv-dismount-remount/': '/services/tv-dismount-remount/',
-    '/home-theater/': '/services/home-theater/',
-    '/surround-sound/': '/services/surround-sound/',
-    '/gaming-setup/': '/services/gaming-setup/',
-    '/streaming-setup/': '/services/streaming-setup/',
-    '/computer-repair/': '/services/computer-repair/',
-    '/virus-removal/': '/services/virus-removal/',
-    '/printer-setup/': '/services/printer-setup/',
-    '/data-backup/': '/services/data-backup/',
-    '/website-design/': '/services/website-design/',
-    '/business-it-solutions/': '/services/business-it-solutions/',
-    '/custom-solutions/': '/services/custom-solutions/',
-  },
 });

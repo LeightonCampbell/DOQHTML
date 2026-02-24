@@ -71,25 +71,16 @@ const bookingCategories = [
       </div>
 
       <div class="p-6 pr-14 relative">
-        <!-- Step 1: Service selection -->
+        <!-- Step 1: Service selection (free-text with suggestions) -->
         <div id="quote-step-1" class="quote-step space-y-6">
           <div class="text-center">
             <h2 id="quote-modal-title" class="font-display text-2xl font-bold text-slate-900 mb-2">What do you need help with?</h2>
             <p id="quote-modal-desc" class="text-slate-500">Select a service to get a no obligation quote</p>
           </div>
-          <div>
-            <label for="quote-service" class="sr-only">Service</label>
-            <select id="quote-service" name="service_select" required class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
-              <option value="">Select a service...</option>
-              {services.map((s) => (
-                <option value={s.value}>{s.label}</option>
-              ))}
-            </select>
-          </div>
-          <div id="quote-other-wrap" class="space-y-1.5 hidden">
-            <label for="quote-other-desc" class="block text-sm font-medium text-slate-700 mb-0.5">Please describe your service</label>
-            <input type="text" id="quote-other-desc" name="other_service" maxlength="150" placeholder="e.g., Appliance repair, Carpet cleaning" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            <p class="text-xs text-slate-500"><span id="quote-other-count">0</span>/150 characters</p>
+          <div class="relative w-full">
+            <label for="quote-service-input" class="block text-sm font-medium text-slate-700 mb-0.5">What type of service do you want?</label>
+            <input type="text" id="quote-service-input" name="service_input" autocomplete="off" placeholder="e.g., House cleaning, TV mounting" class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-4 text-base text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" aria-autocomplete="list" aria-controls="quote-service-suggestions" />
+            <div id="quote-service-suggestions" role="listbox" class="absolute top-full left-0 right-0 z-20 mt-1 max-h-60 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-lg hidden"></div>
           </div>
           <div class="flex gap-3">
             <div class="flex-1"></div>
@@ -161,32 +152,42 @@ const bookingCategories = [
 
         <!-- Step 4: Contact info -->
         <div id="quote-step-4" class="quote-step hidden space-y-6">
-          <div class="w-full text-center">
-            <span class="flex h-12 w-12 mx-auto mb-3 items-center justify-center rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-            </span>
-            <h3 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News!<br>There are <span id="quote-pro-counter">0</span>+ Pros near you.</h3>
-            <p class="text-slate-500 w-full text-center">Complete your details to get a quote</p>
-          </div>
-          <div class="space-y-3">
-            <div>
-              <label for="quote-name" class="block text-sm font-medium text-slate-700 mb-0.5">Your name</label>
-              <input type="text" id="quote-name" name="name" required placeholder="John Doe" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+          <div id="quote-step-4-form">
+            <div class="w-full text-center">
+              <span class="flex h-12 w-12 mx-auto mb-3 items-center justify-center rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              </span>
+              <h3 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News!<br>There are <span id="quote-pro-counter">0</span>+ Pros near you.</h3>
+              <p class="text-slate-500 w-full text-center">Complete your details to get a quote</p>
             </div>
-            <div>
-              <label for="quote-email" class="block text-sm font-medium text-slate-700 mb-0.5">Email address</label>
-              <input type="email" id="quote-email" name="email" required placeholder="john@example.com" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            <div class="space-y-3">
+              <div>
+                <label for="quote-name" class="block text-sm font-medium text-slate-700 mb-0.5">Your name</label>
+                <input type="text" id="quote-name" name="name" required placeholder="John Doe" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+              </div>
+              <div>
+                <label for="quote-email" class="block text-sm font-medium text-slate-700 mb-0.5">Email address</label>
+                <input type="email" id="quote-email" name="email" required placeholder="john@example.com" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+              </div>
+              <div>
+                <label for="quote-phone" class="block text-sm font-medium text-slate-700 mb-0.5">Phone number</label>
+                <input type="tel" id="quote-phone" name="phone" required placeholder="(818) 555-1234" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+              </div>
             </div>
-            <div>
-              <label for="quote-phone" class="block text-sm font-medium text-slate-700 mb-0.5">Phone number</label>
-              <input type="tel" id="quote-phone" name="phone" required placeholder="(818) 555-1234" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            <div class="flex w-full gap-3">
+              <button type="button" class="quote-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-goto="3">← Back</button>
+              <button type="submit" id="quote-submit-btn" class="flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 whitespace-nowrap">Get My Free Quote</button>
             </div>
+            <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
           </div>
-          <div class="flex w-full gap-3">
-            <button type="button" class="quote-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-goto="3">← Back</button>
-            <button type="submit" class="flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 whitespace-nowrap">Get My Free Quote</button>
+          <div id="quote-step-4-success" class="hidden text-center py-4">
+            <p class="text-lg font-semibold text-emerald-600 mb-2">Thanks, we will be in touch!</p>
+            <p class="text-slate-500 text-sm">Redirecting...</p>
           </div>
-          <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
+          <div id="quote-step-4-error" class="hidden text-center py-4">
+            <p class="text-red-600 font-medium mb-2">Something went wrong. Please try again or call us.</p>
+            <button type="button" id="quote-try-again" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Try again</button>
+          </div>
         </div>
       </div>
     </form>
@@ -218,35 +219,19 @@ const bookingCategories = [
       </div>
 
       <div class="p-6 pr-14">
-        <!-- Step 1: Service selection -->
+        <!-- Step 1: Service selection (free-text with suggestions, same as Quote modal) -->
         <div id="booking-step-1" class="booking-step space-y-6">
           <div class="text-center">
             <h2 id="booking-modal-title" class="font-display text-2xl font-bold text-slate-900 mb-2">What do you need help with?</h2>
             <p class="text-slate-500">Select a service to get matched with the right pro</p>
           </div>
-          <div class="space-y-2">
-            <label for="booking-category" class="block text-sm font-medium text-slate-700 mb-0.5">Service Category *</label>
-            <select id="booking-category" name="category_select" required class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]">
-              <option value="">Choose a category</option>
-              {bookingCategories.map((cat) => (
-                <option value={cat.category}>{cat.category}</option>
-              ))}
-            </select>
+          <div class="relative w-full">
+            <label for="booking-service-input" class="block text-sm font-medium text-slate-700 mb-0.5">What type of service do you need?</label>
+            <input type="text" id="booking-service-input" name="service_input" autocomplete="off" placeholder="e.g., House cleaning, TV mounting" class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-4 text-base text-slate-900 placeholder-slate-400 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" aria-autocomplete="list" aria-controls="booking-service-suggestions" />
+            <div id="booking-service-suggestions" role="listbox" class="absolute top-full left-0 right-0 z-20 mt-1 max-h-60 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-lg hidden"></div>
           </div>
-          <div class="space-y-2">
-            <label for="booking-service" class="block text-sm font-medium text-slate-700 mb-0.5">Specific Service *</label>
-            <select id="booking-service" name="service_select" required class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]">
-              <option value="">Choose a service</option>
-              {bookingCategories.map((cat) => (
-                <optgroup label={cat.category}>
-                  {cat.services.map((s) => <option value={s}>{s}</option>)}
-                </optgroup>
-              ))}
-            </select>
-          </div>
-          <div class="flex gap-3 pt-2">
-            <div class="flex-1"></div>
-            <button type="button" class="booking-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="2">Continue →</button>
+          <div class="w-full pt-2">
+            <button type="button" class="booking-next w-full h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="2">Continue →</button>
           </div>
         </div>
 
@@ -314,41 +299,107 @@ const bookingCategories = [
 
         <!-- Step 4: Contact info + submit -->
         <div id="booking-step-4" class="booking-step hidden space-y-6">
-          <div class="w-full text-center">
-            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News! There are <span id="booking-pro-counter">0</span>+ Pros available.</h2>
-            <p class="text-slate-500 w-full text-center">Complete your details to book your appointment</p>
-          </div>
-          <div class="space-y-3">
-            <div>
-              <label for="booking-name" class="block text-sm font-medium text-slate-700 mb-0.5">Full Name *</label>
-              <input type="text" id="booking-name" name="name" required placeholder="John Doe" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+          <div id="booking-step-4-form">
+            <div class="w-full text-center">
+              <h2 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News! There are <span id="booking-pro-counter">0</span>+ Pros available.</h2>
+              <p class="text-slate-500 w-full text-center">Complete your details to book your appointment</p>
             </div>
-            <div>
-              <label for="booking-email" class="block text-sm font-medium text-slate-700 mb-0.5">Email Address *</label>
-              <input type="email" id="booking-email" name="email" required placeholder="john@example.com" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+            <div class="space-y-3">
+              <div>
+                <label for="booking-name" class="block text-sm font-medium text-slate-700 mb-0.5">Full Name *</label>
+                <input type="text" id="booking-name" name="name" required placeholder="John Doe" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+              </div>
+              <div>
+                <label for="booking-email" class="block text-sm font-medium text-slate-700 mb-0.5">Email Address *</label>
+                <input type="email" id="booking-email" name="email" required placeholder="john@example.com" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+              </div>
+              <div>
+                <label for="booking-phone" class="block text-sm font-medium text-slate-700 mb-0.5">Phone Number *</label>
+                <input type="tel" id="booking-phone" name="phone" required placeholder="(818) 555-1234" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+              </div>
             </div>
-            <div>
-              <label for="booking-phone" class="block text-sm font-medium text-slate-700 mb-0.5">Phone Number *</label>
-              <input type="tel" id="booking-phone" name="phone" required placeholder="(818) 555-1234" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#004080] focus:outline-none focus:ring-1 focus:ring-[#004080]" />
+            <div class="flex w-full gap-3 pt-2">
+              <button type="button" class="booking-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2" data-booking-goto="3">← Back</button>
+              <button type="submit" id="booking-submit-btn" class="flex-1 min-w-0 h-12 rounded-lg bg-[#004080] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#003366] focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2 whitespace-nowrap">Request Appointment</button>
             </div>
+            <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
           </div>
-          <div class="flex w-full gap-3 pt-2">
-            <button type="button" class="booking-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2" data-booking-goto="3">← Back</button>
-            <button type="submit" class="flex-1 min-w-0 h-12 rounded-lg bg-[#004080] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#003366] focus:outline-none focus:ring-2 focus:ring-[#004080] focus:ring-offset-2 whitespace-nowrap">Request Appointment</button>
+          <div id="booking-step-4-success" class="hidden text-center py-4">
+            <p class="text-lg font-semibold text-emerald-600 mb-2">Thanks, we will be in touch!</p>
+            <p class="text-slate-500 text-sm">Redirecting...</p>
           </div>
-          <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
+          <div id="booking-step-4-error" class="hidden text-center py-4">
+            <p class="text-red-600 font-medium mb-2">Something went wrong. Please try again or call us.</p>
+            <button type="button" id="booking-try-again" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Try again</button>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </dialog>
 
-<script>
+<script define:vars={{ services }}>
   (function () {
     var QUOTE_ID = 'quote-modal';
     var BOOKING_ID = 'booking-modal';
     var TOTAL_STEPS = 4;
     var BOOKING_STEPS = 4;
+    var serviceList = Array.isArray(services) ? services : [];
+
+    function getTvMountingConfigSummary() {
+      var hasTvForm = document.querySelector('input[name="tv-size"]');
+      if (!hasTvForm) return '';
+
+      var sizeMap = {
+        'under-50': 'Under 50" (Smaller TV)',
+        '51-65': '51\"–65\" (Medium TV)',
+        'over-65': 'Over 65\" (Large TV)',
+      };
+      var bracketMap = {
+        own: 'I have my own mounting bracket',
+        flat: 'Flat Bracket ($30)',
+        tilting: 'Tilting Bracket ($45)',
+        'full-motion': 'Full-motion Bracket ($65)',
+      };
+      var locationMap = {
+        drywall: 'On Drywall',
+        brick: 'On Brick/Concrete (+$35)',
+        fireplace: 'Above a Fireplace (+$50)',
+      };
+      var addonMap = {
+        'no-wire-hiding': 'No wire hiding',
+        raceway: 'Hide Wires in wall cover/raceway (+$30)',
+        'in-wall': 'Hide Wires In-wall (+$80)',
+        dismount: 'Dismount Old TV (+$35)',
+        soundbar: 'Soundbar Installation (+$50)',
+      };
+
+      var sizeEl = document.querySelector('input[name="tv-size"]:checked');
+      var bracketEl = document.querySelector('input[name="bracket"]:checked');
+      var locationEl = document.querySelector('input[name="mount-location"]:checked');
+      var addonEls = Array.prototype.slice.call(document.querySelectorAll('input[name="addon"]:checked'));
+
+      var lines = [];
+      if (sizeEl) lines.push('TV Size: ' + (sizeMap[sizeEl.value] || sizeEl.value));
+      if (bracketEl) lines.push('Bracket: ' + (bracketMap[bracketEl.value] || bracketEl.value));
+      if (locationEl) lines.push('Mounting Location: ' + (locationMap[locationEl.value] || locationEl.value));
+
+      if (addonEls.length) {
+        var addons = addonEls
+          .map(function (el) {
+            return addonMap[el.value] || el.value;
+          })
+          .join(', ');
+        lines.push('Add-ons: ' + addons);
+      }
+
+      var priceEl = document.getElementById('tv-install-price');
+      if (priceEl && priceEl.textContent) {
+        lines.push('Estimated starting price: ' + priceEl.textContent.replace(/^From\\s*/i, ''));
+      }
+
+      return lines.join('\n');
+    }
 
     function lockBodyScroll(lock) {
       document.body.style.overflow = lock ? 'hidden' : '';
@@ -367,6 +418,9 @@ const bookingCategories = [
       if (dialog && typeof dialog.close === 'function') {
         dialog.close();
         lockBodyScroll(false);
+        if (document.activeElement && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
       }
     }
 
@@ -404,12 +458,24 @@ const bookingCategories = [
       if (form) form.reset();
       var zipErr = document.getElementById('quote-zip-error');
       if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
-      var otherWrap = document.getElementById('quote-other-wrap');
-      if (otherWrap) otherWrap.classList.add('hidden');
+      var serviceInput = document.getElementById('quote-service-input');
+      if (serviceInput) serviceInput.value = '';
+      var suggestionsEl = document.getElementById('quote-service-suggestions');
+      if (suggestionsEl) { suggestionsEl.classList.add('hidden'); suggestionsEl.innerHTML = ''; }
+      var hiddenService = document.getElementById('quote-hidden-service');
+      if (hiddenService) hiddenService.value = '';
       var findingEl = document.getElementById('quote-finding-pros');
       if (findingEl) findingEl.classList.add('hidden');
       var quoteProCounter = document.getElementById('quote-pro-counter');
       if (quoteProCounter) quoteProCounter.textContent = '0';
+      var formBlock = document.getElementById('quote-step-4-form');
+      var successBlock = document.getElementById('quote-step-4-success');
+      var errorBlock = document.getElementById('quote-step-4-error');
+      var submitBtn = document.getElementById('quote-submit-btn');
+      if (formBlock) formBlock.classList.remove('hidden');
+      if (successBlock) successBlock.classList.add('hidden');
+      if (errorBlock) errorBlock.classList.add('hidden');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get My Free Quote'; }
     }
 
     function setBookingStep(step) {
@@ -433,42 +499,113 @@ const bookingCategories = [
       if (form) form.reset();
       var zipErr = document.getElementById('booking-zip-error');
       if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
+      var serviceInput = document.getElementById('booking-service-input');
+      if (serviceInput) serviceInput.value = '';
+      var suggestionsEl = document.getElementById('booking-service-suggestions');
+      if (suggestionsEl) { suggestionsEl.classList.add('hidden'); suggestionsEl.innerHTML = ''; }
+      var hiddenService = document.getElementById('booking-hidden-service');
+      if (hiddenService) hiddenService.value = '';
       var bookingProCounter = document.getElementById('booking-pro-counter');
       if (bookingProCounter) bookingProCounter.textContent = '0';
+      var formBlock = document.getElementById('booking-step-4-form');
+      var successBlock = document.getElementById('booking-step-4-success');
+      var errorBlock = document.getElementById('booking-step-4-error');
+      var submitBtn = document.getElementById('booking-submit-btn');
+      if (formBlock) formBlock.classList.remove('hidden');
+      if (successBlock) successBlock.classList.add('hidden');
+      if (errorBlock) errorBlock.classList.add('hidden');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Appointment'; }
     }
 
-    // When Hero opens the modal with service + zip: map data and fast-forward to step 3
+    function renderServiceSuggestions(inputEl, listboxEl, hiddenServiceEl, value) {
+      if (!listboxEl) return;
+      var val = (value || '').trim().toLowerCase();
+      listboxEl.innerHTML = '';
+      var added = {};
+      for (var i = 0; i < serviceList.length; i++) {
+        var s = serviceList[i];
+        var label = (s.label || s.value || '').trim();
+        if (!label || added[label]) continue;
+        if (!val || label.toLowerCase().indexOf(val) !== -1) {
+          added[label] = true;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.role = 'option';
+          btn.className = 'w-full text-left px-4 py-3 text-base text-slate-900 hover:bg-slate-100 border-b border-slate-100 last:border-0 transition-colors';
+          btn.textContent = label;
+          btn.dataset.value = label;
+          btn.dataset.rawValue = (s.value || s.label || '').trim();
+          listboxEl.appendChild(btn);
+        }
+      }
+      if (val && Object.keys(added).length === 0) {
+        var trimmed = (value || '').trim();
+        var useBtn = document.createElement('button');
+        useBtn.type = 'button';
+        useBtn.role = 'option';
+        useBtn.className = 'w-full text-left px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-100 border-t border-slate-200 transition-colors';
+        useBtn.textContent = 'Use "' + trimmed.slice(0, 80) + (trimmed.length > 80 ? '…' : '') + '"';
+        useBtn.dataset.value = trimmed;
+        useBtn.dataset.rawValue = trimmed;
+        listboxEl.appendChild(useBtn);
+      }
+      listboxEl.classList.toggle('hidden', listboxEl.children.length === 0);
+    }
+
+    function setupServiceInput(inputId, suggestionsId, hiddenId) {
+      var inputEl = document.getElementById(inputId);
+      var listboxEl = document.getElementById(suggestionsId);
+      var hiddenEl = document.getElementById(hiddenId);
+      if (!inputEl || !listboxEl) return;
+      inputEl.addEventListener('focus', function () {
+        renderServiceSuggestions(inputEl, listboxEl, hiddenEl, inputEl.value);
+      });
+      inputEl.addEventListener('input', function () {
+        renderServiceSuggestions(inputEl, listboxEl, hiddenEl, inputEl.value);
+        var v = inputEl.value.trim();
+        if (hiddenEl) hiddenEl.value = v;
+        if (hiddenId === 'booking-hidden-service') {
+          var catEl = document.getElementById('booking-hidden-category');
+          if (catEl) catEl.value = v;
+        }
+      });
+      inputEl.addEventListener('blur', function () {
+        setTimeout(function () {
+          listboxEl.classList.add('hidden');
+        }, 180);
+      });
+      listboxEl.addEventListener('mousedown', function (e) {
+        var opt = e.target.closest('button[role="option"]');
+        if (opt && opt.dataset.value !== undefined) {
+          e.preventDefault();
+          inputEl.value = opt.dataset.value;
+          var v = (opt.dataset.rawValue !== undefined ? opt.dataset.rawValue : opt.dataset.value) || inputEl.value;
+          if (hiddenEl) hiddenEl.value = v;
+          if (hiddenId === 'booking-hidden-service') {
+            var catEl = document.getElementById('booking-hidden-category');
+            if (catEl) catEl.value = v;
+          }
+          listboxEl.classList.add('hidden');
+          listboxEl.innerHTML = '';
+        }
+      });
+    }
+    setupServiceInput('quote-service-input', 'quote-service-suggestions', 'quote-hidden-service');
+    setupServiceInput('booking-service-input', 'booking-service-suggestions', 'booking-hidden-service');
+
+    // When Hero opens the modal with service + zip: prefill and skip steps 1 & 2 to step 3
     document.addEventListener('quote-modal-opened-with-hero-data', function (e) {
       var service = (e.detail && e.detail.service) ? String(e.detail.service).trim() : '';
       var zip = (e.detail && e.detail.zip) ? String(e.detail.zip).replace(/\D/g, '').slice(0, 5) : '';
-      var serviceSelect = document.getElementById('quote-service');
-      var otherWrap = document.getElementById('quote-other-wrap');
-      var otherDesc = document.getElementById('quote-other-desc');
-      var otherCount = document.getElementById('quote-other-count');
-      var zipInput = document.getElementById('quote-zip');
+      var quoteServiceInput = document.getElementById('quote-service-input');
+      var quoteHiddenService = document.getElementById('quote-hidden-service');
+      var quoteHiddenZip = document.getElementById('quote-hidden-zip');
+      var quoteZipInput = document.getElementById('quote-zip');
       var quoteDetails = document.getElementById('quote-details');
-      if (serviceSelect && service) {
-        var found = false;
-        for (var i = 0; i < serviceSelect.options.length; i++) {
-          var opt = serviceSelect.options[i];
-          if (!opt.value) continue;
-          if (opt.value === service || (opt.textContent && opt.textContent.trim().toLowerCase() === service.toLowerCase())) {
-            serviceSelect.value = opt.value;
-            found = true;
-            break;
-          }
-        }
-        if (!found) {
-          serviceSelect.value = 'other';
-          if (otherWrap) otherWrap.classList.remove('hidden');
-          if (otherDesc) {
-            otherDesc.value = service;
-            otherDesc.dispatchEvent(new Event('input', { bubbles: true }));
-          }
-          if (otherCount) otherCount.textContent = String(service.length);
-        } else if (otherWrap) otherWrap.classList.add('hidden');
-      }
-      if (zipInput && zip) zipInput.value = zip;
+      if (quoteServiceInput && service) quoteServiceInput.value = service;
+      if (quoteHiddenService && service) quoteHiddenService.value = service;
+      if (quoteHiddenZip && zip) quoteHiddenZip.value = zip;
+      if (quoteZipInput && zip) quoteZipInput.value = zip;
       if (quoteDetails && service) quoteDetails.value = service;
       setQuoteStep(3);
     });
@@ -483,34 +620,24 @@ const bookingCategories = [
         resetQuoteModal();
         var serviceName = openQuote.getAttribute('data-service');
         if (serviceName && serviceName.trim()) {
-          var serviceSelect = document.getElementById('quote-service');
-          var otherWrap = document.getElementById('quote-other-wrap');
-          var otherDesc = document.getElementById('quote-other-desc');
-          var otherCount = document.getElementById('quote-other-count');
-          if (serviceSelect) {
-            var found = false;
-            var name = serviceName.trim().toLowerCase();
-            for (var i = 0; i < serviceSelect.options.length; i++) {
-              var opt = serviceSelect.options[i];
-              if (!opt.value) continue;
-              if (opt.value === serviceName.trim() || (opt.textContent && opt.textContent.trim().toLowerCase() === name)) {
-                serviceSelect.value = opt.value;
-                found = true;
-                break;
-              }
-            }
-            if (!found) {
-              serviceSelect.value = 'other';
-              if (otherWrap) otherWrap.classList.remove('hidden');
-              if (otherDesc) {
-                otherDesc.value = serviceName.trim();
-                otherDesc.dispatchEvent(new Event('input', { bubbles: true }));
-              }
-              if (otherCount) otherCount.textContent = String(serviceName.trim().length);
-            } else if (otherWrap) otherWrap.classList.add('hidden');
+          var serviceInput = document.getElementById('quote-service-input');
+          var hiddenService = document.getElementById('quote-hidden-service');
+          if (serviceInput) {
+            serviceInput.value = serviceName.trim();
+            if (hiddenService) hiddenService.value = serviceName.trim();
           }
         }
         openDialog(QUOTE_ID);
+        var quoteStep = openQuote.getAttribute('data-quote-step');
+        if (quoteStep === '2') setQuoteStep(2);
+        var summary = getTvMountingConfigSummary();
+        if (summary) {
+          var quoteDetails = document.getElementById('quote-details');
+          if (quoteDetails) {
+            var existing = quoteDetails.value && quoteDetails.value.trim();
+            quoteDetails.value = existing ? summary + '\\n\\n' + existing : summary;
+          }
+        }
       }
       if (openBooking) {
         e.preventDefault();
@@ -518,40 +645,22 @@ const bookingCategories = [
         resetBookingModal();
         var serviceName = openBooking.getAttribute('data-service');
         if (serviceName && typeof serviceName === 'string' && serviceName.trim()) {
-          var catSelect = document.getElementById('booking-category');
-          var svcSelect = document.getElementById('booking-service');
-          if (catSelect && svcSelect) {
-            var name = serviceName.trim().toLowerCase();
-            var matched = false;
-            for (var g = 0; g < svcSelect.options.length; g++) {
-              var opt = svcSelect.options[g];
-              if (!opt.value) continue;
-              var optText = (opt.textContent || opt.innerText || '').trim().toLowerCase();
-              if (optText === name || optText.indexOf(name) !== -1 || name.indexOf(optText) !== -1) {
-                var group = opt.parentNode;
-                if (group && group.nodeName === 'OPTGROUP' && group.label) {
-                  catSelect.value = group.label;
-                  svcSelect.value = opt.value;
-                  matched = true;
-                  break;
-                }
-              }
-            }
-            if (!matched) {
-              for (var c = 0; c < catSelect.options.length; c++) {
-                var cOpt = catSelect.options[c];
-                if (!cOpt.value) continue;
-                var cText = (cOpt.textContent || cOpt.innerText || '').trim().toLowerCase();
-                if (cText.indexOf(name) !== -1 || name.indexOf(cText) !== -1) {
-                  catSelect.value = cOpt.value;
-                  matched = true;
-                  break;
-                }
-              }
-            }
+          var serviceInput = document.getElementById('booking-service-input');
+          var hiddenService = document.getElementById('booking-hidden-service');
+          if (serviceInput) {
+            serviceInput.value = serviceName.trim();
+            if (hiddenService) hiddenService.value = serviceName.trim();
           }
         }
         openDialog(BOOKING_ID);
+        var bookingSummary = getTvMountingConfigSummary();
+        if (bookingSummary) {
+          var bookingDetails = document.getElementById('booking-details');
+          if (bookingDetails) {
+            var existingDetails = bookingDetails.value && bookingDetails.value.trim();
+            bookingDetails.value = existingDetails ? bookingSummary + '\\n\\n' + existingDetails : bookingSummary;
+          }
+        }
       }
     });
 
@@ -599,6 +708,9 @@ const bookingCategories = [
       var dialog = e.target;
       if (dialog && dialog.nodeName === 'DIALOG' && (dialog.id === QUOTE_ID || dialog.id === BOOKING_ID)) {
         lockBodyScroll(false);
+        if (document.activeElement && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
         if (dialog.id === QUOTE_ID) resetQuoteModal();
         if (dialog.id === BOOKING_ID) resetBookingModal();
       }
@@ -629,12 +741,10 @@ const bookingCategories = [
             return;
           }
           if (goto === 2) {
-            var serviceSelect = document.getElementById('quote-service');
-            if (serviceSelect && !serviceSelect.value) return;
-            if (serviceSelect && serviceSelect.value === 'other') {
-              var otherDesc = document.getElementById('quote-other-desc');
-              if (otherDesc && !otherDesc.value.trim()) return;
-            }
+            var serviceInput = document.getElementById('quote-service-input');
+            var hiddenService = document.getElementById('quote-hidden-service');
+            if (serviceInput && !serviceInput.value.trim()) return;
+            if (hiddenService) hiddenService.value = (serviceInput && serviceInput.value.trim()) || '';
           }
           if (goto === 3) {
             var zipInput = document.getElementById('quote-zip');
@@ -660,19 +770,11 @@ const bookingCategories = [
         }
       });
 
-      // Sync hidden fields and "Other" visibility
-      var serviceSelect = document.getElementById('quote-service');
-      var otherWrap = document.getElementById('quote-other-wrap');
-      var otherDesc = document.getElementById('quote-other-desc');
-      var otherCount = document.getElementById('quote-other-count');
-      if (serviceSelect) {
-        serviceSelect.addEventListener('change', function () {
-          if (otherWrap) otherWrap.classList.toggle('hidden', serviceSelect.value !== 'other');
-        });
-      }
-      if (otherDesc && otherCount) {
-        otherDesc.addEventListener('input', function () {
-          otherCount.textContent = String(otherDesc.value.length);
+      var quoteServiceInput = document.getElementById('quote-service-input');
+      var quoteHiddenService = document.getElementById('quote-hidden-service');
+      if (quoteServiceInput && quoteHiddenService) {
+        quoteServiceInput.addEventListener('change', function () {
+          quoteHiddenService.value = quoteServiceInput.value.trim();
         });
       }
       var zipInput = document.getElementById('quote-zip');
@@ -683,11 +785,58 @@ const bookingCategories = [
       }
       quoteForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        // TODO in Next Phase: Add Resend fetch logic here
-
-        closeDialog(QUOTE_ID);
-        resetQuoteModal();
-        window.location.href = '/quote-received/';
+        var qs = document.getElementById('quote-service-input');
+        var qh = document.getElementById('quote-hidden-service');
+        var qz = document.getElementById('quote-zip');
+        var qzHidden = document.getElementById('quote-hidden-zip');
+        if (qs && qh) qh.value = qs.value.trim();
+        if (qz && qzHidden) qzHidden.value = qz.value.replace(/\D/g, '').slice(0, 5);
+        var formBlock = document.getElementById('quote-step-4-form');
+        var successBlock = document.getElementById('quote-step-4-success');
+        var errorBlock = document.getElementById('quote-step-4-error');
+        var submitBtn = document.getElementById('quote-submit-btn');
+        var urgencyRadio = quoteForm.querySelector('input[name="urgency"]:checked');
+        var payload = {
+          formType: 'quote',
+          name: (document.getElementById('quote-name') && document.getElementById('quote-name').value) || '',
+          email: (document.getElementById('quote-email') && document.getElementById('quote-email').value) || '',
+          phone: (document.getElementById('quote-phone') && document.getElementById('quote-phone').value) || '',
+          service: (document.getElementById('quote-hidden-service') && document.getElementById('quote-hidden-service').value) || '',
+          zip: (document.getElementById('quote-hidden-zip') && document.getElementById('quote-hidden-zip').value) || '',
+          urgency: (urgencyRadio && urgencyRadio.value) || '',
+          details: (document.getElementById('quote-details') && document.getElementById('quote-details').value) || ''
+        };
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+        fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (res.ok) {
+            if (formBlock) formBlock.classList.add('hidden');
+            if (errorBlock) errorBlock.classList.add('hidden');
+            if (successBlock) successBlock.classList.remove('hidden');
+            setTimeout(function () {
+              closeDialog(QUOTE_ID);
+              resetQuoteModal();
+              window.location.href = '/quote-received/';
+            }, 1500);
+          } else {
+            if (formBlock) formBlock.classList.add('hidden');
+            if (successBlock) successBlock.classList.add('hidden');
+            if (errorBlock) errorBlock.classList.remove('hidden');
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get My Free Quote'; }
+          }
+        }).catch(function () {
+          if (formBlock) formBlock.classList.add('hidden');
+          if (successBlock) successBlock.classList.add('hidden');
+          if (errorBlock) errorBlock.classList.remove('hidden');
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get My Free Quote'; }
+        });
+      });
+      document.getElementById('quote-try-again') && document.getElementById('quote-try-again').addEventListener('click', function () {
+        document.getElementById('quote-step-4-form').classList.remove('hidden');
+        document.getElementById('quote-step-4-error').classList.add('hidden');
       });
     }
 
@@ -701,10 +850,10 @@ const bookingCategories = [
           e.preventDefault();
           var goto = parseInt(nextBtn.getAttribute('data-booking-goto'), 10);
           if (goto === 2) {
-            var cat = document.getElementById('booking-category');
-            var svc = document.getElementById('booking-service');
-            if (cat && !cat.value) return;
-            if (svc && !svc.value) return;
+            var serviceInput = document.getElementById('booking-service-input');
+            var hiddenService = document.getElementById('booking-hidden-service');
+            if (serviceInput && !serviceInput.value.trim()) return;
+            if (hiddenService) hiddenService.value = (serviceInput && serviceInput.value.trim()) || '';
           }
           if (goto === 3) {
             var zipInput = document.getElementById('booking-zip');
@@ -740,11 +889,61 @@ const bookingCategories = [
 
       bookingForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        // TODO in Next Phase: Add Resend fetch logic here
-
-        closeDialog(BOOKING_ID);
-        resetBookingModal();
-        window.location.href = '/booking-confirmed/';
+        var bs = document.getElementById('booking-service-input');
+        var bh = document.getElementById('booking-hidden-service');
+        var bc = document.getElementById('booking-hidden-category');
+        var bz = document.getElementById('booking-zip');
+        var bzHidden = document.getElementById('booking-hidden-zip');
+        if (bs && bh) bh.value = bs.value.trim();
+        if (bs && bc) bc.value = bs.value.trim();
+        if (bz && bzHidden) bzHidden.value = bz.value.replace(/\D/g, '').slice(0, 5);
+        var formBlock = document.getElementById('booking-step-4-form');
+        var successBlock = document.getElementById('booking-step-4-success');
+        var errorBlock = document.getElementById('booking-step-4-error');
+        var submitBtn = document.getElementById('booking-submit-btn');
+        var timingRadio = bookingForm.querySelector('input[name="preferred_timing"]:checked');
+        var payload = {
+          formType: 'booking',
+          name: (document.getElementById('booking-name') && document.getElementById('booking-name').value) || '',
+          email: (document.getElementById('booking-email') && document.getElementById('booking-email').value) || '',
+          phone: (document.getElementById('booking-phone') && document.getElementById('booking-phone').value) || '',
+          service: (document.getElementById('booking-hidden-service') && document.getElementById('booking-hidden-service').value) || '',
+          category: (document.getElementById('booking-hidden-category') && document.getElementById('booking-hidden-category').value) || '',
+          zip: (document.getElementById('booking-hidden-zip') && document.getElementById('booking-hidden-zip').value) || '',
+          preferredTiming: (timingRadio && timingRadio.value) || '',
+          details: (document.getElementById('booking-details') && document.getElementById('booking-details').value) || ''
+        };
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+        fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (res.ok) {
+            if (formBlock) formBlock.classList.add('hidden');
+            if (errorBlock) errorBlock.classList.add('hidden');
+            if (successBlock) successBlock.classList.remove('hidden');
+            setTimeout(function () {
+              closeDialog(BOOKING_ID);
+              resetBookingModal();
+              window.location.href = '/booking-confirmed/';
+            }, 1500);
+          } else {
+            if (formBlock) formBlock.classList.add('hidden');
+            if (successBlock) successBlock.classList.add('hidden');
+            if (errorBlock) errorBlock.classList.remove('hidden');
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Appointment'; }
+          }
+        }).catch(function () {
+          if (formBlock) formBlock.classList.add('hidden');
+          if (successBlock) successBlock.classList.add('hidden');
+          if (errorBlock) errorBlock.classList.remove('hidden');
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Appointment'; }
+        });
+      });
+      document.getElementById('booking-try-again') && document.getElementById('booking-try-again').addEventListener('click', function () {
+        document.getElementById('booking-step-4-form').classList.remove('hidden');
+        document.getElementById('booking-step-4-error').classList.add('hidden');
       });
     }
   })();

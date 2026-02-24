@@ -41,7 +41,7 @@ Nothing ruins the clean look of a mounted TV like a tangle of cables hanging dow
 - **No access to ports:** Mounting the TV too close to the wall makes it impossible to plug in devices or make adjustments.
 - **Cable damage:** Cables pinched between the TV and wall can be damaged, causing connection issues.
 
-Plan your cable routing before mounting. Consider [professional cable concealment](/tv-cable-concealment/) for a clean, permanent solution.
+Plan your cable routing before mounting. Consider [professional cable concealment](/services/tv-cable-concealment/) for a clean, permanent solution.
 
 ## Mistake #5: Not Checking for Hidden Hazards
 
@@ -69,3 +69,23 @@ Use a stud finder with wire detection, or better yet, hire a professional who ha
 While it's possible to mount a TV yourself, these common mistakes show why professional installation is often the smarter choice. Professional installers have the tools, experience, and knowledge to avoid all these pitfalls.
 
 Our expert technicians handle [TV mounting](/services/tv-mounting/) for all sizes and types of TVs. We ensure proper stud mounting, optimal height, clean cable management, and safe installation every time.
+
+<div class="my-12 rounded-2xl border border-[hsl(var(--accent)/0.3)] bg-[hsl(var(--accent)/0.05)] p-6 md:p-8">
+  <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">Avoid These Mistakes with Professional Installation</h2>
+  <p class="text-lg text-foreground leading-relaxed mb-4">While it's possible to mount a TV yourself, these common mistakes show why professional installation is often the smarter choice. Professional installers have the tools, experience, and knowledge to avoid all these pitfalls.</p>
+  <p class="text-lg text-foreground leading-relaxed mb-6">Our expert technicians handle <a href="/services/tv-mounting/" class="text-[#0073e6] hover:underline font-semibold">TV mounting</a> for all sizes and types of TVs. We ensure proper stud mounting, optimal height, clean cable management, and safe installation every time.</p>
+  <div class="mt-8">
+    <a href="/services/tv-mounting/" class="inline-flex items-center justify-center rounded-lg h-12 px-8 text-base font-semibold bg-primary hover:bg-primary/90 shadow-lg" style="color: #ffffff;">Get Professional TV Mounting Service</a>
+  </div>
+</div>
+
+<div class="bg-primary text-primary-foreground py-16 -mx-4 md:-mx-8 lg:-mx-16 px-4 md:px-8 lg:px-16 mt-12">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-display text-3xl md:text-4xl font-bold mb-4" style="color: #ffffff;">Need Professional TV Mounting?</h2>
+    <p class="text-xl opacity-90 mb-8">Let our experts handle your TV installation safely and correctly, avoiding all these common mistakes.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/services/tv-mounting/" class="inline-flex items-center justify-center rounded-lg bg-white font-semibold h-12 px-8 hover:bg-white/90 transition" style="color: #004080;">View TV Mounting Services</a>
+      <a href="/contact/" class="inline-flex items-center justify-center rounded-lg border-2 border-white text-white font-semibold h-12 px-8 hover:bg-white/20 transition">Contact Us</a>
+    </div>
+  </div>
+</div>

@@ -2,21 +2,20 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { TV_MOUNTING_CITIES, getServiceAreaText, TV_MOUNTING_FAQS, TV_MOUNTING_REVIEWS } from '../../data/tvMountingCities';
 
-export function getStaticPaths() {
-  return TV_MOUNTING_CITIES.map(({ slug, name }) => ({
-    params: { city: slug },
-    props: {
-      citySlug: slug,
-      cityName: name,
-      serviceAreaText: getServiceAreaText(name),
-      metaTitle: `TV Mounting Service ${name} | Same Day Installation | Deals of Quality`,
-      metaDescription: `Expert TV wall mounting in ${name}. We hide wires, supply mounts, and install on drywall, brick, or fireplaces. Book online or get a free quote.`,
-      canonicalPath: `/services/tv-mounting-${slug}`,
-    },
-  }));
+const { city: cityParam } = Astro.params ?? {};
+const cityEntry = typeof cityParam === 'string'
+  ? TV_MOUNTING_CITIES.find((c) => c.slug === cityParam)
+  : undefined;
+
+if (!cityEntry) {
+  return new Response(null, { status: 404, statusText: 'Not Found' });
 }
 
-const { cityName, serviceAreaText, metaTitle, metaDescription, canonicalPath } = Astro.props;
+const { slug: citySlug, name: cityName } = cityEntry;
+const serviceAreaText = getServiceAreaText(cityName);
+const metaTitle = `TV Mounting Service ${cityName} | Same Day Installation | Deals of Quality`;
+const metaDescription = `Expert TV wall mounting in ${cityName}. We hide wires, supply mounts, and install on drywall, brick, or fireplaces. Book online or get a free quote.`;
+const canonicalPath = `/services/tv-mounting-${citySlug}`;
 const canonical = `https://www.dealsofquality.com${canonicalPath}/`;
 ---
 
@@ -30,7 +29,7 @@ const canonical = `https://www.dealsofquality.com${canonicalPath}/`;
     <!-- Hero -->
     <section
       class="relative flex flex-col justify-end items-center text-center pt-24 pb-10 md:pt-32 md:pb-14 bg-cover bg-center min-h-[320px] md:min-h-[420px]"
-      style="background-image: url(/tv-mounting-la-hero.png);"
+      style="background-image: url(/doquality-tv-mounting.jpg);"
     >
       <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
       <div class="container-max px-4 md:px-8 lg:px-16 relative z-10 flex flex-col items-center justify-end text-center">
@@ -58,16 +57,110 @@ const canonical = `https://www.dealsofquality.com${canonicalPath}/`;
       </div>
     </section>
 
-    <!-- CTA / Tell us needs (static; configurator would be Phase 5) -->
-    <section class="section-padding bg-background">
+    <!-- Tell Us About Your TV Mounting Needs -->
+    <section class="section-padding bg-background" aria-labelledby="tv-needs-heading">
       <div class="container-max px-4 md:px-8 lg:px-16 max-w-4xl">
-        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+        <h2 id="tv-needs-heading" class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">
           Tell Us About Your TV Mounting Needs
         </h2>
-        <p class="text-muted-foreground mb-8">
-          Professional wall mounting for any TV size across the {cityName} area. Our vetted pros handle installation, cable management, and leveling. Get a free quote or book online.
-        </p>
-        <div class="flex flex-wrap items-center gap-4">
+
+        <div class="space-y-8">
+          <!-- TV Size -->
+          <fieldset class="space-y-3">
+            <legend class="text-sm font-semibold text-foreground">What is your TV Size?</legend>
+            <div class="flex flex-wrap gap-3">
+              <label class="flex flex-1 min-w-[120px] cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="tv-size" value="under-50" class="sr-only" data-price="95" checked />
+                <svg class="h-8 w-8 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span class="text-center text-sm font-medium">Under 50"</span>
+                <span class="text-xs text-muted-foreground">Smaller TV</span>
+              </label>
+              <label class="flex flex-1 min-w-[120px] cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="tv-size" value="51-65" class="sr-only" data-price="120" />
+                <svg class="h-8 w-8 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span class="text-center text-sm font-medium">51"-65"</span>
+                <span class="text-xs text-muted-foreground">Medium</span>
+              </label>
+              <label class="flex flex-1 min-w-[120px] cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="tv-size" value="over-65" class="sr-only" data-price="160" />
+                <svg class="h-8 w-8 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span class="text-center text-sm font-medium">Over 65"</span>
+                <span class="text-xs text-muted-foreground">Large</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Mounting Bracket -->
+          <fieldset class="space-y-3">
+            <legend class="text-sm font-semibold text-foreground">Will You Need a Mounting Bracket?</legend>
+            <div class="flex flex-wrap gap-3">
+              <label class="flex flex-1 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="bracket" value="own" class="sr-only" data-price="0" />
+                I have my own mounting bracket
+              </label>
+              <label class="flex flex-1 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="bracket" value="flat" class="sr-only" data-price="30" checked />
+                I need a Flat Bracket ($30)
+              </label>
+              <label class="flex flex-1 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="bracket" value="tilting" class="sr-only" data-price="45" />
+                I need a Tilting Bracket ($45)
+              </label>
+              <label class="flex flex-1 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="bracket" value="full-motion" class="sr-only" data-price="65" />
+                I need a Full-motion Bracket ($65)
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Where Mounting -->
+          <fieldset class="space-y-3">
+            <legend class="text-sm font-semibold text-foreground">Where Are You Mounting Your TV?</legend>
+            <div class="flex flex-wrap gap-3">
+              <label class="flex flex-1 min-w-[120px] cursor-pointer items-center justify-center rounded-lg border-2 border-primary bg-primary/5 px-4 py-3 text-sm font-medium text-primary">
+                <input type="radio" name="mount-location" value="drywall" class="sr-only" data-price="0" checked />
+                On Drywall
+              </label>
+              <label class="flex flex-1 min-w-[120px] cursor-pointer items-center justify-center rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="mount-location" value="brick" class="sr-only" data-price="35" />
+                On Brick/Concrete (+$35)
+              </label>
+              <label class="flex flex-1 min-w-[120px] cursor-pointer items-center justify-center rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary">
+                <input type="radio" name="mount-location" value="fireplace" class="sr-only" data-price="50" />
+                Above a Fireplace (+$50)
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Add-ons -->
+          <fieldset class="space-y-3">
+            <legend class="text-sm font-semibold text-foreground">Add-ons</legend>
+            <div class="flex flex-wrap gap-3">
+              <label class="inline-flex cursor-pointer items-center gap-2 rounded-lg border-2 border-[#f97415] bg-[#f97415]/10 px-4 py-3 text-sm font-medium text-[#ea580c]">
+                <input type="checkbox" name="addon" value="no-wire-hiding" class="rounded border-input" data-price="0" checked />
+                No wire hiding
+              </label>
+              <label class="inline-flex cursor-pointer items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                <input type="checkbox" name="addon" value="raceway" class="rounded border-input" data-price="30" />
+                Hide Wires in wall cover/raceway (+$30)
+              </label>
+              <label class="inline-flex cursor-pointer items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                <input type="checkbox" name="addon" value="in-wall" class="rounded border-input" data-price="80" />
+                Hide Wires In-wall (+$80)
+              </label>
+              <label class="inline-flex cursor-pointer items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                <input type="checkbox" name="addon" value="dismount" class="rounded border-input" data-price="35" />
+                Dismount Old TV (+$35)
+              </label>
+              <label class="inline-flex cursor-pointer items-center gap-2 rounded-lg border-2 border-border bg-card px-4 py-3 text-sm font-medium transition has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                <input type="checkbox" name="addon" value="soundbar" class="rounded border-input" data-price="50" />
+                Soundbar Installation (+$50)
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
           <button type="button" data-open-quote="true" data-service="TV Mounting" class="inline-flex items-center justify-center rounded-lg h-11 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90">
             Get a Free Quote
           </button>
@@ -197,9 +290,12 @@ const canonical = `https://www.dealsofquality.com${canonicalPath}/`;
     <!-- Sticky footer CTA -->
     <div class="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card shadow-lg py-3 px-4 md:px-8" style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
       <div class="container-max flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span class="font-display font-semibold text-foreground">
-          Book TV Install in {cityName}
-        </span>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="font-display font-semibold text-foreground">
+            Book TV Install in {cityName}
+          </span>
+          <span id="tv-install-price" class="font-display font-bold text-primary">From $125</span>
+        </div>
         <button type="button" data-open-booking="true" data-service="TV Mounting" class="inline-flex items-center justify-center rounded-lg h-11 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 w-full sm:w-auto">
           Book Now
         </button>
@@ -208,4 +304,26 @@ const canonical = `https://www.dealsofquality.com${canonicalPath}/`;
 
     <div class="h-20" aria-hidden="true"></div>
   </main>
+
+  <script>
+    function getTvInstallTotal() {
+      var total = 0;
+      ['tv-size', 'bracket', 'mount-location'].forEach(function (name) {
+        var el = document.querySelector('input[name="' + name + '"]:checked');
+        if (el && el.dataset.price !== undefined) total += parseInt(el.dataset.price, 10) || 0;
+      });
+      document.querySelectorAll('input[name="addon"]:checked').forEach(function (el) {
+        if (el.dataset.price !== undefined) total += parseInt(el.dataset.price, 10) || 0;
+      });
+      return total;
+    }
+    function updateTvInstallPrice() {
+      var el = document.getElementById('tv-install-price');
+      if (el) el.textContent = 'From $' + getTvInstallTotal();
+    }
+    document.addEventListener('DOMContentLoaded', updateTvInstallPrice);
+    document.addEventListener('change', function (e) {
+      if (e.target.matches('input[name="tv-size"], input[name="bracket"], input[name="mount-location"], input[name="addon"]')) updateTvInstallPrice();
+    });
+  </script>
 </BaseLayout>

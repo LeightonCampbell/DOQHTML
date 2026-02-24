@@ -1,25 +1,12 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { TV_MOUNTING_CITIES } from '../../../data/tvMountingCities';
+
 const LINK_COLOR = '#004080';
-const locations = [
-  { label: 'Beverly Hills', href: '/services/tv-mounting-beverly-hills/' },
-  { label: 'Brentwood', href: '/services/tv-mounting-brentwood/' },
-  { label: 'Burbank', href: '/services/tv-mounting-burbank/' },
-  { label: 'Culver City', href: '/services/tv-mounting-culver-city/' },
-  { label: 'Encino', href: '/services/tv-mounting-encino/' },
-  { label: 'Glendale', href: '/services/tv-mounting-glendale/' },
-  { label: 'Hollywood', href: '/services/tv-mounting-hollywood/' },
-  { label: 'Los Angeles', href: '/services/tv-mounting-los-angeles/' },
-  { label: 'Malibu', href: '/services/tv-mounting-malibu/' },
-  { label: 'Manhattan Beach', href: '/services/tv-mounting-manhattan-beach/' },
-  { label: 'Marina Del Rey', href: '/services/tv-mounting-marina-del-rey/' },
-  { label: 'Pacific Palisades', href: '/services/tv-mounting-pacific-palisades/' },
-  { label: 'Pasadena', href: '/services/tv-mounting-pasadena/' },
-  { label: 'Santa Monica', href: '/services/tv-mounting-santa-monica/' },
-  { label: 'Sherman Oaks', href: '/services/tv-mounting-sherman-oaks/' },
-  { label: 'Silver Lake', href: '/services/tv-mounting-silver-lake/' },
-  { label: 'Studio City', href: '/services/tv-mounting-studio-city/' },
-];
+const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
+  label: name,
+  href: `/services/tv-mounting-${slug}/`,
+}));
 ---
 
 <BaseLayout
@@ -28,11 +15,27 @@ const locations = [
   canonical="https://www.dealsofquality.com/services/tv-mounting/"
 >
   <main class="min-h-screen bg-background">
-    <section class="section-padding">
-      <div class="container-max px-4 md:px-8 lg:px-16 max-w-4xl mx-auto text-center">
-        <h1 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <!-- Hero -->
+    <section
+      class="relative flex flex-col justify-end items-center text-center pt-24 pb-10 md:pt-32 md:pb-14 bg-cover bg-center min-h-[320px] md:min-h-[420px]"
+      style="background-image: url(/doquality-tv-mounting.jpg);"
+    >
+      <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10 flex flex-col items-center justify-end text-center">
+        <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-3">
           TV Mounting Services
         </h1>
+        <p class="text-white/90 max-w-3xl">
+          Professional wall mounting for any TV size. Same-day installation, wire hiding, and expert mounting across the greater LA area.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-padding">
+      <div class="container-max px-4 md:px-8 lg:px-16 max-w-4xl mx-auto text-center">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+          Select Your Location
+        </h2>
         <p class="text-muted-foreground text-lg mb-8">
           Select your location to view pricing, book installation, or get a free quote.
         </p>

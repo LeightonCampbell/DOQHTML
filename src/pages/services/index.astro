@@ -9,6 +9,8 @@ interface ServiceItem {
   icon: string;
   href: string;
   isHot?: boolean;
+  /** When true, clicking opens the quote modal at the ZIP step with this item's name pre-filled (no navigation). */
+  openQuoteAtZip?: boolean;
 }
 interface Category {
   title: string;
@@ -47,83 +49,83 @@ const categories: Category[] = [
   {
     title: 'Home Improvement & Outdoor',
     items: [
-      { name: 'Handyman Services',          description: 'Furniture assembly, repairs & odd jobs',          icon: icons.wrench,  href: '/handyman-services/' },
-      { name: 'Painting (Interior & Exterior)', description: 'Interior and exterior painting services',     icon: icons.paint,   href: '/painting/' },
-      { name: 'Kitchen Remodeling',         description: 'Complete kitchen renovation services',            icon: icons.home,    href: '/kitchen-remodeling/',    isHot: true },
-      { name: 'Bathroom Remodeling',        description: 'Bathroom renovation and remodeling',              icon: icons.droplet, href: '/bathroom-remodeling/' },
-      { name: 'Landscaping',                description: 'Landscape design and maintenance',                icon: icons.leaf,    href: '/landscaping/' },
-      { name: 'Smart Irrigation',           description: 'Smart irrigation system installation',            icon: icons.droplet, href: '/smart-irrigation/' },
-      { name: 'Fence & Gate Installation',  description: 'Fence and gate installation services',            icon: icons.fence,   href: '/fence-gate-installation/' },
-      { name: 'Holiday Lighting',           description: 'Holiday lighting installation and removal',       icon: icons.star,    href: '/holiday-lighting/' },
+      { name: 'Handyman Services',          description: 'Furniture assembly, repairs & odd jobs',          icon: icons.wrench,  href: '/services/handyman-services/' },
+      { name: 'Painting (Interior & Exterior)', description: 'Interior and exterior painting services',     icon: icons.paint,   href: '/services/painting/' },
+      { name: 'Kitchen Remodeling',         description: 'Complete kitchen renovation services',            icon: icons.home,    href: '/services/kitchen-remodeling/',    isHot: true },
+      { name: 'Bathroom Remodeling',        description: 'Bathroom renovation and remodeling',              icon: icons.droplet, href: '/services/bathroom-remodeling/' },
+      { name: 'Landscaping',                description: 'Landscape design and maintenance',                icon: icons.leaf,    href: '/services/landscaping/' },
+      { name: 'Smart Irrigation',           description: 'Smart irrigation system installation',            icon: icons.droplet, href: '/services/smart-irrigation-installation/' },
+      { name: 'Fence & Gate Installation',  description: 'Fence and gate installation services',            icon: icons.fence,   href: '/services/fence-installation/' },
+      { name: 'Holiday Lighting',           description: 'Holiday lighting installation and removal',       icon: icons.star,    href: '/services/holiday-lighting-installation/' },
     ],
   },
   {
     title: 'Cleaning & Property Care',
     items: [
-      { name: 'House Cleaning / Maid Service', description: 'Professional house cleaning and maid services', icon: icons.broom,    href: '/house-cleaning/', isHot: true },
-      { name: 'Carpet Cleaning',               description: 'Professional carpet cleaning services',         icon: icons.cleaning, href: '/carpet-cleaning/' },
-      { name: 'Window Cleaning',               description: 'Interior and exterior window cleaning',         icon: icons.window,   href: '/window-cleaning/' },
-      { name: 'Gutter Cleaning',               description: 'Professional gutter cleaning services',         icon: icons.droplet,  href: '/gutter-cleaning/' },
-      { name: 'Pressure Washing',              description: 'Exterior cleaning & maintenance',               icon: icons.droplet,  href: '/pressure-washing/' },
-      { name: 'Junk Removal',                  description: 'Junk and debris removal services',              icon: icons.truck,    href: '/junk-removal/' },
+      { name: 'House Cleaning / Maid Service', description: 'Professional house cleaning and maid services', icon: icons.broom,    href: '/services/house-cleaning/', isHot: true },
+      { name: 'Carpet Cleaning',               description: 'Professional carpet cleaning services',         icon: icons.cleaning, href: '/services/carpet-cleaning/' },
+      { name: 'Window Cleaning',               description: 'Interior and exterior window cleaning',         icon: icons.window,   href: '/services/window-cleaning/' },
+      { name: 'Gutter Cleaning',               description: 'Professional gutter cleaning services',         icon: icons.droplet,  href: '/services/gutter-cleaning/' },
+      { name: 'Pressure Washing',              description: 'Exterior cleaning & maintenance',               icon: icons.droplet,  href: '/services/pressure-washing/' },
+      { name: 'Junk Removal',                  description: 'Junk and debris removal services',              icon: icons.truck,    href: '/services/junk-removal/' },
     ],
   },
   {
     title: 'Repairs & Electrical',
     items: [
-      { name: 'Plumbing Services',         description: 'Repairs, installations & emergencies',         icon: icons.droplet,  href: '/plumbing/' },
-      { name: 'Electrical Services',       description: 'Safe, licensed electrical work',               icon: icons.bolt,     href: '/electrical/' },
-      { name: 'Light Fixture Replacement', description: 'Safe, licensed electrical work',               icon: icons.lightbulb,href: '/light-fixture-replacement/' },
-      { name: 'HVAC (Heating & Air)',       description: 'HVAC installation, repair, and maintenance',  icon: icons.fire,     href: '/hvac/' },
-      { name: 'Appliance Repair',          description: 'Professional appliance repair services',       icon: icons.wrench,   href: '/appliance-repair/' },
-      { name: 'Roofing',                   description: 'Roofing installation and repair',              icon: icons.home,     href: '/roofing/' },
-      { name: 'Drywall Repair',            description: 'Drywall installation and repair',              icon: icons.chip,     href: '/drywall-repair/' },
+      { name: 'Plumbing Services',         description: 'Repairs, installations & emergencies',         icon: icons.droplet,  href: '/services/plumbing/' },
+      { name: 'Electrical Services',       description: 'Safe, licensed electrical work',               icon: icons.bolt,     href: '/services/electrical/' },
+      { name: 'Light Fixture Replacement', description: 'Safe, licensed electrical work',               icon: icons.lightbulb,href: '/services/light-fixture-replacement/' },
+      { name: 'HVAC (Heating & Air)',       description: 'HVAC installation, repair, and maintenance',  icon: icons.fire,     href: '/services/hvac/' },
+      { name: 'Appliance Repair',          description: 'Professional appliance repair services',       icon: icons.wrench,   href: '/services/appliance-repair/' },
+      { name: 'Roofing',                   description: 'Roofing installation and repair',              icon: icons.home,     href: '/services/roofing/' },
+      { name: 'Drywall Repair',            description: 'Drywall installation and repair',              icon: icons.chip,     href: '/services/drywall-installation/' },
     ],
   },
   {
     title: 'TV Mounting & Entertainment',
     items: [
-      { name: 'TV Mounting (up to 50")',   description: 'Professional TV mounting for TVs up to 50 inches',      icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
-      { name: 'TV Mounting (51" to 65")',  description: 'Professional TV mounting for 51 to 65 inch TVs',        icon: icons.tv, href: '/services/tv-mounting-los-angeles/', isHot: true },
-      { name: 'TV Mounting (over 65")',    description: 'Professional TV mounting for large TVs over 65 inches', icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
-      { name: 'TV Dismount & Remount',     description: 'TV removal and reinstallation services',                icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
-      { name: 'TV Cable Concealment',      description: 'Hide and organize TV cables professionally',            icon: icons.tv, href: '/services/tv-mounting-los-angeles/' },
-      { name: 'Soundbar Installation',     description: 'Professional soundbar installation and setup',          icon: icons.tv, href: '/soundbar-installation/' },
-      { name: 'Home Theater Setup',        description: 'Surround sound & streaming setup',                      icon: icons.tv, href: '/home-theater-setup/' },
-      { name: 'Surround Sound',            description: 'Surround sound system installation',                    icon: icons.tv, href: '/surround-sound/' },
-      { name: 'Gaming Setup',              description: 'Gaming console setup and optimization',                 icon: icons.tv, href: '/gaming-setup/' },
-      { name: 'Streaming Setup',           description: 'Streaming device setup and configuration',              icon: icons.tv, href: '/streaming-setup/' },
+      { name: 'TV Mounting (up to 50")',   description: 'Professional TV mounting for TVs up to 50 inches',      icon: icons.tv, href: '#', openQuoteAtZip: true },
+      { name: 'TV Mounting (51" to 65")',  description: 'Professional TV mounting for 51 to 65 inch TVs',        icon: icons.tv, href: '#', isHot: true, openQuoteAtZip: true },
+      { name: 'TV Mounting (over 65")',    description: 'Professional TV mounting for large TVs over 65 inches', icon: icons.tv, href: '#', openQuoteAtZip: true },
+      { name: 'TV Dismount & Remount',     description: 'TV removal and reinstallation services',                icon: icons.tv, href: '/services/tv-dismount-remount/' },
+      { name: 'TV Cable Concealment',      description: 'Hide and organize TV cables professionally',            icon: icons.tv, href: '/services/tv-cable-concealment/' },
+      { name: 'Soundbar Installation',     description: 'Professional soundbar installation and setup',          icon: icons.tv, href: '/services/soundbar-installation/' },
+      { name: 'Home Theater Setup',        description: 'Surround sound & streaming setup',                      icon: icons.tv, href: '/services/home-theater/' },
+      { name: 'Surround Sound',            description: 'Surround sound system installation',                    icon: icons.tv, href: '/services/surround-sound/' },
+      { name: 'Gaming Setup',              description: 'Gaming console setup and optimization',                 icon: icons.tv, href: '/services/gaming-setup/' },
+      { name: 'Streaming Setup',           description: 'Streaming device setup and configuration',              icon: icons.tv, href: '/services/streaming-setup/' },
     ],
   },
   {
     title: 'Smart Home & Security',
     items: [
-      { name: 'Wi-Fi & Networking',      description: 'Setup, optimization & dead zones',             icon: icons.wifi,   href: '/router-setup/',        isHot: true },
-      { name: 'Security Camera Setup',   description: 'Professional camera installation',              icon: icons.shield, href: '/security-cameras/',    isHot: true },
-      { name: 'Video Doorbell Setup',    description: 'Video doorbell installation',                   icon: icons.bell,   href: '/video-doorbell/' },
-      { name: 'Smart Lock Install',      description: 'Smart lock installation and setup',             icon: icons.shield, href: '/smart-lock/' },
-      { name: 'Smart Thermostats',       description: 'Smart thermostat installation',                 icon: icons.chip,   href: '/smart-thermostats/' },
-      { name: 'Smart Home Integration',  description: 'Complete smart home system integration',        icon: icons.home,   href: '/smart-home-integration/' },
-      { name: 'Motion Sensors',          description: 'Motion sensor installation and setup',          icon: icons.shield, href: '/motion-sensors/' },
-      { name: 'Smoke Detector Install',  description: 'Smoke detector installation and testing',       icon: icons.bell,   href: '/smoke-detector/' },
+      { name: 'Wi-Fi & Networking',      description: 'Setup, optimization & dead zones',             icon: icons.wifi,   href: '/services/router-setup/',        isHot: true },
+      { name: 'Security Camera Setup',   description: 'Professional camera installation',              icon: icons.shield, href: '/services/security-cameras/',    isHot: true },
+      { name: 'Video Doorbell Setup',    description: 'Video doorbell installation',                   icon: icons.bell,   href: '/services/video-doorbells/' },
+      { name: 'Smart Lock Install',      description: 'Smart lock installation and setup',             icon: icons.shield, href: '/services/smart-locks/' },
+      { name: 'Smart Thermostats',       description: 'Smart thermostat installation',                 icon: icons.chip,   href: '/services/smart-thermostats/' },
+      { name: 'Smart Home Integration',  description: 'Complete smart home system integration',        icon: icons.home,   href: '/services/smart-home-integration/' },
+      { name: 'Motion Sensors',          description: 'Motion sensor installation and setup',          icon: icons.shield, href: '/services/motion-sensors/' },
+      { name: 'Smoke Detector Install',  description: 'Smoke detector installation and testing',       icon: icons.bell,   href: '/services/smoke-detector-installation/' },
     ],
   },
   {
     title: 'Computers & Printers',
     items: [
-      { name: 'Computer Repair',  description: 'PC and Mac repair services',             icon: icons.desktop,  href: '/computer-repair/' },
-      { name: 'Virus Removal',    description: 'Virus and malware removal services',     icon: icons.shield,   href: '/virus-removal/' },
-      { name: 'Printer Setup',    description: 'Printer installation and configuration', icon: icons.printer,  href: '/printer-setup/' },
-      { name: 'Data Backup',      description: 'Data backup and recovery services',      icon: icons.database, href: '/data-backup/' },
+      { name: 'Computer Repair',  description: 'PC and Mac repair services',             icon: icons.desktop,  href: '/services/computer-repair/' },
+      { name: 'Virus Removal',    description: 'Virus and malware removal services',     icon: icons.shield,   href: '/services/virus-removal/' },
+      { name: 'Printer Setup',    description: 'Printer installation and configuration', icon: icons.printer,  href: '/services/printer-setup/' },
+      { name: 'Data Backup',      description: 'Data backup and recovery services',      icon: icons.database, href: '/services/data-backup/' },
     ],
   },
   {
     title: 'Business Services',
     items: [
-      { name: 'Website Design',       description: 'Professional website design for businesses', icon: icons.globe,   href: '/website-design/' },
+      { name: 'Website Design',       description: 'Professional website design for businesses', icon: icons.globe,   href: '/services/website-design/' },
       { name: 'Remote Support',       description: 'Remote technical support services',          icon: icons.support, href: '/remote-support/' },
-      { name: 'Business IT Solutions',description: 'Complete IT solutions for businesses',       icon: icons.chip,    href: '/business-it/' },
-      { name: 'Custom Solutions',     description: 'Custom technology solutions',                icon: icons.star,    href: '/custom-solutions/' },
+      { name: 'Business IT Solutions',description: 'Complete IT solutions for businesses',       icon: icons.chip,    href: '/services/business-it-solutions/' },
+      { name: 'Custom Solutions',     description: 'Custom technology solutions',                icon: icons.star,    href: '/services/custom-solutions/' },
     ],
   },
 ];
@@ -154,28 +156,55 @@ const categories: Category[] = [
             <ul class="space-y-0">
               {cat.items.map((item) => (
                 <li>
-                  <a href={item.href} class="group flex items-start gap-3 py-2.5 transition-colors hover:text-[#0073e6]">
-                    <!-- Icon -->
-                    <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 text-slate-400 transition-colors group-hover:text-[#0073e6]" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                        <path d={item.icon} />
-                      </svg>
-                    </span>
-                    <!-- Text -->
-                    <span class="flex flex-col">
-                      <span class="flex items-center gap-2">
-                        <span class="text-sm font-medium text-slate-800 transition-colors group-hover:text-[#0073e6]">
-                          {item.name}
-                        </span>
-                        {item.isHot && (
-                          <span class="inline-flex items-center rounded-sm bg-orange-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-500">
-                            Hot
-                          </span>
-                        )}
+                  {item.openQuoteAtZip ? (
+                    <button
+                      type="button"
+                      data-open-quote
+                      data-service={item.name}
+                      data-quote-step="2"
+                      class="group flex w-full items-start gap-3 py-2.5 text-left transition-colors hover:text-[#0073e6] cursor-pointer border-0 bg-transparent p-0"
+                    >
+                      <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 text-slate-400 transition-colors group-hover:text-[#0073e6]" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                          <path d={item.icon} />
+                        </svg>
                       </span>
-                      <span class="mt-0.5 text-xs text-slate-500">{item.description}</span>
-                    </span>
-                  </a>
+                      <span class="flex flex-col">
+                        <span class="flex items-center gap-2">
+                          <span class="text-sm font-medium text-slate-800 transition-colors group-hover:text-[#0073e6]">
+                            {item.name}
+                          </span>
+                          {item.isHot && (
+                            <span class="inline-flex items-center rounded-sm bg-orange-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-500">
+                              Hot
+                            </span>
+                          )}
+                        </span>
+                        <span class="mt-0.5 text-xs text-slate-500">{item.description}</span>
+                      </span>
+                    </button>
+                  ) : (
+                    <a href={item.href} class="group flex items-start gap-3 py-2.5 transition-colors hover:text-[#0073e6]">
+                      <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 text-slate-400 transition-colors group-hover:text-[#0073e6]" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                          <path d={item.icon} />
+                        </svg>
+                      </span>
+                      <span class="flex flex-col">
+                        <span class="flex items-center gap-2">
+                          <span class="text-sm font-medium text-slate-800 transition-colors group-hover:text-[#0073e6]">
+                            {item.name}
+                          </span>
+                          {item.isHot && (
+                            <span class="inline-flex items-center rounded-sm bg-orange-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-500">
+                              Hot
+                            </span>
+                          )}
+                        </span>
+                        <span class="mt-0.5 text-xs text-slate-500">{item.description}</span>
+                      </span>
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
