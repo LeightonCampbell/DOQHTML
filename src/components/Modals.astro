@@ -1,18 +1,35 @@
 ---
 /**
  * Global Quote and Booking modals using native <dialog>.
- * Trigger: any button with data-open-quote or data-open-booking.
+ * Migrated from legacy React BookingModal.tsx – 4-step quote flow with semantic HTML and vanilla JS.
+ * Trigger: any element with data-open-quote or data-open-booking.
  */
-const quoteServiceOptions = [
-  'TV Mounting',
-  'Plumbing',
-  'Electrical',
-  'House Cleaning',
-  'Handyman',
-  'Security Cameras',
-  'Wi-Fi Setup',
-  'Smart Home',
-  'Other',
+const services = [
+  { value: "house-cleaning", label: "House Cleaning" },
+  { value: "tv-mounting", label: "TV Mounting" },
+  { value: "smart-home", label: "Smart Home Installation" },
+  { value: "plumbing", label: "Plumbing" },
+  { value: "electrical", label: "Electrical" },
+  { value: "handyman", label: "Handyman Services" },
+  { value: "bathroom-remodeling", label: "Bathroom Remodeling" },
+  { value: "pressure-washing", label: "Pressure Washing" },
+  { value: "junk-removal", label: "Junk Removal" },
+  { value: "wifi-network", label: "WiFi & Network Setup" },
+  { value: "home-theater", label: "Home Theater" },
+  { value: "security", label: "Security Cameras" },
+  { value: "computer-repair", label: "Computer Repair" },
+  { value: "hvac", label: "HVAC" },
+  { value: "website-design", label: "Website Design" },
+  { value: "other", label: "Other" },
+];
+
+// Booking modal: category → services (ScheduleServiceDialog parity)
+const bookingCategories = [
+  { category: "TV Mounting & Home Theater", services: ["TV Wall Mounting - Standard (up to 55\")", "TV Wall Mounting - Large (56\" - 75\")", "TV Wall Mounting - Extra Large (76\"+)", "Full Home Theater Setup", "Soundbar Installation", "Surround Sound System", "Projector Installation", "Cable Concealment"] },
+  { category: "Computer Support", services: ["Computer Repair & Diagnostics", "Virus & Malware Removal", "Data Backup & Recovery", "Software Installation & Updates", "Hardware Upgrade (RAM/SSD)", "Operating System Reinstall", "Printer Setup & Troubleshooting", "Performance Optimization"] },
+  { category: "Internet & Wi-Fi", services: ["Router Setup & Configuration", "Wi-Fi Network Optimization", "Dead Zone Elimination", "Mesh Network Installation", "Network Security Setup", "Ethernet Wiring Installation", "Smart Home Network Setup", "Business Network Configuration"] },
+  { category: "Security Cameras", services: ["Indoor Camera Installation", "Outdoor Camera Installation", "Video Doorbell Setup", "Multi-Camera System", "DVR/NVR Configuration", "Smart Lock Installation", "Motion Sensor Setup", "Security System Integration"] },
+  { category: "Other Services", services: ["Smart Thermostat Installation", "Printer Setup & Troubleshooting", "Smart Home Integration", "General Handyman Services", "Custom Tech Projects"] },
 ];
 ---
 
@@ -28,119 +45,279 @@ const quoteServiceOptions = [
   }
 </style>
 
-<!-- Quote Modal (multi-step: Details → Contact) -->
-<dialog id="quote-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm" aria-labelledby="quote-modal-title" aria-describedby="quote-modal-desc">
-  <div class="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto">
-    <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#0073e6]" aria-label="Close quote modal" data-close-dialog="quote-modal">
+<!-- Quote Modal (4-step: Service → ZIP → Details → Contact) -->
+<dialog id="quote-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm sm:max-w-[532px] overflow-hidden" aria-labelledby="quote-modal-title" aria-describedby="quote-modal-desc">
+  <div class="relative max-h-[90vh] w-full overflow-y-auto">
+    <button type="button" class="modal-close absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#0073e6]" aria-label="Close quote modal" data-close-dialog="quote-modal">
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
 
-    <form id="quote-form" class="quote-modal-form" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
+    <form id="quote-form" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
       <input type="hidden" id="quote-hidden-service" name="service" value="" />
       <input type="hidden" id="quote-hidden-zip" name="zip" value="" />
+      <input type="hidden" id="quote-hidden-urgency" name="urgency" value="" />
 
-      <!-- Step 1: Details -->
-      <div id="quote-step-details" class="quote-step">
-        <div class="h-1 w-full bg-slate-100"><div class="h-full w-1/2 bg-[#0073e6]" aria-hidden="true"></div></div>
-        <div class="p-6 pr-14 pt-6">
-          <div class="text-center">
-            <h2 id="quote-modal-title" class="text-xl font-bold text-slate-900">Details for your Quote</h2>
-            <p id="quote-modal-desc" class="mt-1 text-sm text-slate-500">Help us understand what you need.</p>
+      <!-- "Finding pros..." overlay (React parity: brief delay before step 4) -->
+      <div id="quote-finding-pros" class="hidden absolute inset-0 z-20 flex items-center justify-center rounded-2xl bg-white/95 p-8">
+        <div class="text-center">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#0073e6]/10 text-[#0073e6] mb-4">
+            <svg id="quote-finding-spinner" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
           </div>
-
-          <div class="mt-6">
-            <span class="block text-left text-sm font-medium text-slate-700">When do you need service?</span>
-            <div class="mt-2 flex flex-row flex-wrap gap-3 sm:flex-nowrap">
-              <label class="quote-timing-card flex flex-1 cursor-pointer flex-col items-center gap-2 rounded-xl border-2 border-slate-200 bg-white p-4 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5">
-                <input type="radio" name="timing" value="asap" class="sr-only" />
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></span>
-                <span class="text-center text-sm font-medium text-slate-800">As soon as possible</span>
-              </label>
-              <label class="quote-timing-card flex flex-1 cursor-pointer flex-col items-center gap-2 rounded-xl border-2 border-slate-200 bg-white p-4 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5">
-                <input type="radio" name="timing" value="within-week" class="sr-only" />
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></span>
-                <span class="text-center text-sm font-medium text-slate-800">Within a week</span>
-              </label>
-              <label class="quote-timing-card flex flex-1 cursor-pointer flex-col items-center gap-2 rounded-xl border-2 border-slate-200 bg-white p-4 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5">
-                <input type="radio" name="timing" value="flexible" class="sr-only" />
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
-                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6v9c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6H5z" /><path d="M17 8v4" /><path d="M8 3v1.5M12 3v1.5M10 2v1.5" /></svg>
-                </span>
-                <span class="text-center text-sm font-medium text-slate-800">Flexible timing</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="mt-5">
-            <label for="quote-details" class="block text-sm font-medium text-slate-700">Tell us about your project</label>
-            <textarea id="quote-details" name="details" rows="4" class="mt-1 w-full resize-y rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" placeholder="Describe your project or request..."></textarea>
-          </div>
-
-          <div class="mt-8 flex items-center justify-between gap-4">
-            <button type="button" class="quote-back-btn rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-action="back">Back</button>
-            <button type="button" class="quote-continue-btn rounded-lg bg-[#f97415] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-quote-action="continue">Continue →</button>
-          </div>
+          <p class="text-lg font-medium text-slate-900">Finding pros near you...</p>
         </div>
       </div>
 
-      <!-- Step 2: Contact -->
-      <div id="quote-step-contact" class="quote-step hidden">
-        <div class="h-1 w-full bg-[#0073e6]" aria-hidden="true"></div>
-        <div class="p-6 pr-14 pt-6">
-          <div class="flex items-start gap-3">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+      <div class="p-6 pr-14 relative">
+        <!-- Step 1: Service selection -->
+        <div id="quote-step-1" class="quote-step space-y-6">
+          <div class="text-center">
+            <h2 id="quote-modal-title" class="font-display text-2xl font-bold text-slate-900 mb-2">What do you need help with?</h2>
+            <p id="quote-modal-desc" class="text-slate-500">Select a service to get a no obligation quote</p>
+          </div>
+          <div>
+            <label for="quote-service" class="sr-only">Service</label>
+            <select id="quote-service" name="service_select" required class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
+              <option value="">Select a service...</option>
+              {services.map((s) => (
+                <option value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+          <div id="quote-other-wrap" class="space-y-1.5 hidden">
+            <label for="quote-other-desc" class="block text-sm font-medium text-slate-700 mb-0.5">Please describe your service</label>
+            <input type="text" id="quote-other-desc" name="other_service" maxlength="150" placeholder="e.g., Appliance repair, Carpet cleaning" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            <p class="text-xs text-slate-500"><span id="quote-other-count">0</span>/150 characters</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="flex-1"></div>
+            <button type="button" class="quote-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-quote-goto="2">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: ZIP code -->
+        <div id="quote-step-2" class="quote-step hidden space-y-6">
+          <div class="text-center">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">Where is the project located?</h2>
+            <p class="text-slate-500">Enter your service location ZIP code</p>
+          </div>
+          <div class="space-y-1.5">
+            <label for="quote-zip" class="sr-only">ZIP code</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+              </span>
+              <input type="text" id="quote-zip" name="zip" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter ZIP code" class="h-11 w-full rounded-lg border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <p id="quote-zip-error" class="text-sm text-red-500 hidden"></p>
+          </div>
+          <div class="flex gap-3">
+            <button type="button" class="quote-back flex-1 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-goto="1">← Back</button>
+            <button type="button" class="quote-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-quote-goto="3">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Project details + urgency -->
+        <div id="quote-step-3" class="quote-step hidden space-y-6">
+          <div class="text-center">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">Details for your Quote</h2>
+            <p class="text-slate-500">Help us understand what you need</p>
+          </div>
+          <div class="space-y-3">
+            <fieldset>
+              <legend class="text-sm font-medium text-slate-700 mb-1">When do you need this done?</legend>
+              <div class="flex flex-wrap gap-3">
+                <label class="quote-urgency-card flex flex-1 min-w-[100px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-4 py-3 transition has-[:checked]:border-red-500 has-[:checked]:bg-red-50 has-[:checked]:text-red-700 has-[:checked]:font-semibold">
+                  <input type="radio" name="urgency" value="asap" class="peer sr-only" />
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></span>
+                  <span class="text-center text-sm">As soon as possible</span>
+                </label>
+                <label class="quote-urgency-card flex flex-1 min-w-[100px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-4 py-3 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5 has-[:checked]:text-[#0073e6] has-[:checked]:font-semibold">
+                  <input type="radio" name="urgency" value="week" class="sr-only" checked />
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></span>
+                  <span class="text-center text-sm">Within a week</span>
+                </label>
+                <label class="quote-urgency-card flex flex-1 min-w-[100px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-4 py-3 transition has-[:checked]:border-[#0073e6] has-[:checked]:bg-[#0073e6]/5 has-[:checked]:text-[#0073e6] has-[:checked]:font-semibold">
+                  <input type="radio" name="urgency" value="flexible" class="sr-only" />
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  </span>
+                  <span class="text-center text-sm">Flexible timing</span>
+                </label>
+              </div>
+            </fieldset>
+            <div>
+              <label for="quote-details" class="block text-sm font-medium text-slate-700 mb-0.5">Tell us about your project</label>
+              <textarea id="quote-details" name="details" rows="4" placeholder="Describe your project, any specific requirements, or questions you have..." class="w-full resize-y rounded-lg border border-slate-200 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]"></textarea>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <button type="button" class="quote-back flex-1 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-goto="2">← Back</button>
+            <button type="button" class="quote-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-quote-goto="4">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Contact info -->
+        <div id="quote-step-4" class="quote-step hidden space-y-6">
+          <div class="w-full text-center">
+            <span class="flex h-12 w-12 mx-auto mb-3 items-center justify-center rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
             </span>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News!<br>There are <span id="quote-pro-counter">0</span>+ Pros near you.</h3>
+            <p class="text-slate-500 w-full text-center">Complete your details to get a quote</p>
+          </div>
+          <div class="space-y-3">
             <div>
-              <h2 class="text-xl font-semibold text-slate-900">Great News! We found 60+ Pros.</h2>
-              <p class="mt-1 text-sm text-slate-500">Complete your details to get a quote.</p>
+              <label for="quote-name" class="block text-sm font-medium text-slate-700 mb-0.5">Your name</label>
+              <input type="text" id="quote-name" name="name" required placeholder="John Doe" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="quote-email" class="block text-sm font-medium text-slate-700 mb-0.5">Email address</label>
+              <input type="email" id="quote-email" name="email" required placeholder="john@example.com" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="quote-phone" class="block text-sm font-medium text-slate-700 mb-0.5">Phone number</label>
+              <input type="tel" id="quote-phone" name="phone" required placeholder="(818) 555-1234" class="h-11 w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
             </div>
           </div>
-
-          <div class="mt-6 space-y-4">
-            <div>
-              <label for="quote-name" class="block text-sm font-medium text-slate-700">Your Name</label>
-              <input type="text" id="quote-name" name="name" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
-            <div>
-              <label for="quote-email" class="block text-sm font-medium text-slate-700">Email address</label>
-              <input type="email" id="quote-email" name="email" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
-            <div>
-              <label for="quote-phone" class="block text-sm font-medium text-slate-700">Phone number</label>
-              <input type="tel" id="quote-phone" name="phone" required class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
-            </div>
+          <div class="flex w-full gap-3">
+            <button type="button" class="quote-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-goto="3">← Back</button>
+            <button type="submit" class="flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 whitespace-nowrap">Get My Free Quote</button>
           </div>
-
-          <div class="mt-8 flex items-center justify-between gap-4">
-            <button type="button" class="quote-back-btn rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-action="back">← Back</button>
-            <button type="submit" class="rounded-lg bg-[#f97415] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">Get My Free Quote</button>
-          </div>
-          <p class="mt-4 text-xs text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
+          <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
         </div>
       </div>
     </form>
   </div>
 </dialog>
 
-<!-- Booking Modal -->
-<dialog id="booking-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm" aria-labelledby="booking-modal-title" aria-describedby="booking-modal-desc">
-  <div class="relative max-h-[90vh] w-full max-w-lg overflow-y-auto sm:max-w-md">
+<!-- Booking Modal (3-step: Service → ZIP → Contact & appointment) -->
+<dialog id="booking-modal" class="modal-dialog rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm sm:max-w-lg overflow-hidden" aria-labelledby="booking-modal-title" aria-describedby="booking-modal-desc">
+  <div class="relative max-h-[90vh] w-full overflow-y-auto">
     <button type="button" class="modal-close absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#f97415]" aria-label="Close booking modal" data-close-dialog="booking-modal">
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-    <div class="p-6 pr-14 pt-10">
-      <h2 id="booking-modal-title" class="text-xl font-semibold text-slate-900">Book a Service</h2>
-      <p id="booking-modal-desc" class="mt-1 text-sm text-slate-500">Choose a time that works for you.</p>
-      <div class="mt-6 flex min-h-[200px] items-center justify-center rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center text-slate-500">
-        Embed Scheduling Widget Here (e.g., Housecall Pro / Calendly)
+
+    <form id="booking-form" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
+      <input type="hidden" name="_subject" value="Booking request from Deals of Quality" />
+      <input type="hidden" name="form_type" value="booking" />
+      <input type="hidden" id="booking-hidden-category" name="category" value="" />
+      <input type="hidden" id="booking-hidden-service" name="service" value="" />
+      <input type="hidden" id="booking-hidden-zip" name="zip" value="" />
+
+      <div class="border-b border-slate-200 p-4">
+        <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+          <div id="booking-progress-fill" class="h-full rounded-full bg-[#0073e6] transition-all duration-300" style="width: 33.33%"></div>
+        </div>
+        <p id="booking-modal-desc" class="text-sm text-slate-500 mt-2 text-center">Step <span id="booking-step-indicator">1</span> of 3</p>
       </div>
-    </div>
+
+      <div class="p-6 pr-14">
+        <h2 id="booking-modal-title" class="font-display text-2xl font-bold text-slate-900 mb-6 text-center">Schedule a Service</h2>
+
+        <!-- Step 1: Service selection -->
+        <div id="booking-step-1" class="booking-step space-y-4">
+          <div class="space-y-2">
+            <label for="booking-category" class="block text-sm font-medium text-slate-700">Service Category *</label>
+            <select id="booking-category" name="category_select" required class="h-12 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
+              <option value="">Choose a category</option>
+              {bookingCategories.map((cat) => (
+                <option value={cat.category}>{cat.category}</option>
+              ))}
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label for="booking-service" class="block text-sm font-medium text-slate-700">Specific Service *</label>
+            <select id="booking-service" name="service_select" required class="h-12 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-base text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
+              <option value="">Choose a service</option>
+              {bookingCategories.map((cat) => (
+                <optgroup label={cat.category}>
+                  {cat.services.map((s) => <option value={s}>{s}</option>)}
+                </optgroup>
+              ))}
+            </select>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <div class="flex-1"></div>
+            <button type="button" class="booking-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="2">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: ZIP code -->
+        <div id="booking-step-2" class="booking-step hidden space-y-4">
+          <div class="text-center mb-4">
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-1">Service Area (ZIP Code)</h3>
+            <p class="text-slate-500 text-sm">Enter your service location ZIP code</p>
+          </div>
+          <div class="space-y-2">
+            <label for="booking-zip" class="sr-only">ZIP code</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+              </span>
+              <input type="text" id="booking-zip" name="zip_input" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter ZIP code" class="h-14 w-full rounded-lg border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <p id="booking-zip-error" class="text-sm text-red-500 hidden"></p>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" class="booking-back flex-1 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-booking-goto="1">← Back</button>
+            <button type="button" class="booking-next flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2" data-booking-goto="3">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact & appointment details -->
+        <div id="booking-step-3" class="booking-step hidden space-y-4">
+          <div class="text-center mb-4">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">Great News! There are <span id="booking-pro-counter">0</span>+ Pros available.</h2>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label for="booking-name" class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
+              <input type="text" id="booking-name" name="name" required placeholder="John Doe" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="booking-email" class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
+              <input type="email" id="booking-email" name="email" required placeholder="john@example.com" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="booking-phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
+              <input type="tel" id="booking-phone" name="phone" required placeholder="(818) 555-1234" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="booking-date" class="block text-sm font-medium text-slate-700 mb-1">Preferred Date</label>
+                <input type="date" id="booking-date" name="preferred_date" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+              </div>
+              <div>
+                <label for="booking-time" class="block text-sm font-medium text-slate-700 mb-1">Preferred Time</label>
+                <select id="booking-time" name="preferred_time" class="h-12 w-full rounded-lg border border-slate-200 bg-white pl-3 pr-10 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]">
+                  <option value="">Select time</option>
+                  <option value="morning">Morning (8AM - 12PM)</option>
+                  <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                  <option value="evening">Evening (5PM - 8PM)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="booking-address" class="block text-sm font-medium text-slate-700 mb-1">Service Address</label>
+              <input type="text" id="booking-address" name="address" placeholder="123 Main St, Los Angeles, CA" class="h-12 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]" />
+            </div>
+            <div>
+              <label for="booking-details" class="block text-sm font-medium text-slate-700 mb-1">Additional Details (Optional)</label>
+              <textarea id="booking-details" name="details" rows="3" placeholder="Tell us about your specific needs or any special requirements..." class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#0073e6] focus:outline-none focus:ring-1 focus:ring-[#0073e6]"></textarea>
+            </div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" class="booking-back flex-1 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-booking-goto="2">← Back</button>
+            <button type="submit" class="flex-1 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2">Submit Booking</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </dialog>
 
@@ -148,6 +325,8 @@ const quoteServiceOptions = [
   (function () {
     var QUOTE_ID = 'quote-modal';
     var BOOKING_ID = 'booking-modal';
+    var TOTAL_STEPS = 4;
+    var BOOKING_STEPS = 3;
 
     function lockBodyScroll(lock) {
       document.body.style.overflow = lock ? 'hidden' : '';
@@ -169,17 +348,204 @@ const quoteServiceOptions = [
       }
     }
 
-    // Open: buttons with data-open-quote or data-open-booking
+    function setQuoteStep(step) {
+      for (var i = 1; i <= TOTAL_STEPS; i++) {
+        var el = document.getElementById('quote-step-' + i);
+        if (el) el.classList.toggle('hidden', i !== step);
+      }
+    }
+
+    function prevQuoteStep(step) {
+      setQuoteStep(step);
+    }
+
+    function animateCounter(targetId, minVal, maxVal) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      el.textContent = '0';
+      var target = minVal + Math.floor(Math.random() * (maxVal - minVal + 1));
+      var duration = 2500 + Math.random() * 500;
+      var start = performance.now();
+      function tick(now) {
+        var t = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - t, 1.5);
+        var current = Math.round(eased * target);
+        el.textContent = String(current);
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function resetQuoteModal() {
+      setQuoteStep(1);
+      var form = document.getElementById('quote-form');
+      if (form) form.reset();
+      var zipErr = document.getElementById('quote-zip-error');
+      if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
+      var otherWrap = document.getElementById('quote-other-wrap');
+      if (otherWrap) otherWrap.classList.add('hidden');
+      var findingEl = document.getElementById('quote-finding-pros');
+      if (findingEl) findingEl.classList.add('hidden');
+      var quoteProCounter = document.getElementById('quote-pro-counter');
+      if (quoteProCounter) quoteProCounter.textContent = '0';
+    }
+
+    function setBookingStep(step) {
+      var progressFill = document.getElementById('booking-progress-fill');
+      if (progressFill) progressFill.style.width = (step / BOOKING_STEPS * 100) + '%';
+      var indicator = document.getElementById('booking-step-indicator');
+      if (indicator) indicator.textContent = String(step);
+      for (var i = 1; i <= BOOKING_STEPS; i++) {
+        var el = document.getElementById('booking-step-' + i);
+        if (el) el.classList.toggle('hidden', i !== step);
+      }
+    }
+
+    function resetBookingModal() {
+      setBookingStep(1);
+      var form = document.getElementById('booking-form');
+      if (form) form.reset();
+      var zipErr = document.getElementById('booking-zip-error');
+      if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
+      var bookingProCounter = document.getElementById('booking-pro-counter');
+      if (bookingProCounter) bookingProCounter.textContent = '0';
+    }
+
+    // When Hero opens the modal with service + zip: map data and fast-forward to step 3
+    document.addEventListener('quote-modal-opened-with-hero-data', function (e) {
+      var service = (e.detail && e.detail.service) ? String(e.detail.service).trim() : '';
+      var zip = (e.detail && e.detail.zip) ? String(e.detail.zip).replace(/\D/g, '').slice(0, 5) : '';
+      var serviceSelect = document.getElementById('quote-service');
+      var otherWrap = document.getElementById('quote-other-wrap');
+      var otherDesc = document.getElementById('quote-other-desc');
+      var otherCount = document.getElementById('quote-other-count');
+      var zipInput = document.getElementById('quote-zip');
+      var quoteDetails = document.getElementById('quote-details');
+      if (serviceSelect && service) {
+        var found = false;
+        for (var i = 0; i < serviceSelect.options.length; i++) {
+          var opt = serviceSelect.options[i];
+          if (!opt.value) continue;
+          if (opt.value === service || (opt.textContent && opt.textContent.trim().toLowerCase() === service.toLowerCase())) {
+            serviceSelect.value = opt.value;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          serviceSelect.value = 'other';
+          if (otherWrap) otherWrap.classList.remove('hidden');
+          if (otherDesc) {
+            otherDesc.value = service;
+            otherDesc.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (otherCount) otherCount.textContent = String(service.length);
+        } else if (otherWrap) otherWrap.classList.add('hidden');
+      }
+      if (zipInput && zip) zipInput.value = zip;
+      if (quoteDetails && service) quoteDetails.value = service;
+      setQuoteStep(3);
+    });
+
+    // Open: distinct triggers for Quote vs Booking
     document.addEventListener('click', function (e) {
-      var openQuote = e.target.closest('[data-open-quote]');
-      var openBooking = e.target.closest('[data-open-booking]');
+      var openQuote = e.target.closest('[data-open-quote="true"]') || e.target.closest('[data-open-quote]');
+      var openBooking = e.target.closest('[data-open-booking="true"]') || e.target.closest('[data-open-booking]');
       if (openQuote) {
         e.preventDefault();
+        e.stopPropagation();
+        resetQuoteModal();
+        var serviceName = openQuote.getAttribute('data-service');
+        if (serviceName && serviceName.trim()) {
+          var serviceSelect = document.getElementById('quote-service');
+          var otherWrap = document.getElementById('quote-other-wrap');
+          var otherDesc = document.getElementById('quote-other-desc');
+          var otherCount = document.getElementById('quote-other-count');
+          if (serviceSelect) {
+            var found = false;
+            var name = serviceName.trim().toLowerCase();
+            for (var i = 0; i < serviceSelect.options.length; i++) {
+              var opt = serviceSelect.options[i];
+              if (!opt.value) continue;
+              if (opt.value === serviceName.trim() || (opt.textContent && opt.textContent.trim().toLowerCase() === name)) {
+                serviceSelect.value = opt.value;
+                found = true;
+                break;
+              }
+            }
+            if (!found) {
+              serviceSelect.value = 'other';
+              if (otherWrap) otherWrap.classList.remove('hidden');
+              if (otherDesc) {
+                otherDesc.value = serviceName.trim();
+                otherDesc.dispatchEvent(new Event('input', { bubbles: true }));
+              }
+              if (otherCount) otherCount.textContent = String(serviceName.trim().length);
+            } else if (otherWrap) otherWrap.classList.add('hidden');
+          }
+        }
         openDialog(QUOTE_ID);
       }
       if (openBooking) {
         e.preventDefault();
+        e.stopPropagation();
+        resetBookingModal();
+        var serviceName = openBooking.getAttribute('data-service');
+        if (serviceName && typeof serviceName === 'string' && serviceName.trim()) {
+          var catSelect = document.getElementById('booking-category');
+          var svcSelect = document.getElementById('booking-service');
+          if (catSelect && svcSelect) {
+            var name = serviceName.trim().toLowerCase();
+            var matched = false;
+            for (var g = 0; g < svcSelect.options.length; g++) {
+              var opt = svcSelect.options[g];
+              if (!opt.value) continue;
+              var optText = (opt.textContent || opt.innerText || '').trim().toLowerCase();
+              if (optText === name || optText.indexOf(name) !== -1 || name.indexOf(optText) !== -1) {
+                var group = opt.parentNode;
+                if (group && group.nodeName === 'OPTGROUP' && group.label) {
+                  catSelect.value = group.label;
+                  svcSelect.value = opt.value;
+                  matched = true;
+                  break;
+                }
+              }
+            }
+            if (!matched) {
+              for (var c = 0; c < catSelect.options.length; c++) {
+                var cOpt = catSelect.options[c];
+                if (!cOpt.value) continue;
+                var cText = (cOpt.textContent || cOpt.innerText || '').trim().toLowerCase();
+                if (cText.indexOf(name) !== -1 || name.indexOf(cText) !== -1) {
+                  catSelect.value = cOpt.value;
+                  matched = true;
+                  break;
+                }
+              }
+            }
+          }
+        }
         openDialog(BOOKING_ID);
+      }
+    });
+
+    // Switch: Quote modal → Booking modal
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-switch-to-booking]')) {
+        e.preventDefault();
+        closeDialog(QUOTE_ID);
+        resetQuoteModal();
+        openDialog(BOOKING_ID);
+      }
+    });
+
+    // Switch: Booking modal → Quote modal
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-switch-to-quote]')) {
+        e.preventDefault();
+        closeDialog(BOOKING_ID);
+        resetQuoteModal();
+        openDialog(QUOTE_ID);
       }
     });
 
@@ -188,55 +554,171 @@ const quoteServiceOptions = [
       var closeBtn = e.target.closest('[data-close-dialog]');
       if (closeBtn) {
         var id = closeBtn.getAttribute('data-close-dialog');
-        if (id) closeDialog(id);
+        if (id) {
+          closeDialog(id);
+          if (id === QUOTE_ID) resetQuoteModal();
+          if (id === BOOKING_ID) resetBookingModal();
+        }
         return;
       }
       var dialog = e.target;
       if (dialog && dialog.nodeName === 'DIALOG' && dialog.open && dialog.id && (dialog.id === QUOTE_ID || dialog.id === BOOKING_ID)) {
         closeDialog(dialog.id);
+        if (dialog.id === QUOTE_ID) resetQuoteModal();
+        if (dialog.id === BOOKING_ID) resetBookingModal();
       }
     });
 
-    // Close on Escape (native for dialog) and ensure body unlock when closed
     document.addEventListener('close', function (e) {
       var dialog = e.target;
       if (dialog && dialog.nodeName === 'DIALOG' && (dialog.id === QUOTE_ID || dialog.id === BOOKING_ID)) {
         lockBodyScroll(false);
-        if (dialog.id === QUOTE_ID) {
-          var stepDetails = document.getElementById('quote-step-details');
-          var stepContact = document.getElementById('quote-step-contact');
-          if (stepDetails && stepContact) {
-            stepDetails.classList.remove('hidden');
-            stepContact.classList.add('hidden');
-          }
-        }
+        if (dialog.id === QUOTE_ID) resetQuoteModal();
+        if (dialog.id === BOOKING_ID) resetBookingModal();
       }
     });
 
-    // Quote modal: multi-step Continue / Back
+    // Quote modal: Next / Back (type="button" so they don't submit)
     var quoteForm = document.getElementById('quote-form');
-    var stepDetails = document.getElementById('quote-step-details');
-    var stepContact = document.getElementById('quote-step-contact');
-
-    if (quoteForm && stepDetails && stepContact) {
+    if (quoteForm) {
       quoteForm.addEventListener('click', function (e) {
-        var continueBtn = e.target.closest('[data-quote-action="continue"]');
-        var backBtn = e.target.closest('[data-quote-action="back"]');
-        if (continueBtn) {
+        var nextBtn = e.target.closest('.quote-next[data-quote-goto]');
+        var backBtn = e.target.closest('.quote-back[data-quote-goto]');
+        if (nextBtn) {
           e.preventDefault();
-          stepDetails.classList.add('hidden');
-          stepContact.classList.remove('hidden');
+          var goto = parseInt(nextBtn.getAttribute('data-quote-goto'), 10);
+          if (goto === 4) {
+            var findingEl = document.getElementById('quote-finding-pros');
+            if (findingEl) {
+              findingEl.classList.remove('hidden');
+              setTimeout(function () {
+                findingEl.classList.add('hidden');
+                setQuoteStep(4);
+                animateCounter('quote-pro-counter', 14, 32);
+              }, 1500);
+            } else {
+              setQuoteStep(4);
+              animateCounter('quote-pro-counter', 14, 32);
+            }
+            return;
+          }
+          if (goto === 2) {
+            var serviceSelect = document.getElementById('quote-service');
+            if (serviceSelect && !serviceSelect.value) return;
+            if (serviceSelect && serviceSelect.value === 'other') {
+              var otherDesc = document.getElementById('quote-other-desc');
+              if (otherDesc && !otherDesc.value.trim()) return;
+            }
+          }
+          if (goto === 3) {
+            var zipInput = document.getElementById('quote-zip');
+            var zipErr = document.getElementById('quote-zip-error');
+            if (zipInput && zipInput.value.replace(/\D/g, '').length !== 5) {
+              if (zipErr) { zipErr.textContent = 'Please enter a 5-digit ZIP code'; zipErr.classList.remove('hidden'); }
+              return;
+            }
+            var zipNum = parseInt(zipInput.value.replace(/\D/g, ''), 10);
+            if (zipNum < 501 || zipNum > 99950) {
+              if (zipErr) { zipErr.textContent = 'Please enter a valid US ZIP code (00501-99950)'; zipErr.classList.remove('hidden'); }
+              return;
+            }
+            if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
+          }
+          setQuoteStep(goto);
           return;
         }
         if (backBtn) {
           e.preventDefault();
-          if (stepContact.classList.contains('hidden')) {
-            closeDialog(QUOTE_ID);
-          } else {
-            stepContact.classList.add('hidden');
-            stepDetails.classList.remove('hidden');
-          }
+          var goto = parseInt(backBtn.getAttribute('data-quote-goto'), 10);
+          prevQuoteStep(goto);
         }
+      });
+
+      // Sync hidden fields and "Other" visibility
+      var serviceSelect = document.getElementById('quote-service');
+      var otherWrap = document.getElementById('quote-other-wrap');
+      var otherDesc = document.getElementById('quote-other-desc');
+      var otherCount = document.getElementById('quote-other-count');
+      if (serviceSelect) {
+        serviceSelect.addEventListener('change', function () {
+          if (otherWrap) otherWrap.classList.toggle('hidden', serviceSelect.value !== 'other');
+        });
+      }
+      if (otherDesc && otherCount) {
+        otherDesc.addEventListener('input', function () {
+          otherCount.textContent = String(otherDesc.value.length);
+        });
+      }
+      var zipInput = document.getElementById('quote-zip');
+      if (zipInput) {
+        zipInput.addEventListener('input', function () {
+          this.value = this.value.replace(/\D/g, '').slice(0, 5);
+        });
+      }
+      quoteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // TODO in Next Phase: Add Resend fetch logic here
+
+        closeDialog(QUOTE_ID);
+        resetQuoteModal();
+        window.location.href = '/quote-received/';
+      });
+    }
+
+    // Booking modal: Next / Back and submit
+    var bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+      bookingForm.addEventListener('click', function (e) {
+        var nextBtn = e.target.closest('.booking-next[data-booking-goto]');
+        var backBtn = e.target.closest('.booking-back[data-booking-goto]');
+        if (nextBtn) {
+          e.preventDefault();
+          var goto = parseInt(nextBtn.getAttribute('data-booking-goto'), 10);
+          if (goto === 2) {
+            var cat = document.getElementById('booking-category');
+            var svc = document.getElementById('booking-service');
+            if (cat && !cat.value) return;
+            if (svc && !svc.value) return;
+          }
+          if (goto === 3) {
+            var zipInput = document.getElementById('booking-zip');
+            var zipErr = document.getElementById('booking-zip-error');
+            if (!zipInput || zipInput.value.replace(/\D/g, '').length !== 5) {
+              if (zipErr) { zipErr.textContent = 'Please enter a 5-digit ZIP code'; zipErr.classList.remove('hidden'); }
+              return;
+            }
+            var zipNum = parseInt(zipInput.value.replace(/\D/g, ''), 10);
+            if (zipNum < 501 || zipNum > 99950) {
+              if (zipErr) { zipErr.textContent = 'Please enter a valid US ZIP code (00501-99950)'; zipErr.classList.remove('hidden'); }
+              return;
+            }
+            if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
+          }
+          setBookingStep(goto);
+          if (goto === 3) animateCounter('booking-pro-counter', 25, 45);
+          return;
+        }
+        if (backBtn) {
+          e.preventDefault();
+          var goto = parseInt(backBtn.getAttribute('data-booking-goto'), 10);
+          setBookingStep(goto);
+        }
+      });
+
+      var bookingZip = document.getElementById('booking-zip');
+      if (bookingZip) {
+        bookingZip.addEventListener('input', function () {
+          this.value = this.value.replace(/\D/g, '').slice(0, 5);
+        });
+      }
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // TODO in Next Phase: Add Resend fetch logic here
+
+        closeDialog(BOOKING_ID);
+        resetBookingModal();
+        window.location.href = '/booking-confirmed/';
       });
     }
   })();

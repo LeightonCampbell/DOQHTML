@@ -41,12 +41,12 @@ const canonical = `https://www.dealsofquality.com/${content.canonicalPath}/`;
               {content.heroSubtitle}
             </p>
             <div class="flex flex-wrap gap-4">
-              <a href="#booking-modal" data-open-quote class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+              <button type="button" data-open-booking="true" data-service={service.label} class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Book Now
-              </a>
-              <a href="#booking-modal" data-open-quote class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-primary !text-[#004080] bg-transparent hover:bg-primary/10 transition-all">
+              </button>
+              <button type="button" data-open-quote="true" data-service={service.label} class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-primary !text-[#004080] bg-transparent hover:bg-primary/10 transition-all">
                 Get a Free Quote
-              </a>
+              </button>
             </div>
             <div class="flex flex-wrap items-center gap-6 mt-8 pt-8 border-t border-border/50">
               <div class="flex items-center gap-2 text-muted-foreground text-sm">
@@ -142,9 +142,9 @@ const canonical = `https://www.dealsofquality.com/${content.canonicalPath}/`;
           ))}
         </div>
         <div class="text-center mt-12">
-          <a href="#booking-modal" data-open-quote class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg">
+          <button type="button" data-open-quote="true" data-service={service.label} class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg">
             Get a Free Quote
-          </a>
+          </button>
         </div>
       </div>
     </section>

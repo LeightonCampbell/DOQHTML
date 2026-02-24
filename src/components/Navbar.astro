@@ -14,13 +14,14 @@ const phone = 'tel:+18185847389';
 <header
   id="site-header"
   class:list={[
-    'sticky top-0 z-50 w-full transition-colors duration-200',
-    isHomePage ? 'header-transparent' : 'site-header-scrolled header-solid',
+    'top-0 z-50 w-full transition-colors duration-200',
+    isHomePage ? 'fixed header-transparent' : 'sticky site-header-scrolled header-solid',
   ]}
   data-transparent-header={isHomePage ? 'true' : undefined}
+  style={isHomePage ? 'background: transparent !important; background-color: transparent !important;' : undefined}
   aria-label="Site header"
 >
-  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+  <div class="container-max w-full flex h-16 items-center justify-between gap-4 px-4 md:px-8 lg:px-16">
     <a href="/" class="header-logo-wrap relative flex h-10 md:h-12 min-w-[140px] items-center bg-transparent transition opacity-90 hover:opacity-100" aria-label="DoQuality – Home">
       {isHomePage ? (
         <>
@@ -69,12 +70,13 @@ const phone = 'tel:+18185847389';
         </svg>
         <span class="header-phone-text">(818) 584-7389</span>
       </a>
-      <a
-        href={ctaHref}
+      <button
+        type="button"
+        data-open-booking="true"
         class="header-cta hidden rounded-lg px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 focus:ring-offset-transparent md:inline-flex"
       >
         Find a Pro
-      </a>
+      </button>
       <button
         type="button"
         id="mobile-menu-toggle"
@@ -99,32 +101,44 @@ const phone = 'tel:+18185847389';
         </a>
       ))}
       <a href={phone} class="rounded-lg px-3 py-2.5 text-sm font-bold text-white hover:bg-white/10">(818) 584-7389</a>
-      <a href={ctaHref} class="mt-2 rounded-lg bg-[#f97415] px-3 py-2.5 text-center text-sm font-semibold text-white hover:bg-[#ea580c]">
+      <button type="button" data-open-booking="true" class="mt-2 w-full rounded-lg bg-[#f97415] px-3 py-2.5 text-center text-sm font-semibold text-white hover:bg-[#ea580c]">
         Find a Pro
-      </a>
+      </button>
     </div>
   </div>
 </header>
 
 <style is:global>
-  /* Only apply transparent when we have NOT scrolled – prevents sticky bg from showing at top */
+  /* Transparent at top: use both class and data attr so we always win over base/utility styles */
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled),
   #site-header.header-transparent:not(.site-header-scrolled) {
     background: transparent !important;
+    background-color: transparent !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-nav-link,
   #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link { color: rgba(255, 255, 255, 0.95); }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-nav-link:hover,
   #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link:hover,
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-nav-link--active,
   #site-header.header-transparent:not(.site-header-scrolled) .header-nav-link--active { color: #0073e6; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-phone-text,
   #site-header.header-transparent:not(.site-header-scrolled) .header-phone-text { color: rgba(255, 255, 255, 0.95); }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-phone-icon,
   #site-header.header-transparent:not(.site-header-scrolled) .header-phone-icon { color: #fff; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-cta,
   #site-header.header-transparent:not(.site-header-scrolled) .header-cta { background-color: #0073e6; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-cta:hover,
   #site-header.header-transparent:not(.site-header-scrolled) .header-cta:hover { background-color: #0062cc; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-menu-btn,
   #site-header.header-transparent:not(.site-header-scrolled) .header-menu-btn { color: rgba(255, 255, 255, 0.9); }
-  /* Logo: no background on container or images so transparent PNGs render correctly */
   #site-header .header-logo-wrap,
   #site-header .header-logo { background: none !important; background-color: transparent !important; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-logo-wrap,
   #site-header.header-transparent:not(.site-header-scrolled) .header-logo-wrap { background: transparent !important; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-logo--light,
   #site-header.header-transparent:not(.site-header-scrolled) .header-logo--light { display: block !important; visibility: visible !important; opacity: 1 !important; }
+  #site-header[data-transparent-header="true"]:not(.site-header-scrolled) .header-logo--dark,
   #site-header.header-transparent:not(.site-header-scrolled) .header-logo--dark { display: none !important; visibility: hidden !important; opacity: 0 !important; }
 
   /* Scrolled: only then show white header – never applied at top */
@@ -162,13 +176,19 @@ const phone = 'tel:+18185847389';
       if (header.getAttribute('data-transparent-header') !== 'true') return;
       if (window.scrollY >= scrollThreshold) {
         header.classList.add('site-header-scrolled');
+        header.style.setProperty('background', 'rgba(255,255,255,0.98)', 'important');
+        header.style.setProperty('background-color', 'rgba(255,255,255,0.98)', 'important');
       } else {
         header.classList.remove('site-header-scrolled');
+        header.style.setProperty('background', 'transparent', 'important');
+        header.style.setProperty('background-color', 'transparent', 'important');
       }
     }
 
     window.addEventListener('scroll', updateHeader, { passive: true });
     updateHeader();
+    document.addEventListener('DOMContentLoaded', updateHeader);
+    window.addEventListener('load', updateHeader);
 
     if (toggle && menu) {
       toggle.addEventListener('click', function () {

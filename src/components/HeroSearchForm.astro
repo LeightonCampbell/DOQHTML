@@ -1,203 +1,332 @@
 ---
 /**
- * Hero search form: Service (with datalist autocomplete) + ZIP (with geolocation).
- * Vanilla JS only: geolocation → reverse geocode for ZIP; submit → redirect to /services/?q=&zip=
+ * Hero search form – restored from React HeroNew.
+ * Service input with autosuggest dropdown (filter + "Use [value]"), ZIP with locate button, CTA opens quote modal.
  */
-const serviceOptions = [
-  'TV Mounting',
-  'Plumbing',
-  'Electrical',
-  'House Cleaning',
-  'Handyman',
-  'Security Cameras',
-  'Wi-Fi Setup',
+const heroServices = [
+  { value: 'house-cleaning', label: 'House Cleaning' },
+  { value: 'tv-mounting', label: 'TV Mounting' },
+  { value: 'smart-home', label: 'Smart Home Installation' },
+  { value: 'plumbing', label: 'Plumbing' },
+  { value: 'electrical', label: 'Electrical' },
+  { value: 'handyman', label: 'Handyman Services' },
+  { value: 'bathroom-remodeling', label: 'Bathroom Remodeling' },
+  { value: 'kitchen-remodeling', label: 'Kitchen Remodeling' },
+  { value: 'pressure-washing', label: 'Pressure Washing' },
+  { value: 'junk-removal', label: 'Junk Removal' },
+  { value: 'wifi-network', label: 'WiFi & Network Setup' },
+  { value: 'home-theater', label: 'Home Theater' },
+  { value: 'security', label: 'Security Cameras' },
+  { value: 'computer-repair', label: 'Computer Repair' },
+  { value: 'hvac', label: 'HVAC' },
+  { value: 'website-design', label: 'Website Design' },
+  { value: 'carpet-cleaning', label: 'Carpet Cleaning' },
+  { value: 'landscaping', label: 'Landscaping' },
+  { value: 'roofing', label: 'Roofing' },
+  { value: 'appliance-repair', label: 'Appliance Repair' },
+  { value: 'other', label: 'Other' },
 ];
 ---
 
-<div class="hero-search-form mx-auto w-full max-w-md">
+<div class="hero-search-form">
   <form
     id="hero-search-form"
-    class="rounded-2xl bg-white p-5 shadow-xl sm:p-6"
-    action="/services/"
-    method="get"
+    class="bg-white rounded-xl shadow-xl p-4 md:p-6 flex flex-col gap-3"
     role="search"
-    aria-label="Find a pro by service and location"
+    aria-label="Service search form"
   >
-    <div class="space-y-4">
-      <!-- Service input + datalist -->
-      <div>
-        <label for="hero-search-service" class="sr-only">What type of service do you need?</label>
+    <!-- Service input with autosuggest (React parity) -->
+    <div class="relative w-full" id="hero-service-wrap">
+      <div class="relative">
         <input
           id="hero-search-service"
           type="text"
-          name="q"
-          list="hero-services-list"
           placeholder="What type of service do you need?"
           autocomplete="off"
-          class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-slate-900 placeholder-slate-500 transition focus:border-[#f97415] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#f97415]/20"
+          aria-label="Service type"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="hero-service-suggestions"
+          class="w-full h-12 md:h-14 border-0 bg-transparent text-base px-4 text-slate-900 placeholder-slate-500 focus:ring-0 focus:outline-none hero-service-input"
         />
-        <p id="hero-error-service" class="hero-form-error mt-1 text-sm text-red-600" role="alert" aria-live="polite"></p>
-        <datalist id="hero-services-list">
-          {serviceOptions.map((option) => (
-            <option value={option} />
-          ))}
-        </datalist>
       </div>
+      <div
+        id="hero-service-suggestions"
+        role="listbox"
+        aria-label="Service suggestions"
+        class="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto hidden"
+      >
+        <!-- Filled by JS: filtered suggestions + "Use [value]" when no match -->
+      </div>
+    </div>
 
-      <!-- ZIP input + location button -->
-      <div class="relative">
-        <label for="hero-search-zip" class="sr-only">Enter Service Zip Code</label>
+    <!-- ZIP row: border-t, MapPin, input, locate button (React parity) -->
+    <div class="flex flex-col w-full border-t border-slate-200">
+      <div id="hero-zip-row" class="flex items-center gap-2 px-4 relative transition-all duration-300 hero-zip-row">
+        <svg class="w-5 h-5 flex-shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>
         <input
           id="hero-search-zip"
-          type="text"
-          name="zip"
-          placeholder="Enter Service Zip Code"
+          type="tel"
           inputmode="numeric"
-          pattern="[0-9]{5}"
+          placeholder="Enter Service Zip Code"
           maxlength="5"
-          autocomplete="postal-code"
-          class="w-full rounded-xl border border-slate-200 bg-slate-50/50 py-3.5 pl-4 pr-12 text-slate-900 placeholder-slate-500 transition focus:border-[#f97415] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#f97415]/20"
+          aria-label="Enter Service Zip Code"
+          aria-invalid="false"
+          class="flex-1 py-3 md:py-4 bg-transparent border-0 focus:outline-none focus:ring-0 text-[15px] text-slate-900 placeholder-slate-500 hero-zip-input"
         />
-        <p id="hero-error-zip" class="hero-form-error mt-1 text-sm text-red-600" role="alert" aria-live="polite"></p>
         <button
           type="button"
           id="hero-search-location-btn"
-          class="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#f97415]/50 focus:ring-inset disabled:opacity-50"
-          aria-label="Use my location to fill ZIP code"
+          class="flex-shrink-0 text-slate-400 hover:text-[#f97415] transition-colors disabled:opacity-50 p-1"
+          aria-label="Use my location"
           title="Use my location"
         >
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-          </svg>
+          <svg id="hero-locate-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
+          <svg id="hero-locate-spinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
         </button>
       </div>
-
-      <button
-        type="submit"
-        class="w-full rounded-xl bg-[#0073e6] py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-[#0062cc] focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2"
-      >
-        Get a Free Quote
-      </button>
+      <p id="hero-error-zip" class="text-xs text-red-500 mt-1 px-4 hidden" role="alert"></p>
     </div>
+
+    <button
+      type="submit"
+      class="bg-[#0073e6] hover:bg-[#0062cc] text-white px-6 md:px-8 py-3 md:py-4 h-12 md:h-14 text-base font-semibold rounded-lg shadow-md hover:shadow-lg transition-all w-full"
+    >
+      Get a Free Quote
+    </button>
   </form>
+
+  <p id="hero-validation-msg" class="mt-3 text-white bg-red-600/90 px-3 py-2 rounded-lg text-sm font-medium hidden text-center lg:text-left" role="alert"></p>
 </div>
 
-<script>
+<script define:vars={{ heroServices }}>
   (function () {
-    const form = document.getElementById('hero-search-form');
-    const zipInput = document.getElementById('hero-search-zip');
-    const locationBtn = document.getElementById('hero-search-location-btn');
+    var services = typeof heroServices !== 'undefined' ? heroServices : [];
+    var form = document.getElementById('hero-search-form');
+    var serviceInput = document.getElementById('hero-search-service');
+    var serviceWrap = document.getElementById('hero-service-wrap');
+    var suggestionsEl = document.getElementById('hero-service-suggestions');
+    var zipInput = document.getElementById('hero-search-zip');
+    var zipRow = document.getElementById('hero-zip-row');
+    var zipError = document.getElementById('hero-error-zip');
+    var locationBtn = document.getElementById('hero-search-location-btn');
+    var locateIcon = document.getElementById('hero-locate-icon');
+    var locateSpinner = document.getElementById('hero-locate-spinner');
+    var validationMsg = document.getElementById('hero-validation-msg');
 
-    if (!form || !zipInput || !locationBtn) return;
+    var selectedServiceValue = '';
+    var selectedServiceLabel = '';
 
-    // Location button: geolocation → reverse geocode → fill ZIP
-    locationBtn.addEventListener('click', function () {
-      if (!navigator.geolocation) {
-        zipInput.setCustomValidity('Location is not supported by your browser.');
-        zipInput.reportValidity();
+    function filterServices(query) {
+      if (!query || !query.trim()) return [];
+      var q = query.toLowerCase().trim();
+      return services.filter(function (s) {
+        return s.label.toLowerCase().indexOf(q) !== -1;
+      }).slice(0, 8);
+    }
+
+    function renderSuggestions() {
+      if (!suggestionsEl || !serviceInput) return;
+      var value = serviceInput.value.trim();
+      var filtered = filterServices(value);
+      var showUseCustom = value.length > 0 && filtered.length === 0;
+      if (filtered.length === 0 && !showUseCustom) {
+        suggestionsEl.classList.add('hidden');
+        suggestionsEl.innerHTML = '';
         return;
       }
+      suggestionsEl.classList.remove('hidden');
+      var html = '';
+      filtered.forEach(function (s) {
+        html += '<button type="button" role="option" class="hero-suggestion-item w-full text-left px-4 py-3 hover:bg-[#f97415]/10 transition-colors text-base text-slate-900" data-value="' + (s.value || '') + '" data-label="' + (s.label || '').replace(/"/g, '&quot;') + '">' + (s.label || '') + '</button>';
+      });
+      if (showUseCustom) {
+        html += '<button type="button" role="option" class="hero-suggestion-item w-full text-left px-4 py-3 hover:bg-[#f97415]/10 transition-colors text-base border-t border-slate-200 font-medium text-slate-900" data-value="other" data-label="' + value.replace(/"/g, '&quot;') + '">Use &quot;' + value + '&quot;</button>';
+      }
+      suggestionsEl.innerHTML = html;
 
-      locationBtn.setAttribute('disabled', '');
-      locationBtn.setAttribute('aria-busy', 'true');
+      var items = suggestionsEl.querySelectorAll('.hero-suggestion-item');
+      items.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var val = btn.getAttribute('data-value');
+          var label = btn.getAttribute('data-label');
+          selectedServiceValue = val || '';
+          selectedServiceLabel = label || btn.textContent.trim();
+          serviceInput.value = selectedServiceLabel;
+          suggestionsEl.classList.add('hidden');
+          suggestionsEl.innerHTML = '';
+        });
+      });
+    }
 
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          const url = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + encodeURIComponent(lat) + '&longitude=' + encodeURIComponent(lng) + '&localityLanguage=en';
+    function closeSuggestions(e) {
+      if (suggestionsEl && serviceWrap && !serviceWrap.contains(e.target)) {
+        suggestionsEl.classList.add('hidden');
+      }
+    }
 
-          fetch(url)
-            .then(function (res) { return res.json(); })
-            .then(function (data) {
-              const zip = data.postcode || (data.localityInfo && data.localityInfo.administrative && data.localityInfo.administrative[0] && data.localityInfo.administrative[0].postcode);
-              if (zip) {
-                zipInput.value = String(zip).slice(0, 5);
-                zipInput.setCustomValidity('');
-              }
-            })
-            .catch(function () {
-              zipInput.setCustomValidity('Could not get address from location.');
-              zipInput.reportValidity();
-            })
-            .finally(function () {
-              locationBtn.removeAttribute('disabled');
-              locationBtn.removeAttribute('aria-busy');
-            });
-        },
-        function () {
-          zipInput.setCustomValidity('Location was denied or unavailable.');
-          zipInput.reportValidity();
-          locationBtn.removeAttribute('disabled');
-          locationBtn.removeAttribute('aria-busy');
+    if (serviceInput && suggestionsEl) {
+      serviceInput.addEventListener('input', function () {
+        selectedServiceValue = '';
+        selectedServiceLabel = '';
+        renderSuggestions();
+      });
+      serviceInput.addEventListener('focus', function () {
+        if (serviceInput.value.trim()) renderSuggestions();
+      });
+      serviceInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          suggestionsEl.classList.add('hidden');
         }
-      );
-    });
+      });
+      document.addEventListener('mousedown', closeSuggestions);
+    }
 
-    // Restrict ZIP to digits only
-    zipInput.addEventListener('input', function () {
-      this.value = this.value.replace(/\D/g, '').slice(0, 5);
-    });
+    function isValidUSZip(zip) {
+      if (!zip || zip.length !== 5) return false;
+      var n = parseInt(zip, 10);
+      return n >= 501 && n <= 99950 && !isNaN(n);
+    }
 
-    // Form submit: validate service + zip; show errors or open quote modal
-    const serviceInput = form.querySelector('[name="q"]');
-    const errorService = document.getElementById('hero-error-service');
-    const errorZip = document.getElementById('hero-error-zip');
+    if (zipInput) {
+      zipInput.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '').slice(0, 5);
+        zipError.classList.add('hidden');
+        zipError.textContent = '';
+      });
+    }
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const service = (serviceInput && serviceInput.value) ? serviceInput.value.trim() : '';
-      const zip = (zipInput && zipInput.value) ? zipInput.value.trim() : '';
-
-      // Clear previous errors
-      if (errorService) {
-        errorService.textContent = '';
-        errorService.classList.remove('hero-form-error-visible');
-      }
-      if (errorZip) {
-        errorZip.textContent = '';
-        errorZip.classList.remove('hero-form-error-visible');
-      }
-
-      let hasError = false;
-      if (!service) {
-        hasError = true;
-        if (errorService) {
-          errorService.textContent = 'Please select or enter a service type.';
-          errorService.classList.add('hero-form-error-visible');
+    if (locationBtn && zipInput) {
+      locationBtn.addEventListener('click', function () {
+        if (!navigator.geolocation) {
+          zipError.textContent = 'Location is not supported.';
+          zipError.classList.remove('hidden');
+          return;
         }
-      }
-      if (!zip) {
-        hasError = true;
-        if (errorZip) {
-          errorZip.textContent = 'Please enter your ZIP code.';
-          errorZip.classList.add('hero-form-error-visible');
+        locationBtn.disabled = true;
+        if (locateIcon) locateIcon.classList.add('hidden');
+        if (locateSpinner) locateSpinner.classList.remove('hidden');
+
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var url = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + encodeURIComponent(lat) + '&longitude=' + encodeURIComponent(lng) + '&localityLanguage=en';
+            fetch(url)
+              .then(function (r) { return r.json(); })
+              .then(function (data) {
+                var zip = data.postcode || (data.localityInfo && data.localityInfo.administrative && data.localityInfo.administrative[0] && data.localityInfo.administrative[0].postcode);
+                if (zip) zipInput.value = String(zip).replace(/\D/g, '').slice(0, 5);
+              })
+              .catch(function () {})
+              .finally(function () {
+                locationBtn.disabled = false;
+                if (locateIcon) locateIcon.classList.remove('hidden');
+                if (locateSpinner) locateSpinner.classList.add('hidden');
+              });
+          },
+          function () {
+            locationBtn.disabled = false;
+            if (locateIcon) locateIcon.classList.remove('hidden');
+            if (locateSpinner) locateSpinner.classList.add('hidden');
+          }
+        );
+      });
+    }
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var serviceLabel = selectedServiceLabel || (serviceInput ? serviceInput.value.trim() : '');
+        var zip = zipInput ? zipInput.value.replace(/\D/g, '').slice(0, 5) : '';
+
+        if (validationMsg) {
+          validationMsg.classList.add('hidden');
+          validationMsg.textContent = '';
         }
-      }
+        if (zipError) {
+          zipError.classList.add('hidden');
+          zipError.textContent = '';
+        }
 
-      if (hasError) return;
+        var hasError = false;
+        if (!serviceLabel) {
+          hasError = true;
+          if (validationMsg) {
+            validationMsg.textContent = 'Please enter your service need and location';
+            validationMsg.classList.remove('hidden');
+          }
+        }
+        if (!zip || zip.length !== 5) {
+          hasError = true;
+          if (zipError && !zip) {
+            zipError.textContent = 'Please enter a 5-digit ZIP code';
+            zipError.classList.remove('hidden');
+          }
+          if (validationMsg && !validationMsg.textContent) {
+            validationMsg.textContent = 'Please enter your service need and location';
+            validationMsg.classList.remove('hidden');
+          }
+        }
+        if (zip.length === 5 && !isValidUSZip(zip)) {
+          hasError = true;
+          if (zipError) {
+            zipError.textContent = 'Please enter a valid US ZIP code (00501-99950)';
+            zipError.classList.remove('hidden');
+          }
+        }
+        if (hasError) return;
 
-      const hiddenService = document.getElementById('quote-hidden-service');
-      const hiddenZip = document.getElementById('quote-hidden-zip');
-      const quoteModal = document.getElementById('quote-modal');
-      if (hiddenService) hiddenService.value = service;
-      if (hiddenZip) hiddenZip.value = zip;
-      if (quoteModal && typeof quoteModal.showModal === 'function') {
-        quoteModal.showModal();
-        document.body.style.overflow = 'hidden';
-      }
-    });
+        var hiddenService = document.getElementById('quote-hidden-service');
+        var hiddenZip = document.getElementById('quote-hidden-zip');
+        var quoteServiceSelect = document.getElementById('quote-service');
+        var quoteZipInput = document.getElementById('quote-zip');
+        var quoteModal = document.getElementById('quote-modal');
+        var otherDesc = document.getElementById('quote-other-desc');
+        var otherWrap = document.getElementById('quote-other-wrap');
+        var otherCount = document.getElementById('quote-other-count');
+
+        var modalValue = selectedServiceValue || (services.find(function (s) { return s.label.toLowerCase() === serviceLabel.toLowerCase(); }) || {}).value || (serviceLabel ? 'other' : '');
+        var modalLabel = serviceLabel;
+
+        if (hiddenService) hiddenService.value = modalValue === 'other' ? serviceLabel : (services.find(function (s) { return s.value === modalValue; }) || {}).label || serviceLabel;
+        if (hiddenZip) hiddenZip.value = zip;
+
+        if (quoteServiceSelect) {
+          quoteServiceSelect.value = modalValue || 'other';
+          if (modalValue === 'other' && otherDesc && otherWrap) {
+            otherDesc.value = serviceLabel;
+            otherWrap.classList.remove('hidden');
+            if (otherCount) otherCount.textContent = String(serviceLabel.length);
+          }
+        }
+        if (quoteZipInput) quoteZipInput.value = zip;
+        var quoteDetails = document.getElementById('quote-details');
+        if (quoteDetails) quoteDetails.value = modalLabel || '';
+
+        if (quoteModal && typeof quoteModal.showModal === 'function') {
+          quoteModal.showModal();
+          document.body.style.overflow = 'hidden';
+          document.dispatchEvent(new CustomEvent('quote-modal-opened-with-hero-data', { detail: { service: modalLabel, zip: zip } }));
+        }
+      });
+    }
   })();
 </script>
 
 <style>
-  .hero-form-error {
-    opacity: 0;
-    min-height: 0;
-    transition: opacity 0.3s ease-out;
+  .hero-zip-row.hero-zip-row--focus {
+    box-shadow: 0 0 0 2px rgba(249, 116, 21, 0.5);
+    border-radius: 0.375rem;
   }
-  .hero-form-error.hero-form-error-visible {
-    opacity: 1;
+  .hero-zip-row.hero-zip-row--error {
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+    border-radius: 0.375rem;
   }
 </style>
