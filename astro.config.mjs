@@ -14,6 +14,7 @@ export default defineConfig({
   // redirects below match legacy React routes and servicesData; /services/[slug]/ and
   // /services/tv-mounting-[city]/ cover new Astro routes.
   redirects: {
+    '/blog/': '/articles/',
     '/sitemap.xml': '/sitemap-index.xml',
     '/handyman-services/': '/services/handyman-services/',
     '/painting/': '/services/painting/',
