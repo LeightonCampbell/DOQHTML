@@ -1,0 +1,5 @@
+# Legacy URL redirects (301 permanent)
+/blog/ /articles/ 301
+/electrical/ /services/electrical/ 301
+/house-cleaning/ /services/house-cleaning/ 301
+/plumbing/ /services/plumbing/ 301
