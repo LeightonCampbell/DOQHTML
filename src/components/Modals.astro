@@ -610,6 +610,25 @@ const bookingCategories = [
       setQuoteStep(3);
     });
 
+    // Open quote modal at step 3 with service + zip pre-filled (e.g. tech-support page)
+    document.addEventListener('open-quote-modal-step-3', function (e) {
+      var service = (e.detail && e.detail.service) ? String(e.detail.service).trim() : '';
+      var zip = (e.detail && e.detail.zip) ? String(e.detail.zip).replace(/\D/g, '').slice(0, 5) : '';
+      resetQuoteModal();
+      openDialog(QUOTE_ID);
+      var quoteServiceInput = document.getElementById('quote-service-input');
+      var quoteHiddenService = document.getElementById('quote-hidden-service');
+      var quoteHiddenZip = document.getElementById('quote-hidden-zip');
+      var quoteZipInput = document.getElementById('quote-zip');
+      var quoteDetails = document.getElementById('quote-details');
+      if (quoteServiceInput && service) quoteServiceInput.value = service;
+      if (quoteHiddenService && service) quoteHiddenService.value = service;
+      if (quoteHiddenZip && zip) quoteHiddenZip.value = zip;
+      if (quoteZipInput && zip) quoteZipInput.value = zip;
+      if (quoteDetails && service) quoteDetails.value = service;
+      setQuoteStep(3);
+    });
+
     // Open: distinct triggers for Quote vs Booking
     document.addEventListener('click', function (e) {
       var openQuote = e.target.closest('[data-open-quote="true"]') || e.target.closest('[data-open-quote]');

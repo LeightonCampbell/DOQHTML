@@ -1,0 +1,342 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Tech Support Services | Deals of Quality – Nationwide Computer & IT Help';
+const description = 'Professional tech support across 50 US cities. Remote help, computer repair, virus removal, network setup, and data recovery — by certified technicians, available 24/7.';
+const canonical = 'https://www.dealsofquality.com/tech-support/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Deals of Quality Tech Support',
+  url: 'https://www.dealsofquality.com/tech-support/',
+  description: 'Professional tech support services including remote help, computer repair, virus removal, network setup, and data recovery across 50 major US cities.',
+  serviceType: ['Computer Repair', 'Remote Tech Support', 'Virus Removal', 'Network Setup', 'Data Recovery', 'Cloud Services', 'Software Support', 'Printer Setup'],
+  areaServed: 'United States',
+  openingHours: 'Mo-Su 00:00-24:00',
+};
+
+const services = [
+  { num: '01', name: 'Remote Support & Troubleshooting', href: '/tech-support/remote-support/', desc: '24/7 assistance for software glitches, OS errors, and cryptic error messages — resolved via secure remote access without leaving your home.' },
+  { num: '02', name: 'Computer & Device Repair', href: '/tech-support/computer-repair/', desc: 'On-site PC and Mac repair for hardware failures, broken components, slow performance, and everything in between — at your location.' },
+  { num: '03', name: 'Network Setup & Support', href: '/tech-support/network-setup/', desc: 'Wi-Fi installation, router configuration, mesh networks, and network security hardening so your connection is fast, stable, and protected.' },
+  { num: '04', name: 'Virus & Malware Removal', href: '/tech-support/virus-removal/', desc: 'Deep-scan diagnostics, complete threat elimination, and post-removal hardening to make sure what got in once, never gets in again.' },
+  { num: '05', name: 'Data Backup & Recovery', href: '/tech-support/data-backup-recovery/', desc: 'Whether your hard drive crashed or you accidentally deleted years of photos — we recover it and set up backup systems so it never happens again.' },
+  { num: '06', name: 'Cloud Services', href: '/tech-support/cloud-services/', desc: 'Setup, migration, and ongoing management of Microsoft 365, Google Workspace, and other cloud platforms for homes and small businesses.' },
+  { num: '07', name: 'Software Support', href: '/tech-support/software-support/', desc: 'Installation, updates, license management, and performance optimization for any software application — consumer or business-grade.' },
+  { num: '08', name: 'Printer Setup & Support', href: '/tech-support/printer-setup/', desc: 'Printer installation, driver configuration, wireless printing setup, and troubleshooting for inkjet, laser, and all-in-one devices.' },
+];
+
+const marqueeItems = ['Remote Support', 'Computer Repair', 'Virus Removal', 'Network Setup', 'Data Recovery', 'Cloud Services', 'Software Support', 'Printer Setup'];
+
+const steps = [
+  { title: 'Tell Us What\'s Wrong', body: 'Call, chat, or book online. Describe the issue in plain English — we\'ll figure out the technical details.' },
+  { title: 'We Match You to a Tech', body: 'A certified technician specializing in your exact issue is assigned immediately — remote or on-site, your choice.' },
+  { title: 'Problem Solved', body: 'We fix the issue completely, explain what happened in plain language, and make sure everything is working before we leave.' },
+  { title: 'Stay Protected', body: 'We leave you with a quick-reference guide and follow-up support so the problem stays solved long after we\'re gone.' },
+];
+
+const cities = [
+  { name: 'New York', state: 'NY', slug: 'new-york-ny' },
+  { name: 'Los Angeles', state: 'CA', slug: 'los-angeles-ca' },
+  { name: 'Chicago', state: 'IL', slug: 'chicago-il' },
+  { name: 'Houston', state: 'TX', slug: 'houston-tx' },
+  { name: 'Phoenix', state: 'AZ', slug: 'phoenix-az' },
+  { name: 'Philadelphia', state: 'PA', slug: 'philadelphia-pa' },
+  { name: 'San Antonio', state: 'TX', slug: 'san-antonio-tx' },
+  { name: 'San Diego', state: 'CA', slug: 'san-diego-ca' },
+  { name: 'Dallas', state: 'TX', slug: 'dallas-tx' },
+  { name: 'San Jose', state: 'CA', slug: 'san-jose-ca' },
+  { name: 'Austin', state: 'TX', slug: 'austin-tx' },
+  { name: 'Jacksonville', state: 'FL', slug: 'jacksonville-fl' },
+  { name: 'Fort Worth', state: 'TX', slug: 'fort-worth-tx' },
+  { name: 'Columbus', state: 'OH', slug: 'columbus-oh' },
+  { name: 'Charlotte', state: 'NC', slug: 'charlotte-nc' },
+  { name: 'Indianapolis', state: 'IN', slug: 'indianapolis-in' },
+  { name: 'San Francisco', state: 'CA', slug: 'san-francisco-ca' },
+  { name: 'Seattle', state: 'WA', slug: 'seattle-wa' },
+  { name: 'Denver', state: 'CO', slug: 'denver-co' },
+  { name: 'Nashville', state: 'TN', slug: 'nashville-tn' },
+  { name: 'Oklahoma City', state: 'OK', slug: 'oklahoma-city-ok' },
+  { name: 'El Paso', state: 'TX', slug: 'el-paso-tx' },
+  { name: 'Washington', state: 'DC', slug: 'washington-dc' },
+  { name: 'Las Vegas', state: 'NV', slug: 'las-vegas-nv' },
+  { name: 'Louisville', state: 'KY', slug: 'louisville-ky' },
+  { name: 'Memphis', state: 'TN', slug: 'memphis-tn' },
+  { name: 'Portland', state: 'OR', slug: 'portland-or' },
+  { name: 'Baltimore', state: 'MD', slug: 'baltimore-md' },
+  { name: 'Milwaukee', state: 'WI', slug: 'milwaukee-wi' },
+  { name: 'Albuquerque', state: 'NM', slug: 'albuquerque-nm' },
+  { name: 'Tucson', state: 'AZ', slug: 'tucson-az' },
+  { name: 'Fresno', state: 'CA', slug: 'fresno-ca' },
+  { name: 'Mesa', state: 'AZ', slug: 'mesa-az' },
+  { name: 'Kansas City', state: 'MO', slug: 'kansas-city-mo' },
+  { name: 'Atlanta', state: 'GA', slug: 'atlanta-ga' },
+  { name: 'Omaha', state: 'NE', slug: 'omaha-ne' },
+  { name: 'Colorado Springs', state: 'CO', slug: 'colorado-springs-co' },
+  { name: 'Raleigh', state: 'NC', slug: 'raleigh-nc' },
+  { name: 'Long Beach', state: 'CA', slug: 'long-beach-ca' },
+  { name: 'Virginia Beach', state: 'VA', slug: 'virginia-beach-va' },
+  { name: 'Minneapolis', state: 'MN', slug: 'minneapolis-mn' },
+  { name: 'Tampa', state: 'FL', slug: 'tampa-fl' },
+  { name: 'New Orleans', state: 'LA', slug: 'new-orleans-la' },
+  { name: 'Arlington', state: 'TX', slug: 'arlington-tx' },
+  { name: 'Bakersfield', state: 'CA', slug: 'bakersfield-ca' },
+  { name: 'Honolulu', state: 'HI', slug: 'honolulu-hi' },
+  { name: 'Anaheim', state: 'CA', slug: 'anaheim-ca' },
+  { name: 'Aurora', state: 'CO', slug: 'aurora-co' },
+  { name: 'Santa Ana', state: 'CA', slug: 'santa-ana-ca' },
+  { name: 'Corpus Christi', state: 'TX', slug: 'corpus-christi-tx' },
+];
+
+const trustPoints = [
+  { title: 'Certified on Every Platform', body: 'CompTIA A+, Microsoft Certified, Apple Authorized — our techs carry credentials, not just toolboxes.' },
+  { title: 'Flat-Rate Transparent Pricing', body: 'You\'ll know the cost before we start. No surprise charges, no hourly billing that drags on forever.' },
+  { title: '30-Day Service Guarantee', body: 'If the same issue returns within 30 days of our visit, we come back and fix it at no additional charge.' },
+  { title: 'Remote Help in Under 15 Minutes', body: 'Average remote connection time is under 15 minutes from when you call. Fast because your time matters.' },
+  { title: 'Background-Checked Technicians', body: 'Every on-site technician passes a thorough background check before they ever enter a customer\'s home.' },
+];
+
+const testimonials = [
+  { quote: 'My laptop had been running slow for months. The remote session fixed everything in under 30 minutes. The tech explained exactly what was causing the issue. Worth every penny.', author: 'Sandra L.', location: 'Chicago IL', stars: 5 },
+  { quote: 'Recovered six years of family photos from a failed hard drive I thought was gone forever. I genuinely cried. These people are miracle workers.', author: 'Marcus R.', location: 'Houston TX', stars: 5 },
+  { quote: 'The technician showed up on time, set up our entire home network, secured it properly, and even helped my elderly mother understand how to use her tablet. Exceptional.', author: 'Jennifer P.', location: 'Denver CO', stars: 5 },
+];
+
+const phone = 'tel:+18185847389';
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <main id="main-content" class="min-h-screen bg-background text-foreground">
+    <!-- 1. HERO -->
+    <section class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-50">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.12),transparent)]" aria-hidden="true" />
+      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
+        <div class="max-w-4xl">
+          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-[1.1] tracking-tight">
+            Tech Support Done Right.
+          </h1>
+          <p class="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+            From cracked screens to crashed systems — our certified technicians solve it fast, whether remotely or right at your door. Serving 50 cities across the US, 24 hours a day.
+          </p>
+          <div class="flex flex-wrap gap-4 mb-10">
+            <a href="/tech-support/contact/" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg transition-all">
+              Get Help Now
+            </a>
+            <a href="#services" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-primary !text-[#004080] bg-transparent hover:bg-primary/10 transition-all">
+              Browse Services
+            </a>
+          </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-foreground/90">
+            <span>50 Cities Covered</span>
+            <span aria-hidden="true">·</span>
+            <span>24/7 Available</span>
+            <span aria-hidden="true">·</span>
+            <span>8 Core Services</span>
+            <span aria-hidden="true">·</span>
+            <span>98% Satisfaction Rate</span>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">Microsoft Certified</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">Apple Authorized</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">CompTIA A+ Techs</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">Google Partner</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MARQUEE -->
+    <section class="border-y border-border bg-muted/50 py-4 overflow-hidden" aria-label="Services list">
+      <div class="flex w-max animate-scroll-left gap-12 md:gap-16">
+        {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item) => (
+          <span class="text-sm md:text-base font-bold text-foreground/80 whitespace-nowrap">{item}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. SERVICES GRID -->
+    <section id="services" class="section-padding bg-background scroll-mt-20" aria-labelledby="services-heading">
+      <div class="container-max px-4 md:px-8 lg:px-16">
+        <h2 id="services-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-4">
+          Every Tech Problem. Solved.
+        </h2>
+        <p class="text-lg text-muted-foreground mb-12 max-w-2xl">
+          Eight specialized service areas, each handled by certified technicians who know your device, your software, and your time is valuable.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((s, i) => (
+            <a href={s.href} class="tech-card group block rounded-2xl border-2 border-border bg-card p-6 transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+              <span class="text-3xl font-display font-bold text-primary/70 group-hover:text-primary" aria-hidden="true">{s.num}</span>
+              <h3 class="font-display text-lg font-bold text-foreground mt-2 mb-3 group-hover:text-primary transition-colors">{s.name}</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
+    <section class="section-padding bg-secondary/50" aria-labelledby="how-heading">
+      <div class="container-max px-4 md:px-8 lg:px-16">
+        <h2 id="how-heading" class="font-display text-3xl md:text-4xl font-extrabold text-foreground text-center mb-4">
+          Help in 4 Easy Steps
+        </h2>
+        <p class="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          No confusing menus. No waiting rooms. Getting tech help should be as simple as the problem isn't.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, i) => (
+            <div class="tech-step text-center md:text-left">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg mb-4" aria-hidden="true">{i + 1}</span>
+              <h3 class="font-display text-xl font-bold text-foreground mb-2">{step.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CITIES GRID -->
+    <section id="cities" class="section-padding bg-background scroll-mt-20" aria-labelledby="cities-heading">
+      <div class="container-max px-4 md:px-8 lg:px-16">
+        <h2 id="cities-heading" class="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+          50 Cities. One Standard.
+        </h2>
+        <p class="text-lg text-muted-foreground mb-10 max-w-2xl">
+          Whether you're in New York or Tucson, our technicians deliver the same certified service, the same fast response, and the same guarantee. Find your city below and get location-specific help.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3" aria-label="Cities we serve">
+          {cities.map((c) => (
+            <a href={`/tech-support/${c.slug}/`} class="rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground hover:border-primary hover:bg-primary/5 transition-colors text-center">
+              {c.name} {c.state}
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-muted-foreground mb-4">Don't see your city? We probably still cover it.</p>
+          <div class="flex flex-col sm:flex-row gap-2 justify-center items-center">
+            <input type="text" id="tech-support-zip" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="ZIP code" class="h-11 w-32 rounded-lg border border-input bg-background px-3 py-2 text-sm" aria-label="ZIP code" />
+            <button type="button" id="tech-support-get-help-btn" class="inline-flex items-center justify-center rounded-xl h-11 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg transition-all shrink-0">
+              Get Tech Support
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. WHY CHOOSE US + TESTIMONIALS -->
+    <section class="section-padding bg-secondary/30" aria-labelledby="why-heading">
+      <div class="container-max px-4 md:px-8 lg:px-16">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div>
+            <h2 id="why-heading" class="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-8">
+              Not Just Techs. Experts.
+            </h2>
+            <ul class="space-y-6">
+              {trustPoints.map((t) => (
+                <li class="tech-trust flex gap-4">
+                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-primary" aria-hidden="true">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  <div>
+                    <h3 class="font-display font-bold text-foreground mb-1">{t.title}</h3>
+                    <p class="text-muted-foreground text-sm leading-relaxed">{t.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-8">
+              Real Reviews From Real People
+            </h2>
+            <div class="space-y-8">
+              {testimonials.map((t) => (
+                <blockquote class="tech-testimonial rounded-2xl border border-border bg-card p-6">
+                  <div class="flex gap-1 mb-3" aria-label={`${t.stars} out of 5 stars`}>
+                    {Array.from({ length: t.stars }).map(() => (
+                      <svg class="w-5 h-5 text-cta fill-cta" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    ))}
+                  </div>
+                  <p class="text-foreground leading-relaxed mb-4">"{t.quote}"</p>
+                  <footer class="text-sm text-muted-foreground">— {t.author}, {t.location}</footer>
+                </blockquote>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FINAL CTA BAND -->
+    <section class="section-padding bg-primary text-primary-foreground" aria-labelledby="cta-heading">
+      <div class="container-max px-4 md:px-8 lg:px-16 text-center">
+        <h2 id="cta-heading" class="font-display text-3xl md:text-4xl font-extrabold mb-4">
+          Your Tech Problem Ends Today.
+        </h2>
+        <p class="text-primary-foreground/90 text-lg mb-8 max-w-xl mx-auto">
+          Available right now. No appointment needed for remote support.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={phone} class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-white hover:bg-white/90 shadow-lg transition" style="color: #004080;">
+            Call Now — Free Diagnosis
+          </a>
+          <a href="/tech-support/contact/" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-white text-white hover:bg-white/20 transition">
+            Book Online
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script is:inline>
+    (function () {
+      function setupGetTechSupport() {
+        var getHelpBtn = document.getElementById('tech-support-get-help-btn');
+        var zipInput = document.getElementById('tech-support-zip');
+        if (getHelpBtn && zipInput) {
+          getHelpBtn.addEventListener('click', function () {
+            var zip = (zipInput.value || '').replace(/\D/g, '').slice(0, 10);
+            document.dispatchEvent(new CustomEvent('open-quote-modal-step-3', { detail: { service: 'Tech Support', zip: zip } }));
+          });
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupGetTechSupport);
+      } else {
+        setupGetTechSupport();
+      }
+      function observeFadeUp() {
+        var selectors = '.tech-card, .tech-step, .tech-trust, .tech-testimonial';
+        var els = document.querySelectorAll(selectors);
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          els.forEach(function (el) { el.classList.add('animate-fade-in-up'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fade-in-up');
+              entry.target.setAttribute('data-animated', 'true');
+            }
+          });
+        }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+        els.forEach(function (el) {
+          if (el.getAttribute('data-animated')) return;
+          el.style.opacity = '0';
+          io.observe(el);
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observeFadeUp);
+      } else {
+        observeFadeUp();
+      }
+    })();
+  </script>
+</BaseLayout>
