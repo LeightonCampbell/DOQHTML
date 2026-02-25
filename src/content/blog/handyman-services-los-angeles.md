@@ -1,5 +1,5 @@
 ---
-title: "Vetted Handyman Services Los Angeles | Stress-Free Home Repairs | Deals Of Quality"
+title: "Vetted Handyman Services in Los Angeles"
 description: "Vetted handyman services in Los Angeles. Pre-qualified pros for Beverly Hills to Silver Lake. TV mounting, smart home, carpentry, fixtures. The Deals of Quality touch."
 pubDate: 2026-01-31
 author: "Deals of Quality"

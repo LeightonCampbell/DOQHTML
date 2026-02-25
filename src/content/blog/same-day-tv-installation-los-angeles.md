@@ -1,5 +1,5 @@
 ---
-title: "Same-Day TV Installation Near Me in Los Angeles | Book Today, Watch Tonight | Deals Of Quality"
+title: "Same-Day TV Installation in Los Angeles"
 description: "Same-day TV installation in Los Angeles. We serve Hollywood, Santa Monica, Burbank and more. Mounts, tools, and anchors included. Done in under 90 minutes. Insured. 100% satisfaction guarantee."
 pubDate: 2026-01-22
 author: "Deals of Quality"

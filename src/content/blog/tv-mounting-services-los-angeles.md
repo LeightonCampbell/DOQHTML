@@ -1,5 +1,5 @@
 ---
-title: "TV Mounting Services Los Angeles | Same-Day Installation | Deals Of Quality"
+title: "TV Mounting Services in Los Angeles"
 description: "Professional TV mounting in Los Angeles. From $95 for any TV size. Same-day service, hidden cables, all wall types. Call (818) 584-7389 for a free quote."
 pubDate: 2026-01-25
 author: "Deals of Quality"

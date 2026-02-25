@@ -1,5 +1,5 @@
 ---
-title: "7 Reasons Why Your Local Business Needs a Modern Website in 2026: Stop Losing Revenue to Outdated Tech"
+title: "7 Reasons Your Business Needs a Modern Website"
 description: "Is your business website a loyal 24/7 salesperson, or is it an antique storefront scaring away customers? Learn why investing in a modern website is non-negotiable for your future success."
 pubDate: 2026-01-15
 author: "Deals of Quality"

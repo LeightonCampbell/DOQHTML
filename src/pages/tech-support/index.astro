@@ -7,13 +7,21 @@ const canonical = 'https://www.dealsofquality.com/tech-support/';
 
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Deals of Quality Tech Support',
-  url: 'https://www.dealsofquality.com/tech-support/',
-  description: 'Professional tech support services including remote help, computer repair, virus removal, network setup, and data recovery across 50 major US cities.',
-  serviceType: ['Computer Repair', 'Remote Tech Support', 'Virus Removal', 'Network Setup', 'Data Recovery', 'Cloud Services', 'Software Support', 'Printer Setup'],
-  areaServed: 'United States',
-  openingHours: 'Mo-Su 00:00-24:00',
+  '@type': 'Service',
+  name: 'Nationwide Tech Support',
+  serviceType: 'Computer & IT Help',
+  description:
+    'Nationwide tech support service providing remote help, computer repair, virus removal, network setup, and data recovery across 50 major US cities.',
+  url: canonical,
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  provider: {
+    '@type': 'Organization',
+    name: 'Deals of Quality',
+    url: 'https://www.dealsofquality.com/',
+  },
 };
 
 const services = [

@@ -12,7 +12,17 @@ interface Props {
 
 const { title, description, canonical } = Astro.props;
 const siteName = 'Deals of Quality';
-const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const suffix = ` | ${siteName}`;
+const normalizedTitle = title.toLowerCase();
+
+// Avoid over-long or double-branded titles:
+// - If the incoming title already mentions the site name (any case), use it as-is
+// - If the title is already long (> 55 chars), don't append the suffix
+// - Otherwise, append a short, consistent " | Deals of Quality" suffix
+const fullTitle =
+  normalizedTitle.includes(siteName.toLowerCase()) || title.length > 55
+    ? title
+    : `${title}${suffix}`;
 ---
 
 <meta charset="utf-8" />
