@@ -1,7 +1,7 @@
 export const prerender = false;
 
-// The HTML template function we built earlier
-function generateEmailHTML(data: any) {
+// 1. Template for YOU (The Business Owner)
+function generateOwnerHTML(data: any) {
   const brandColor = "#f97316";
   const isBooking = data.formType === 'booking';
   const title = isBooking ? "New Booking Request" : "New Quote Request";
@@ -11,22 +11,19 @@ function generateEmailHTML(data: any) {
   <html>
   <head>
     <style>
-      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; }
-      .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+      body { font-family: sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; }
+      .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 8px; overflow: hidden; }
       .header { background-color: ${brandColor}; padding: 24px; text-align: center; color: #ffffff; }
-      .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
       .content { padding: 32px; color: #374151; }
       .field { margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; }
-      .field:last-child { border-bottom: none; }
-      .label { font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 600; margin-bottom: 4px; display: block; }
-      .value { font-size: 16px; color: #111827; margin: 0; }
-      .footer { background-color: #f9fafb; padding: 16px; text-align: center; font-size: 12px; color: #6b7280; border-top: 1px solid #e5e7eb; }
+      .label { font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 600; display: block; }
+      .value { font-size: 16px; color: #111827; margin: 4px 0 0 0; }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h1>${title}</h1>
+        <h1 style="margin:0; font-size:24px;">${title}</h1>
       </div>
       <div class="content">
         <div class="field">
@@ -38,7 +35,6 @@ function generateEmailHTML(data: any) {
         <div class="field">
           <span class="label">Service Requested</span>
           <p class="value">${data.service === 'Other' ? data.serviceOther || 'Other' : (data.service || 'N/A')}</p>
-          ${data.category ? `<p class="value" style="font-size: 14px; color: #4b5563;">Category: ${data.category}</p>` : ''}
         </div>
         <div class="field">
           <span class="label">Location (ZIP Code)</span>
@@ -55,8 +51,41 @@ function generateEmailHTML(data: any) {
         </div>
         ` : ''}
       </div>
-      <div class="footer">
-        Received via your Deals of Quality website form.
+    </div>
+  </body>
+  </html>
+  `;
+}
+
+// 2. Template for the CUSTOMER
+function generateCustomerHTML(data: any) {
+  const brandColor = "#f97316";
+  const isBooking = data.formType === 'booking';
+  const serviceText = data.service === 'Other' ? (data.serviceOther || 'your requested service') : (data.service || 'your requested service');
+
+  return `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      body { font-family: sans-serif; background-color: #f9fafb; margin: 0; padding: 0; }
+      .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; }
+      .header { background-color: #1f2937; padding: 24px; text-align: center; color: #ffffff; }
+      .content { padding: 32px; color: #374151; line-height: 1.6; }
+      .button { display: inline-block; background-color: ${brandColor}; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 style="margin:0; font-size:24px;">We received your request!</h1>
+      </div>
+      <div class="content">
+        <p>Hi ${data.name.split(' ')[0]},</p>
+        <p>Thanks for reaching out to Deals of Quality! This email is just to let you know that we successfully received your ${isBooking ? 'booking' : 'quote'} request for <strong>${serviceText}</strong>.</p>
+        <p>Our team is reviewing your details right now, and one of our verified local pros will be in touch with you shortly at this email address or by phone.</p>
+        <p>If you need immediate assistance, feel free to reply directly to this email or give us a call.</p>
+        <p>Best regards,<br>The Deals of Quality Team</p>
       </div>
     </div>
   </body>
@@ -64,12 +93,12 @@ function generateEmailHTML(data: any) {
   `;
 }
 
-// The Edge-friendly POST handler
+// 3. The Edge-friendly POST handler
 export async function POST({ request, locals }: any) {
   try {
     const data = await request.json();
     
-    // Cloudflare safely maps dashboard variables here, with a fallback to local env
+    // Setup Environment Variables
     const apiKey = import.meta.env.RESEND_API_KEY || (locals.runtime?.env?.RESEND_API_KEY);
     const fromEmail = import.meta.env.FROM_EMAIL || (locals.runtime?.env?.FROM_EMAIL) || "onboarding@resend.dev";
     const toEmail = import.meta.env.NOTIFICATION_EMAIL || (locals.runtime?.env?.NOTIFICATION_EMAIL);
@@ -78,31 +107,44 @@ export async function POST({ request, locals }: any) {
       return new Response(JSON.stringify({ error: "Missing API Key" }), { status: 500 });
     }
 
-    const htmlContent = generateEmailHTML(data);
-    const subjectLine = `New ${data.formType === 'booking' ? 'Booking' : 'Quote'} from ${data.name || 'Website'}`;
-
-    // Direct fetch to Resend (No SDK required)
-    const resendResponse = await fetch('https://api.resend.com/emails', {
+    // --- EMAIL 1: Send to You (The Owner) ---
+    const ownerResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: fromEmail,
         to: toEmail,
-        subject: subjectLine,
-        html: htmlContent
+        subject: `New ${data.formType === 'booking' ? 'Booking' : 'Quote'} from ${data.name || 'Website'}`,
+        html: generateOwnerHTML(data)
       })
     });
 
-    if (resendResponse.ok) {
-      return new Response(JSON.stringify({ success: true }), { status: 200 });
-    } else {
-      const errorData = await resendResponse.json();
-      console.error("Resend API Error:", errorData);
-      return new Response(JSON.stringify({ error: "Failed to send email through Resend" }), { status: 500 });
+    if (!ownerResponse.ok) {
+      const errorData = await ownerResponse.json();
+      console.error("Resend Owner API Error:", errorData);
+      return new Response(JSON.stringify({ error: "Failed to send owner email" }), { status: 500 });
     }
+
+    // --- EMAIL 2: Send to the Customer ---
+    if (data.email) {
+      const customerResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from: fromEmail,
+          to: data.email,
+          subject: `Request Received - Deals of Quality`,
+          html: generateCustomerHTML(data)
+        })
+      });
+
+      if (!customerResponse.ok) {
+        // We log this but don't fail the whole form submission if the customer email bounces
+        console.error("Resend Customer API Error:", await customerResponse.json());
+      }
+    }
+
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
 
   } catch (error) {
     console.error("Server Error:", error);
