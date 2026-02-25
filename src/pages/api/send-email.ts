@@ -1,111 +1,111 @@
-/**
- * API endpoint: POST /api/send-email
- * Sends email notifications via Resend for Quote and Booking form submissions.
- * Expects JSON: { formType, name, email, phone?, service?, serviceOther?, zip?, urgency?, details?, category?, preferredTiming? }
- */
-import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
-
-const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
-const NOTIFICATION_EMAIL = import.meta.env.NOTIFICATION_EMAIL || 'notifications@dealsofquality.com';
-const FROM_EMAIL = import.meta.env.FROM_EMAIL || 'onboarding@resend.dev';
-
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
-  if (request.headers.get('content-type')?.includes('application/json') === false) {
-    return new Response(
-      JSON.stringify({ error: 'Content-Type must be application/json' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
+// The HTML template function we built earlier
+function generateEmailHTML(data: any) {
+  const brandColor = "#f97316";
+  const isBooking = data.formType === 'booking';
+  const title = isBooking ? "New Booking Request" : "New Quote Request";
 
-  if (!RESEND_API_KEY) {
-    console.error('RESEND_API_KEY is not set');
-    return new Response(
-      JSON.stringify({ error: 'Email service is not configured' }),
-      { status: 503, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return new Response(
-      JSON.stringify({ error: 'Invalid JSON body' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  const formType = typeof body.formType === 'string' ? body.formType : 'quote';
-  const name = typeof body.name === 'string' ? body.name.trim() : '';
-  const email = typeof body.email === 'string' ? body.email.trim() : '';
-  const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
-  const service = typeof body.service === 'string' ? body.service.trim() : '';
-  const serviceOther = typeof body.serviceOther === 'string' ? body.serviceOther.trim() : '';
-  const zip = typeof body.zip === 'string' ? body.zip.trim() : '';
-  const urgency = typeof body.urgency === 'string' ? body.urgency : '';
-  const details = typeof body.details === 'string' ? body.details.trim() : '';
-  const category = typeof body.category === 'string' ? body.category.trim() : '';
-  const preferredTiming = typeof body.preferredTiming === 'string' ? body.preferredTiming : '';
-
-  if (!name || !email) {
-    return new Response(
-      JSON.stringify({ error: 'Name and email are required' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  const resend = new Resend(RESEND_API_KEY);
-
-  const subject =
-    formType === 'booking'
-      ? `Booking request from ${name}`
-      : `Quote request from ${name}`;
-
-  const serviceDisplay = service || serviceOther || category || 'Not specified';
-  const timingDisplay = formType === 'booking' ? preferredTiming : urgency;
-
-  const html = `
-    <h2>${formType === 'booking' ? 'Booking' : 'Quote'} request</h2>
-    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-    ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ''}
-    <p><strong>Service requested:</strong> ${escapeHtml(serviceDisplay)}</p>
-    ${zip ? `<p><strong>ZIP:</strong> ${escapeHtml(zip)}</p>` : ''}
-    ${timingDisplay ? `<p><strong>When:</strong> ${escapeHtml(timingDisplay)}</p>` : ''}
-    ${details ? `<p><strong>Details:</strong><br/>${escapeHtml(details).replace(/\n/g, '<br/>')}</p>` : ''}
+  return `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; }
+      .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+      .header { background-color: ${brandColor}; padding: 24px; text-align: center; color: #ffffff; }
+      .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+      .content { padding: 32px; color: #374151; }
+      .field { margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; }
+      .field:last-child { border-bottom: none; }
+      .label { font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 600; margin-bottom: 4px; display: block; }
+      .value { font-size: 16px; color: #111827; margin: 0; }
+      .footer { background-color: #f9fafb; padding: 16px; text-align: center; font-size: 12px; color: #6b7280; border-top: 1px solid #e5e7eb; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>${title}</h1>
+      </div>
+      <div class="content">
+        <div class="field">
+          <span class="label">Customer Details</span>
+          <p class="value"><strong>${data.name || 'N/A'}</strong></p>
+          <p class="value"><a href="mailto:${data.email}">${data.email || 'N/A'}</a></p>
+          ${data.phone ? `<p class="value"><a href="tel:${data.phone}">${data.phone}</a></p>` : ''}
+        </div>
+        <div class="field">
+          <span class="label">Service Requested</span>
+          <p class="value">${data.service === 'Other' ? data.serviceOther || 'Other' : (data.service || 'N/A')}</p>
+          ${data.category ? `<p class="value" style="font-size: 14px; color: #4b5563;">Category: ${data.category}</p>` : ''}
+        </div>
+        <div class="field">
+          <span class="label">Location (ZIP Code)</span>
+          <p class="value">${data.zip || 'N/A'}</p>
+        </div>
+        <div class="field">
+          <span class="label">${isBooking ? 'Preferred Timing' : 'Urgency'}</span>
+          <p class="value">${data.preferredTiming || data.urgency || 'N/A'}</p>
+        </div>
+        ${data.details ? `
+        <div class="field">
+          <span class="label">Additional Details</span>
+          <p class="value" style="white-space: pre-wrap;">${data.details}</p>
+        </div>
+        ` : ''}
+      </div>
+      <div class="footer">
+        Received via your Deals of Quality website form.
+      </div>
+    </div>
+  </body>
+  </html>
   `;
+}
 
-  const { data, error } = await resend.emails.send({
-    from: FROM_EMAIL,
-    to: [NOTIFICATION_EMAIL],
-    subject,
-    html,
-  });
+// The Edge-friendly POST handler
+export async function POST({ request, locals }: any) {
+  try {
+    const data = await request.json();
+    
+    // Cloudflare safely maps dashboard variables here, with a fallback to local env
+    const apiKey = import.meta.env.RESEND_API_KEY || (locals.runtime?.env?.RESEND_API_KEY);
+    const fromEmail = import.meta.env.FROM_EMAIL || (locals.runtime?.env?.FROM_EMAIL) || "onboarding@resend.dev";
+    const toEmail = import.meta.env.NOTIFICATION_EMAIL || (locals.runtime?.env?.NOTIFICATION_EMAIL);
 
-  if (error) {
-    console.error('Resend error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to send email' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    if (!apiKey) {
+      return new Response(JSON.stringify({ error: "Missing API Key" }), { status: 500 });
+    }
+
+    const htmlContent = generateEmailHTML(data);
+    const subjectLine = `New ${data.formType === 'booking' ? 'Booking' : 'Quote'} from ${data.name || 'Website'}`;
+
+    // Direct fetch to Resend (No SDK required)
+    const resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: toEmail,
+        subject: subjectLine,
+        html: htmlContent
+      })
+    });
+
+    if (resendResponse.ok) {
+      return new Response(JSON.stringify({ success: true }), { status: 200 });
+    } else {
+      const errorData = await resendResponse.json();
+      console.error("Resend API Error:", errorData);
+      return new Response(JSON.stringify({ error: "Failed to send email through Resend" }), { status: 500 });
+    }
+
+  } catch (error) {
+    console.error("Server Error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
   }
-
-  return new Response(
-    JSON.stringify({ success: true, id: data?.id }),
-    { status: 200, headers: { 'Content-Type': 'application/json' } }
-  );
-};
-
-function escapeHtml(text: string): string {
-  const map: Record<string, string> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;',
-  };
-  return text.replace(/[&<>"']/g, (c) => map[c] ?? c);
 }
