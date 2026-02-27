@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 const pathname = Astro.url.pathname;
 const isHomePage = pathname === '/';
 const currentPath = pathname;
@@ -26,28 +28,31 @@ const phone = 'tel:+18185847389';
     <a href="/" class="header-logo-wrap relative flex h-10 md:h-12 min-w-[140px] items-center bg-transparent transition opacity-90 hover:opacity-100" aria-label="DoQuality – Home">
       {isHomePage ? (
         <>
-          <img
+          <Image
             src="/images/logo-light.png"
             alt="DoQuality – Smart, Fast, Reliable"
-            width="150"
-            height="48"
+            width={150}
+            height={48}
             class="header-logo header-logo--light absolute left-0 top-1/2 h-10 md:h-12 w-auto -translate-y-1/2 object-contain object-left"
+            loading="eager"
           />
-          <img
+          <Image
             src="/images/logo-dark.png"
             alt="DoQuality – Smart, Fast, Reliable"
-            width="150"
-            height="48"
+            width={150}
+            height={48}
             class="header-logo header-logo--dark absolute left-0 top-1/2 h-10 md:h-12 w-auto -translate-y-1/2 object-contain object-left"
+            loading="eager"
           />
         </>
       ) : (
-        <img
+        <Image
           src="/images/logo-dark.png"
           alt="DoQuality – Smart, Fast, Reliable"
-          width="150"
-          height="48"
+          width={150}
+          height={48}
           class="header-logo h-10 md:h-12 w-auto object-contain object-left"
+          loading="eager"
         />
       )}
     </a>
@@ -95,13 +100,15 @@ const phone = 'tel:+18185847389';
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="header-mobile-menu hidden border-t border-white/10 bg-slate-900/98 backdrop-blur md:hidden" aria-hidden="true">
-    <div class="flex flex-col gap-1 px-4 py-4">
+    <div class="flex flex-col items-center gap-1 px-4 py-4">
       {navLinks.map(({ href, label }) => (
-        <a href={href} class="rounded-lg px-3 py-2.5 text-sm font-bold text-white hover:bg-white/10">
+        <a href={href} class="w-full rounded-lg px-3 py-2.5 text-sm font-bold text-center text-white hover:bg-white/10">
           {label}
         </a>
       ))}
-      <a href={phone} class="rounded-lg px-3 py-2.5 text-sm font-bold text-white hover:bg-white/10">(818) 584-7389</a>
+      <a href={phone} class="w-full rounded-lg px-3 py-2.5 text-sm font-bold text-center text-white hover:bg-white/10">
+        (818) 584-7389
+      </a>
       <button type="button" data-open-booking="true" class="mt-2 w-full rounded-lg bg-[#f97415] px-3 py-2.5 text-center text-sm font-semibold text-white hover:bg-[#ea580c]">
         Find a Pro
       </button>
@@ -147,7 +154,7 @@ const phone = 'tel:+18185847389';
     background: rgba(255, 255, 255, 0.98) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
-  #site-header.site-header-scrolled .header-nav-link { color: #334155; }
+  #site-header.site-header-scrolled .header-nav-link { color: #1d2530; }
   #site-header.site-header-scrolled .header-nav-link:hover,
   #site-header.site-header-scrolled .header-nav-link--active { color: #0073e6; }
   #site-header.site-header-scrolled .header-phone-text { color: #334155; }
@@ -162,6 +169,18 @@ const phone = 'tel:+18185847389';
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+  }
+
+  /* Scrolled mobile menu: light panel with dark text */
+  #site-header.site-header-scrolled #mobile-menu {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-top-color: rgba(148, 163, 184, 0.4);
+  }
+  #site-header.site-header-scrolled #mobile-menu a {
+    color: #1d2530 !important;
+  }
+  #site-header.site-header-scrolled #mobile-menu a:hover {
+    background-color: #e5e7eb !important;
   }
 </style>
 
