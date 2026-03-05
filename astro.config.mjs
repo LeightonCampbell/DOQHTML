@@ -51,12 +51,26 @@ function getCustomSitemapPages() {
   return customPages;
 }
 
+// Legacy /services/ tech URLs → /tech-support/ (301 permanent)
+const LEGACY_REDIRECTS = {
+  '/services/computer-repair/': '/tech-support/computer-repair/',
+  '/services/virus-removal/': '/tech-support/virus-removal/',
+  '/services/printer-setup/': '/tech-support/printer-setup/',
+  '/services/data-backup/': '/tech-support/data-backup-recovery/',
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE,
   output: 'server',
   adapter: cloudflare(),
   trailingSlash: 'always',
+  redirects: Object.fromEntries(
+    Object.entries(LEGACY_REDIRECTS).map(([from, to]) => [
+      from,
+      { status: 301, destination: to },
+    ])
+  ),
   integrations: [
     tailwind(),
     sitemap({

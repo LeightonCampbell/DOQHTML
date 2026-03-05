@@ -85,12 +85,16 @@ export const serviceCategories: ServiceCategory[] = [
     ],
   },
   {
-    title: "Computers & Printers",
+    title: "Tech Support",
     services: [
-      { id: "computer-repair", label: "Computer Repair", href: "/services/computer-repair/", description: "PC and Mac repair services" },
-      { id: "virus-removal", label: "Virus Removal", href: "/services/virus-removal/", description: "Virus and malware removal services" },
-      { id: "printer-setup", label: "Printer Setup", href: "/services/printer-setup/", description: "Printer installation and configuration" },
-      { id: "data-backup", label: "Data Backup", href: "/services/data-backup/", description: "Data backup and recovery services" },
+      { id: "remote-support", label: "Remote Support & Troubleshooting", href: "/tech-support/remote-support/", description: "24/7 help for software glitches and errors via secure remote access" },
+      { id: "computer-repair", label: "Computer & Device Repair", href: "/tech-support/computer-repair/", description: "On-site PC and Mac repair at your location" },
+      { id: "network-setup", label: "Network Setup & Support", href: "/tech-support/network-setup/", description: "Wi-Fi, router, mesh networks, and security" },
+      { id: "virus-removal", label: "Virus & Malware Removal", href: "/tech-support/virus-removal/", description: "Deep-scan diagnostics and complete threat removal" },
+      { id: "data-backup-recovery", label: "Data Backup & Recovery", href: "/tech-support/data-backup-recovery/", description: "Recover lost data and set up backup systems" },
+      { id: "cloud-services", label: "Cloud Services", href: "/tech-support/cloud-services/", description: "Microsoft 365, Google Workspace setup and migration" },
+      { id: "software-support", label: "Software Support", href: "/tech-support/software-support/", description: "Installation, updates, licenses, and optimization" },
+      { id: "printer-setup", label: "Printer Setup & Support", href: "/tech-support/printer-setup/", description: "Printer installation, wireless setup, and troubleshooting" },
     ],
   },
   {

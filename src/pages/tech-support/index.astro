@@ -218,7 +218,7 @@ const phone = 'tel:+18185847389';
 
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3" aria-label="Cities we serve">
           {cities.map((c) => (
-            <a href={`/tech-support/${c.slug}/`} class="rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground hover:border-primary hover:bg-primary/5 transition-colors text-center">
+            <a href="/tech-support/" class="rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground hover:border-primary hover:bg-primary/5 transition-colors text-center">
               {c.name} {c.state}
             </a>
           ))}
@@ -293,9 +293,9 @@ const phone = 'tel:+18185847389';
           <a href={phone} class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-white hover:bg-white/90 shadow-lg transition" style="color: #004080;">
             Call Now — Free Diagnosis
           </a>
-          <a href="/tech-support/contact/" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-white text-white hover:bg-white/20 transition">
+          <button type="button" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-white text-white hover:bg-white/20 transition" data-open-booking="true" data-service="Tech Support">
             Book Online
-          </a>
+          </button>
         </div>
       </div>
     </section>

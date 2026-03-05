@@ -14,6 +14,8 @@ interface ServiceItem {
 }
 interface Category {
   title: string;
+  /** When set, the category heading is rendered as a link to this URL. */
+  titleHref?: string;
   items: ServiceItem[];
 }
 
@@ -111,12 +113,17 @@ const categories: Category[] = [
     ],
   },
   {
-    title: 'Computers & Printers',
+    title: 'Tech Support',
+    titleHref: '/tech-support/',
     items: [
-      { name: 'Computer Repair',  description: 'PC and Mac repair services',             icon: icons.desktop,  href: '/services/computer-repair/' },
-      { name: 'Virus Removal',    description: 'Virus and malware removal services',     icon: icons.shield,   href: '/services/virus-removal/' },
-      { name: 'Printer Setup',    description: 'Printer installation and configuration', icon: icons.printer,  href: '/services/printer-setup/' },
-      { name: 'Data Backup',      description: 'Data backup and recovery services',      icon: icons.database, href: '/services/data-backup/' },
+      { name: 'Remote Support & Troubleshooting', description: '24/7 help for software glitches and errors via secure remote access', icon: icons.support, href: '/tech-support/remote-support/' },
+      { name: 'Computer & Device Repair', description: 'On-site PC and Mac repair at your location', icon: icons.desktop, href: '/tech-support/computer-repair/' },
+      { name: 'Network Setup & Support', description: 'Wi-Fi, router, mesh networks, and security', icon: icons.wifi, href: '/tech-support/network-setup/' },
+      { name: 'Virus & Malware Removal', description: 'Deep-scan diagnostics and complete threat removal', icon: icons.shield, href: '/tech-support/virus-removal/' },
+      { name: 'Data Backup & Recovery', description: 'Recover lost data and set up backup systems', icon: icons.database, href: '/tech-support/data-backup-recovery/' },
+      { name: 'Cloud Services', description: 'Microsoft 365, Google Workspace setup and migration', icon: icons.globe, href: '/tech-support/cloud-services/' },
+      { name: 'Software Support', description: 'Installation, updates, licenses, and optimization', icon: icons.chip, href: '/tech-support/software-support/' },
+      { name: 'Printer Setup & Support', description: 'Printer installation, wireless setup, and troubleshooting', icon: icons.printer, href: '/tech-support/printer-setup/' },
     ],
   },
   {
@@ -152,7 +159,13 @@ const categories: Category[] = [
       <div class="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
         {categories.map((cat) => (
           <div>
-            <h2 class="mb-5 text-xl font-semibold text-[#004080]">{cat.title}</h2>
+            <h2 class="mb-5 text-xl font-semibold text-[#004080]">
+              {cat.titleHref ? (
+                <a href={cat.titleHref} class="hover:underline">{cat.title}</a>
+              ) : (
+                cat.title
+              )}
+            </h2>
             <ul class="space-y-0">
               {cat.items.map((item) => (
                 <li>

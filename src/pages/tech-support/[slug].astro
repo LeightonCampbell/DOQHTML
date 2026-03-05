@@ -1,0 +1,454 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTechLandingContent, getAllTechLandingSlugs } from './techSupportLandingData';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getAllTechLandingSlugs().map((slug) => ({
+    params: { slug },
+    props: { content: getTechLandingContent(slug)! },
+  }));
+}
+
+const { content } = Astro.props;
+const title = content.title;
+const description = content.description;
+const canonical = `https://www.dealsofquality.com${content.canonicalPath}`;
+const phone = 'tel:+18185847389';
+
+const genericReviews = [
+  { quote: 'My laptop had been running slow for months. The remote session fixed everything in under 30 minutes. The tech explained exactly what was causing the issue. Worth every penny.', author: 'Sandra L.', location: 'Chicago IL' },
+  { quote: 'Recovered six years of family photos from a failed hard drive I thought was gone forever. I genuinely cried. These people are miracle workers.', author: 'Marcus R.', location: 'Houston TX' },
+  { quote: 'The technician showed up on time, set up our entire home network, secured it properly, and even helped my elderly mother understand how to use her tablet. Exceptional.', author: 'Jennifer P.', location: 'Denver CO' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <main class="tech-landing-main">
+    <!-- URGENCY BANNER -->
+    <div class="urgency-banner">
+      <div class="urgency-dot"></div>
+      <span>
+        <span class="urgency-strong">24/7 remote support available.</span>
+        Need help now? <a href={phone}>(818) 584-7389</a>
+      </span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero-wrap">
+      <div class="hero-bg tech-hero-bg" aria-hidden="true"></div>
+      <section class="hero tech-landing-hero">
+        <div class="container">
+          <div class="fade-up">
+            <div class="hero-breadcrumb">
+              <a href="/">Home</a>
+              <span>›</span>
+              <a href="/tech-support/">Tech Support</a>
+              <span>›</span>
+              {content.serviceLabel}
+            </div>
+            <div class="hero-service-pill">
+              <div class="hero-service-pill-dot"></div>
+              {content.serviceLabel}
+            </div>
+          </div>
+          <h1 class="fade-up d1" set:html={content.hero.h1} />
+          <p class="hero-sub fade-up d2">{content.hero.sub}</p>
+          <div class="hero-cta-row fade-up d3">
+            <button type="button" class="btn-primary-gold" data-open-quote="true" data-service={content.serviceLabel}>
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor" /></svg>
+              Get a Free Quote
+            </button>
+            <a class="btn-ghost-white" href={phone} style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              (818) 584-7389
+            </a>
+          </div>
+          <div class="hero-trust-strip fade-up d4">
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor" /></svg>
+              Certified technicians
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" /></svg>
+              Remote or on-site
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3" /><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" /></svg>
+              24/7 available
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" /><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              30-day guarantee
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3" /><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              Upfront pricing
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PAIN -->
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--danger">{content.pain.eyebrow}</div>
+          <h2 class="section-heading" set:html={content.pain.heading} />
+          <p class="section-body">{content.pain.intro}</p>
+        </div>
+        <div class="pain-grid">
+          {content.pain.cards.map((card, i) => (
+            <div class={`pain-card fade-up ${i === 1 ? 'd1' : i === 2 ? 'd2' : ''}`}>
+              <div class="pain-card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" /><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+              </div>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </div>
+          ))}
+        </div>
+        <div class="agitate-block fade-up d1">
+          <div class="agitate-text">
+            <h2 set:html={content.agitate.heading} />
+            {content.agitate.paragraphs.map((p) => <p>{p}</p>)}
+          </div>
+          <div class="agitate-stats">
+            {content.agitate.stats.map((stat, i) => (
+              <div class={`agitate-stat fade-up d${i + 2}`}>
+                <div class="as-num" set:html={stat.num} />
+                <div>
+                  <div class="as-text-label">{stat.label}</div>
+                  <div class="as-text-sub">{stat.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- SOLUTION -->
+    <section class="solve-section">
+      <div class="container">
+        <div class="solve-grid solve-grid--single">
+          <div class="solve-copy fade-up">
+            <div class="section-eyebrow section-eyebrow--accent">{content.solve.eyebrow}</div>
+            <h2 class="solve-heading" set:html={content.solve.heading} />
+            {content.solve.paragraphs.map((p) => <p>{p}</p>)}
+            <div class="solve-points">
+              {content.solve.points.map((point) => (
+                <div class="solve-point">
+                  <div class="sp-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </div>
+                  <div class="sp-text">
+                    <strong>{point.strong}</strong>
+                    <span>{point.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button type="button" class="btn-primary-gold" data-open-booking="true" data-service="Tech Support">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+              Book Online
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- PROCESS -->
+    <section class="process-section">
+      <div class="container">
+        <div class="process-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--accent">{content.process.eyebrow}</div>
+          <h2 class="section-heading section-heading--no-em">{content.process.heading}</h2>
+        </div>
+        <div class="process-grid">
+          {content.process.steps.map((step, i) => (
+            <div class="process-card">
+              <span class="process-num">{String(i + 1).padStart(2, '0')}</span>
+              <div class="process-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+              </div>
+              <span class="process-pill">Step {String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- REVIEWS -->
+    <section class="reviews-section">
+      <div class="container">
+        <div class="reviews-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--accent">REAL CUSTOMER REVIEWS</div>
+          <h2 class="section-heading section-heading--no-em">Tech support they're still talking about.</h2>
+          <p class="section-body">Real people, real fixes. Here's what happens when certified technicians show up and get it done.</p>
+        </div>
+        <div class="reviews-grid">
+          {genericReviews.map((r, i) => (
+            <div class={`review-card fade-up ${i === 1 ? 'd1' : i === 2 ? 'd2' : ''}`}>
+              <div class="review-stars" aria-hidden="true">★★★★★</div>
+              <blockquote class="review-quote">"{r.quote}"</blockquote>
+              <div class="review-author">
+                <span class="review-initials">{r.author.slice(0, 2).toUpperCase()}</span>
+                <div>
+                  <strong>{r.author}</strong>
+                  <span class="review-source">{r.location}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="guarantee-section">
+      <div class="container">
+        <div class="guarantee-grid">
+          {content.guarantee.map((g, i) => (
+            <div class={`guarantee-panel fade-up ${i === 1 ? 'd1' : i === 2 ? 'd2' : ''}`}>
+              <div class={`guarantee-icon-wrap guarantee-icon-wrap--${i === 0 ? 'gold' : i === 1 ? 'blue' : 'green'}`}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" stroke-width="2" /></svg>
+              </div>
+              <h3>{g.title}</h3>
+              <p>{g.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--accent">FREQUENTLY ASKED QUESTIONS</div>
+          <h2 class="section-heading section-heading--no-em">Everything you want to know before you book.</h2>
+        </div>
+        <div class="faq-grid faq-grid--single">
+          <div class="faq-col">
+            {content.faq.map((item) => (
+              <div class="faq-item fade-up">
+                <button type="button" class="faq-question" aria-expanded="false">
+                  <span>{item.q}</span>
+                  <span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8" /></svg></span>
+                </button>
+                <div class="faq-answer"><p>{item.a}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <div class="final-cta-inner fade-up">
+          <div class="section-eyebrow section-eyebrow--gold">DON'T PUT IT OFF AGAIN</div>
+          <h2>{content.ctaHeading}</h2>
+          <p>{content.ctaSub}</p>
+          <div class="final-cta-buttons">
+            <button type="button" class="btn-primary-gold" data-open-booking="true" data-service="Tech Support">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+              Book Online
+            </button>
+            <a class="btn-ghost-white-final" href={phone} style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              Call (818) 584-7389
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    (function () {
+      var obs = new IntersectionObserver(
+        function (entries) { entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); }); },
+        { threshold: 0.07, rootMargin: '0px 0px -28px 0px' }
+      );
+      document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+      document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.faq-item');
+          var open = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(function (i) { i.classList.remove('open'); });
+          if (!open) item.classList.add('open');
+        });
+      });
+    })();
+  </script>
+
+  <style is:global>
+    .tech-landing-main { }
+    :root {
+      --white: #fafaf8;
+      --cream: #f7f3ec;
+      --cream-border: #ede8df;
+      --ink: #141210;
+      --muted: #6b6560;
+      --border: #e8e5e0;
+      --accent: #0073e6;
+      --accent-light: #e6f2ff;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --gold-dark: #d97706;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    .tech-landing-main { background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .divider { height: 1px; background: var(--border); }
+    .divider--cream { height: 1px; background: var(--cream-border); }
+    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1 { transition-delay: 0.08s; } .fade-up.d2 { transition-delay: 0.16s; } .fade-up.d3 { transition-delay: 0.24s; } .fade-up.d4 { transition-delay: 0.32s; }
+    .urgency-banner { background: var(--ink); color: rgba(255,255,255,0.9); text-align: center; padding: 10px 24px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px; position: fixed; top: 64px; left: 0; right: 0; z-index: 199; }
+    .urgency-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.6; transform:scale(1.4); } }
+    .urgency-strong { color: #fff; font-weight: 500; }
+    .urgency-banner a { color: #fcd34d; text-decoration: none; font-weight: 500; }
+    .hero-wrap { position: relative; overflow: hidden; min-height: 90vh; display: flex; flex-direction: column; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .tech-hero-bg { background: linear-gradient(135deg, #0d1f35 0%, #1e293b 50%, #0f172a 100%); }
+    .tech-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,14,20,0.4) 0%, rgba(10,14,20,0.6) 100%); pointer-events: none; }
+    .hero { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 130px 0 80px; }
+    .tech-landing-hero { background: none !important; }
+    .hero-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
+    .hero-service-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; font-size: 12px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; }
+    .hero-service-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .tech-landing-main .hero h1 { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 72px); line-height: 1.06; letter-spacing: -1.2px; color: #fff; max-width: 800px; margin-bottom: 20px; }
+    .tech-landing-main .hero h1 em { font-style: italic; color: #fcd34d; }
+    .hero-sub { font-size: clamp(16px, 1.8vw, 19px); color: rgba(255,255,255,0.78); max-width: 560px; line-height: 1.65; margin-bottom: 36px; }
+    .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .btn-primary-gold { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: var(--ink); font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 15px 30px; border-radius: 10px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(245,158,11,0.35); }
+    .btn-primary-gold:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); }
+    .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.12); color: #fff; font-family: var(--sans); font-size: 14px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.22); }
+    .hero-trust-strip { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.14); }
+    .hts-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
+    .hts-item svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+    .pain-section { background: var(--cream); padding: 88px 0; }
+    .pain-intro { text-align: center; margin-bottom: 48px; }
+    .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+    .section-eyebrow--danger { color: var(--danger); }
+    .section-eyebrow--accent { color: var(--accent); }
+    .section-heading { font-family: var(--serif); font-size: clamp(32px, 4vw, 48px); line-height: 1.15; color: var(--ink); max-width: 720px; margin: 0 auto 16px; }
+    .section-heading em { font-style: italic; color: var(--danger); }
+    .section-heading--no-em { color: var(--ink); }
+    .section-body { font-size: 16px; color: var(--muted); max-width: 700px; margin: 0 auto; line-height: 1.65; }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+    @media (max-width: 900px) { .pain-grid { grid-template-columns: 1fr; } }
+    .pain-card { background: #fff; border: 1px solid var(--cream-border); border-radius: 16px; padding: 28px; border-left: 4px solid var(--danger); }
+    .pain-card-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--danger-light); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .pain-card-icon svg { color: var(--danger); }
+    .pain-card h3 { font-family: var(--sans); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+    .pain-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .agitate-block { background: #fff; border-radius: 20px; padding: 40px 44px; display: grid; grid-template-columns: 1fr 340px; gap: 44px; align-items: start; }
+    @media (max-width: 900px) { .agitate-block { grid-template-columns: 1fr; } }
+    .agitate-text h2 { font-family: var(--serif); font-size: clamp(26px, 3vw, 34px); line-height: 1.25; color: var(--ink); margin-bottom: 20px; }
+    .agitate-text h2 .agitate-highlight { font-style: italic; color: var(--danger); }
+    .agitate-text p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+    .agitate-stats { display: flex; flex-direction: column; gap: 16px; }
+    .agitate-stat { background: var(--cream); border-radius: 12px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; }
+    .as-num { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--danger); flex-shrink: 0; }
+    .as-text-label { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .as-text-sub { font-size: 12px; color: var(--muted); }
+    .solve-section { background: #fff; padding: 88px 0; }
+    .solve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .solve-grid--single { grid-template-columns: 1fr; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .solve-heading { font-family: var(--serif); font-size: clamp(32px, 3.5vw, 44px); line-height: 1.2; color: var(--ink); margin-bottom: 20px; }
+    .solve-heading em { font-style: italic; color: var(--accent); }
+    .solve-copy p { font-size: 16px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .solve-points { margin-bottom: 28px; }
+    .solve-point { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .sp-icon { width: 30px; height: 30px; min-width: 30px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .sp-icon svg { color: #16a34a; }
+    .sp-text strong { font-size: 15px; color: var(--ink); }
+    .sp-text span { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .process-section { background: #fff; padding: 88px 0; }
+    .process-intro { text-align: center; margin-bottom: 48px; }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border-radius: 20px; overflow: hidden; }
+    @media (max-width: 900px) { .process-grid { grid-template-columns: 1fr; } }
+    .process-card { background: var(--white); padding: 36px 28px; position: relative; }
+    .process-num { position: absolute; top: 16px; right: 20px; font-family: var(--serif); font-size: 56px; color: var(--cream-border); }
+    .process-icon-wrap { width: 44px; height: 44px; background: var(--accent-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .process-icon-wrap svg { color: var(--accent); }
+    .process-pill { display: inline-block; background: var(--gold-light); color: var(--gold-dark); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 12px; }
+    .process-card h3 { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+    .process-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .reviews-section { background: var(--cream); padding: 88px 0; }
+    .reviews-intro { text-align: center; margin-bottom: 48px; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+    .review-card { background: #fff; border: 1px solid var(--cream-border); border-radius: 16px; padding: 28px; }
+    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .review-quote { font-family: var(--serif); font-size: 17px; font-style: italic; line-height: 1.5; color: var(--ink); margin-bottom: 20px; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-initials { width: 38px; height: 38px; min-width: 38px; background: var(--gold-light); border: 2px solid #fde68a; color: var(--gold-dark); font-size: 12px; font-weight: 600; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .review-author strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+    .review-source { font-size: 12px; color: var(--muted); }
+    .guarantee-section { background: var(--ink); padding: 88px 0; }
+    .guarantee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .guarantee-grid { grid-template-columns: 1fr; } }
+    .guarantee-panel { border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; background: rgba(255,255,255,0.04); }
+    .guarantee-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .guarantee-icon-wrap--gold { background: rgba(245,158,11,0.15); }
+    .guarantee-icon-wrap--gold svg { color: #fcd34d; }
+    .guarantee-icon-wrap--blue { background: rgba(0,115,230,0.15); }
+    .guarantee-icon-wrap--blue svg { color: #60a5fa; }
+    .guarantee-icon-wrap--green { background: rgba(22,163,74,0.15); }
+    .guarantee-icon-wrap--green svg { color: #4ade80; }
+    .guarantee-panel h3 { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+    .guarantee-panel p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .faq-section { background: #fff; padding: 88px 0; }
+    .faq-intro { text-align: center; margin-bottom: 48px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .faq-grid--single { grid-template-columns: 1fr; }
+    @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-col { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; background: none; border: none; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); text-align: left; cursor: pointer; }
+    .faq-icon { width: 24px; height: 24px; min-width: 24px; background: var(--gold-light); border: 1px solid #fde68a; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .faq-icon svg { color: var(--gold-dark); transition: transform 0.25s; }
+    .faq-item.open .faq-icon { background: var(--gold); }
+    .faq-item.open .faq-icon svg { color: #fff; transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-answer p { padding: 0 20px 18px; font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; border-top: 1px solid var(--border); padding-top: 14px; margin-top: -1px; }
+    .final-cta { background: linear-gradient(135deg, #0d1f35 0%, var(--ink) 100%); padding: 88px 0; }
+    .final-cta-inner { text-align: center; }
+    .section-eyebrow--gold { color: var(--gold); }
+    .final-cta h2 { font-family: var(--serif); font-size: clamp(32px, 4vw, 48px); line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .final-cta p { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto 32px; line-height: 1.6; }
+    .final-cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-ghost-white-final { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: #fff; font-family: var(--sans); font-size: 15px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.25); }
+    .tech-landing-main .btn-ghost-white-final { color: #fff !important; }
+    .btn-ghost-white-final:hover { background: rgba(255,255,255,0.18); }
+  </style>
+</BaseLayout>

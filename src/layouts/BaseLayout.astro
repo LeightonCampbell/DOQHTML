@@ -1,6 +1,7 @@
 ---
 import Head from '../components/Head.astro';
 import Navbar from '../components/Navbar.astro';
+import HeroNav from '../components/HeroNav.astro';
 import Footer from '../components/Footer.astro';
 import Modals from '../components/Modals.astro';
 import '../styles/global.css';
@@ -10,9 +11,11 @@ interface Props {
   title: string;
   description: string;
   canonical: string;
+  /** When true, use prototype mainNav (transparent → solid on scroll) instead of default Navbar. Homepage only. */
+  useHeroNav?: boolean;
 }
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, useHeroNav = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,8 +24,8 @@ const { title, description, canonical } = Astro.props;
     <Head title={title} description={description} canonical={canonical} />
   </head>
   <body class="min-h-screen bg-background text-foreground antialiased">
-    <Navbar />
-    <main id="main-content">
+    {useHeroNav ? <HeroNav /> : <Navbar />}
+    <main id="main-content" data-hero-nav={useHeroNav ? 'true' : undefined}>
       <slot />
     </main>
     <Footer />
