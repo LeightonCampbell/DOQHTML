@@ -40,11 +40,13 @@ const canonical = 'https://www.dealsofquality.com/';
         <!-- Search bar (prototype: gold focus, gold button) -->
         <div class="home-fade home-d3 mt-10 mx-auto max-w-[640px] w-full">
           <div class="search-wrap-rel relative">
-            <div class="flex bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
-              <span class="py-0 px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
-                <svg class="w-[18px] h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </span>
-              <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa]" />
+            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
+              <div class="flex flex-1 min-w-0">
+                <span class="py-0 px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa] min-w-0" />
+              </div>
               <button type="button" onclick="handleSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-3 px-6 m-[7px] rounded-[9px] text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
             </div>
             <div id="search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>

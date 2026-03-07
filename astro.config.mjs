@@ -72,7 +72,7 @@ export default defineConfig({
     ])
   ),
   integrations: [
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
     sitemap({
       filter: (url) => {
         const excluded = SITEMAP_EXCLUDE.some((path) => url.includes(path));

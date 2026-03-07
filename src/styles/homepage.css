@@ -692,3 +692,29 @@
   .footer-grid { grid-template-columns: 1fr; }
   .section-header-flex { flex-direction: column; }
 }
+
+/* Mobile-first: smaller hero H1, stacked hero form, centered headings */
+@media (max-width: 768px) {
+  #main-content .hero-content h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.15;
+  }
+  /* Hero Get a Quote: text field on top, button below */
+  #main-content .search-wrap-rel .hero-search-bar {
+    flex-direction: column;
+  }
+  #main-content .search-wrap-rel .hero-search-bar > div:first-child {
+    width: 100%;
+  }
+  #main-content .search-wrap-rel .hero-search-bar > button {
+    width: 100%;
+    margin: 0;
+    border-radius: 0 0 14px 14px;
+    padding: 14px 1rem;
+  }
+  /* Center section headings on mobile */
+  #main-content section h2.font-display,
+  #main-content h2.font-display {
+    text-align: center;
+  }
+}

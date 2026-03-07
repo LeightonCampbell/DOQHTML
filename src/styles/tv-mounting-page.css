@@ -108,6 +108,15 @@
   text-shadow: 0 2px 24px rgba(0,0,0,0.3);
 }
 .tvm-page .hero h1 em { font-style: italic; color: #fcd34d; }
+@media (max-width: 768px) {
+  .tvm-page .hero h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.15;
+  }
+  .tvm-page .section-heading {
+    text-align: center;
+  }
+}
 .tvm-page .hero-sub {
   font-size: clamp(16px, 1.8vw, 19px);
   color: rgba(255,255,255,0.76); font-weight: 300;
