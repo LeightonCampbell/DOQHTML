@@ -693,6 +693,11 @@
   .section-header-flex { flex-direction: column; }
 }
 
+/* Hide urgency bar on mobile to remove dark strip below header */
+@media (max-width: 768px) {
+  .home-urgency { display: none !important; }
+}
+
 /* Mobile-first: smaller hero H1, stacked hero form, centered headings */
 @media (max-width: 768px) {
   #main-content .hero-content h1 {
@@ -731,4 +736,11 @@
   #main-content .quote-section .quote-copy .quote-trust {
     text-align: left;
   }
+  /* Final CTA: stack Get a Free Quote on top, then (818) 584-7389 below */
+  #main-content #contact .final-cta-cards {
+    display: flex;
+    flex-direction: column;
+  }
+  #main-content #contact .final-cta-cards .final-cta-card-call { order: 2; }
+  #main-content #contact .final-cta-cards .final-cta-card-quote { order: 1; }
 }
