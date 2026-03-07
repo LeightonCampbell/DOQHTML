@@ -717,4 +717,18 @@
   #main-content h2.font-display {
     text-align: center;
   }
+  /* Why It Matters: center eyebrow, heading, and intro on mobile */
+  #main-content .why-bg .grid > div:last-child {
+    text-align: center;
+  }
+  #main-content .why-bg .grid > div:last-child .why-cards {
+    text-align: left;
+  }
+  /* Get a Free Quote section: center pre-text, heading, and intro on mobile */
+  #main-content .quote-section .quote-copy {
+    text-align: center;
+  }
+  #main-content .quote-section .quote-copy .quote-trust {
+    text-align: left;
+  }
 }

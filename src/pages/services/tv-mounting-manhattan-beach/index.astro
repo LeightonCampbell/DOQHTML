@@ -1,4 +1,4 @@
-﻿---
+---
 /**
  * TV Mounting — Beverly Hills spoke page
  * TEMPLATE: Duplicate and update CITY-SPECIFIC blocks (1–14) for new cities.
@@ -164,7 +164,7 @@ const locations = TV_MOUNTING_CITIES.map(({ slug: s, name }) => ({
               <div class="solve-point"><div class="sp-icon"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sp-text"><strong>Digital level, not eyeballed.</strong> <span>Verified before we tighten — no tilt, no regrets.</span></div></div>
               <div class="solve-point"><div class="sp-icon"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sp-text"><strong>Right bracket for your wall type.</strong> <span>Drywall, plaster, brick, stone — we bring the correct hardware.</span></div></div>
             </div>
-            <button type="button" class="btn-primary-gold" onclick="scrollToQuote()"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Book a TV Mounting</button>
+            <button type="button" class="btn-primary-gold tvm-book-btn" data-open-booking="true" data-service="TV Mounting"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Book a TV Mounting</button>
           </div>
         </div>
       </div>
@@ -437,7 +437,8 @@ const locations = TV_MOUNTING_CITIES.map(({ slug: s, name }) => ({
       };
       window.scrollToQuote = function(e) {
         if (e) e.preventDefault();
-        document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        var el = document.getElementById('quote-form') || document.getElementById('quote');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
       (function() {
         var banner = document.querySelector('.tvm-page .urgency-banner');
