@@ -1,0 +1,34 @@
+---
+description: Button styles for service pages, tech-support, and blog CTAs
+globs: src/pages/**/*.astro
+alwaysApply: false
+---
+
+# Service & Landing Page Button Styles
+
+Use these exact patterns for primary and secondary buttons so they match the blog article pages and service [slug] pages.
+
+## On light background
+
+- **Primary (solid):**  
+  `class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg transition-all"`  
+  Use `!text-white` (not `text-primary-foreground`) so the label stays white.
+
+- **Secondary (outline):**  
+  `class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-primary !text-[#004080] bg-transparent hover:bg-primary/10 transition-all"`  
+  Use `!text-[#004080]` for the blue label so it doesn’t inherit a wrong color.
+
+## On primary (dark) background (e.g. CTA band)
+
+- **Primary CTA (white button):**  
+  `class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-white hover:bg-white/90 shadow-lg transition"`  
+  Plus `style="color: #004080;"` so the text is brand blue.
+
+- **Secondary (white outline):**  
+  `class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-white text-white hover:bg-white/20 transition"`  
+  Use `hover:bg-white/20` (not `hover:bg-white/10`) to match blog CTAs.
+
+## Consistency
+
+- Use `rounded-xl` and `h-12 px-8` for these buttons.
+- Do not use `text-primary` or `text-primary-foreground` for button text; use `!text-white` or `!text-[#004080]` or `style="color: #004080;"` as above.

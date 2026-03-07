@@ -43,7 +43,7 @@
 }
 
 .hero-content {
-  padding: 6rem 5% 6rem 8%;
+  padding: 6rem 5%;
   position: relative; z-index: 2;
 }
 
@@ -666,6 +666,19 @@
   .hero { grid-template-columns: 1fr; }
   .hero-image { display: none; }
   .hero-content { padding: 4rem 5%; }
+  /* Homepage hero: ensure content is centered on mobile */
+  #main-content[data-hero-nav] .hero-wrap .hero-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  #main-content[data-hero-nav] .hero-wrap .hero-content .container-max {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .process-steps { grid-template-columns: 1fr; }
   .process-steps::before { display: none; }
   .why-grid { grid-template-columns: 1fr; }

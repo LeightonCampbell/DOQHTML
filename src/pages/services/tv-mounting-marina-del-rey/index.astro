@@ -1,26 +1,34 @@
 ﻿---
+/**
+ * TV Mounting — Beverly Hills spoke page
+ * TEMPLATE: Duplicate and update CITY-SPECIFIC blocks (1–14) for new cities.
+ */
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import '../../../styles/tv-mounting-page.css';
 import { TV_MOUNTING_CITIES } from '../../../data/tvMountingCities';
 
-const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
+const city = "Marina Del Rey";
+const slug = "marina-del-rey";
+
+const locations = TV_MOUNTING_CITIES.map(({ slug: s, name }) => ({
   name,
-  href: `/services/tv-mounting-${slug}/`,
+  href: `/services/tv-mounting-${s}/`,
+  isCurrent: s === slug,
 }));
 ---
 
 <BaseLayout
-  title="TV Mounting Service — Professional Installation | Deals of Quality"
-  description="Professional TV mounting service. Certified installers, wire concealment, same-day availability, 90-day guarantee. Serving Los Angeles and surrounding cities."
-  canonical="https://dealsofquality.com/services/tv-mounting/"
+  title="TV Mounting Marina Del Rey — Professional Installation | Deals of Quality"
+  description="Professional TV mounting in Marina Del Rey. Expert installers for waterfront condos, apartment buildings, and Del Rey properties. Wire concealment, same-day availability, upfront pricing."
+  canonical="https://dealsofquality.com/services/tv-mounting-marina-del-rey/"
 >
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'TV Mounting Service',
-    provider: { '@type': 'LocalBusiness', name: 'Deals of Quality', telephone: '+18185847389', url: 'https://dealsofquality.com', areaServed: 'Los Angeles, CA' },
-    serviceType: 'TV Mounting',
-    description: 'Professional TV mounting and installation including wire concealment, full-motion mounts, fireplace installs, and surround sound setup.',
+    name: 'TV Mounting Service — Marina Del Rey',
+    provider: { '@type': 'LocalBusiness', name: 'Deals of Quality', telephone: '+18185847389', url: 'https://dealsofquality.com', areaServed: 'Marina Del Rey, CA' },
+    serviceType: 'TV Mounting Marina Del Rey',
+    description: 'Professional TV mounting in Beverly Hills including wire concealment, full-motion mounts, estate and high-rise installs, and surround sound setup.',
     offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
   })} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,41 +36,27 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
   <div class="tvm-page">
-    <!-- Urgency banner -->
+
     <div class="urgency-banner">
       <div class="urgency-dot"></div>
-      <span><span class="urgency-strong">Same-day TV mounting available today</span> — book before noon. <a href="tel:8185847389">(818) 584-7389</a></span>
+      <span><span class="urgency-strong">Same-day TV mounting available in Marina Del Rey</span> — book before noon. <a href="tel:8185847389">(818) 584-7389</a></span>
     </div>
 
-    <!-- Hero -->
     <div class="hero-wrap">
       <div class="hero-bg" style="background-image: url('/images/tv-mounting-hero.png'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
       <section class="hero">
         <div class="container">
           <div class="fade-up visible">
             <div class="hero-breadcrumb">
-              <a href="/">Home</a>
-              <span>›</span>
-              <a href="/#services">Services</a>
-              <span>›</span>
-              TV Mounting
+              <a href="/">Home</a><span>›</span><a href="/#services">Services</a><span>›</span><a href="/services/tv-mounting/">TV Mounting</a><span>›</span>Beverly Hills
             </div>
-            <div class="hero-service-pill">
-              <div class="hero-service-pill-dot"></div>
-              TV MOUNTING SERVICE
-            </div>
+            <div class="hero-service-pill"><div class="hero-service-pill-dot"></div>TV MOUNTING — MARINA DEL REY</div>
           </div>
-          <h1 class="fade-up d1 visible">Your TV deserves a wall.<br /><em>Not a bracket disaster.</em></h1>
-          <p class="hero-sub fade-up d2 visible">Professional TV mounting with hidden wires, perfectly leveled installs, and the hardware that actually holds. Certified technicians, same-day availability, upfront pricing — serving Los Angeles and surrounding communities.</p>
+          <h1 class="fade-up d1 visible">Marina Del Rey TV mounting,<br />done right where you live.</h1>
+          <p class="hero-sub fade-up d2 visible">Professional installers Professional installers serving Marina Del Rey and surrounding areas — from waterfront condos on the main channel to Del Rey homes and Venice lofts. Hidden wires, stud-verified mounts, same-day availability, upfront pricing.</p>
           <div class="hero-cta-row fade-up d3 visible">
-            <button type="button" class="btn-primary-gold" onclick="scrollToQuote()">
-              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg>
-              Get a Free Quote
-            </button>
-            <a class="btn-ghost-white" href="tel:8185847389" style="color:#ffffff;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-              (818) 584-7389
-            </a>
+            <button type="button" class="btn-primary-gold" onclick="scrollToQuote()"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg>Get a Free Quote</button>
+            <a class="btn-ghost-white" href="tel:8185847389" style="color:#ffffff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>(818) 584-7389</a>
           </div>
           <div class="hero-trust-strip fade-up d4 visible">
             <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor"></path></svg> Professional installers</div>
@@ -75,31 +69,55 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
       </section>
     </div>
 
-    <!-- Proof bar -->
     <section class="proof-bar-outer">
       <div class="container">
         <div class="proof-bar-inner fade-up visible">
-          <div class="proof-cell">
-            <span class="counter" data-target="3800" data-suffix="+">3,800+</span>
-            <span class="proof-lbl">TVs mounted</span>
+          <div class="proof-cell"><span class="counter" data-target="3800" data-suffix="+">3,800+</span><span class="proof-lbl">TVs mounted</span></div>
+          <div class="proof-cell"><span class="counter" data-target="4.9" data-suffix="★" data-decimal="1">4.9★</span><span class="proof-lbl">Average rating</span></div>
+          <div class="proof-cell"><span>5+</span><span class="proof-lbl">Years avg. experience</span></div>
+          <div class="proof-cell"><span>90</span><span class="proof-lbl">Day guarantee</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tvm-local-intro">
+      <div class="container">
+        <div class="tvm-local-grid">
+          <div class="tvm-local-copy">
+            <div class="section-eyebrow" style="color:var(--tvm-accent)">Serving Marina Del Rey</div>
+            <h2 class="section-heading" style="margin:0 0 20px">Condo buildings,<br />done properly.</h2>
+            <p>Marina Del Rey is almost entirely condo and apartment construction — medium and high-rise buildings from the late 1960s through the present day, with significant newer construction along the main channels. The wall types vary by building era: older steel-stud drywall in the 70s and 80s buildings, concrete-frame construction in taller newer towers, and wood-frame in the lower-rise older complexes.</p>
+            <p>Our installers work in Marina del Rey buildings regularly. They know how to navigate building management requirements, work in occupied units without disrupting neighbors, and handle the steel-stud and concrete construction common throughout the area. Where in-wall wire work isn’t permitted by building rules, they install surface raceways that look nearly as clean.</p>
+            <p>We serve all of Marina del Rey and the surrounding Venice, Playa del Rey, and Culver City areas. Professional installers, same professional standard, every building type.</p>
           </div>
-          <div class="proof-cell">
-            <span class="counter" data-target="4.9" data-suffix="★" data-decimal="1">4.9★</span>
-            <span class="proof-lbl">Average rating</span>
-          </div>
-          <div class="proof-cell">
-            <span>5+</span>
-            <span class="proof-lbl">Years avg. experience</span>
-          </div>
-          <div class="proof-cell">
-            <span>90</span>
-            <span class="proof-lbl">Day guarantee</span>
+          <div class="tvm-local-areas">
+            <div class="section-eyebrow" style="color:var(--tvm-accent);margin-bottom:16px">Neighborhoods We Serve</div>
+            <div class="tvm-areas-grid">
+              <span class="tvm-area-pill">Marina del Rey Main Channel</span>
+              <span class="tvm-area-pill">Via Marina</span>
+              <span class="tvm-area-pill">Admiralty Way</span>
+              <span class="tvm-area-pill">Villa Marina</span>
+              <span class="tvm-area-pill">Marina Peninsula</span>
+              <span class="tvm-area-pill">Playa del Rey</span>
+              <span class="tvm-area-pill">Venice</span>
+              <span class="tvm-area-pill">Abbot Kinney</span>
+              <span class="tvm-area-pill">Del Rey</span>
+              <span class="tvm-area-pill">Playa Vista</span>
+              <span class="tvm-area-pill">Culver City</span>
+              <span class="tvm-area-pill">Westchester</span>
+              <span class="tvm-area-pill">Fox Hills</span>
+              <span class="tvm-area-pill">LAX area</span>
+              <span class="tvm-area-pill">Ballona Creek area</span>
+            
+            </div>
+            <p class="tvm-areas-note">Don’t see your building? Call us — we serve all of Marina del Rey and the surrounding area.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Pain section -->
+    <div class="divider--cream"></div>
+
     <section class="pain-section">
       <div class="container">
         <div class="pain-intro fade-up visible">
@@ -108,21 +126,9 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
           <p class="section-body">TV mounting looks straightforward until it isn't. The wrong stud, the wrong anchor, or a bracket that's slightly off-level — and suddenly you're living with a $1,200 decision you regret every time you sit on the couch.</p>
         </div>
         <div class="pain-grid">
-          <div class="pain-card fade-up">
-            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-            <h3>Mounted into drywall, not a stud</h3>
-            <p>The most common DIY mistake — and the most expensive. Drywall anchors rated for 50 lbs holding a 90-lb TV over the couch is not a risk worth taking. A mount that misses the stud pulls out slowly over weeks of thermal expansion and vibration. We locate and verify studs with both a finder and a physical tap before a single screw goes in.</p>
-          </div>
-          <div class="pain-card fade-up d1">
-            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5"></path><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
-            <h3>Cables draped down the wall</h3>
-            <p>A beautifully mounted TV with three cords hanging to the floor defeats the entire purpose. It looks unfinished and signals immediately that the install wasn't professional. Proper wire management means routing cables through the wall or a surface raceway that's painted to match — completely invisible when we leave.</p>
-          </div>
-          <div class="pain-card fade-up d2">
-            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-            <h3>Off-level by just a few degrees</h3>
-            <p>Two degrees off-level sounds negligible. You notice it every single time you look at the screen. And once it's in the wall, correcting it means filling the original holes, waiting for them to cure, sanding, spot-painting, and starting over. We verify level with a digital tool before final tightening.</p>
-          </div>
+          <div class="pain-card fade-up"><div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Mounted into drywall, not a stud</h3><p>The most common DIY mistake — and the most expensive. Drywall anchors rated for 50 lbs holding a 90-lb TV over the couch is not a risk worth taking. A mount that misses the stud pulls out slowly over weeks of thermal expansion and vibration. We locate and verify studs with both a finder and a physical tap before a single screw goes in.</p></div>
+          <div class="pain-card fade-up d1"><div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5"></path><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Cables draped down the wall</h3><p>A beautifully mounted TV with three cords hanging to the floor defeats the entire purpose. It looks unfinished and signals immediately that the install wasn't professional. Proper wire management means routing cables through the wall or a surface raceway that's painted to match — completely invisible when we leave.</p></div>
+          <div class="pain-card fade-up d2"><div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Off-level by just a few degrees</h3><p>Two degrees off-level sounds negligible. You notice it every single time you look at the screen. And once it's in the wall, correcting it means filling the original holes, waiting for them to cure, sanding, spot-painting, and starting over. We verify level with a digital tool before final tightening.</p></div>
         </div>
         <div class="agitate-block fade-up d1 visible">
           <div class="agitate-text">
@@ -130,35 +136,22 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
             <p>A failed mount rarely fails immediately. The bracket holds for three months — then one anchor works loose, the TV tilts, and you're repairing a wall hoping the screen survived. We've remounted hundreds of TVs installed by homeowners and unqualified handymen. The pattern never changes: wrong hardware, wrong placement, no stud check.</p>
           </div>
           <div class="agitate-stats">
-            <div class="agitate-stat fade-up d2 visible">
-              <div class="as-num">62%</div>
-              <div><div class="as-text-label">of DIY TV mounts miss at least one stud</div><div class="as-text-sub">Based on our technicians' re-mount assessments</div></div>
-            </div>
-            <div class="agitate-stat fade-up d3 visible">
-              <div class="as-num">$340</div>
-              <div><div class="as-text-label">average cost to repair a failed self-install</div><div class="as-text-sub">Wall repair + repaint + re-mount adds up fast</div></div>
-            </div>
-            <div class="agitate-stat fade-up d4 visible">
-              <div class="as-num">2°</div>
-              <div><div class="as-text-label">is all it takes to notice a TV is off-level</div><div class="as-text-sub">The human eye detects tilts as small as 1–2 degrees</div></div>
-            </div>
+            <div class="agitate-stat fade-up d2 visible"><div class="as-num">62%</div><div><div class="as-text-label">of DIY TV mounts miss at least one stud</div><div class="as-text-sub">Based on our technicians' re-mount assessments</div></div></div>
+            <div class="agitate-stat fade-up d3 visible"><div class="as-num">$340</div><div><div class="as-text-label">average cost to repair a failed self-install</div><div class="as-text-sub">Wall repair + repaint + re-mount adds up fast</div></div></div>
+            <div class="agitate-stat fade-up d4 visible"><div class="as-num">2°</div><div><div class="as-text-label">is all it takes to notice a TV is off-level</div><div class="as-text-sub">The human eye detects tilts as small as 1–2 degrees</div></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="divider--cream"></div>
+    <div class="divider"></div>
 
-    <!-- Solution section -->
     <section class="solve-section">
       <div class="container">
         <div class="solve-grid">
           <div class="solve-photo-col fade-up">
             <img class="solve-photo" src="/images/tv-mounting-solve.png" alt="TV professionally mounted in modern living room" loading="lazy" width="800" height="520" />
-            <div class="solve-badge">
-              <div class="solve-badge-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg></div>
-              <div><div class="solve-badge-num">4.9★</div><div class="solve-badge-label">TV mounting avg. rating</div></div>
-            </div>
+            <div class="solve-badge"><div class="solve-badge-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg></div><div><div class="solve-badge-num">4.9★</div><div class="solve-badge-label">TV mounting avg. rating</div></div></div>
           </div>
           <div class="solve-copy fade-up d1 visible">
             <div class="section-eyebrow">The Standard We Hold</div>
@@ -179,7 +172,6 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
 
     <div class="divider"></div>
 
-    <!-- Services offered -->
     <section class="services-section">
       <div class="container">
         <div class="services-intro">
@@ -188,22 +180,21 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
           <p class="section-body fade-up d2" style="margin:0 auto;">From fixed and tilting mounts to full-motion arms, in-wall wire concealment, and above-fireplace installs — we handle it all with the right hardware and certified installers who do this every day.</p>
         </div>
         <div class="services-grid">
-          <div class="svc-card fade-up visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M8 22h8M12 18v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Fixed &amp; Tilting Mounts</h3></div><p>Low-profile fixed or tilt-adjustable brackets for any TV up to 100"+, stud-verified and torqued to spec.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up d1 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Full-Motion Articulating Arms</h3></div><p>Extends, swivels, tilts — ideal for corners or multi-seating rooms. Mounted into sufficient structure to handle extended leverage.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up d2 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4 12h4M16 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>In-Wall Wire Concealment</h3></div><p>Cut access plates, fish cables through wall cavity, install low-voltage wall plates. Code-compliant, completely clean result.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up d3 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 22h16M8 22V12h8v10M4 12l8-8 8 8M12 4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Above Fireplace Install</h3></div><p>Stone, brick, tile surrounds need masonry anchors and a steeper tilt. We've completed hundreds across LA and bring the right hardware for every surround material.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18h18M3 14h18M3 10h6M12 10h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Soundbar &amp; Speaker Mounting</h3></div><p>Soundbar flush under the TV, audio cable through the wall, surround speakers at correct angle and height for your room.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up d1 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="8" height="14" rx="1" stroke="currentColor" stroke-width="1.5"></rect><rect x="14" y="4" width="8" height="14" rx="1" stroke="currentColor" stroke-width="1.5"></rect></svg></div><h3>Dual &amp; Multi-Monitor Setup</h3></div><p>Home office arms, trading setups, commercial displays. Precise alignment, cable management for multiple feeds, structural mounting for combined weight.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up d2 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 2v4M12 18v4M4 12h4M16 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Outdoor TV Mounting</h3></div><p>Marine-grade mounts, weatherproof conduit or direct-burial cable, every penetration sealed against moisture.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up d3 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5"></path></svg></div><h3>Concrete &amp; Brick Wall Installs</h3></div><p>Hammer-drill bits, sleeve anchors, correct torque spec. We carry masonry equipment as standard — not an upsell.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
-          <div class="svc-card fade-up visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Unmounting &amp; Remounting</h3></div><p>Moving? Repainting? Upgrading? We unmount cleanly, patch as needed, remount with stud verification and a clean, level result.</p><a class="svc-card-link" href="/services/tv-mounting/#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M8 22h8M12 18v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Fixed &amp; Tilting Mounts</h3></div><p>Low-profile fixed or tilt-adjustable brackets for any TV up to 100"+, stud-verified and torqued to spec.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up d1 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Full-Motion Articulating Arms</h3></div><p>Extends, swivels, tilts — ideal for corners or multi-seating rooms. Mounted into sufficient structure to handle extended leverage.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up d2 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4 12h4M16 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>In-Wall Wire Concealment</h3></div><p>Cut access plates, fish cables through wall cavity, install low-voltage wall plates. Code-compliant, completely clean result.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up d3 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 22h16M8 22V12h8v10M4 12l8-8 8 8M12 4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Above Fireplace Install</h3></div><p>Stone, brick, tile surrounds need masonry anchors and a steeper tilt. We've completed hundreds across LA and bring the right hardware for every surround material.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18h18M3 14h18M3 10h6M12 10h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Soundbar &amp; Speaker Mounting</h3></div><p>Soundbar flush under the TV, audio cable through the wall, surround speakers at correct angle and height for your room.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up d1 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="8" height="14" rx="1" stroke="currentColor" stroke-width="1.5"></rect><rect x="14" y="4" width="8" height="14" rx="1" stroke="currentColor" stroke-width="1.5"></rect></svg></div><h3>Dual &amp; Multi-Monitor Setup</h3></div><p>Home office arms, trading setups, commercial displays. Precise alignment, cable management for multiple feeds, structural mounting for combined weight.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up d2 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 2v4M12 18v4M4 12h4M16 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><h3>Outdoor TV Mounting</h3></div><p>Marine-grade mounts, weatherproof conduit or direct-burial cable, every penetration sealed against moisture.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up d3 visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5"></path></svg></div><h3>Concrete &amp; Brick Wall Installs</h3></div><p>Hammer-drill bits, sleeve anchors, correct torque spec. We carry masonry equipment as standard — not an upsell.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          <div class="svc-card fade-up visible"><div class="svc-card-top"><div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Unmounting &amp; Remounting</h3></div><p>Moving? Repainting? Upgrading? We unmount cleanly, patch as needed, remount with stud verification and a clean, level result.</p><a class="svc-card-link" href="#quote" onclick="scrollToQuote(event)">Get a quote <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
         </div>
       </div>
     </section>
 
     <div class="divider--cream"></div>
 
-    <!-- Process -->
     <section class="process-section">
       <div class="container">
         <div class="process-intro">
@@ -212,7 +203,7 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
           <p class="section-body fade-up d2" style="margin:0 auto;">Four clear steps — quote, match, install, guarantee. No surprises.</p>
         </div>
         <div class="process-steps fade-up d1">
-          <div class="process-step"><div class="ps-num">01</div><div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="ps-pill">Step 01</span><div class="ps-title">Request your quote</div><div class="ps-text">Fill out the 60-second form. TV size, mount type, wall, wire concealment. We follow up within the hour with a firm price — not a range.</div></div>
+          <div class="process-step"><div class="ps-num">01</div><div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="ps-pill">Step 01</span><div class="ps-title">Request your quote</div><div class="ps-text">Fill out the 60-second form. TV size, wall, wire concealment. We follow up within the hour with a firm price — not a range.</div></div>
           <div class="process-step"><div class="ps-num">02</div><div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6v6c0 5.5 4 9.5 9 11 5-1.5 9-5.5 9-11V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="ps-pill">Step 02</span><div class="ps-title">Confirm your installer</div><div class="ps-text">We match you with a professional AV installer and send their name and arrival window. Same-day slots confirmed when you book.</div></div>
           <div class="process-step"><div class="ps-num">03</div><div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94L5.42 20.11a2.12 2.12 0 01-3-3L9.96 9.48a6 6 0 017.94-7.94L14.7 4.9v1.4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="ps-pill">Step 03</span><div class="ps-title">The install</div><div class="ps-text">Arrives with every tool. Locates studs, confirms placement with you, mounts bracket, hangs TV, routes all cables, verifies level, cleans up, walks you through the result.</div></div>
           <div class="process-step"><div class="ps-num">04</div><div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="ps-pill">Step 04</span><div class="ps-title">Guaranteed for 90 days</div><div class="ps-text">Anything shifts, loosens, or isn't level within 90 days — one call. We come back and fix it at no charge.</div></div>
@@ -222,18 +213,18 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
 
     <div class="divider"></div>
 
-    <!-- Reviews -->
     <section class="reviews-section">
       <div class="container">
         <div class="reviews-intro">
           <div class="section-eyebrow fade-up">Verified Reviews</div>
           <h2 class="section-heading fade-up d1">What customers say after the install.</h2>
-          <p class="section-body fade-up d2" style="margin:0 auto;">Real installs, real results — from Santa Monica to Burbank and beyond.</p>
+          <p class="section-body fade-up d2" style="margin:0 auto;">Real installs from real Marina del Rey customers — waterfront condos, concrete towers, and channel-side buildings done right.</p>
         </div>
         <div class="reviews-grid">
-          <div class="review-card fade-up visible"><span class="review-verified">✓ Verified</span><div class="review-stars">★★★★★</div><div class="review-quote">"He found the studs on the first pass, confirmed placement with me, and had the TV up and wires hidden in under an hour. It looks like it was built into the wall. I've had guests who didn't even notice there was a mount — they thought it was a built-in."</div><div class="review-author"><div class="review-initials">AK</div><div><strong>Andrew K.</strong><div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> Google Review · Santa Monica, CA</div></div></div></div>
-          <div class="review-card fade-up d1 visible"><span class="review-verified">✓ Verified</span><div class="review-stars">★★★★★</div><div class="review-quote">"Above the fireplace on a stone surround — I was nervous about it. He explained exactly what hardware he'd use, showed me the anchor ratings before starting, and the result is perfect. Level, zero cables, soundbar mounted underneath. It looks like a showroom."</div><div class="review-author"><div class="review-initials">LP</div><div><strong>Laura P.</strong><div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> Google Review · Beverly Hills, CA</div></div></div></div>
-          <div class="review-card fade-up d2 visible"><span class="review-verified">✓ Verified</span><div class="review-stars">★★★★★</div><div class="review-quote">"I had tried to do it myself and the mount was off. I could see the tilt every time I watched. They unmounted it, patched the holes, found the studs properly, and remounted in two hours. Now I understand what level actually looks like. Should have booked them first."</div><div class="review-author"><div class="review-initials">RT</div><div><strong>Ryan T.</strong><div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> Google Review · Burbank, CA</div></div></div></div>
+
+          <div class="review-card fade-up visible"><span class="review-verified">✓ Verified</span><div class="review-stars">★★★★★</div><div class="review-quote">“Steel-stud condo building — he confirmed the stud layout before drilling, the TV is perfectly level, and the wires are completely hidden. Quick, clean, zero mess. Building management was fine with the whole thing.”</div><div class="review-author"><div class="review-initials">LP</div><div><strong>Laura P.</strong><div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> Google Review · Marina del Rey Main Channel</div></div></div></div>
+          <div class="review-card fade-up d1 visible"><span class="review-verified">✓ Verified</span><div class="review-stars">★★★★★</div><div class="review-quote">“Newer concrete-frame tower — he came prepared with masonry anchors and the right hardware for concrete. Explained what he was doing before drilling and the result is solid. TV looks like it was always supposed to be there.”</div><div class="review-author"><div class="review-initials">JS</div><div><strong>Jason S.</strong><div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> Google Review · Via Marina, Marina del Rey</div></div></div></div>
+          <div class="review-card fade-up d2 visible"><span class="review-verified">✓ Verified</span><div class="review-stars">★★★★★</div><div class="review-quote">“Older building where in-wall cable work wasn’t allowed. He installed a surface raceway along the baseboard and it genuinely looks intentional — like part of the room design. Way better than cables hanging down the wall.”</div><div class="review-author"><div class="review-initials">KR</div><div><strong>Kelly R.</strong><div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> Google Review · Marina Peninsula</div></div></div></div>
         </div>
         <div class="stats-strip fade-up d1 visible">
           <div class="ss-cell"><span class="ss-num counter" data-target="3800" data-suffix="+">3,800+</span><span class="ss-lbl">TVs mounted</span></div>
@@ -246,7 +237,6 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
 
     <div class="divider--cream"></div>
 
-    <!-- Guarantee strip -->
     <section class="guarantee-strip">
       <div class="container">
         <div class="guarantee-inner">
@@ -257,7 +247,6 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq-section">
       <div class="container">
         <div class="faq-intro">
@@ -272,20 +261,21 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">What if there are no studs where I want the TV?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>We always prefer to hit at least one stud; for larger TVs we use two. If the ideal viewing spot falls between studs, we have options: a mount that spans to the nearest studs, or for certain walls we can use heavy-duty toggle anchors rated for the load when studs aren't available. We'll assess on site and never install into drywall alone for a heavy TV.</p></div></div>
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">How long does a TV mounting take?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Most single-TV installs with wire concealment take 1–2 hours from start to cleanup. Full-motion mounts or above-fireplace installs can run a bit longer. We'll give you a window when we confirm the appointment; we arrive with all tools and hardware so there's no second trip.</p></div></div>
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Can you mount a TV above a fireplace?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes. We've done hundreds of above-fireplace installs on stone, brick, tile, and drywall surrounds. We use masonry anchors and the correct drill bits; we also typically use a tilting mount to improve viewing angle. Heat isn't usually an issue with modern TVs when the mantel provides separation, but we can discuss your specific setup.</p></div></div>
+            <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Do you work in Marina del Rey condo and apartment buildings?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes — condo and apartment buildings are the majority of our Marina del Rey work. We’re familiar with building management requirements, typically carry proof of insurance for building office requests, and work quietly in occupied buildings. We handle steel-stud, concrete, and wood-frame construction depending on the building era. Where in-wall wire work is restricted, we install surface raceways that look clean and professional.</p></div></div>
           </div>
           <div class="faq-col">
-            <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Do you bring all the tools and hardware?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes. Our technicians arrive with every tool needed: stud finders, levels, drills, bits, anchors, mounts, and cable management supplies. You don't need to provide anything except the TV and a clear area. We'll confirm mount choice and any add-ons (e.g. soundbar bracket) before the visit.</p></div></div>
+            <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Do you bring all the tools and hardware?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes. Our installers arrive with every tool needed: stud finders, levels, drills, bits, anchors, mounts, and cable management supplies. You don't need to provide anything except the TV and a clear area. We'll confirm mount choice and any add-ons (e.g. soundbar bracket) before the visit.</p></div></div>
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">What TV sizes do you mount?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>We mount everything from small displays (32" and up) to large formats (85", 90", 100" and beyond). The mount and hardware are sized to your TV's weight and VESA pattern. For very large or heavy TVs we use two-person handling and appropriate brackets — just tell us the size when you request a quote.</p></div></div>
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Can you fix a mount someone else installed?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes. We often remount TVs that were installed incorrectly — wrong stud placement, off-level, or failing hardware. We can unmount, patch holes if needed, and reinstall with stud verification and a clean finish. You get a fresh quote for the re-mount and any wall repair.</p></div></div>
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Do you work in apartments?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes. We work in apartments and condos regularly. In-wall wire concealment may be limited by building rules or construction (e.g. fire blocks); we can use surface raceways where in-wall isn't allowed. We're insured and professional; building management is usually fine when we're hired by the tenant.</p></div></div>
             <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">Is your work guaranteed?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Yes. Every install is covered by our 90-day workmanship guarantee. If anything shifts, loosens, or isn't level within 90 days, we come back and fix it at no charge. One call — no forms or runaround. We also stand behind the quote: the price we give you is the price you pay.</p></div></div>
-            <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">How do I book?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Fill out the quote form on this page (TV size, mount type, ZIP, timing, contact info) or call (818) 584-7389. We respond within an hour with a firm price and availability. Same-day slots are often available when you book before noon. Once you confirm, we'll send your installer's name and arrival window.</p></div></div>
+            <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">How do I book?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Fill out the quote form on this page or call (818) 584-7389. We respond within an hour with a firm price and availability. Same-day slots are often available when you book before noon. Once you confirm, we'll send your installer's name and arrival window.</p></div></div>
+            <div class="faq-item"><button type="button" class="faq-q"><span class="faq-question-text">My Marina del Rey building has older steel-stud construction — is that a problem?</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button><div class="faq-answer"><p>Not at all. Steel-stud construction is the most common wall type we work with in Marina del Rey. We use a stud finder calibrated for metal studs and always verify physically before drilling. Steel studs are generally at 16" or 24" centers and we select mount hardware and anchors rated specifically for the gauge of stud we find. The result is just as solid as a wood-frame mount when done correctly.</p></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quote form -->
     <section id="quote" class="cta-section">
       <div class="container">
         <div class="cta-grid">
@@ -293,10 +283,7 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
             <div class="section-eyebrow">Get Your Quote</div>
             <h2 class="section-heading">Ready for a TV that looks like it belongs there?</h2>
             <p>Tell us your TV size, ZIP code, and when you need it done. We'll respond within an hour with a firm price and same-day or next-available options.</p>
-            <div class="urgency-callout">
-              <div class="urgency-callout-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-              <div><div class="urgency-callout-title">Same-day slots fill quickly</div><div class="urgency-callout-text">Book before noon for best same-day availability. We'll confirm your window when we reply.</div></div>
-            </div>
+            <div class="urgency-callout"><div class="urgency-callout-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><div class="urgency-callout-title">Same-day slots fill quickly</div><div class="urgency-callout-text">Book before noon for best same-day availability. We'll confirm your window when we reply.</div></div></div>
             <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><div><strong>Response within 1 hour</strong><span>We reply with a firm quote, not a range.</span></div></div>
             <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><strong>Professional TV mounting installer</strong><span>5+ years experience, background-checked, insured.</span></div></div>
             <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><strong>Your data is never sold</strong><span>One match — no spam, no lead sales.</span></div></div>
@@ -346,44 +333,42 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
       </div>
     </section>
 
-    <!-- Locations hub -->
     <section class="locations-section">
       <div class="container">
         <div class="locations-intro">
           <div class="section-eyebrow fade-up visible">Service Areas</div>
           <h2 class="section-heading fade-up d1 visible">TV mounting service near you.</h2>
-          <p class="section-body fade-up d2 visible" style="margin:0 auto;">We serve Los Angeles and surrounding communities with the same certified installers, same pricing, and the same standard of work — wherever you are.</p>
+          <p class="section-body fade-up d2 visible" style="margin:0 auto;">We serve Los Angeles and surrounding communities with the same professional installers, same pricing, and the same standard of work — wherever you are.</p>
         </div>
         <div class="locations-grid fade-up d1 visible">
           {locations.map((loc) => (
-            <a class="loc-card" href={loc.href}>
+            <a class:list={['loc-card', { 'loc-card--current': loc.isCurrent }]} href={loc.href} aria-current={loc.isCurrent ? 'page' : undefined}>
               <div class="loc-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"></circle></svg></div>
               <span class="loc-card-name">{loc.name}</span>
               <span class="loc-card-sub">Serving {loc.name} and surrounding areas</span>
-              <span class="loc-card-link">View page <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+              <span class="loc-card-link">{loc.isCurrent ? 'Current page' : <Fragment>View page <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></Fragment>}</span>
             </a>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="final-cta">
       <div class="container">
-        <div class="section-eyebrow">Your TV Deserves Better</div>
-        <h2>Professional mounting, done right the first time.</h2>
-        <p>3,800+ TVs mounted across Los Angeles. Same-day availability. Certified installers. Clean, level, built to hold.</p>
+        <div class="section-eyebrow">Marina Del Rey TV Mounting</div>
+        <h2>Same-day service across all of Marina Del Rey.</h2>
+        <p>3,800+ TVs mounted across the LA area. One call, one professional installer, one clean result — in every Marina del Rey building.</p>
         <div class="final-cta-btns">
           <button type="button" class="btn-primary-gold" onclick="scrollToQuote()"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Quote</button>
-          <a class="btn-ghost-white-final" href="tel:8185847389" style="color:#ffffff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-            </svg>
-            Call (818) 584-7389
-          </a>
+          <a class="btn-ghost-white-final" href="tel:8185847389" style="color:#ffffff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>Call (818) 584-7389</a>
         </div>
       </div>
     </section>
+
+    <div class="sticky-mobile-cta">
+      <button type="button" class="btn-primary-gold" onclick="scrollToQuote()">Get a Free Quote</button>
+      <a class="btn-call" href="tel:8185847389" aria-label="Call"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg></a>
+    </div>
 
   </div>
 
@@ -393,7 +378,6 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
         entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
       }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
       document.querySelectorAll('.tvm-page .fade-up').forEach(function(el) { obs.observe(el); });
-
       function animateCounter(el) {
         var target = parseFloat(el.dataset.target);
         var decimals = parseInt(el.dataset.decimal || '0', 10);
@@ -403,9 +387,7 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
         function step(now) {
           var p = Math.min((now - start) / duration, 1);
           var e = 1 - Math.pow(1 - p, 3);
-          el.textContent = decimals
-            ? (e * target).toFixed(decimals) + suffix
-            : Math.floor(e * target).toLocaleString() + suffix;
+          el.textContent = decimals ? (e * target).toFixed(decimals) + suffix : Math.floor(e * target).toLocaleString() + suffix;
           if (p < 1) requestAnimationFrame(step);
           else el.textContent = decimals ? target.toFixed(decimals) + suffix : target.toLocaleString() + suffix;
         }
@@ -413,14 +395,10 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
       }
       var cObs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            e.target.querySelectorAll('.counter').forEach(animateCounter);
-            cObs.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.querySelectorAll('.counter').forEach(animateCounter); cObs.unobserve(e.target); }
         });
       }, { threshold: 0.25 });
       document.querySelectorAll('.tvm-page .stats-strip, .tvm-page .proof-bar-inner').forEach(function(el) { cObs.observe(el); });
-
       document.querySelectorAll('.tvm-page .faq-q').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var item = btn.closest('.faq-item');
@@ -429,7 +407,6 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
           if (!open) item.classList.add('open');
         });
       });
-
       window.nextStep = function(step) {
         if (step === 2) {
           if (!document.getElementById('f-tvsize').value) { alert('Please select a TV size.'); return; }
@@ -440,13 +417,8 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
         document.querySelectorAll('.tvm-page .prog-step').forEach(function(el, i) {
           el.classList.remove('active', 'done');
           var dot = el.querySelector('.prog-dot');
-          if (i + 1 < step) {
-            el.classList.add('done');
-            dot.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-          } else {
-            dot.textContent = i + 1;
-            if (i + 1 === step) el.classList.add('active');
-          }
+          if (i + 1 < step) { el.classList.add('done'); dot.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
+          else { dot.textContent = i + 1; if (i + 1 === step) el.classList.add('active'); }
         });
       };
       window.selectTiming = function(el) {
@@ -467,7 +439,6 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
         if (e) e.preventDefault();
         document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
-
       (function() {
         var banner = document.querySelector('.tvm-page .urgency-banner');
         if (!banner) return;
@@ -477,17 +448,11 @@ const locations = TV_MOUNTING_CITIES.map(({ slug, name }) => ({
           if (shouldBeBottom && !isBottom) {
             isBottom = true;
             banner.classList.add('tvm-banner-fading');
-            setTimeout(function() {
-              banner.classList.add('tvm-banner-bottom');
-              banner.classList.remove('tvm-banner-fading');
-            }, 250);
+            setTimeout(function() { banner.classList.add('tvm-banner-bottom'); banner.classList.remove('tvm-banner-fading'); }, 250);
           } else if (!shouldBeBottom && isBottom) {
             isBottom = false;
             banner.classList.add('tvm-banner-fading');
-            setTimeout(function() {
-              banner.classList.remove('tvm-banner-bottom');
-              banner.classList.remove('tvm-banner-fading');
-            }, 250);
+            setTimeout(function() { banner.classList.remove('tvm-banner-bottom'); banner.classList.remove('tvm-banner-fading'); }, 250);
           }
         }, { passive: true });
       })();

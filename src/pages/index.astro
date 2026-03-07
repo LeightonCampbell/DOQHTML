@@ -82,11 +82,6 @@ const canonical = 'https://www.dealsofquality.com/';
     </section>
   </div>
 
-  <!-- Floating "Get a Free Quote" — mobile bottom bar only -->
-  <a href="#" class="floating-quote-cta-mobile lg:hidden no-underline" onclick="openModal(event,''); return false;" aria-label="Get a Free Quote">
-    Get a Free Quote
-  </a>
-
   <!-- Trust bar (prototype: gold icons, #fff bg) -->
   <div class="home-fade border-t border-b border-[#E8E5E0] py-5 px-6 flex items-center justify-center gap-12 flex-wrap bg-white">
     <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
@@ -114,144 +109,6 @@ const canonical = 'https://www.dealsofquality.com/';
     </div>
     <p class="text-sm text-[#78350f]"><strong class="font-semibold text-[#92400e]">Our Quality Guarantee — No Questions Asked.</strong> Not satisfied? We'll come back and make it right, free of charge. Every job, every time.</p>
   </div>
-
-  <!-- Multi-step inline quote form (prototype) -->
-  <section id="book" class="quote-section bg-[#F7F3EC] py-20">
-    <div class="container-max max-w-[1100px] mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[72px] items-start">
-        <div class="home-fade quote-copy">
-          <p class="text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6] mb-3.5">Get a Free Quote</p>
-          <h2 class="font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">Tell us what you need. We'll handle the rest.</h2>
-          <p class="text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mb-8">Takes 60 seconds. No commitment, no spam. A real person follows up within the hour to confirm your appointment and match you with the right pro.</p>
-          <div class="flex flex-col gap-3.5 quote-trust">
-            {[
-              { label: 'Response within 1 hour', sub: 'A real team member reviews every submission.' },
-              { label: 'Matched by skill, not just availability', sub: 'We pick the right professional for your specific project.' },
-              { label: 'Transparent pricing upfront', sub: 'Full quote before work begins. No hidden fees, ever.' },
-              { label: 'Our Quality Guarantee', sub: "We stand behind every job, no questions asked." },
-            ].map((item) => (
-              <div class="bt-row flex items-start gap-3">
-                <div class="bt-icon w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#FEF3C7] border border-[#fde68a]">
-                  <svg class="w-4 h-4 text-[#D97706]" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div>
-                  <div class="bt-label text-sm font-medium mb-0.5">{item.label}</div>
-                  <div class="bt-sub text-[13px] text-[#6B6560]">{item.sub}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="home-fade home-d2 quote-form-card bg-white border border-[#EDE8DF] rounded-[20px] p-9 shadow-[0_8px_36px_rgba(0,0,0,0.07)]">
-          <div class="progress-wrap mb-7">
-            <div class="progress-steps flex items-center gap-0 mb-2.5">
-              <div class="progress-step active" id="ps1"><div class="ps-dot">1</div><span class="ps-label">Service &amp; ZIP</span></div>
-              <div class="progress-step" id="ps2"><div class="ps-dot">2</div><span class="ps-label">Timing</span></div>
-              <div class="progress-step" id="ps3"><div class="ps-dot">3</div><span class="ps-label">Contact</span></div>
-            </div>
-          </div>
-
-          <div id="inline-form-wrap">
-            <!-- Step 1: Service + ZIP -->
-            <div class="form-step active" id="is1">
-              <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Service &amp; Location</div>
-              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">Tell us what you need and where you are.</div>
-              <div class="form-group mb-4">
-                <label for="i-service" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Service Needed</label>
-                <select id="i-service" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10 appearance-none bg-no-repeat bg-[length:12px] bg-[right_12px_center] pr-9" style="background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22%3E%3Cpath d=%22M2 4l4 4 4-4%22 stroke=%22%236B6560%22 stroke-width=%221.5%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E')">
-                  <option value="" disabled selected>Select a service…</option>
-                  <option>House Cleaning</option>
-                  <option>Handyman Services</option>
-                  <option>Plumbing Services</option>
-                  <option>Electrical Services</option>
-                  <option>TV Mounting</option>
-                  <option>Security Camera Setup</option>
-                  <option>Smart Home Integration</option>
-                  <option>Wi-Fi &amp; Networking</option>
-                  <option>Other / Not Listed</option>
-                </select>
-              </div>
-              <div class="form-group mb-4">
-                <label for="i-zip" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">ZIP Code</label>
-                <input id="i-zip" type="text" placeholder="e.g. 90210" maxlength="5" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
-              </div>
-              <button type="button" onclick="inlineNext(2)" class="btn-next-home w-full bg-[#0073e6] text-white border-0 rounded-[10px] py-3.5 text-[15px] font-medium cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#0058b0] hover:-translate-y-px transition-all">
-                Continue <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-
-            <!-- Step 2: Timing + details -->
-            <div class="form-step" id="is2">
-              <button type="button" onclick="inlineNext(1)" class="btn-back-home bg-transparent border-0 text-[#6B6560] text-[13px] cursor-pointer flex items-center gap-1.5 mb-4 p-0 hover:text-[#141210]">
-                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back
-              </button>
-              <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Timing &amp; Details</div>
-              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">When do you need service, and any important details?</div>
-              <div class="timing-options grid grid-cols-3 gap-2.5 mb-4 max-[360px]:grid-cols-1" id="inlineTimingGroup">
-                <div class="timing-opt border-[1.5px] border-[#E8E5E0] rounded-xl py-3.5 px-2.5 text-center cursor-pointer transition-all bg-[#FAFAF8] hover:border-[#0073e6] hover:bg-[#E6F2FF]" data-val="As soon as possible" onclick="selectInlineTiming(this)">
-                  <span class="timing-opt-icon block text-xl mb-1.5">⚡</span>
-                  <span class="timing-opt-label text-[13px] font-medium block">As soon as possible</span>
-                </div>
-                <div class="timing-opt border-[1.5px] border-[#E8E5E0] rounded-xl py-3.5 px-2.5 text-center cursor-pointer transition-all bg-[#FAFAF8] hover:border-[#0073e6] hover:bg-[#E6F2FF]" data-val="Within a week" onclick="selectInlineTiming(this)">
-                  <span class="timing-opt-icon block text-xl mb-1.5">📅</span>
-                  <span class="timing-opt-label text-[13px] font-medium block">Within a week</span>
-                </div>
-                <div class="timing-opt border-[1.5px] border-[#E8E5E0] rounded-xl py-3.5 px-2.5 text-center cursor-pointer transition-all bg-[#FAFAF8] hover:border-[#0073e6] hover:bg-[#E6F2FF]" data-val="Flexible timing" onclick="selectInlineTiming(this)">
-                  <span class="timing-opt-icon block text-xl mb-1.5">🕐</span>
-                  <span class="timing-opt-label text-[13px] font-medium block">Flexible timing</span>
-                </div>
-              </div>
-              <div class="form-group mb-4">
-                <label for="i-notes" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Tell us about your project <span class="text-[#6B6560] font-normal">(optional)</span></label>
-                <textarea id="i-notes" rows="3" placeholder="Describe your project, any specific requirements, or questions you have…" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10 resize-y"></textarea>
-              </div>
-              <button type="button" onclick="inlineNext(3)" class="btn-next-home w-full bg-[#0073e6] text-white border-0 rounded-[10px] py-3.5 text-[15px] font-medium cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#0058b0] hover:-translate-y-px transition-all">
-                Continue <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-
-            <!-- Step 3: Contact -->
-            <div class="form-step" id="is3">
-              <button type="button" onclick="inlineNext(2)" class="btn-back-home bg-transparent border-0 text-[#6B6560] text-[13px] cursor-pointer flex items-center gap-1.5 mb-4 p-0 hover:text-[#141210]">
-                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back
-              </button>
-              <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Your Contact Info</div>
-              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">How should we reach you to confirm your appointment?</div>
-              <div class="form-group mb-4">
-                <label for="i-name" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Full Name</label>
-                <input id="i-name" type="text" placeholder="Jane Smith" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
-              </div>
-              <div class="form-group mb-4">
-                <label for="i-email" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Email Address</label>
-                <input id="i-email" type="email" placeholder="jane@example.com" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
-              </div>
-              <div class="form-group mb-4">
-                <label for="i-phone" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Phone Number</label>
-                <input id="i-phone" type="tel" placeholder="(555) 000-0000" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
-              </div>
-              <button type="button" id="inline-submit-btn" onclick="submitInline()" class="btn-next-home gold w-full bg-[#F59E0B] text-[#141210] border-0 rounded-[10px] py-3.5 text-[15px] font-semibold cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#D97706] hover:text-white hover:-translate-y-px transition-all">
-                Get Free Quote <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <p class="text-[11px] text-[#6B6560] text-center mt-3 flex items-center justify-center gap-1.5">
-                <svg class="w-3 h-3 text-[#16a34a] flex-shrink-0" viewBox="0 0 14 14" fill="none"><path d="M7 1L3 2.5v4c0 2.5 2 4.5 4 5 2-.5 4-2.5 4-5v-4L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 7l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Your information is private and never sold to third parties.
-              </p>
-            </div>
-          </div>
-
-          <div class="form-success hidden text-center py-6" id="inline-success">
-            <div class="w-[60px] h-[60px] rounded-full bg-[#dcfce7] flex items-center justify-center mx-auto mb-4">
-              <svg class="w-[30px] h-[30px] text-[#16a34a]" viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6 12-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h3 class="font-display text-2xl mb-2.5 text-[#141210]">You're all set!</h3>
-            <p class="text-sm text-[#6B6560] leading-[1.65]">We received your request and will follow up within the hour to confirm your appointment and match you with the right professional.</p>
-            <p class="mt-3 text-[13px]">Need faster? Call us: <a href="tel:8185847389" class="text-[#0073e6] font-medium">(818) 584-7389</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <div class="h-px bg-[#E8E5E0]" aria-hidden="true"></div>
 
@@ -390,7 +247,7 @@ const canonical = 'https://www.dealsofquality.com/';
           </div>
         ))}
       </div>
-      <div class="home-fade home-d1 grid grid-cols-1 sm:grid-cols-3 gap-0.5 mt-13 border border-[#E8E5E0] rounded-2xl overflow-hidden bg-[#E8E5E0]">
+      <div class="home-fade home-d1 grid grid-cols-1 sm:grid-cols-3 gap-0.5 mt-2.5 border border-[#E8E5E0] rounded-2xl overflow-hidden bg-[#E8E5E0]">
         <div class="bg-[#FAFAF8] py-8 px-6 text-center">
           <div class="font-display text-[44px] leading-none mb-1.5">10,000+</div>
           <div class="text-[13px] text-[#6B6560]">Jobs completed</div>
@@ -408,6 +265,144 @@ const canonical = 'https://www.dealsofquality.com/';
   </section>
 
   <div class="h-px bg-[#E8E5E0]" aria-hidden="true"></div>
+
+  <!-- Multi-step inline quote form (prototype) -->
+  <section id="book" class="quote-section bg-[#F7F3EC] py-20">
+    <div class="container-max max-w-[1100px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[72px] items-start">
+        <div class="home-fade quote-copy">
+          <p class="text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6] mb-3.5">Get a Free Quote</p>
+          <h2 class="font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">Tell us what you need. We'll handle the rest.</h2>
+          <p class="text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mb-8">Takes 60 seconds. No commitment, no spam. A real person follows up within the hour to confirm your appointment and match you with the right pro.</p>
+          <div class="flex flex-col gap-3.5 quote-trust">
+            {[
+              { label: 'Response within 1 hour', sub: 'A real team member reviews every submission.' },
+              { label: 'Matched by skill, not just availability', sub: 'We pick the right professional for your specific project.' },
+              { label: 'Transparent pricing upfront', sub: 'Full quote before work begins. No hidden fees, ever.' },
+              { label: 'Our Quality Guarantee', sub: "We stand behind every job, no questions asked." },
+            ].map((item) => (
+              <div class="bt-row flex items-start gap-3">
+                <div class="bt-icon w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#FEF3C7] border border-[#fde68a]">
+                  <svg class="w-4 h-4 text-[#D97706]" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <div class="bt-label text-sm font-medium mb-0.5">{item.label}</div>
+                  <div class="bt-sub text-[13px] text-[#6B6560]">{item.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="home-fade home-d2 quote-form-card bg-white border border-[#EDE8DF] rounded-[20px] p-9 shadow-[0_8px_36px_rgba(0,0,0,0.07)]">
+          <div class="progress-wrap mb-7">
+            <div class="progress-steps flex items-center gap-0 mb-2.5">
+              <div class="progress-step active" id="ps1"><div class="ps-dot">1</div><span class="ps-label">Service &amp; ZIP</span></div>
+              <div class="progress-step" id="ps2"><div class="ps-dot">2</div><span class="ps-label">Timing</span></div>
+              <div class="progress-step" id="ps3"><div class="ps-dot">3</div><span class="ps-label">Contact</span></div>
+            </div>
+          </div>
+
+          <div id="inline-form-wrap">
+            <!-- Step 1: Service + ZIP -->
+            <div class="form-step active" id="is1">
+              <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Service &amp; Location</div>
+              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">Tell us what you need and where you are.</div>
+              <div class="form-group mb-4">
+                <label for="i-service" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Service Needed</label>
+                <select id="i-service" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10 appearance-none bg-no-repeat bg-[length:12px] bg-[right_12px_center] pr-9" style="background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22%3E%3Cpath d=%22M2 4l4 4 4-4%22 stroke=%22%236B6560%22 stroke-width=%221.5%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E')">
+                  <option value="" disabled selected>Select a service…</option>
+                  <option>House Cleaning</option>
+                  <option>Handyman Services</option>
+                  <option>Plumbing Services</option>
+                  <option>Electrical Services</option>
+                  <option>TV Mounting</option>
+                  <option>Security Camera Setup</option>
+                  <option>Smart Home Integration</option>
+                  <option>Wi-Fi &amp; Networking</option>
+                  <option>Other / Not Listed</option>
+                </select>
+              </div>
+              <div class="form-group mb-4">
+                <label for="i-zip" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">ZIP Code</label>
+                <input id="i-zip" type="text" placeholder="e.g. 90210" maxlength="5" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
+              </div>
+              <button type="button" onclick="inlineNext(2)" class="btn-next-home w-full bg-[#0073e6] text-white border-0 rounded-[10px] py-3.5 text-[15px] font-medium cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#0058b0] hover:-translate-y-px transition-all">
+                Continue <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <!-- Step 2: Timing + details -->
+            <div class="form-step" id="is2">
+              <button type="button" onclick="inlineNext(1)" class="btn-back-home bg-transparent border-0 text-[#6B6560] text-[13px] cursor-pointer flex items-center gap-1.5 mb-4 p-0 hover:text-[#141210]">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back
+              </button>
+              <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Timing &amp; Details</div>
+              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">When do you need service, and any important details?</div>
+              <div class="timing-options grid grid-cols-3 gap-2.5 mb-4 max-[360px]:grid-cols-1" id="inlineTimingGroup">
+                <div class="timing-opt border-[1.5px] border-[#E8E5E0] rounded-xl py-3.5 px-2.5 text-center cursor-pointer transition-all bg-[#FAFAF8] hover:border-[#0073e6] hover:bg-[#E6F2FF]" data-val="As soon as possible" onclick="selectInlineTiming(this)">
+                  <span class="timing-opt-icon block text-xl mb-1.5">⚡</span>
+                  <span class="timing-opt-label text-[13px] font-medium block">As soon as possible</span>
+                </div>
+                <div class="timing-opt border-[1.5px] border-[#E8E5E0] rounded-xl py-3.5 px-2.5 text-center cursor-pointer transition-all bg-[#FAFAF8] hover:border-[#0073e6] hover:bg-[#E6F2FF]" data-val="Within a week" onclick="selectInlineTiming(this)">
+                  <span class="timing-opt-icon block text-xl mb-1.5">📅</span>
+                  <span class="timing-opt-label text-[13px] font-medium block">Within a week</span>
+                </div>
+                <div class="timing-opt border-[1.5px] border-[#E8E5E0] rounded-xl py-3.5 px-2.5 text-center cursor-pointer transition-all bg-[#FAFAF8] hover:border-[#0073e6] hover:bg-[#E6F2FF]" data-val="Flexible timing" onclick="selectInlineTiming(this)">
+                  <span class="timing-opt-icon block text-xl mb-1.5">🕐</span>
+                  <span class="timing-opt-label text-[13px] font-medium block">Flexible timing</span>
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="i-notes" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Tell us about your project <span class="text-[#6B6560] font-normal">(optional)</span></label>
+                <textarea id="i-notes" rows="3" placeholder="Describe your project, any specific requirements, or questions you have…" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10 resize-y"></textarea>
+              </div>
+              <button type="button" onclick="inlineNext(3)" class="btn-next-home w-full bg-[#0073e6] text-white border-0 rounded-[10px] py-3.5 text-[15px] font-medium cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#0058b0] hover:-translate-y-px transition-all">
+                Continue <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <!-- Step 3: Contact -->
+            <div class="form-step" id="is3">
+              <button type="button" onclick="inlineNext(2)" class="btn-back-home bg-transparent border-0 text-[#6B6560] text-[13px] cursor-pointer flex items-center gap-1.5 mb-4 p-0 hover:text-[#141210]">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back
+              </button>
+              <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Your Contact Info</div>
+              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">How should we reach you to confirm your appointment?</div>
+              <div class="form-group mb-4">
+                <label for="i-name" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Full Name</label>
+                <input id="i-name" type="text" placeholder="Jane Smith" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
+              </div>
+              <div class="form-group mb-4">
+                <label for="i-email" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Email Address</label>
+                <input id="i-email" type="email" placeholder="jane@example.com" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
+              </div>
+              <div class="form-group mb-4">
+                <label for="i-phone" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Phone Number</label>
+                <input id="i-phone" type="tel" placeholder="(555) 000-0000" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
+              </div>
+              <button type="button" id="inline-submit-btn" onclick="submitInline()" class="btn-next-home gold w-full bg-[#F59E0B] text-[#141210] border-0 rounded-[10px] py-3.5 text-[15px] font-semibold cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#D97706] hover:text-white hover:-translate-y-px transition-all">
+                Get Free Quote <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="text-[11px] text-[#6B6560] text-center mt-3 flex items-center justify-center gap-1.5">
+                <svg class="w-3 h-3 text-[#16a34a] flex-shrink-0" viewBox="0 0 14 14" fill="none"><path d="M7 1L3 2.5v4c0 2.5 2 4.5 4 5 2-.5 4-2.5 4-5v-4L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 7l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Your information is private and never sold to third parties.
+              </p>
+            </div>
+          </div>
+
+          <div class="form-success hidden text-center py-6" id="inline-success">
+            <div class="w-[60px] h-[60px] rounded-full bg-[#dcfce7] flex items-center justify-center mx-auto mb-4">
+              <svg class="w-[30px] h-[30px] text-[#16a34a]" viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6 12-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="font-display text-2xl mb-2.5 text-[#141210]">You're all set!</h3>
+            <p class="text-sm text-[#6B6560] leading-[1.65]">We received your request and will follow up within the hour to confirm your appointment and match you with the right professional.</p>
+            <p class="mt-3 text-[13px]">Need faster? Call us: <a href="tel:8185847389" class="text-[#0073e6] font-medium">(818) 584-7389</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ -->
   <section id="faq" class="bg-[#FAFAF8] py-20">
@@ -618,25 +613,6 @@ const canonical = 'https://www.dealsofquality.com/';
     #main-content .view-all-services { color: #0073e6 !important; }
     #main-content .view-all-services:hover { color: #0058b0 !important; }
 
-    /* Mobile: bottom center Get a Free Quote bar */
-    .floating-quote-cta-mobile {
-      position: fixed;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-      z-index: 180;
-      background: #F59E0B;
-      color: #141210;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 12px 20px;
-      border-radius: 12px 12px 0 0;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      width: max-content;
-      max-width: calc(100% - 32px);
-      transition: background 0.2s, color 0.2s, transform 0.2s;
-    }
-    .floating-quote-cta-mobile:hover { background: #D97706; color: #fff; transform: translateX(-50%) translateY(-2px); }
     /* Prototype: fonts and colors for homepage */
     #main-content { --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     #main-content .font-display, #main-content h1, #main-content h2, #main-content .step-title, #main-content .quote-form-card .form-success h3 { font-family: var(--serif); }
