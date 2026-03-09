@@ -346,6 +346,11 @@ const genericReviews = [
     .tech-landing-main .hero h1 em { font-style: italic; color: #fcd34d; }
     .hero-sub { font-size: clamp(16px, 1.8vw, 19px); color: rgba(255,255,255,0.78); max-width: 560px; line-height: 1.65; margin-bottom: 36px; }
     .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .hero-cta-row { flex-direction: column; }
+      .hero-cta-row .btn-primary-gold,
+      .hero-cta-row .btn-ghost-white { width: 100%; }
+    }
     .btn-primary-gold { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: var(--ink); font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 15px 30px; border-radius: 10px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(245,158,11,0.35); }
     .btn-primary-gold:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); }
     .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.12); color: #fff; font-family: var(--sans); font-size: 14px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); }

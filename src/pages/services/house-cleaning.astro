@@ -1,0 +1,671 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'House Cleaning Los Angeles — Deals of Quality';
+const description = 'Professional house cleaning services in Los Angeles. Vetted, background-checked cleaners. Deep cleans, recurring service, move-in/out cleaning. Same-day availability.';
+const canonical = 'https://www.dealsofquality.com/services/house-cleaning/';
+
+const quoteFormServices = [
+  { value: 'deep-clean', label: 'Deep Clean (Full Home)' },
+  { value: 'recurring', label: 'Regular / Recurring Cleaning' },
+  { value: 'move-in-out', label: 'Move-In / Move-Out Clean' },
+  { value: 'kitchen', label: 'Kitchen Deep Clean' },
+  { value: 'bathroom', label: 'Bathroom Deep Scrub' },
+  { value: 'post-construction', label: 'Post-Construction Cleanup' },
+  { value: 'appliances', label: 'Appliance Cleaning' },
+  { value: 'windows', label: 'Interior Window Cleaning' },
+  { value: 'other', label: 'Other' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <main class="house-cleaning-main">
+
+    <div class="urgency-banner">
+      <div class="urgency-dot"></div>
+      <span><span class="urgency-strong">Same-day house cleaning available today</span> — call before noon. <a href="tel:8185847389">(818) 584-7389</a></span>
+    </div>
+
+    <div class="hero-wrap">
+      <div class="hero-bg" style="background-image: url('/images/cleaning-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <section class="hero cleaning-hero">
+        <div class="container">
+          <div class="fade-up">
+            <div class="hero-breadcrumb">
+              <a href="/">Home</a><span>›</span><a href="/services/">Services</a><span>›</span>House Cleaning
+            </div>
+            <div class="hero-service-pill"><div class="hero-service-pill-dot"></div>House Cleaning</div>
+          </div>
+          <h1 class="fade-up d1">Your home, spotless.<br /><em>Without lifting a finger.</em></h1>
+          <p class="hero-sub fade-up d2">Professional, vetted house cleaners in Los Angeles — ready for deep cleans, recurring service, and move-in/out. Same-day availability. Upfront pricing.</p>
+          <div class="hero-cta-row fade-up d3">
+            <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="House Cleaning">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
+              Get a Free Quote
+            </button>
+            <a class="btn-ghost-white" href="tel:8185847389" style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              (818) 584-7389
+            </a>
+          </div>
+          <div class="hero-trust-strip fade-up d4">
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor"/></svg>Background-checked cleaners</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Insured &amp; bonded</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Same-day availability</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Satisfaction guarantee</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Upfront transparent pricing</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--danger">THE REAL COST OF A DIRTY HOME</div>
+          <h2 class="section-heading">A messy home costs you more <em>than just your time.</em></h2>
+          <p class="section-body">You've been meaning to do a proper deep clean for weeks. Here's what that delay is quietly doing to your home — and to you.</p>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3>Allergens and bacteria multiply unnoticed</h3>
+            <p>Dust mites, pet dander, mold spores, and bacteria accumulate in carpets, upholstery, and on surfaces faster than you can see. An unclean home actively affects the air quality you breathe every day. Studies show indoor allergen levels in irregularly cleaned homes are 2–5x higher — directly linked to worsening asthma, allergies, and respiratory issues.</p>
+          </div>
+          <div class="pain-card fade-up d1">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 12.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>A quick wipe-down isn't a real clean</h3>
+            <p>Most people surface-clean and call it done. But soap scum builds in grout lines. Grease coats range hoods. The inside of your microwave becomes a petri dish. These aren't things a 10-minute wipe solves — they need the right tools, technique, and time. A professional cleaner covers everything in a single visit that would take you an entire weekend — and does it better.</p>
+          </div>
+          <div class="pain-card fade-up d2">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Your weekend is too valuable to spend cleaning</h3>
+            <p>Saturday and Sunday are your two best days. Spending 4–6 hours cleaning instead of something that actually recharges you is a choice — but it doesn't have to be. When you add up the time, the physical effort, and the mental load of constantly seeing what's undone, hiring a professional almost always wins on value. And the result is actually clean, not just "clean enough."</p>
+          </div>
+        </div>
+        <div class="agitate-block fade-up d1">
+          <div class="agitate-text">
+            <h2>The average home goes <em class="agitate-highlight">6 or more weeks without a proper deep clean</em> right now.</h2>
+            <p>Surface cleaning keeps things looking presentable. But grout, appliances, baseboards, and under furniture collect months of buildup that a quick wipe-down doesn't reach. Most people know their home isn't truly clean — they just don't have the time or energy to do it properly. That's exactly what we exist to fix.</p>
+          </div>
+          <div class="agitate-stats">
+            <div class="agitate-stat fade-up d2"><div class="as-num">6h</div><div><div class="as-text-label">average time to properly deep clean a home</div><div class="as-text-sub">That's most of your Saturday. Gone.</div></div></div>
+            <div class="agitate-stat fade-up d3"><div class="as-num">2–5×</div><div><div class="as-text-label">higher allergen levels in infrequently cleaned homes</div><div class="as-text-sub">Dust mites, mold, pet dander — accumulating daily.</div></div></div>
+            <div class="agitate-stat fade-up d4"><div class="as-num">$0</div><div><div class="as-text-label">value of your time if you spend it cleaning</div><div class="as-text-sub">Hire a pro. Get your weekend back.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="solve-section">
+      <div class="container">
+        <div class="solve-grid">
+          <div class="solve-photo-col fade-up">
+            <img class="solve-photo" src="/images/cleaning-solution.jpg" alt="Professional house cleaning solution in action" loading="lazy" />
+            <div class="solve-badge">
+              <div class="solve-badge-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg></div>
+              <div><div class="solve-badge-num">4.8★</div><div class="solve-badge-label">House cleaning avg. rating</div></div>
+            </div>
+          </div>
+          <div class="solve-copy fade-up d1">
+            <div class="section-eyebrow section-eyebrow--accent">THE SOLUTION</div>
+            <h2 class="solve-heading">One booking. Every surface done right. <em>Guaranteed.</em></h2>
+            <p>Deals of Quality cleaners aren't random gig workers from an app. They're professionals who've passed our rigorous vetting process — background checked, reference reviewed, and trained to clean at a standard you'll actually notice.</p>
+            <p>You tell us what needs doing. We send the right person for the job. They arrive with supplies, work systematically, and leave your home genuinely clean — not just tidied up. If anything isn't right, we come back and fix it, free of charge.</p>
+            <div class="solve-points">
+              <div class="solve-point"><div class="sp-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="sp-text"><strong>No chasing, no ghosting.</strong> <span>Book online or by phone. We confirm your appointment and follow up before your cleaner arrives.</span></div></div>
+              <div class="solve-point"><div class="sp-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="sp-text"><strong>One price, no surprises.</strong> <span>Full quote before a single cloth is unpacked. What we quote is what you pay — never a penny more without your approval.</span></div></div>
+              <div class="solve-point"><div class="sp-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="sp-text"><strong>The right cleaner for your home.</strong> <span>We match based on your home size, type of clean, and any specific preferences or sensitivities.</span></div></div>
+              <div class="solve-point"><div class="sp-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="sp-text"><strong>Supplies included, home left spotless.</strong> <span>Cleaners bring professional-grade products. You don't lift a finger. Your home is left cleaner than you've seen it in months.</span></div></div>
+            </div>
+            <button type="button" class="btn-primary-gold" style="display:inline-flex;width:auto;" data-open-booking="true" data-service="House Cleaning">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Book House Cleaning Today
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="services-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--blue">WHAT WE CLEAN</div>
+          <h2 class="section-heading section-heading--no-em">Every type of clean your home needs.</h2>
+          <p class="section-body">From weekly maintenance to a top-to-bottom deep clean, our pros handle every type of cleaning service — arriving fully equipped and ready to work.</p>
+        </div>
+        <div class="services-grid">
+          <a href="#quote" class="service-card fade-up" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div><h3>Deep Clean</h3></div>
+            <p>A thorough, top-to-bottom clean of your entire home. Baseboards, inside cabinets, behind appliances, ceiling fans, grout lines — nothing skipped. The clean your home needs after weeks of surface-only upkeep.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up d1" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><h3>Regular / Recurring Cleaning</h3></div>
+            <p>Weekly or bi-weekly maintenance that keeps your home consistently clean. A predictable schedule, a familiar face, and a home that never gets to "deep clean" territory again.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up d2" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14a2 2 0 012 2v3H3V5a2 2 0 012-2z"/><path d="M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9"/></svg></div><h3>Move-In / Move-Out Clean</h3></div>
+            <p>Starting fresh in a new space — or closing out your old one. We clean every surface, inside every cabinet, all appliances, and every corner. Landlords and tenants both love us.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><h3>Kitchen Deep Clean</h3></div>
+            <p>The grease, the residue, the buildup behind the range hood, inside the oven, and behind appliances — all of it, gone. A proper kitchen clean takes 2+ hours done right. We don't cut corners where you cook.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up d1" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 18h16"/><circle cx="12" cy="6" r="3"/></svg></div><h3>Bathroom Deep Scrub</h3></div>
+            <p>Grout, soap scum, toilet seals, behind the toilet, the shower door track — a real bathroom clean hits the spots that a weekly wipe misses. We leave it looking and smelling genuinely clean.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up d2" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><h3>Post-Construction Cleanup</h3></div>
+            <p>Construction dust gets everywhere — inside cabinets, on every surface, in the air. Post-construction cleanup requires more time, specialized tools, and a systematic approach. We handle the entire space.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/><path d="M12 11v4"/><path d="M10 13h4"/></svg></div><h3>Appliance Cleaning</h3></div>
+            <p>Inside the refrigerator, oven, microwave, and dishwasher — areas that get dirty fast and cleaned almost never. We deep clean inside and out, removing odors, residue, and buildup so they look and smell right.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#quote" class="service-card fade-up d1" onclick="scrollToQuote(); return false;">
+            <div class="service-card-top"><div class="service-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Interior Window Cleaning</h3></div>
+            <p>Streaks, fingerprints, film buildup — especially in LA where dust and pollution collect fast. Interior window cleaning makes your rooms brighter, your views clearer, and your space feel lighter.</p>
+            <span class="service-link">Get a quote <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="process-section">
+      <div class="container">
+        <div class="process-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--blue">OUR PROCESS</div>
+          <h2 class="section-heading section-heading--no-em">From your first message to a spotless home — here's exactly how it works.</h2>
+          <p class="section-body">No confusion, no surprises. You'll know what's happening at every step.</p>
+        </div>
+        <div class="process-grid fade-up">
+          <div class="process-card">
+            <span class="process-num">01</span>
+            <div class="process-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <span class="process-pill">Step 01</span>
+            <h3>Tell us about your home</h3>
+            <p>Fill out our quick quote form or call (818) 584-7389. Tell us your home size, type of clean needed, and when. The more detail you give, the more accurate your quote will be.</p>
+          </div>
+          <div class="process-card">
+            <span class="process-num">02</span>
+            <div class="process-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="process-pill">Step 02</span>
+            <h3>We match your cleaner</h3>
+            <p>We identify the right cleaner based on your home type, needs, and preferences. You get their background, experience, and an upfront quote before committing to anything.</p>
+          </div>
+          <div class="process-card">
+            <span class="process-num">03</span>
+            <div class="process-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <span class="process-pill">Step 03</span>
+            <h3>Confirm your appointment</h3>
+            <p>Choose a time that works — including same-day slots. We confirm with your cleaner's details and arrival window. No vague 8am–6pm windows. We respect your schedule.</p>
+          </div>
+          <div class="process-card">
+            <span class="process-num">04</span>
+            <div class="process-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0118.8-4.3M22 12.5a10 10 0 01-18.8 4.2"/></svg></div>
+            <span class="process-pill">Step 04</span>
+            <h3>Arrive, clean, done.</h3>
+            <p>Your cleaner arrives on time with all supplies, cleans your home systematically, and walks you through the results. If anything isn't right, we come back and fix it — no charge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="reviews-section">
+      <div class="container">
+        <div class="reviews-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--accent">REAL CUSTOMER REVIEWS</div>
+          <h2 class="section-heading section-heading--no-em">Homes they're still talking about.</h2>
+          <p class="section-body">These aren't cherry-picked testimonials. They're what happens when skilled, vetted professionals clean at a standard you'll actually notice.</p>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card fade-up">
+            <div class="review-stars" aria-hidden="true">★★★★★</div>
+            <blockquote class="review-quote">My whole apartment was cleaned top to bottom in under three hours. The bathroom looked brand new — the grout, the toilet seal, even inside the medicine cabinet. I've set up a bi-weekly schedule and I'm never going back.</blockquote>
+            <div class="review-author"><span class="review-initials">RT</span><div><strong>Rachel T.</strong><span class="review-source">Los Angeles, CA</span></div></div>
+          </div>
+          <div class="review-card fade-up d1">
+            <div class="review-stars" aria-hidden="true">★★★★★</div>
+            <blockquote class="review-quote">I moved into a new place the previous tenants had left a mess. Within two hours of my request they had someone there. The kitchen and both bathrooms were immaculate. The landlord was shocked at the turnaround.</blockquote>
+            <div class="review-author"><span class="review-initials">MK</span><div><strong>Michael K.</strong><span class="review-source">Pasadena, CA</span></div></div>
+          </div>
+          <div class="review-card fade-up d2">
+            <div class="review-stars" aria-hidden="true">★★★★★</div>
+            <blockquote class="review-quote">First time using a cleaning service and didn't know what to expect. She was on time, professional, and worked without stopping. My floors, counters, and windows sparkled. Worth every penny and then some.</blockquote>
+            <div class="review-author"><span class="review-initials">AS</span><div><strong>Amanda S.</strong><span class="review-source">Santa Monica, CA</span></div></div>
+          </div>
+        </div>
+        <div class="stats-strip fade-up d1">
+          <div class="stat-item"><span class="counter" data-target="1200" data-suffix="+">0</span><span class="stat-label">Homes cleaned</span></div>
+          <div class="stat-item"><span class="counter" data-target="4.8" data-decimal="1" data-suffix="★">0</span><span class="stat-label">Avg. cleaning rating</span></div>
+          <div class="stat-item"><span class="counter" data-target="97" data-suffix="%">0</span><span class="stat-label">Would rebook</span></div>
+          <div class="stat-item"><span class="counter" data-target="100" data-suffix="%">0</span><span class="stat-label">Satisfaction guarantee</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guarantee-section">
+      <div class="container">
+        <div class="guarantee-grid">
+          <div class="guarantee-panel fade-up">
+            <div class="guarantee-icon-wrap guarantee-icon-wrap--gold"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4" stroke-width="2"/></svg></div>
+            <h3>Satisfaction Guarantee</h3>
+            <p>If anything we cleaned isn't to your standard, we come back and re-clean it — free of charge. No runaround, no questions asked. We stand behind every job we do.</p>
+          </div>
+          <div class="guarantee-panel fade-up d1">
+            <div class="guarantee-icon-wrap guarantee-icon-wrap--blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>Upfront Price. Final Price.</h3>
+            <p>We quote before we start. What we quote is what you pay. No hourly billing that surprises you at the end, and no scope creep without your explicit approval.</p>
+          </div>
+          <div class="guarantee-panel fade-up d2">
+            <div class="guarantee-icon-wrap guarantee-icon-wrap--green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <h3>Vetted. Insured. Bonded.</h3>
+            <p>Every cleaner has passed a comprehensive background check and carries liability insurance. We don't cut corners on credentials — your home is not the place to experiment with who you trust.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-intro fade-up">
+          <div class="section-eyebrow section-eyebrow--accent">FREQUENTLY ASKED QUESTIONS</div>
+          <h2 class="section-heading section-heading--no-em">Everything you want to know before you book.</h2>
+          <p class="section-body">We believe in total transparency. Here are the questions our customers ask most often — answered completely and honestly.</p>
+        </div>
+        <div class="faq-grid">
+          <div class="faq-col">
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>How much does house cleaning cost?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>Pricing depends on your home size, the type of clean, and frequency. A recurring clean is typically less per visit than a one-time deep clean. We provide a full upfront quote after you describe your home — no hourly surprises.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>Do I need to provide cleaning supplies?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>No. Our cleaners arrive with all professional-grade supplies and equipment. If you have a specific product preference (allergy-friendly, fragrance-free, etc.), just let us know and we'll accommodate.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>How long does a cleaning take?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>A recurring maintenance clean for a 1-bedroom typically takes 1.5–2 hours. A deep clean for a larger home can take 4–6 hours. We'll give you a time estimate with your quote.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>Do I need to be home during the cleaning?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>No. Many customers leave a key or lockbox code. Our cleaners are background-checked and trusted. Some customers prefer to be present the first visit, which is totally fine too.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>How often should I schedule cleaning?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>Most households benefit from bi-weekly service. Homes with pets, children, or high foot traffic often prefer weekly. We'll recommend what makes sense for your situation.</p></div></div>
+          </div>
+          <div class="faq-col">
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>What's included in a deep clean?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>A deep clean covers everything in a standard clean plus: inside cabinets and drawers, inside oven and refrigerator, behind and under appliances, baseboards and window sills, grout scrubbing, ceiling fans, light fixtures, and more.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>Are your cleaners background checked?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>Yes. Every cleaner in our network has passed a comprehensive background check. We verify identity and references before they join. We only send people we'd trust in our own homes.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>What if I'm not satisfied with the clean?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>We offer a satisfaction guarantee. If anything wasn't cleaned to your standard, contact us within 24 hours and we'll send your cleaner back to re-do it — at no charge.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>Do you offer discounts for recurring service?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>Yes. Recurring weekly and bi-weekly clients typically receive a lower per-visit rate than one-time bookings. We'll outline the pricing clearly in your quote so you can make the best choice.</p></div></div>
+            <div class="faq-item fade-up"><button type="button" class="faq-question" aria-expanded="false"><span>What areas do you serve?</span><span class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></span></button><div class="faq-answer"><p>We serve the Los Angeles area and expanding regions. Enter your ZIP code in the quote form and we'll confirm whether we're currently available in your area.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="quote-section" id="quote">
+      <div class="container">
+        <div class="quote-layout">
+          <div class="quote-copy fade-up">
+            <div class="section-eyebrow section-eyebrow--muted">BOOK A CLEANER</div>
+            <h2 class="quote-heading">Your home has waited long enough.</h2>
+            <p class="quote-body">It takes 60 seconds to request a quote. A real person follows up within the hour — not a bot — to confirm your appointment and match you with the right cleaner for your home.</p>
+            <div class="quote-alert quote-alert--urgency">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <div><strong>Same-day slots are limited.</strong> We typically fill same-day availability before noon. Request your quote now to secure the earliest available time in your area.</div>
+            </div>
+          </div>
+          <div class="quote-form-wrap fade-up d1">
+            <div class="progress-wrap">
+              <div class="progress-step active" data-step="1"><span class="ps-dot">1</span> <span>Your Clean</span></div>
+              <div class="progress-step" data-step="2"><span class="ps-dot">2</span> <span>Contact</span></div>
+            </div>
+            <form id="house-cleaning-quote-form" class="hq-form">
+              <input type="hidden" id="hq-hidden-service" name="service" value="" />
+              <div id="form-wrap">
+                <div id="hq-step-1" class="form-step active" data-step="1">
+                  <h3 class="form-step-title">What do you need cleaned?</h3>
+                  <p class="form-step-desc">Tell us the type of clean, your ZIP, and when you need it — we'll confirm availability and match you with the right cleaner.</p>
+                  <div class="form-group hq-service-wrap">
+                    <label for="hq-service-input">What type of cleaning do you need?</label>
+                    <input type="text" id="hq-service-input" class="form-control" autocomplete="off" placeholder="e.g. Deep clean, recurring, move-out" aria-autocomplete="list" aria-controls="hq-service-suggestions" />
+                    <div id="hq-service-suggestions" role="listbox" class="hq-suggestions hidden"></div>
+                  </div>
+                  <div id="hq-other-wrap" class="form-group" style="display: none;">
+                    <label for="hq-service-other">Describe your cleaning need</label>
+                    <input type="text" id="hq-service-other" class="form-control" placeholder="e.g. Post-party cleanup, specific rooms only..." />
+                  </div>
+                  <div class="form-group">
+                    <label for="hq-zip">ZIP Code</label>
+                    <input type="text" id="hq-zip" class="form-control" name="zip" inputmode="numeric" maxlength="5" placeholder="e.g. 90210" />
+                    <p id="hq-zip-error" class="form-step-error hq-zip-error hidden"></p>
+                  </div>
+                  <fieldset class="hq-urgency-group" style="margin-top: 8px;">
+                    <legend class="form-group label-only">When do you need this done?</legend>
+                    <div class="hq-urgency-cards">
+                      <label class="hq-urgency-card"><input type="radio" name="hq-urgency" value="asap" class="sr-only" /><span class="hq-urgency-icon">⚡</span><span>As soon as possible</span></label>
+                      <label class="hq-urgency-card"><input type="radio" name="hq-urgency" value="week" class="sr-only" checked /><span class="hq-urgency-icon">📅</span><span>Within a week</span></label>
+                      <label class="hq-urgency-card"><input type="radio" name="hq-urgency" value="flexible" class="sr-only" /><span class="hq-urgency-icon">🕐</span><span>Flexible timing</span></label>
+                    </div>
+                  </fieldset>
+                  <div id="form-step-error" class="form-step-error" role="alert" aria-live="polite" style="display: none;"></div>
+                  <div class="form-step-actions form-step-actions--single">
+                    <button type="button" class="btn-primary-blue hq-next" data-hq-goto="2">Continue <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+                  </div>
+                </div>
+                <div id="hq-step-2" class="form-step" data-step="2">
+                  <h3 class="form-step-title">Complete your details</h3>
+                  <p class="form-step-desc">We'll use this to confirm your appointment and match you with the right cleaner.</p>
+                  <div class="form-group"><label for="hq-name">Your name</label><input type="text" id="hq-name" class="form-control" name="name" required placeholder="Jane Doe" /></div>
+                  <div class="form-group"><label for="hq-email">Email address</label><input type="email" id="hq-email" class="form-control" name="email" required placeholder="jane@example.com" /></div>
+                  <div class="form-group"><label for="hq-phone">Phone number</label><input type="tel" id="hq-phone" class="form-control" name="phone" required placeholder="(818) 555-1234" /></div>
+                  <div class="form-group"><label for="hq-details">Notes (optional)</label><textarea id="hq-details" class="form-control" name="details" rows="2" placeholder="Home size, pets, specific rooms, access instructions..."></textarea></div>
+                  <div id="form-submit-error" class="form-step-error" role="alert" aria-live="polite" style="display: none;"></div>
+                  <div class="form-step-actions">
+                    <button type="button" class="btn-ghost hq-back" data-hq-goto="1">← Back</button>
+                    <button type="submit" id="form-submit-btn" class="btn-primary-gold">Get Free Quote</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div id="form-success" style="display: none;" class="form-success">
+              <div class="form-success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+              <h3>Request received!</h3>
+              <p>We'll be in touch within the hour to confirm your appointment and match you with the right cleaner.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="final-cta-inner fade-up">
+          <div class="section-eyebrow section-eyebrow--gold">STOP PUTTING IT OFF</div>
+          <h2>Your home deserves a real clean. Book it now.</h2>
+          <p>Every day without a proper clean means more buildup, more allergens, and more stress. Our cleaners are ready. Your appointment could be scheduled before you close this tab.</p>
+          <div class="final-cta-buttons">
+            <button class="btn-primary-gold" data-open-quote="true" data-service="House Cleaning">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              Get a Free Quote
+            </button>
+            <a class="btn-ghost-white-final" href="tel:8185847389" style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              Call (818) 584-7389
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script define:vars={{ quoteFormServices }}>
+    const obs = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+    document.querySelectorAll('.fade-up').forEach((el) => obs.observe(el));
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target); const decimals = parseInt(el.dataset.decimal || '0'); const suffix = el.dataset.suffix || ''; const duration = 1800; const start = performance.now();
+      function step(now) { const p = Math.min((now - start) / duration, 1); const e = 1 - Math.pow(1 - p, 3); el.textContent = decimals ? (e * target).toFixed(decimals) + suffix : Math.floor(e * target).toLocaleString() + suffix; if (p < 1) requestAnimationFrame(step); else el.textContent = decimals ? target.toFixed(decimals) + suffix : target.toLocaleString() + suffix; }
+      requestAnimationFrame(step);
+    }
+    const counterObs = new IntersectionObserver((entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.querySelectorAll('.counter').forEach(animateCounter); counterObs.unobserve(e.target); } }); }, { threshold: 0.25 });
+    document.querySelectorAll('.stats-strip').forEach((el) => counterObs.observe(el));
+    document.querySelectorAll('.faq-question').forEach((btn) => { btn.addEventListener('click', () => { const item = btn.closest('.faq-item'); const open = item.classList.contains('open'); document.querySelectorAll('.faq-item.open').forEach((i) => i.classList.remove('open')); if (!open) item.classList.add('open'); }); });
+    function scrollToQuote(e) { if (e && e.preventDefault) e.preventDefault(); const el = document.getElementById('quote'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    window.scrollToQuote = scrollToQuote;
+    (function() { var banner = document.querySelector('.urgency-banner'); if (!banner) return; var moved = false; window.addEventListener('scroll', function() { if (!moved && window.scrollY > 150) { moved = true; banner.classList.add('hm-banner-fading'); setTimeout(function() { banner.classList.add('hm-banner-bottom'); banner.classList.remove('hm-banner-fading'); }, 260); } }, { passive: true }); })();
+    document.addEventListener('DOMContentLoaded', function () {
+      const serviceList = typeof quoteFormServices !== 'undefined' ? quoteFormServices : [];
+      let currentStep = 1;
+      function setHqStep(step) { currentStep = step; [1, 2].forEach((i) => { const el = document.getElementById('hq-step-' + i); if (el) el.classList.toggle('active', i === step); }); document.querySelectorAll('.quote-form-wrap .progress-step').forEach((el, i) => { el.classList.remove('active', 'done'); const dot = el.querySelector('.ps-dot'); if (!dot) return; if (i + 1 < step) { el.classList.add('done'); dot.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; } else { dot.textContent = i + 1; if (i + 1 === step) el.classList.add('active'); } }); }
+      function showSubmitError(msg) { const el = document.getElementById('form-submit-error'); if (el) { el.textContent = msg; el.style.display = 'block'; el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } }
+      function hideSubmitError() { const el = document.getElementById('form-submit-error'); if (el) { el.style.display = 'none'; el.textContent = ''; } }
+      function renderSuggestions(val) { const listbox = document.getElementById('hq-service-suggestions'); if (!listbox) return; const v = (val || '').trim().toLowerCase(); listbox.innerHTML = ''; const added = {}; serviceList.forEach((s) => { const label = (s.label || s.value || '').trim(); if (!label || added[label]) return; if (!v || label.toLowerCase().indexOf(v) !== -1) { added[label] = true; const btn = document.createElement('button'); btn.type = 'button'; btn.role = 'option'; btn.className = 'hq-suggestion-option'; btn.textContent = label; btn.dataset.value = label; listbox.appendChild(btn); } }); if (v && Object.keys(added).length === 0) { const trimmed = (val || '').trim().slice(0, 80); const btn = document.createElement('button'); btn.type = 'button'; btn.role = 'option'; btn.className = 'hq-suggestion-option hq-suggestion-use'; btn.textContent = 'Use "' + trimmed + (trimmed.length >= 80 ? '…' : '') + '"'; btn.dataset.value = (val || '').trim(); listbox.appendChild(btn); } listbox.classList.toggle('hidden', listbox.children.length === 0); }
+      const serviceInput = document.getElementById('hq-service-input'); const suggestionsEl = document.getElementById('hq-service-suggestions'); const hiddenService = document.getElementById('hq-hidden-service'); const otherWrap = document.getElementById('hq-other-wrap'); const otherInput = document.getElementById('hq-service-other');
+      function toggleOtherField() { const isOther = (serviceInput && serviceInput.value.trim().toLowerCase()) === 'other'; if (otherWrap) otherWrap.style.display = isOther ? 'block' : 'none'; if (!isOther && otherInput) otherInput.value = ''; }
+      if (serviceInput && suggestionsEl) { serviceInput.addEventListener('focus', () => renderSuggestions(serviceInput.value)); serviceInput.addEventListener('input', () => { renderSuggestions(serviceInput.value); if (hiddenService) hiddenService.value = serviceInput.value.trim(); toggleOtherField(); }); serviceInput.addEventListener('blur', () => setTimeout(() => suggestionsEl.classList.add('hidden'), 180)); suggestionsEl.addEventListener('mousedown', (e) => { const opt = e.target.closest('button[role="option"]'); if (opt && opt.dataset.value !== undefined) { e.preventDefault(); serviceInput.value = opt.dataset.value; if (hiddenService) hiddenService.value = opt.dataset.value; suggestionsEl.classList.add('hidden'); suggestionsEl.innerHTML = ''; toggleOtherField(); if (opt.dataset.value === 'Other' && otherInput) setTimeout(() => otherInput.focus(), 100); } }); }
+      const zipInput = document.getElementById('hq-zip'); const zipErr = document.getElementById('hq-zip-error');
+      if (zipInput) { zipInput.addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 5); if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; } }); }
+      const form = document.getElementById('house-cleaning-quote-form'); if (!form) return;
+      form.addEventListener('click', function (e) { const nextBtn = e.target.closest('.hq-next[data-hq-goto]'); const backBtn = e.target.closest('.hq-back[data-hq-goto]'); if (nextBtn) { e.preventDefault(); const goto = parseInt(nextBtn.getAttribute('data-hq-goto'), 10); if (goto === 2) { if (!serviceInput || !serviceInput.value.trim()) { const err = document.getElementById('form-step-error'); if (err) { err.textContent = 'Please enter a service.'; err.style.display = 'block'; } return; } if (hiddenService) hiddenService.value = serviceInput.value.trim(); const isOther = serviceInput.value.trim() === 'Other'; if (isOther && otherInput && !otherInput.value.trim()) { const err = document.getElementById('form-step-error'); if (err) { err.textContent = 'Please describe your cleaning need.'; err.style.display = 'block'; } return; } const zipVal = zipInput && zipInput.value.replace(/\D/g, ''); if (!zipVal || zipVal.length !== 5) { if (zipErr) { zipErr.textContent = 'Please enter a 5-digit ZIP code.'; zipErr.classList.remove('hidden'); } return; } const zipNum = parseInt(zipVal, 10); if (zipNum < 501 || zipNum > 99950) { if (zipErr) { zipErr.textContent = 'Please enter a valid US ZIP code.'; zipErr.classList.remove('hidden'); } return; } if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; } const err1 = document.getElementById('form-step-error'); if (err1) { err1.style.display = 'none'; err1.textContent = ''; } } setHqStep(goto); return; } if (backBtn) { e.preventDefault(); setHqStep(parseInt(backBtn.getAttribute('data-hq-goto'), 10)); } });
+      form.addEventListener('submit', function (e) { e.preventDefault(); hideSubmitError(); const name = (document.getElementById('hq-name') && document.getElementById('hq-name').value) || ''; const email = (document.getElementById('hq-email') && document.getElementById('hq-email').value) || ''; const phone = (document.getElementById('hq-phone') && document.getElementById('hq-phone').value) || ''; if (!name.trim() || !email.trim() || !phone.trim()) { showSubmitError('Please fill in your name, email, and phone number.'); return; } const service = (hiddenService && hiddenService.value) || serviceInput?.value?.trim() || 'House Cleaning'; const zip = (zipInput && zipInput.value.replace(/\D/g, '').slice(0, 5)) || ''; const urgencyRadio = form.querySelector('input[name="hq-urgency"]:checked'); const details = (document.getElementById('hq-details') && document.getElementById('hq-details').value) || ''; const serviceOther = (otherInput && otherInput.value && otherInput.value.trim()) || ''; const payload = { formType: 'booking', name: name.trim(), email: email.trim(), phone: phone.trim(), service, zip, preferredTiming: (urgencyRadio && urgencyRadio.value) || undefined, details: details.trim() || undefined }; if (service === 'Other' && serviceOther) payload.serviceOther = serviceOther; const submitBtn = document.getElementById('form-submit-btn'); if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; } fetch('/api/send-email', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).then(function (res) { if (res.ok) { document.getElementById('form-wrap').style.display = 'none'; document.getElementById('form-success').style.display = 'block'; document.querySelector('.quote-form-wrap .progress-wrap').style.display = 'none'; } else { return res.json().catch(() => ({})).then((err) => { showSubmitError(err.error || err.message || 'Something went wrong. Please try again or call us.'); }); } }).catch(function () { showSubmitError('Something went wrong. Please try again or call us.'); }).finally(function () { if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get Free Quote'; } }); });
+    });
+  </script>
+
+  <style is:global>
+    svg { display: block; flex-shrink: 0; max-width: 100%; }
+    .quote-form-wrap .hq-suggestions { display: flex; flex-direction: column; align-items: stretch; padding-left: 10px; }
+    .quote-form-wrap .hq-suggestion-option { display: block !important; width: 100% !important; text-align: left !important; box-sizing: border-box; }
+  </style>
+  <style>
+    .house-cleaning-main { }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #fafaf8; --cream: #f7f3ec; --cream-border: #ede8df; --ink: #141210; --muted: #6b6560; --border: #e8e5e0; --accent: #0073e6; --accent-light: #e6f2ff; --accent-dark: #0058b0; --gold: #f59e0b; --gold-light: #fef3c7; --gold-dark: #d97706; --success: #16a34a; --success-light: #dcfce7; --danger: #dc2626; --danger-light: #fef2f2; --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .divider { height: 1px; background: var(--border); }
+    .divider--cream { height: 1px; background: var(--cream-border); }
+    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1 { transition-delay: 0.08s; } .fade-up.d2 { transition-delay: 0.16s; } .fade-up.d3 { transition-delay: 0.24s; } .fade-up.d4 { transition-delay: 0.32s; } .fade-up.d5 { transition-delay: 0.4s; }
+    .urgency-banner { background: var(--ink); color: rgba(255,255,255,0.9); text-align: center; padding: 10px 24px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px; position: fixed; top: 64px; left: 0; right: 0; z-index: 199; transition: opacity 0.25s ease; }
+    .urgency-banner.hm-banner-fading { opacity: 0; pointer-events: none; }
+    .urgency-banner.hm-banner-bottom { top: auto; bottom: 0; border-top: 1px solid rgba(255,255,255,0.08); box-shadow: 0 -4px 20px rgba(0,0,0,0.35); }
+    .urgency-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.4); } }
+    .urgency-strong { color: #fff; font-weight: 500; }
+    .urgency-banner a { color: #fcd34d; text-decoration: none; font-weight: 500; }
+    @media (max-width: 768px) { .house-cleaning-main .urgency-banner { display: none !important; } }
+    .hero-wrap { position: relative; overflow: hidden; min-height: 90vh; display: flex; flex-direction: column; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%); pointer-events: none; }
+    .hero { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 130px 0 80px; text-align: center; }
+    .house-cleaning-main .hero .container { display: flex; flex-direction: column; align-items: center; }
+    .cleaning-hero { background: none !important; }
+    .hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
+    .hero-breadcrumb span { color: rgba(255,255,255,0.3); }
+    @media (max-width: 768px) { .house-cleaning-main .hero-breadcrumb { display: none; } }
+    .hero-service-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; font-size: 12px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; backdrop-filter: blur(4px); }
+    .hero-service-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .hero h1 { font-family: var(--serif); font-size: clamp(40px,5.5vw,72px); line-height: 1.06; letter-spacing: -1.2px; color: #fff; max-width: 800px; margin-bottom: 20px; text-shadow: 0 2px 24px rgba(0,0,0,0.3); }
+    .hero h1 em { font-style: italic; color: #fcd34d; }
+    @media (max-width: 768px) { .house-cleaning-main .hero h1 { font-size: 1.75rem !important; line-height: 1.15; } .house-cleaning-main .section-heading { text-align: center; } }
+    .hero-sub { font-size: clamp(16px,1.8vw,19px); color: rgba(255,255,255,0.78); font-weight: 300; max-width: 560px; line-height: 1.65; margin-bottom: 36px; text-shadow: 0 1px 8px rgba(0,0,0,0.2); }
+    .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; width: 100%; max-width: 480px; justify-content: center; }
+    .house-cleaning-main .hero-cta-row .btn-primary-gold, .house-cleaning-main .hero-cta-row .btn-ghost-white { flex: 1 1 0; min-width: 0; justify-content: center; }
+    @media (max-width: 768px) { .house-cleaning-main .hero-cta-row { flex-direction: column; } .house-cleaning-main .hero-cta-row .btn-primary-gold, .house-cleaning-main .hero-cta-row .btn-ghost-white { width: 100%; } }
+    .btn-primary-gold { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: var(--ink); font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 15px 30px; border-radius: 10px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(245,158,11,0.35); }
+    .btn-primary-gold:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(245,158,11,0.4); }
+    .btn-primary-gold svg { width: 17px; height: 17px; }
+    .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.12); color: #fff; font-family: var(--sans); font-size: 14px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); backdrop-filter: blur(4px); transition: background 0.2s; }
+    #main-content .btn-ghost-white { color: #fff !important; }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.22); }
+    .hero-trust-strip { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.14); }
+    .hts-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
+    .hts-item svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+    .pain-section { background: var(--cream); padding: 88px 0; }
+    .pain-intro { text-align: center; margin-bottom: 48px; }
+    .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+    .section-eyebrow--danger { color: var(--danger); } .section-eyebrow--accent { color: var(--accent); } .section-eyebrow--muted { color: var(--muted); } .section-eyebrow--blue { color: #0073e6; } .section-eyebrow--gold { color: var(--gold); }
+    .section-heading { font-family: var(--serif); font-size: clamp(32px,4vw,48px); line-height: 1.15; color: var(--ink); max-width: 720px; margin: 0 auto 16px; }
+    .section-heading em { font-style: italic; color: var(--danger); } .section-heading--no-em { color: var(--ink); }
+    .section-body { font-size: 16px; color: var(--muted); max-width: 700px; margin: 0 auto; line-height: 1.65; }
+    .pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 48px; }
+    @media (max-width: 900px) { .pain-grid { grid-template-columns: 1fr; } }
+    .pain-card { background: #fff; border: 1px solid var(--cream-border); border-radius: 16px; padding: 28px; border-left: 4px solid var(--danger); }
+    .pain-card-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--danger-light); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .pain-card-icon svg { color: var(--danger); }
+    .pain-card h3 { font-family: var(--sans); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+    .pain-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .agitate-block { background: #fff; border-radius: 20px; padding: 40px 44px; display: grid; grid-template-columns: 1fr 340px; gap: 44px; align-items: start; }
+    @media (max-width: 900px) { .agitate-block { grid-template-columns: 1fr; padding: 28px 24px; } }
+    .agitate-text h2 { font-family: var(--serif); font-size: clamp(26px,3vw,34px); line-height: 1.25; color: var(--ink); margin-bottom: 20px; }
+    .agitate-text h2 .agitate-highlight { font-style: italic; color: var(--danger); }
+    .agitate-text p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+    .agitate-stats { display: flex; flex-direction: column; gap: 16px; }
+    .agitate-stat { background: var(--cream); border-radius: 12px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; }
+    .as-num { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--danger); flex-shrink: 0; }
+    .as-text-label { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .as-text-sub { font-size: 12px; color: var(--muted); }
+    .solve-section { background: #fff; padding: 88px 0; }
+    .solve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    @media (max-width: 900px) { .solve-grid { grid-template-columns: 1fr; } }
+    .solve-photo-col { position: relative; }
+    .solve-photo { width: 100%; height: 520px; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.13); }
+    .solve-badge { position: absolute; bottom: 24px; left: 24px; background: #fff; border-radius: 14px; padding: 16px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.13); display: flex; align-items: center; gap: 14px; }
+    .solve-badge-icon { width: 40px; height: 40px; background: var(--gold-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .solve-badge-icon svg { color: var(--gold-dark); }
+    .solve-badge-num { font-family: var(--serif); font-size: 24px; color: var(--ink); }
+    .solve-badge-label { font-size: 11px; color: var(--muted); }
+    .solve-copy .section-eyebrow { margin-bottom: 12px; }
+    .solve-heading { font-family: var(--serif); font-size: clamp(32px,3.5vw,44px); line-height: 1.2; color: var(--ink); margin-bottom: 20px; }
+    .solve-heading em { font-style: italic; color: var(--accent); }
+    .solve-copy p { font-size: 16px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .solve-points { margin-bottom: 28px; }
+    .solve-point { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .sp-icon { width: 30px; height: 30px; min-width: 30px; background: var(--success-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .sp-icon svg { color: var(--success); }
+    .sp-text { display: flex; flex-direction: column; gap: 2px; }
+    .sp-text strong { font-size: 15px; color: var(--ink); }
+    .sp-text span { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    @media (max-width: 768px) { .solve-copy .btn-primary-gold { display: block; margin-left: auto; margin-right: auto; } }
+    .services-section { background: var(--cream); padding: 88px 0; }
+    .services-intro { text-align: center; margin-bottom: 48px; }
+    .services-intro .section-body { max-width: 640px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } }
+    .service-card { background: #fff; border: 1px solid var(--cream-border); border-radius: 16px; padding: 26px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .service-card:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(245,158,11,0.1); transform: translateY(-2px); }
+    .service-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+    .service-icon-wrap { width: 40px; height: 40px; min-width: 40px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .service-icon-wrap svg { color: var(--accent); }
+    .service-card h3 { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .service-card p { font-size: 14px; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+    .service-link { font-size: 12px; font-weight: 500; color: var(--accent); display: inline-flex; align-items: center; gap: 4px; }
+    .service-link svg { color: var(--accent); }
+    .service-card:hover .service-link { text-decoration: underline; }
+    .process-section { background: #fff; padding: 88px 0; }
+    .process-intro { text-align: center; margin-bottom: 48px; }
+    .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--border); border-radius: 20px; overflow: hidden; }
+    @media (max-width: 900px) { .process-grid { grid-template-columns: 1fr; } }
+    .process-card { background: var(--white); padding: 36px 28px; position: relative; }
+    .process-num { position: absolute; top: 16px; right: 20px; font-family: var(--serif); font-size: 56px; color: var(--cream-border); }
+    .process-icon-wrap { width: 44px; height: 44px; background: var(--accent-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .process-icon-wrap svg { color: var(--accent); }
+    .process-pill { display: inline-block; background: var(--gold-light); color: var(--gold-dark); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 12px; }
+    .process-card h3 { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+    .process-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .reviews-section { background: var(--cream); padding: 88px 0; }
+    .reviews-intro { text-align: center; margin-bottom: 48px; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 48px; }
+    @media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+    .review-card { background: #fff; border: 1px solid var(--cream-border); border-radius: 16px; padding: 28px; position: relative; }
+    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .review-quote { font-family: var(--serif); font-size: 17px; font-style: italic; line-height: 1.5; color: var(--ink); margin-bottom: 20px; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-initials { width: 38px; height: 38px; min-width: 38px; background: var(--gold-light); border: 2px solid #fde68a; color: var(--gold-dark); font-size: 12px; font-weight: 600; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .review-author strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+    .review-source { font-size: 12px; color: var(--muted); }
+    .stats-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--border); border-radius: 14px; overflow: hidden; }
+    @media (max-width: 640px) { .stats-strip { grid-template-columns: repeat(2,1fr); } }
+    .stat-item { background: #fff; padding: 28px 24px; text-align: center; }
+    .stat-item .counter { display: block; font-family: var(--serif); font-size: clamp(28px,3vw,40px); font-weight: 400; color: var(--ink); margin-bottom: 6px; }
+    .stat-label { font-size: 13px; color: var(--muted); }
+    .guarantee-section { background: var(--ink); padding: 88px 0; }
+    .guarantee-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 900px) { .guarantee-grid { grid-template-columns: 1fr; } }
+    .guarantee-panel { border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; background: rgba(255,255,255,0.04); }
+    .guarantee-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .guarantee-icon-wrap--gold { background: rgba(245,158,11,0.15); } .guarantee-icon-wrap--gold svg { color: #fcd34d; }
+    .guarantee-icon-wrap--blue { background: rgba(0,115,230,0.15); } .guarantee-icon-wrap--blue svg { color: #60a5fa; }
+    .guarantee-icon-wrap--green { background: rgba(22,163,74,0.15); } .guarantee-icon-wrap--green svg { color: #4ade80; }
+    .guarantee-panel h3 { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+    .guarantee-panel p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .faq-section { background: #fff; padding: 88px 0; }
+    .faq-intro { text-align: center; margin-bottom: 48px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-col { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; background: none; border: none; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); cursor: pointer; text-align: left; }
+    .faq-icon { width: 26px; height: 26px; min-width: 26px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .faq-icon svg { color: var(--ink); transition: transform 0.3s; }
+    .faq-item.open .faq-icon { background: var(--gold); }
+    .faq-item.open .faq-icon svg { color: #fff; transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-answer p { padding: 0 20px 18px; font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; border-top: 1px solid var(--border); padding-top: 14px; margin-top: -1px; }
+    .quote-section { background: var(--cream); padding: 88px 0; }
+    .quote-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 900px) { .quote-layout { grid-template-columns: 1fr; } }
+    .quote-heading { font-family: var(--serif); font-size: clamp(28px,3vw,38px); line-height: 1.2; color: var(--ink); margin-bottom: 16px; }
+    .quote-body { font-size: 16px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+    .quote-alert { display: flex; align-items: flex-start; gap: 14px; padding: 20px 24px; border-radius: 14px; margin-bottom: 16px; }
+    .quote-alert svg { flex-shrink: 0; }
+    .quote-alert--urgency { background: linear-gradient(135deg, #1a0a0a, #2d1515); border: 1px solid rgba(220,38,38,0.3); color: rgba(255,255,255,0.9); }
+    .quote-alert--urgency svg { color: #f87171; }
+    .quote-alert--urgency strong { display: block; margin-bottom: 4px; }
+    .quote-form-wrap { background: #fff; border: 1px solid var(--cream-border); border-radius: 20px; padding: 36px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+    .progress-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+    .progress-step { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+    .ps-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--border); color: var(--muted); display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; transition: background 0.25s, color 0.25s; }
+    .progress-step.active .ps-dot { background: var(--accent); color: #fff; }
+    .progress-step.done .ps-dot { background: var(--success); color: #fff; }
+    .form-step { display: none; } .form-step.active { display: block; }
+    .form-step-title { font-family: var(--serif); font-size: 22px; color: var(--ink); margin-bottom: 8px; }
+    .form-step-desc { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+    .form-control { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 14px; font-family: var(--sans); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,115,230,0.1); }
+    .quote-form-wrap .hidden { display: none !important; }
+    .quote-form-wrap .form-group.label-only { margin-bottom: 8px; }
+    .quote-form-wrap .form-group.label-only legend { font-size: 13px; font-weight: 500; color: var(--ink); }
+    .hq-service-wrap { position: relative; }
+    .hq-suggestions { position: absolute; left: 0; right: 0; top: 100%; z-index: 20; margin-top: 4px; max-height: 240px; overflow-y: auto; border: 1px solid var(--border); border-radius: 10px; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.12); display: flex; flex-direction: column; align-items: stretch; }
+    .hq-suggestion-option { display: block; width: 100%; flex: 0 0 auto; text-align: left; padding: 12px 14px; font-size: 14px; color: var(--ink); background: none; border: none; border-bottom: 1px solid var(--cream-border); cursor: pointer; font-family: var(--sans); }
+    .hq-suggestion-option:last-child { border-bottom: 0; } .hq-suggestion-option:hover { background: var(--cream); } .hq-suggestion-use { font-weight: 600; }
+    .hq-zip-error { margin-top: 6px; }
+    .hq-urgency-group { margin-bottom: 20px; }
+    .hq-urgency-cards { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hq-urgency-card { flex: 1; min-width: 100px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 12px; border: 2px solid var(--border); border-radius: 12px; background: #fff; font-size: 13px; color: var(--muted); transition: border-color 0.2s, background 0.2s, color 0.2s; }
+    .hq-urgency-card:hover { border-color: var(--accent); color: var(--ink); }
+    .hq-urgency-card:has(input:checked) { border-color: var(--accent); background: rgba(0,115,230,0.06); color: var(--accent); font-weight: 600; }
+    .hq-urgency-icon { font-size: 20px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .btn-primary-blue { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; font-family: var(--sans); font-size: 15px; font-weight: 600; padding: 14px 24px; border-radius: 10px; border: none; cursor: pointer; margin-top: 8px; }
+    .btn-primary-blue:hover { background: var(--accent-dark); } .btn-primary-blue svg { color: #fff; }
+    .btn-ghost { background: none; border: 1px solid var(--border); color: var(--muted); font-family: var(--sans); font-size: 14px; padding: 12px 20px; border-radius: 10px; cursor: pointer; }
+    .form-step-error { margin-top: 12px; padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #b91c1c; font-size: 14px; }
+    .form-step-actions { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+    .form-step-actions .btn-ghost, .form-step-actions .btn-primary-blue, .form-step-actions .btn-primary-gold { flex: 1; min-width: 0; justify-content: center; }
+    .form-step-actions--single { display: flex; margin-top: 24px; }
+    .form-step-actions--single .hq-next, .form-step-actions--single .btn-primary-blue { width: 100%; flex: 1 1 100%; }
+    .form-success { text-align: center; padding: 32px 20px; }
+    .form-success-icon { width: 56px; height: 56px; margin: 0 auto 20px; background: var(--success-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .form-success-icon svg { color: var(--success); }
+    .form-success h3 { font-family: var(--serif); font-size: 24px; color: var(--ink); margin-bottom: 8px; }
+    .form-success p { font-size: 15px; color: var(--muted); }
+    .final-cta { background: linear-gradient(135deg, #0d1f35 0%, var(--ink) 100%); padding: 88px 0; position: relative; }
+    .final-cta-inner { text-align: center; }
+    .final-cta h2 { font-family: var(--serif); font-size: clamp(32px,4vw,48px); line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .final-cta p { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto 32px; line-height: 1.6; }
+    .final-cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-ghost-white-final { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: #fff; font-family: var(--sans); font-size: 15px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.25); }
+    #main-content .btn-ghost-white-final { color: #fff !important; }
+    .btn-ghost-white-final:hover { background: rgba(255,255,255,0.18); }
+    .btn-ghost-white-final svg { color: #fff; }
+  </style>
+</BaseLayout>

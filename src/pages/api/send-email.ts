@@ -57,36 +57,54 @@ function generateOwnerHTML(data: any) {
   `;
 }
 
-// 2. Template for the CUSTOMER
+// 2. Template for the CUSTOMER (centered card layout for better email client support)
 function generateCustomerHTML(data: any) {
-  const brandColor = "#f97316";
   const isBooking = data.formType === 'booking';
-  const serviceText = data.service === 'Other' ? (data.serviceOther || 'your requested service') : (data.service || 'your requested service');
+  const requestType = isBooking ? 'booking' : 'quote';
+  const serviceText = data.service === 'Other' ? (data.serviceOther || 'your selected service') : (data.service || 'your selected service');
+  const firstName = data.name && data.name.trim() ? data.name.trim().split(/\s+/)[0] : 'there';
 
   return `
   <!DOCTYPE html>
   <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body { font-family: sans-serif; background-color: #f9fafb; margin: 0; padding: 0; }
-      .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; }
-      .header { background-color: #1f2937; padding: 24px; text-align: center; color: #ffffff; }
-      .content { padding: 32px; color: #374151; line-height: 1.6; }
-      .button { display: inline-block; background-color: ${brandColor}; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 20px; }
+      body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #e5e7eb; }
+      .wrapper { width: 100%; background-color: #e5e7eb; padding: 32px 16px; }
+      .card { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+      .header { background-color: #1f2937; padding: 24px 32px; text-align: center; }
+      .header h1 { margin: 0; font-size: 22px; font-weight: 700; color: #ffffff; }
+      .content { padding: 32px; color: #374151; line-height: 1.65; font-size: 15px; }
+      .content p { margin: 0 0 16px 0; }
+      .content p:last-of-type { margin-bottom: 0; }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h1 style="margin:0; font-size:24px;">We received your request!</h1>
-      </div>
-      <div class="content">
-        <p>Hi ${data.name.split(' ')[0]},</p>
-        <p>Thanks for reaching out to Deals of Quality! This email is just to let you know that we successfully received your ${isBooking ? 'booking' : 'quote'} request for <strong>${serviceText}</strong>.</p>
-        <p>Our team is reviewing your details right now, and one of our verified local pros will be in touch with you shortly at this email address or by phone.</p>
-        <p>If you need immediate assistance, feel free to reply directly to this email or give us a call.</p>
-        <p>Best regards,<br>The Deals of Quality Team</p>
-      </div>
+    <div class="wrapper">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #e5e7eb;">
+        <tr>
+          <td align="center" style="padding: 32px 16px;">
+            <table role="presentation" class="card" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; overflow: hidden;">
+              <tr>
+                <td class="header" style="background-color: #1f2937; padding: 24px 32px; text-align: center;">
+                  <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #ffffff;">We received your request!</h1>
+                </td>
+              </tr>
+              <tr>
+                <td class="content" style="padding: 32px; color: #374151; line-height: 1.65; font-size: 15px;">
+                  <p style="margin: 0 0 16px 0;">Hi ${firstName},</p>
+                  <p style="margin: 0 0 16px 0;">Thanks for reaching out to Deals of Quality! This email is just to let you know that we successfully received your ${requestType} request for <strong>${serviceText}</strong>.</p>
+                  <p style="margin: 0 0 16px 0;">Our team is reviewing your details right now, and one of our team members will be in touch with you shortly.</p>
+                  <p style="margin: 0 0 16px 0;">If you need immediate assistance, feel free to reply directly to this email or give us a call at (818) 584-7389.</p>
+                  <p style="margin: 0;">Kindest regards,<br>The Deals of Quality Team</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
     </div>
   </body>
   </html>

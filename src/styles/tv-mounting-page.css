@@ -97,7 +97,7 @@
   align-items: center;
   max-width: 1100px;
 }
-.tvm-page .hero-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.50); margin-bottom: 20px; }
+.tvm-page .hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.50); margin-bottom: 20px; }
 .tvm-page .hero-breadcrumb a { color: rgba(255,255,255,0.50); text-decoration: none; }
 .tvm-page .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
 .tvm-page .hero-breadcrumb span { color: rgba(255,255,255,0.3); }
@@ -127,6 +127,14 @@
   }
   .tvm-page .section-heading {
     text-align: center;
+  }
+  .tvm-page .hero-cta-row {
+    flex-direction: column;
+  }
+  .tvm-page .hero-cta-row .btn-primary-gold,
+  .tvm-page .hero-cta-row .btn-ghost-white {
+    width: 100%;
+    min-width: 0;
   }
 }
 .tvm-page .hero-sub {

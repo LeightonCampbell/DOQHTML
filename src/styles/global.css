@@ -344,3 +344,10 @@
     outline-offset: 3px;
   }
 }
+
+/* Hide breadcrumb on all mobile pages */
+@media (max-width: 768px) {
+  .hero-breadcrumb {
+    display: none !important;
+  }
+}
