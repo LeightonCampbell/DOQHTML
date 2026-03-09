@@ -20,6 +20,15 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', y
   description={description}
   canonical={canonical}
 >
+  <style is:global>
+    #main-content .article-prose a[href] {
+      color: #0073e6;
+      text-decoration: none;
+    }
+    #main-content .article-prose a[href]:hover {
+      text-decoration: underline;
+    }
+  </style>
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
@@ -80,7 +89,7 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', y
       <!-- Article Content -->
       <div class="pt-8 md:pt-10 pb-16 md:pb-24 px-4 md:px-8 lg:px-16">
         <div class="container-max px-4 md:px-8 lg:px-16">
-          <div class="max-w-4xl mx-auto prose prose-lg prose-slate dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-a:text-[#0073e6] prose-a:no-underline hover:prose-a:underline">
+          <div class="max-w-4xl mx-auto prose prose-lg prose-slate dark:prose-invert prose-headings:font-display prose-headings:font-bold article-prose">
             <Content />
           </div>
         </div>

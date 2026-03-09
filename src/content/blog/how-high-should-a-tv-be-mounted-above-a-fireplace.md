@@ -1,5 +1,5 @@
 ---
-title: "How High Should a TV Be Mounted Above a Fireplace?"
+title: "How High Should a TV Be Mounted Above a Fireplace? (The Actual Answer)"
 description: "Most people mount their fireplace TV too high. Here's the exact formula for the right height — and why getting it wrong costs you every movie night."
 pubDate: 2026-02-10
 author: "Deals of Quality"
@@ -53,144 +53,75 @@ readingTime: 6
   })();
 </script>
 
-Mounting a TV above a fireplace is one of the most requested installs we do — and one of the most commonly botched. Not by amateurs doing it themselves (though that happens too), but by people who get the height wrong and live with neck cramps and eye strain every single night.
+You've just unboxed a new TV. It's sitting on the floor, still wrapped in foam, and you're staring at the wall above the fireplace. It looks like the obvious spot. Clean. Centered. The kind of install you see in every design magazine.
 
-The good news: there's a formula. And once you know it, you'll never eyeball a mount again.
+Here's the thing: that spot is almost always wrong. And you won't realize it until you've spent six months craning your neck every time you watch a movie.
 
-## The Problem With "Above the Fireplace"
+## The Rule Everyone Ignores
 
-Fireplace mantels sit at an average of **48–54 inches from the floor**. Most people assume that means the TV goes directly above the mantel, which puts the center of a 55-inch TV at around **65–72 inches** from the floor.
+The center of your TV screen should sit at your seated eye level. That's it. That's the rule.
 
-That's nearly six feet up. For someone seated on a sofa at standard height (around 17 inches), their eye level is roughly **42–44 inches** off the ground.
+For most adults on a standard sofa, seated eye level is somewhere between 42 and 48 inches from the floor. Your TV's center belongs right there — not six inches above it, not a foot above it. When the screen sits higher than that, you're looking up. Your neck holds that angle for two hours. By halftime you've got a headache. By the credits you're rubbing your shoulders.
 
-The result: they're looking up at a 20–30 degree angle — every time. Optometrists and ergonomic researchers generally agree that anything beyond a **15-degree upward angle** causes measurable neck and eye strain over a typical viewing session.
+It's not a preference. It's ergonomics. Optometrists and posture researchers agree: anything beyond about 15 degrees of upward gaze causes measurable strain over a typical viewing session. Mount your TV too high and you've built a beautiful room that hurts to use.
 
-You've built a beautiful room around a fireplace and the TV is hurting you to watch. That's the problem.
+## The Fireplace Problem
 
-## The Exact Formula
+Above-fireplace installs are almost always too high. The mantel forces the TV up.
 
-Here's how to find the right mounting height:
+Most mantels sit at 48 to 54 inches from the floor. Add the height of the TV — a 65-inch screen is roughly 32 inches tall — and suddenly the center of the screen lands at 65 to 75 inches off the ground. That's 20 or more inches above where it should be. You're not watching TV. You're watching the ceiling with subtitles.
 
-1. **Measure seated eye level.** Sit on your sofa in your normal viewing position. Have someone measure from the floor to your eyes. For most adults on a standard sofa, this is **40–44 inches**.
-2. **Find the TV's half-height.** Divide your TV's screen height by 2. For a 55-inch TV (screen height ≈ 27 inches), that's about **13.5 inches**.
-3. **Add them together.** Eye level + half TV height = ideal center mount height. Example: 42 + 13.5 = **55.5 inches** from floor to the center of your TV.
-4. **Check against your mantel.** If your mantel is at 50 inches and you need 55.5 inches to center, you only need the bottom of the TV to clear the mantel by a few inches — which is very achievable with the right tilt mount and bracket placement.
+It looks good in photos. The symmetry is satisfying. The TV floats above the mantel like it was meant to be there. In practice, it feels like sitting in the front row of a movie theater, except you paid for the TV and you're stuck with it.
 
-**The rule of thumb:** the center of your TV should be within **5 inches above your seated eye level**. Going higher than that is where discomfort starts.
+## The Formula (Do This Calculation Before You Drill Anything)
 
-<!-- ─── EARLY CTA (after formula — peak engagement) ─── -->
-<div style="margin:36px 0;border-radius:16px;background:linear-gradient(135deg,#fff7ed 0%,#fffbf5 100%);border:1.5px solid #fcd34d;padding:28px 32px;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
-  <div style="font-size:32px;line-height:1;flex-shrink:0;">📐</div>
-  <div style="flex:1;min-width:200px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#92400e;text-transform:uppercase;margin-bottom:6px;">Get It Right the First Time</div>
-    <div style="font-size:18px;font-weight:700;color:#1a1209;margin-bottom:6px;line-height:1.3;">A professional installer measures, levels, and mounts your TV at the exact right height — with hidden wires.</div>
-    <div style="font-size:14px;color:#6b5b3e;margin-bottom:18px;">Same-day availability across Los Angeles. Upfront pricing. 90-day guarantee.</div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <button type="button" data-open-quote="true" data-service="TV Mounting" style="display:inline-flex;align-items:center;gap:7px;background:#F59E0B;color:#000;font-weight:700;font-size:14px;border:none;border-radius:9px;padding:11px 22px;cursor:pointer;">
-        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
-        Get a Free Quote
-      </button>
-      <a href="tel:8185847389" style="display:inline-flex;align-items:center;gap:6px;color:#92400e;font-weight:600;font-size:14px;text-decoration:none;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        (818) 584-7389
-      </a>
-      <span style="font-size:12px;color:#a07840;">⭐ 4.8-star rated · 3,800+ installs</span>
-    </div>
-  </div>
-</div>
+Do the math before you touch a drill. Here's how.
 
-## The Heat Problem Nobody Mentions
+**Step 1:** Measure your seated eye height. Sit on your sofa in your normal viewing position. Have someone measure from the floor to your eyes. For most adults, that's 42 to 48 inches. Call it 44 for our example.
 
-Even if you nail the height, there's a second issue specific to fireplace installs: **heat**.
+**Step 2:** Note your TV's screen height in inches. A 65-inch TV has a screen that's approximately 32 inches tall. Half of that is 16 inches.
 
-A wood-burning or gas fireplace generates rising heat that can reach the TV's position. Most modern TVs are rated to operate up to **95–104°F** — which sounds like a lot until you realize a roaring fire can push temperatures above a mantel well past that.
+**Step 3:** The center of the screen should sit at your seated eye level. So if your eyes are at 44 inches, the center of the TV belongs at 44 inches.
 
-**Practical steps to protect your TV:**
-- **Use a mantel shelf** that projects outward — it deflects rising heat away from the screen.
-- **Avoid mounting directly into a masonry chimney breast** without checking for heat transfer — brick conducts and radiates heat differently than drywall.
-- **Electric fireplaces** are generally safe since most direct heat goes outward, not upward.
-- If you use the fireplace frequently and at high intensity, consider a **recessed mount** that sits the TV inside the wall above the mantel, increasing clearance and improving sightlines at the same time.
+**Step 4:** The bottom of the TV therefore sits at center minus half the screen height. For a 65-inch TV with center at 44 inches: 44 minus 16 equals 28 inches. The bottom of the screen would be 28 inches from the floor.
 
-## The Right Mount Makes All the Difference
+**Step 5:** Measure from the top of your mantel. If your mantel is 50 inches from the floor, the bottom of your TV would need to clear it — which means the bottom must be at least 50 inches. That forces the center up to 66 inches (50 plus 16). You're 22 inches above where you want to be. The fireplace won't let you hit the ideal height. That's the compromise you're working with.
 
-Here's where most DIY fireplace installs fail even when the height math is right: **the wrong mount**.
+**Worked example:** 65-inch TV, 44-inch seated eye level, 50-inch mantel. Ideally, center at 44. But the mantel forces the bottom to 50, so the lowest possible center is 66. You're mounting high. A tilt bracket can help — more on that next.
 
-A flat fixed mount locked to the wall will never compensate for a TV that's a few inches too high — there's no adjustment. What you need for a fireplace install is a **full-motion or tilting mount** that lets the TV angle downward toward your eye level.
+## The Tilt Bracket Compromise
 
-A quality tilt mount with **-5° to -15° of downward tilt** can effectively lower the perceived center of the screen by 4–8 inches — bridging the gap between where your mantel forces you to mount and where ergonomics says you should watch.
+Sometimes the fireplace wall doesn't allow ideal positioning. The mantel is fixed. The room layout is fixed. You're stuck mounting higher than you'd like.
 
-<!-- ─── MID-ARTICLE CTA (after mount section) ─── -->
-<div style="margin:36px 0;border-radius:16px;background:linear-gradient(135deg,#f0f9ff 0%,#f8fcff 100%);border:1.5px solid #bae6fd;padding:28px 32px;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
-  <div style="font-size:32px;line-height:1;flex-shrink:0;">🖥️</div>
-  <div style="flex:1;min-width:200px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#0369a1;text-transform:uppercase;margin-bottom:6px;">Fireplace TV Mounting Specialists</div>
-    <div style="font-size:18px;font-weight:700;color:#0c1a26;margin-bottom:6px;line-height:1.3;">We handle fireplace installs daily — brick, drywall, stone, and concrete. Hidden wires included.</div>
-    <div style="font-size:14px;color:#4a6a80;margin-bottom:18px;">Our installers bring the right tilt mount for your specific setup. No guesswork, no revisits.</div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <button type="button" data-open-booking="true" data-service="TV Mounting" style="display:inline-flex;align-items:center;gap:7px;background:#0284c7;color:#fff;font-weight:700;font-size:14px;border:none;border-radius:9px;padding:11px 22px;cursor:pointer;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Book a TV Mounting Pro
-      </button>
-      <a href="tel:8185847389" style="display:inline-flex;align-items:center;gap:6px;color:#0369a1;font-weight:600;font-size:14px;text-decoration:none;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        (818) 584-7389
-      </a>
-    </div>
-  </div>
-</div>
+A steep-tilt articulating mount can partially compensate. It angles the screen down toward you, reducing neck strain even when the TV sits higher than ideal. A few degrees of downward tilt can make a real difference — it effectively lowers the perceived center of the screen by several inches.
 
-## When You Should Call a Pro
+Be honest with yourself: it's a compromise, not a solution. It helps. It doesn't fix the problem. If you can avoid mounting above the fireplace entirely, that's still the best outcome. If you can't, a quality tilt mount is the next best thing.
 
-Some fireplace TV installs are straightforward. Others are not — and the difference matters.
+## What About Heat?
 
-**Call a professional when:**
-- Your fireplace surround is **brick, stone, or concrete**. Drilling masonry requires hammer drills, proper anchors, and knowing what's behind the surface.
-- You need **wire concealment**. Running cables behind a fireplace wall involves cutting drywall, fishing wires, and patching — not a one-person job.
-- Your TV is **65 inches or larger**. Heavier TVs require precise stud location and weight-rated hardware that most consumer mounts don't include.
-- You want a **recessed install** — where the TV sits inside a cavity in the wall above the mantel. This is a structural job, not just a mounting job.
-- The wall **doesn't have studs** where you need them. Fireplace walls are often non-standard framing, and toggle anchors alone won't hold a heavy TV safely long-term.
+Every reader wonders this. Fair question.
 
-Getting one of these wrong doesn't just mean a crooked TV — it can mean a TV on the floor and a damaged wall.
+Modern flat-screen TVs handle heat better than older sets. That said, sustained heat from a wood-burning fireplace can shorten a TV's lifespan. Gas fireplaces with direct-vent systems are generally fine — the heat goes up and out, and the mantel usually provides enough thermal separation.
 
-## The Bottom Line
+Check your TV's specs. Most manufacturers list a maximum ambient operating temperature, usually around 104°F (40°C). If the space above your mantel regularly exceeds that when the fire is running, you're asking for trouble. A mantel that projects outward helps deflect rising heat. Keep it factual: know your numbers, and don't mount a TV in a spot that routinely bakes.
 
-The right height for a TV above a fireplace is **lower than most people mount it**. Use the formula: seated eye level + half your TV's screen height. Aim for the TV's center to sit no more than 5 inches above your eye line. Add a quality tilt mount to fine-tune the angle, watch out for heat, and don't cut corners on the wall material.
+## The One Thing Most DIYers Get Wrong on Fireplace Walls
 
-If you'd rather skip the measuring tape, the masonry drill, and the two hours of YouTube prep — our team handles fireplace TV installs every day across Los Angeles.
+Stone, brick, and tile fireplace surrounds need masonry anchors. Not standard drywall anchors. Not plastic plugs. Not "it'll probably hold."
 
-<div style="margin:24px 0 8px;">
-  <button type="button" data-open-quote="true" data-service="TV Mounting" style="display:inline-flex;align-items:center;gap:8px;background:#F59E0B;color:#000;font-weight:700;font-size:15px;border:none;border-radius:10px;padding:12px 26px;cursor:pointer;">
-    <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
-    Get a Free Quote
-  </button>
-</div>
+The right hardware is a sleeve anchor or a chemical anchor rated for the combined weight of the TV and bracket. You drill into solid material with a hammer drill. You use the correct bit size. You follow the manufacturer's depth specs.
 
-<!-- ─── FINAL DARK BANNER ─── -->
-<div class="bg-primary text-primary-foreground py-16 -mx-4 md:-mx-8 lg:-mx-16 px-4 md:px-8 lg:px-16 mt-12">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="font-display text-3xl md:text-4xl font-bold mb-4" style="color:#ffffff;">Get Your Fireplace TV Mounted Right</h2>
-    <p class="text-xl opacity-90 mb-8">Perfect height, hidden wires, tilt-adjusted for your sofa. Same-day across Los Angeles — upfront pricing, 90-day guarantee.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <button type="button" data-open-quote="true" data-service="TV Mounting" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold h-12 px-8 hover:opacity-90 transition" style="background:#F59E0B;color:#000;border:none;cursor:pointer;font-size:15px;">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
-        Get a Free Quote
-      </button>
-      <button type="button" data-open-booking="true" data-service="TV Mounting" class="inline-flex items-center justify-center rounded-lg border-2 border-white text-white font-semibold h-12 px-8 hover:bg-white/20 transition" style="background:none;cursor:pointer;font-size:15px;">
-        Book a Pro Today
-      </button>
-      <a href="tel:8185847389" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold h-12 px-6 transition" style="color:#fff;font-size:15px;text-decoration:none;border:1px solid rgba(255,255,255,0.3);">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        (818) 584-7389
-      </a>
-    </div>
-  </div>
-</div>
+What happens when people use the wrong anchors? The anchor grips at first. It feels solid. Over weeks, the weight works on it. The grip loosens. One day you hear a creak. Then a pop. Then the TV is on the floor and the wall has a new hole. It's not dramatic until it is. This is where you earn the reader's trust by telling them what they didn't know they needed to know — and if the masonry is giving you pause, a [professional TV mounting service](/services/tv-mounting/) that handles fireplace installs every week is worth the call.
+
+## Closing
+
+If the fireplace wall is giving you second thoughts, we mount TVs above fireplaces in [TV mounting in Los Angeles](/services/tv-mounting-los-angeles/) every week. Same-day slots are usually open. We bring the right tilt mount for your setup, handle the masonry if that's what you're working with, and take care of [hiding the cables](/blog/how-to-hide-tv-wires-without-cutting-the-wall/) so the wall stays clean. We back every install with a 90-day guarantee. No pressure — just an option if you'd rather skip the measuring tape and the hammer drill. [(818) 584-7389](tel:8185847389)
 
 <div class="my-12">
   <h2 class="font-display text-xl md:text-2xl font-bold text-foreground mb-6">Related Articles & Services</h2>
   <div class="grid md:grid-cols-3 gap-4">
-    <a href="/blog/tv-mounting-done-right-why-professional-installation-matters/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
-      <span class="font-medium text-foreground group-hover:text-[hsl(var(--accent))] transition-colors">Why Professional TV Mounting Matters</span>
+    <a href="/blog/how-to-hide-tv-wires-without-cutting-the-wall/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
+      <span class="font-medium text-foreground group-hover:text-[hsl(var(--accent))] transition-colors">How to Hide TV Wires Without Cutting the Wall</span>
       <span class="ml-auto text-muted-foreground group-hover:text-[hsl(var(--accent))]">→</span>
     </a>
     <a href="/blog/top-5-mistakes-to-avoid-when-mounting-your-tv/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
