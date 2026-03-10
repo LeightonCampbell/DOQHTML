@@ -8,52 +8,6 @@ readingTime: 6
 heroImage: "/blog/pull-down-fireplace-tv-mount.jpg"
 ---
 
-<!-- ─── STICKY BOTTOM BAR ─── -->
-<style>
-  #sticky-fp { position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0a0e14;border-top:2px solid #F59E0B;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px; }
-  #sticky-fp .sl { display:flex;align-items:center;gap:10px; }
-  #sticky-fp .sl-label { color:#F59E0B;font-weight:700;font-size:14px;white-space:nowrap; }
-  #sticky-fp .sl-sub { color:rgba(255,255,255,0.65);font-size:13px;white-space:nowrap; }
-  #sticky-fp .sr { display:flex;align-items:center;gap:8px;flex-shrink:0; }
-  #sticky-fp .s-phone { display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:8px 14px;white-space:nowrap; }
-  #sticky-fp .s-btn { display:inline-flex;align-items:center;gap:6px;background:#F59E0B;color:#000;font-weight:700;font-size:14px;border:none;border-radius:8px;padding:9px 18px;cursor:pointer;white-space:nowrap; }
-  #sticky-fp .s-x { background:none;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;padding:0 4px;line-height:1; }
-  @media (max-width:600px) {
-    #sticky-fp { flex-direction:column;align-items:stretch;padding:10px 16px;gap:8px; }
-    #sticky-fp .sl { display:none; }
-    #sticky-fp .sr { justify-content:space-between;width:100%; }
-    #sticky-fp .s-phone, #sticky-fp .s-btn { flex:1;justify-content:center;font-size:13px;padding:9px 10px; }
-    #sticky-fp .s-x { flex-shrink:0; }
-  }
-</style>
-<div id="sticky-fp">
-  <div class="sl">
-    <span class="sl-label">⭐ 4.8-star rated · 3,800+ TVs mounted across LA</span>
-    <span class="sl-sub">Same-day fireplace TV mounting available</span>
-  </div>
-  <div class="sr">
-    <a href="tel:8185847389" class="s-phone">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-      (818) 584-7389
-    </a>
-    <button type="button" data-open-quote="true" data-service="TV Mounting" class="s-btn">
-      <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
-      Get a Free Quote
-    </button>
-    <button onclick="document.getElementById('sticky-fp').style.display='none';document.getElementById('sticky-fp-spacer').style.height='0'" class="s-x" aria-label="Dismiss">×</button>
-  </div>
-</div>
-<div style="height:0;" id="sticky-fp-spacer"></div>
-<script>
-  (function() {
-    var bar = document.getElementById('sticky-fp');
-    var spacer = document.getElementById('sticky-fp-spacer');
-    function sync() { if (bar && spacer && bar.style.display !== 'none') spacer.style.height = bar.offsetHeight + 'px'; }
-    sync();
-    window.addEventListener('resize', sync);
-  })();
-</script>
-
 You've just unboxed a new TV. It's sitting on the floor, still wrapped in foam, and you're staring at the wall above the fireplace. It looks like the obvious spot. Clean. Centered. The kind of install you see in every design magazine.
 
 Here's the thing: that spot is almost always wrong. And you won't realize it until you've spent six months craning your neck every time you watch a movie.
@@ -116,16 +70,16 @@ What happens when people use the wrong anchors? The anchor grips at first. It fe
 
 ## Closing
 
-If the fireplace wall is giving you second thoughts, we mount TVs above fireplaces in [TV mounting in Los Angeles](/services/tv-mounting-los-angeles/) every week. Same-day slots are usually open. We bring the right tilt mount for your setup, handle the masonry if that's what you're working with, and take care of [hiding the cables](/blog/how-to-hide-tv-wires-without-cutting-the-wall/) so the wall stays clean. We back every install with a 90-day guarantee. No pressure — just an option if you'd rather skip the measuring tape and the hammer drill. [(818) 584-7389](tel:8185847389)
+If the fireplace wall is giving you second thoughts, we mount TVs above fireplaces in [TV mounting in Los Angeles](/services/tv-mounting-los-angeles/) every week. Same-day slots are usually open. We bring the right tilt mount for your setup, handle the masonry if that's what you're working with, and take care of [hiding the cables](/articles/how-to-hide-tv-wires-without-cutting-the-wall/) so the wall stays clean. We back every install with a 90-day guarantee. No pressure — just an option if you'd rather skip the measuring tape and the hammer drill. [(818) 584-7389](tel:8185847389)
 
 <div class="my-12">
   <h2 class="font-display text-xl md:text-2xl font-bold text-foreground mb-6">Related Articles & Services</h2>
   <div class="grid md:grid-cols-3 gap-4">
-    <a href="/blog/how-to-hide-tv-wires-without-cutting-the-wall/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
+    <a href="/articles/how-to-hide-tv-wires-without-cutting-the-wall/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
       <span class="font-medium text-foreground group-hover:text-[hsl(var(--accent))] transition-colors">How to Hide TV Wires Without Cutting the Wall</span>
       <span class="ml-auto text-muted-foreground group-hover:text-[hsl(var(--accent))]">→</span>
     </a>
-    <a href="/blog/top-5-mistakes-to-avoid-when-mounting-your-tv/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
+    <a href="/articles/top-5-mistakes-to-avoid-when-mounting-your-tv/" class="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-[hsl(var(--accent))] transition-colors group">
       <span class="font-medium text-foreground group-hover:text-[hsl(var(--accent))] transition-colors">Top 5 TV Mounting Mistakes</span>
       <span class="ml-auto text-muted-foreground group-hover:text-[hsl(var(--accent))]">→</span>
     </a>

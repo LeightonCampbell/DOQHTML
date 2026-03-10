@@ -18,14 +18,14 @@ const SITEMAP_EXCLUDE = ['/success/', '/quote-received/', '/booking-confirmed/',
 function getCustomSitemapPages() {
   const customPages = [];
 
-  // Blog article URLs: /blog/[slug]/ (content lives in src/content/blog/*.md)
+  // Article URLs: /articles/[slug]/ (content lives in src/content/blog/*.md)
   try {
     const blogDir = join(__dirname, 'src', 'content', 'blog');
     const files = readdirSync(blogDir);
     const slugs = files
       .filter((f) => f.endsWith('.md'))
       .map((f) => f.replace(/\.md$/, ''));
-    slugs.forEach((slug) => customPages.push(`${SITE}/blog/${slug}/`));
+    slugs.forEach((slug) => customPages.push(`${SITE}/articles/${slug}/`));
   } catch (_) {
     // ignore if dir missing at config load time
   }
@@ -60,18 +60,44 @@ const LEGACY_REDIRECTS = {
   '/services/data-backup/': '/tech-support/data-backup-recovery/',
 };
 
+/** Build /blog/[slug]/ → /articles/[slug]/ redirects (301 permanent) */
+function getBlogRedirects() {
+  const redirects = {};
+  try {
+    const blogDir = join(__dirname, 'src', 'content', 'blog');
+    const files = readdirSync(blogDir);
+    const slugs = files
+      .filter((f) => f.endsWith('.md'))
+      .map((f) => f.replace(/\.md$/, ''));
+    slugs.forEach((slug) => {
+      redirects[`/blog/${slug}/`] = { status: 301, destination: `/articles/${slug}/` };
+    });
+  } catch (_) {
+    // ignore if dir missing at config load time
+  }
+  return redirects;
+}
+
+const BLOG_REDIRECTS = getBlogRedirects();
+
+// Redirect old blog index to articles index
+BLOG_REDIRECTS['/blog/'] = { status: 301, destination: '/articles/' };
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE,
   output: 'server',
   adapter: cloudflare(),
   trailingSlash: 'always',
-  redirects: Object.fromEntries(
-    Object.entries(LEGACY_REDIRECTS).map(([from, to]) => [
-      from,
-      { status: 301, destination: to },
-    ])
-  ),
+  redirects: {
+    ...Object.fromEntries(
+      Object.entries(LEGACY_REDIRECTS).map(([from, to]) => [
+        from,
+        { status: 301, destination: to },
+      ])
+    ),
+    ...BLOG_REDIRECTS,
+  },
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),

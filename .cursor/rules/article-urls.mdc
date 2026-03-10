@@ -1,0 +1,27 @@
+---
+description: Article URL structure and linking conventions
+globs: src/content/blog/**/*.md, src/pages/articles/**/*
+alwaysApply: false
+---
+
+# Article URLs
+
+## URL Structure
+
+- **Article pages live at** `/articles/[slug]/` (e.g. `/articles/same-day-tv-installation-los-angeles/`)
+- **Content source**: `src/content/blog/*.md` (frontmatter + markdown)
+- **Route**: `src/pages/articles/[slug].astro` renders each article
+
+## Linking to Articles
+
+- Use `/articles/slug/` for internal links to articles (never `/blog/slug/`)
+- Example: `[Related article](/articles/top-5-mistakes-to-avoid-when-mounting-your-tv/)`
+
+## New Articles
+
+When adding a new article:
+
+1. Create `src/content/blog/your-article-slug.md` with frontmatter (title, description, pubDate, category, etc.)
+2. The article will automatically be available at `/articles/your-article-slug/`
+3. Add internal links using `/articles/` paths
+4. The sitemap and redirects (blog→articles) are configured in `astro.config.mjs`

@@ -9,9 +9,20 @@ if (!entry) {
 }
 
 const { Content } = await entry.render();
-const { title, description, pubDate, author, readingTime } = entry.data;
+const { title, description, pubDate, author, readingTime, category, service: articleService } = entry.data;
 
-const canonical = `https://www.dealsofquality.com/blog/${entry.slug}/`;
+const canonical = `https://www.dealsofquality.com/articles/${entry.slug}/`;
+
+// Sticky CTA bar content by category; service must match quote modal's service list for prefill
+const stickyCtaByCategory: Record<string, { label: string; sub: string; service: string }> = {
+  'TV Mounting': { label: '⭐ 4.8-star rated · 3,800+ TVs mounted across LA', sub: 'Same-day TV mounting available', service: 'TV Mounting' },
+  'Handyman': { label: '⭐ 4.8-star rated · 20,000+ jobs completed', sub: 'Same-day handyman available in LA', service: 'Handyman Services' },
+  'Home Improvement': { label: '⭐ 4.8-star rated · Expert home pros', sub: 'Get a free quote for your project', service: 'Handyman Services' },
+  'Computers & Tech': { label: '⭐ 4.8-star rated · Tech support when you need it', sub: 'Same-day computer support in LA', service: 'Computer Repair' },
+  'Website & Business': { label: '⭐ 4.8-star rated · Modern websites for local business', sub: 'Get a free website consultation', service: 'Website Design' }
+};
+const categoryCta = stickyCtaByCategory[category ?? ''] ?? { label: '⭐ 4.8-star rated · Quality local services', sub: 'Get a free quote', service: 'Other' };
+const stickyCta = articleService ? { ...categoryCta, service: articleService } : categoryCta;
 const formatDate = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 
@@ -27,6 +38,21 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', y
     }
     #main-content .article-prose a[href]:hover {
       text-decoration: underline;
+    }
+    #sticky-cta-bar { position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0a0e14;border-top:2px solid #F59E0B;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px; }
+    #sticky-cta-bar .sticky-left { display:flex;align-items:center;gap:10px; }
+    #sticky-cta-bar .sticky-label { color:#F59E0B;font-weight:700;font-size:14px;white-space:nowrap; }
+    #sticky-cta-bar .sticky-sub { color:rgba(255,255,255,0.65);font-size:13px;white-space:nowrap; }
+    #sticky-cta-bar .sticky-right { display:flex;align-items:center;gap:8px;flex-shrink:0; }
+    #sticky-cta-bar .sticky-phone { display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:8px 14px;white-space:nowrap; }
+    #sticky-cta-bar .sticky-btn { display:inline-flex;align-items:center;gap:6px;background:#F59E0B;color:#000;font-weight:700;font-size:14px;border:none;border-radius:8px;padding:9px 18px;cursor:pointer;white-space:nowrap; }
+    #sticky-cta-bar .sticky-dismiss { background:none;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;padding:0 4px;line-height:1; }
+    @media (max-width:600px) {
+      #sticky-cta-bar { flex-direction:column;align-items:stretch;padding:10px 16px;gap:8px; }
+      #sticky-cta-bar .sticky-left { display:none; }
+      #sticky-cta-bar .sticky-right { justify-content:space-between;width:100%; }
+      #sticky-cta-bar .sticky-phone, #sticky-cta-bar .sticky-btn { flex:1;justify-content:center;font-size:13px;padding:9px 10px; }
+      #sticky-cta-bar .sticky-dismiss { flex-shrink:0; }
     }
   </style>
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -124,6 +150,39 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', y
           </div>
         </div>
       </div>
+
+      <!-- Sticky CTA bar spacer (reserves space so content isn't hidden behind fixed bar) -->
+      <div id="sticky-cta-spacer" style="height:0" aria-hidden="true"></div>
     </article>
+
+    <!-- Sticky CTA bar -->
+    <div id="sticky-cta-bar">
+      <div class="sticky-left">
+        <span class="sticky-label">{stickyCta.label}</span>
+        <span class="sticky-sub">{stickyCta.sub}</span>
+      </div>
+      <div class="sticky-right">
+        <a href="tel:8185847389" class="sticky-phone">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          (818) 584-7389
+        </a>
+        <button type="button" data-open-quote="true" data-service={stickyCta.service} class="sticky-btn">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
+          Get a Free Quote
+        </button>
+        <button type="button" class="sticky-dismiss" aria-label="Dismiss" id="sticky-cta-dismiss">×</button>
+      </div>
+    </div>
   </main>
+  <script>
+    (function() {
+      var bar = document.getElementById('sticky-cta-bar');
+      var spacer = document.getElementById('sticky-cta-spacer');
+      var dismiss = document.getElementById('sticky-cta-dismiss');
+      function sync() { if (bar && spacer && bar.style.display !== 'none') spacer.style.height = bar.offsetHeight + 'px'; }
+      if (dismiss) dismiss.addEventListener('click', function() { bar.style.display = 'none'; spacer.style.height = '0'; });
+      sync();
+      window.addEventListener('resize', sync);
+    })();
+  </script>
 </BaseLayout>

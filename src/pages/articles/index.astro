@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content';
 const allPosts = await getCollection('blog');
 const sorted = [...allPosts].sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
-// Group by category; preserve order: Website & Business, Computers & Tech, TV Mounting, Handyman, Home Improvement
-const categoryOrder = ['Website & Business', 'Computers & Tech', 'TV Mounting', 'Handyman', 'Home Improvement'];
+// Group by category; preserve order: Home Improvement, Handyman Services, TV Mounting Services, Tech Support Services, Website Development Services
+const categoryOrder = ['Home Improvement', 'Handyman', 'TV Mounting', 'Computers & Tech', 'Website & Business'];
 const byCategory = new Map<string, typeof sorted>();
 for (const entry of sorted) {
   const cat = entry.data.category;
@@ -58,7 +58,7 @@ const defaultImage = '/blog/placeholder-article.svg';
                 {posts.map((entry) => {
                   const img = entry.data.heroImage ?? entry.data.image ?? defaultImage;
                   return (
-                    <a href={`/blog/${entry.slug}/`} class="group block">
+                    <a href={`/articles/${entry.slug}/`} class="group block">
                       <article class="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
                         <!-- 1. Image (top) -->
                         <div class="aspect-video bg-muted relative overflow-hidden">

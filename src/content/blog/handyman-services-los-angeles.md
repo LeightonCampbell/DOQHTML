@@ -8,57 +8,6 @@ readingTime: 12
 heroImage: "/handyman-hero.jpg"
 ---
 
-<!-- ─── STICKY BOTTOM BAR ─── -->
-<style>
-  #sticky-cta-bar-hm { position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0a0e14;border-top:2px solid #F59E0B;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px; }
-  #sticky-cta-bar-hm .sticky-left { display:flex;align-items:center;gap:10px; }
-  #sticky-cta-bar-hm .sticky-label { color:#F59E0B;font-weight:700;font-size:14px;white-space:nowrap; }
-  #sticky-cta-bar-hm .sticky-sub { color:rgba(255,255,255,0.65);font-size:13px;white-space:nowrap; }
-  #sticky-cta-bar-hm .sticky-right { display:flex;align-items:center;gap:8px;flex-shrink:0; }
-  #sticky-cta-bar-hm .sticky-phone { display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:8px 14px;white-space:nowrap; }
-  #sticky-cta-bar-hm .sticky-quote { display:inline-flex;align-items:center;gap:6px;background:#F59E0B;color:#000;font-weight:700;font-size:14px;border:none;border-radius:8px;padding:9px 18px;cursor:pointer;white-space:nowrap; }
-  #sticky-cta-bar-hm .sticky-dismiss { background:none;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;padding:0 4px;line-height:1; }
-  @media (max-width: 600px) {
-    #sticky-cta-bar-hm { flex-direction:column;align-items:stretch;padding:10px 16px;gap:8px; }
-    #sticky-cta-bar-hm .sticky-left { display:none; }
-    #sticky-cta-bar-hm .sticky-right { justify-content:space-between;width:100%; }
-    #sticky-cta-bar-hm .sticky-phone { flex:1;justify-content:center;font-size:13px;padding:9px 10px; }
-    #sticky-cta-bar-hm .sticky-quote { flex:1;justify-content:center;font-size:13px;padding:9px 10px; }
-    #sticky-cta-bar-hm .sticky-dismiss { flex-shrink:0; }
-  }
-</style>
-<div id="sticky-cta-bar-hm">
-  <div class="sticky-left">
-    <span class="sticky-label">⭐ 4.8-star rated · 20,000+ jobs completed</span>
-    <span class="sticky-sub">Same-day handyman available in LA</span>
-  </div>
-  <div class="sticky-right">
-    <a href="tel:8185847389" class="sticky-phone">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-      (818) 584-7389
-    </a>
-    <button type="button" data-open-quote="true" data-service="Handyman Services" class="sticky-quote">
-      <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
-      Get a Free Quote
-    </button>
-    <button onclick="document.getElementById('sticky-cta-bar-hm').style.display='none';document.getElementById('sticky-spacer-hm').style.height='0'" class="sticky-dismiss" aria-label="Dismiss">×</button>
-  </div>
-</div>
-<div style="height:0;" id="sticky-spacer-hm"></div>
-<script>
-  (function() {
-    var bar = document.getElementById('sticky-cta-bar-hm');
-    var spacer = document.getElementById('sticky-spacer-hm');
-    function updateSpacing() {
-      if (bar && spacer && bar.style.display !== 'none') {
-        spacer.style.height = bar.offsetHeight + 'px';
-      }
-    }
-    updateSpacing();
-    window.addEventListener('resize', updateSpacing);
-  })();
-</script>
-
 Finding vetted, professional handyman services in Los Angeles is the ultimate shortcut for homeowners who value their time as much as their property. In a city where "fly-by-night" contractors are common, choosing a service that pre-qualifies its professionals is the only way to ensure your home remains a sanctuary, not a project site.
 
 Whether you are in Beverly Hills needing precise carpentry or Silver Lake looking for a creative lighting install, a vetted handyman provides the missing link between a "to-do" list and a "done" list.

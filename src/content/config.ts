@@ -8,6 +8,8 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     author: z.string().default('Deals of Quality'),
     category: z.string(), // e.g. "TV Mounting", "Computers & Tech", "Home Improvement"
+    /** Optional: override category-based service prefill for sticky CTA (e.g. "TV Mounting", "Computer Repair") */
+    service: z.string().optional(),
     heroImage: z.string().optional(),
     image: z.string().optional(),
     readingTime: z.number().optional(), // minutes
