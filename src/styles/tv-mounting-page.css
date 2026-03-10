@@ -192,7 +192,8 @@
 .tvm-page .proof-bar-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #E8E5E0; border-radius: 14px; overflow: hidden; }
 @media (max-width: 640px) { .tvm-page .proof-bar-inner { grid-template-columns: repeat(2, 1fr); } }
 .tvm-page .proof-cell { background: #fff; padding: 28px 24px; text-align: center; }
-.tvm-page .proof-cell .counter { font-family: var(--tvm-serif); font-size: 34px; line-height: 1; margin-bottom: 6px; color: var(--tvm-ink); display: block; }
+.tvm-page .proof-cell .counter,
+.tvm-page .proof-cell .proof-num { font-family: var(--tvm-serif); font-size: 34px; line-height: 1; margin-bottom: 6px; color: var(--tvm-ink); display: block; }
 .tvm-page .proof-cell .proof-lbl { font-size: 12px; color: var(--tvm-muted); line-height: 1.4; }
 
 .tvm-page .pain-section { background: var(--tvm-cream); padding: 88px 0; }

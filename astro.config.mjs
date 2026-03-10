@@ -6,12 +6,13 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SITE = 'https://www.dealsofquality.com';
 
 /** Utility/post-conversion pages to exclude from the sitemap */
-const SITEMAP_EXCLUDE = ['/success/', '/quote-received/', '/booking-confirmed/'];
+const SITEMAP_EXCLUDE = ['/success/', '/quote-received/', '/booking-confirmed/', '/tracker/'];
 
 /** Build custom sitemap URLs for SSR/dynamic routes (blog articles + TV mounting city pages). */
 function getCustomSitemapPages() {
@@ -72,6 +73,7 @@ export default defineConfig({
     ])
   ),
   integrations: [
+    react(),
     tailwind({ applyBaseStyles: false }),
     sitemap({
       filter: (url) => {

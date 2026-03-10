@@ -5,6 +5,7 @@ pubDate: 2026-02-10
 author: "Deals of Quality"
 category: "TV Mounting"
 readingTime: 6
+heroImage: "/blog/pull-down-fireplace-tv-mount.jpg"
 ---
 
 <!-- ─── STICKY BOTTOM BAR ─── -->

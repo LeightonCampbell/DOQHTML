@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentTracker from '../components/ContentTracker.jsx';
+---
+
+<BaseLayout
+  title="Content Tracker"
+  description="Internal content publishing tracker for Deals of Quality"
+  canonical="https://www.dealsofquality.com/tracker/"
+  noindex={true}
+>
+  <ContentTracker client:only="react" />
+</BaseLayout>
