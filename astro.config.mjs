@@ -49,6 +49,17 @@ function getCustomSitemapPages() {
     fallbackSlugs.forEach((slug) => customPages.push(`${SITE}/services/tv-mounting-${slug}/`));
   }
 
+  // Tech support city pages: /tech-support/[slug]/
+  try {
+    const techCitiesPath = join(__dirname, 'src', 'data', 'tech-support-cities.json');
+    const techCities = JSON.parse(readFileSync(techCitiesPath, 'utf-8'));
+    for (const c of techCities) {
+      if (c.slug) customPages.push(`${SITE}/tech-support/${c.slug}/`);
+    }
+  } catch (_) {
+    // ignore if file missing at config load time
+  }
+
   return customPages;
 }
 

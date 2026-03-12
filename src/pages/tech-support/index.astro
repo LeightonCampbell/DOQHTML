@@ -36,18 +36,7 @@ const steps = [
   { title: 'Stay Protected', body: 'We leave you with a quick-reference guide and follow-up support so the problem stays solved long after we\'re gone.', icon: 'shield' },
 ];
 
-const cities = [
-  { name: 'New York', state: 'NY' }, { name: 'Los Angeles', state: 'CA' }, { name: 'Chicago', state: 'IL' }, { name: 'Houston', state: 'TX' }, { name: 'Phoenix', state: 'AZ' },
-  { name: 'Philadelphia', state: 'PA' }, { name: 'San Antonio', state: 'TX' }, { name: 'San Diego', state: 'CA' }, { name: 'Dallas', state: 'TX' }, { name: 'San Jose', state: 'CA' },
-  { name: 'Austin', state: 'TX' }, { name: 'Jacksonville', state: 'FL' }, { name: 'Fort Worth', state: 'TX' }, { name: 'Columbus', state: 'OH' }, { name: 'Charlotte', state: 'NC' },
-  { name: 'Indianapolis', state: 'IN' }, { name: 'San Francisco', state: 'CA' }, { name: 'Seattle', state: 'WA' }, { name: 'Denver', state: 'CO' }, { name: 'Nashville', state: 'TN' },
-  { name: 'Oklahoma City', state: 'OK' }, { name: 'El Paso', state: 'TX' }, { name: 'Washington', state: 'DC' }, { name: 'Las Vegas', state: 'NV' }, { name: 'Louisville', state: 'KY' },
-  { name: 'Memphis', state: 'TN' }, { name: 'Portland', state: 'OR' }, { name: 'Baltimore', state: 'MD' }, { name: 'Milwaukee', state: 'WI' }, { name: 'Albuquerque', state: 'NM' },
-  { name: 'Tucson', state: 'AZ' }, { name: 'Fresno', state: 'CA' }, { name: 'Mesa', state: 'AZ' }, { name: 'Kansas City', state: 'MO' }, { name: 'Atlanta', state: 'GA' },
-  { name: 'Omaha', state: 'NE' }, { name: 'Colorado Springs', state: 'CO' }, { name: 'Raleigh', state: 'NC' }, { name: 'Long Beach', state: 'CA' }, { name: 'Virginia Beach', state: 'VA' },
-  { name: 'Minneapolis', state: 'MN' }, { name: 'Tampa', state: 'FL' }, { name: 'New Orleans', state: 'LA' }, { name: 'Arlington', state: 'TX' }, { name: 'Bakersfield', state: 'CA' },
-  { name: 'Honolulu', state: 'HI' }, { name: 'Anaheim', state: 'CA' }, { name: 'Aurora', state: 'CO' }, { name: 'Santa Ana', state: 'CA' }, { name: 'Corpus Christi', state: 'TX' },
-];
+import cities from '../../data/tech-support-cities.json';
 
 const trustPoints = [
   { title: 'Certified on Every Platform', body: 'CompTIA A+, Microsoft Certified, Apple Authorized — our techs carry credentials, not just toolboxes.' },
@@ -446,11 +435,11 @@ const phone = 'tel:+18185847389';
           <h2 class="section-heading fade-up d1 visible">Tech support near you.</h2>
           <p class="section-body fade-up d2 visible" style="margin:0 auto;">We serve 50 major US cities with the same certified support, same transparent pricing, and the same 30-day guarantee — whether you're in New York or Tucson.</p>
         </div>
-        <div class="locations-grid fade-up d1 visible">
+        <div class="locations-grid fade-up d1 visible grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {cities.map((c) => (
-            <a class="loc-card" href="/tech-support/#quote">
+            <a class="loc-card" href={'/tech-support/' + c.slug + '/'}>
               <div class="loc-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"></circle></svg></div>
-              <span class="loc-card-name">{c.name} {c.state}</span>
+              <span class="loc-card-name">{c.cityName}, {c.state}</span>
               <span class="loc-card-sub">Remote &amp; on-site support</span>
               <span class="loc-card-link">Get a quote <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
             </a>

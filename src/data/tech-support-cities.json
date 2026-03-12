@@ -1,0 +1,352 @@
+[
+  {
+    "slug": "los-angeles-ca",
+    "cityName": "Los Angeles",
+    "state": "CA",
+    "localHighlight": "From downtown LA to the San Fernando Valley, our local tech team understands the unique networking needs of Southern California homes.",
+    "localMetaDesc": "Same-day tech support in Los Angeles. Computer repair, virus removal, and network setup for homes and small businesses. Call (818) 584-7389."
+  },
+  {
+    "slug": "new-york-ny",
+    "cityName": "New York",
+    "state": "NY",
+    "localHighlight": "Whether you're in Manhattan, Brooklyn, or the outer boroughs, our certified technicians bring reliable computer and network support to your doorstep.",
+    "localMetaDesc": "Tech support in New York City. Computer repair, virus removal, Wi-Fi setup. Same-day service for Manhattan, Brooklyn, Queens & more."
+  },
+  {
+    "slug": "chicago-il",
+    "cityName": "Chicago",
+    "state": "IL",
+    "localHighlight": "From the Loop to Lincoln Park and the South Side, we serve Chicago homeowners and small businesses with on-site and remote tech support.",
+    "localMetaDesc": "Computer repair and tech support in Chicago. Virus removal, network setup, printer help. Same-day service across Chicagoland."
+  },
+  {
+    "slug": "houston-tx",
+    "cityName": "Houston",
+    "state": "TX",
+    "localHighlight": "Serving Greater Houston from the Heights to Sugar Land, our techs handle everything from slow PCs to home network setup in Texas humidity.",
+    "localMetaDesc": "Tech support in Houston. Computer repair, virus removal, Wi-Fi troubleshooting. Same-day service for homes and small businesses."
+  },
+  {
+    "slug": "phoenix-az",
+    "cityName": "Phoenix",
+    "state": "AZ",
+    "localHighlight": "From Scottsdale to Mesa and the East Valley, our Phoenix-area technicians provide reliable computer support for desert-living homeowners.",
+    "localMetaDesc": "Computer repair and tech support in Phoenix. Virus removal, network setup, printer help. Same-day service across the Valley."
+  },
+  {
+    "slug": "philadelphia-pa",
+    "cityName": "Philadelphia",
+    "state": "PA",
+    "localHighlight": "Serving Center City, South Philly, and the Main Line, our local tech team brings certified computer and network support to Philadelphia homes.",
+    "localMetaDesc": "Tech support in Philadelphia. Computer repair, virus removal, Wi-Fi setup. Same-day service for Philly and surrounding areas."
+  },
+  {
+    "slug": "san-antonio-tx",
+    "cityName": "San Antonio",
+    "state": "TX",
+    "localHighlight": "From the River Walk to Stone Oak and beyond, our San Antonio techs provide on-site computer repair and network support for Texas families.",
+    "localMetaDesc": "Computer repair and tech support in San Antonio. Virus removal, network setup, printer troubleshooting. Same-day service."
+  },
+  {
+    "slug": "san-diego-ca",
+    "cityName": "San Diego",
+    "state": "CA",
+    "localHighlight": "From Pacific Beach to North County and East County, our San Diego technicians understand the connectivity needs of Southern California coastal living.",
+    "localMetaDesc": "Tech support in San Diego. Computer repair, virus removal, Wi-Fi setup. Same-day service for San Diego County homes."
+  },
+  {
+    "slug": "dallas-tx",
+    "cityName": "Dallas",
+    "state": "TX",
+    "localHighlight": "Serving Dallas, Fort Worth, and the DFW metroplex, our certified techs provide computer repair and network support for North Texas homes.",
+    "localMetaDesc": "Computer repair and tech support in Dallas. Virus removal, network setup, printer help. Same-day service across DFW."
+  },
+  {
+    "slug": "san-jose-ca",
+    "cityName": "San Jose",
+    "state": "CA",
+    "localHighlight": "In the heart of Silicon Valley, our San Jose tech team brings hands-on computer and network support to tech-savvy Bay Area homeowners.",
+    "localMetaDesc": "Tech support in San Jose. Computer repair, virus removal, Wi-Fi setup. Same-day service for Silicon Valley homes and small businesses."
+  },
+  {
+    "slug": "austin-tx",
+    "cityName": "Austin",
+    "state": "TX",
+    "localHighlight": "From downtown Austin to Round Rock and the Hill Country suburbs, our techs serve the capital city's mix of remote workers and creative professionals.",
+    "localMetaDesc": "Tech support in Austin. Computer repair, virus removal, network setup. Same-day service for Austin and Travis County."
+  },
+  {
+    "slug": "jacksonville-fl",
+    "cityName": "Jacksonville",
+    "state": "FL",
+    "localHighlight": "From Riverside to the Beaches and Mandarin, our Jacksonville technicians provide computer and network support across Florida's largest city.",
+    "localMetaDesc": "Computer repair and tech support in Jacksonville FL. Virus removal, Wi-Fi setup. Same-day service for Duval County."
+  },
+  {
+    "slug": "fort-worth-tx",
+    "cityName": "Fort Worth",
+    "state": "TX",
+    "localHighlight": "Serving the Stockyards, Sundance Square, and West Side neighborhoods, our Fort Worth techs bring reliable support to the western half of the Metroplex.",
+    "localMetaDesc": "Tech support in Fort Worth. Computer repair, virus removal, network setup. Same-day service for Tarrant County."
+  },
+  {
+    "slug": "columbus-oh",
+    "cityName": "Columbus",
+    "state": "OH",
+    "localHighlight": "From Short North to German Village and the suburbs of Dublin and Westerville, our Columbus team serves Ohio's capital with certified tech support.",
+    "localMetaDesc": "Computer repair and tech support in Columbus OH. Virus removal, Wi-Fi setup. Same-day service for Central Ohio."
+  },
+  {
+    "slug": "charlotte-nc",
+    "cityName": "Charlotte",
+    "state": "NC",
+    "localHighlight": "From Uptown to South End and the Lake Norman area, our Charlotte technicians understand the tech needs of the Queen City's growing workforce.",
+    "localMetaDesc": "Tech support in Charlotte NC. Computer repair, virus removal, network setup. Same-day service for the Charlotte metro."
+  },
+  {
+    "slug": "indianapolis-in",
+    "cityName": "Indianapolis",
+    "state": "IN",
+    "localHighlight": "Serving downtown Indy, Broad Ripple, and Carmel, our Indianapolis tech team provides computer and network support across the Circle City.",
+    "localMetaDesc": "Computer repair and tech support in Indianapolis. Virus removal, Wi-Fi setup. Same-day service for the Indy metro."
+  },
+  {
+    "slug": "san-francisco-ca",
+    "cityName": "San Francisco",
+    "state": "CA",
+    "localHighlight": "From the Mission to the Marina and SOMA, our San Francisco technicians bring certified support to the city's dense mix of homes and small businesses.",
+    "localMetaDesc": "Tech support in San Francisco. Computer repair, virus removal, Wi-Fi setup. Same-day service for SF and the Peninsula."
+  },
+  {
+    "slug": "seattle-wa",
+    "cityName": "Seattle",
+    "state": "WA",
+    "localHighlight": "From Capitol Hill to Ballard and the Eastside, our Seattle tech team serves the Pacific Northwest's tech-forward homeowners and remote workers.",
+    "localMetaDesc": "Computer repair and tech support in Seattle. Virus removal, network setup. Same-day service for Seattle and King County."
+  },
+  {
+    "slug": "denver-co",
+    "cityName": "Denver",
+    "state": "CO",
+    "localHighlight": "From LoDo to Cherry Creek and the suburbs of Aurora and Lakewood, our Denver technicians provide reliable support across the Mile High City.",
+    "localMetaDesc": "Tech support in Denver. Computer repair, virus removal, Wi-Fi setup. Same-day service for Denver and the Front Range."
+  },
+  {
+    "slug": "nashville-tn",
+    "cityName": "Nashville",
+    "state": "TN",
+    "localHighlight": "From The Gulch to East Nashville and Franklin, our Nashville tech team brings computer and network support to Music City's growing tech scene.",
+    "localMetaDesc": "Computer repair and tech support in Nashville. Virus removal, network setup. Same-day service for the Nashville metro."
+  },
+  {
+    "slug": "oklahoma-city-ok",
+    "cityName": "Oklahoma City",
+    "state": "OK",
+    "localHighlight": "From Bricktown to Midtown and Edmond, our OKC technicians serve Oklahoma's capital with on-site and remote tech support.",
+    "localMetaDesc": "Tech support in Oklahoma City. Computer repair, virus removal, Wi-Fi setup. Same-day service for OKC and surrounding areas."
+  },
+  {
+    "slug": "el-paso-tx",
+    "cityName": "El Paso",
+    "state": "TX",
+    "localHighlight": "From Downtown El Paso to the East Side and West Side, our technicians provide bilingual computer and network support for Sun City families.",
+    "localMetaDesc": "Computer repair and tech support in El Paso TX. Virus removal, network setup. Same-day service for El Paso County."
+  },
+  {
+    "slug": "washington-dc",
+    "cityName": "Washington",
+    "state": "DC",
+    "localHighlight": "From Capitol Hill to Georgetown and the surrounding DMV suburbs, our DC-area techs serve government workers, consultants, and families.",
+    "localMetaDesc": "Tech support in Washington DC. Computer repair, virus removal, Wi-Fi setup. Same-day service for DC, Maryland, and Virginia."
+  },
+  {
+    "slug": "las-vegas-nv",
+    "cityName": "Las Vegas",
+    "state": "NV",
+    "localHighlight": "From the Strip to Summerlin, Henderson, and the suburbs, our Las Vegas technicians provide 24/7-ready support for the desert's remote workers.",
+    "localMetaDesc": "Computer repair and tech support in Las Vegas. Virus removal, network setup. Same-day service for the Las Vegas Valley."
+  },
+  {
+    "slug": "louisville-ky",
+    "cityName": "Louisville",
+    "state": "KY",
+    "localHighlight": "From the Highlands to St. Matthews and Jeffersonville across the river, our Louisville tech team serves the Derby City with certified support.",
+    "localMetaDesc": "Tech support in Louisville KY. Computer repair, virus removal, Wi-Fi setup. Same-day service for the Louisville metro."
+  },
+  {
+    "slug": "memphis-tn",
+    "cityName": "Memphis",
+    "state": "TN",
+    "localHighlight": "From Midtown to East Memphis and Germantown, our Memphis technicians bring computer and network support to Bluff City homes and businesses.",
+    "localMetaDesc": "Computer repair and tech support in Memphis. Virus removal, network setup. Same-day service for the Memphis metro."
+  },
+  {
+    "slug": "portland-or",
+    "cityName": "Portland",
+    "state": "OR",
+    "localHighlight": "From the Pearl District to Southeast and the suburbs of Beaverton and Lake Oswego, our Portland techs serve the Rose City's creative community.",
+    "localMetaDesc": "Tech support in Portland OR. Computer repair, virus removal, Wi-Fi setup. Same-day service for Portland and the metro area."
+  },
+  {
+    "slug": "baltimore-md",
+    "cityName": "Baltimore",
+    "state": "MD",
+    "localHighlight": "From Inner Harbor to Federal Hill and the County suburbs, our Baltimore technicians provide computer and network support for Charm City.",
+    "localMetaDesc": "Computer repair and tech support in Baltimore. Virus removal, network setup. Same-day service for Baltimore and surrounding areas."
+  },
+  {
+    "slug": "milwaukee-wi",
+    "cityName": "Milwaukee",
+    "state": "WI",
+    "localHighlight": "From the Third Ward to the East Side and Wauwatosa, our Milwaukee tech team serves Brew City with certified computer and network support.",
+    "localMetaDesc": "Tech support in Milwaukee. Computer repair, virus removal, Wi-Fi setup. Same-day service for the Milwaukee metro."
+  },
+  {
+    "slug": "albuquerque-nm",
+    "cityName": "Albuquerque",
+    "state": "NM",
+    "localHighlight": "From Downtown to the Heights and Rio Rancho, our Albuquerque technicians understand the connectivity challenges of high-desert living.",
+    "localMetaDesc": "Computer repair and tech support in Albuquerque. Virus removal, network setup. Same-day service for the Duke City."
+  },
+  {
+    "slug": "tucson-az",
+    "cityName": "Tucson",
+    "state": "AZ",
+    "localHighlight": "From the University area to Oro Valley and the Foothills, our Tucson tech team provides computer support for Arizona's second-largest city.",
+    "localMetaDesc": "Tech support in Tucson AZ. Computer repair, virus removal, Wi-Fi setup. Same-day service for Tucson and Pima County."
+  },
+  {
+    "slug": "fresno-ca",
+    "cityName": "Fresno",
+    "state": "CA",
+    "localHighlight": "From Tower District to Clovis and the Central Valley suburbs, our Fresno technicians serve California's heartland with reliable tech support.",
+    "localMetaDesc": "Computer repair and tech support in Fresno. Virus removal, network setup. Same-day service for Fresno and the Central Valley."
+  },
+  {
+    "slug": "mesa-az",
+    "cityName": "Mesa",
+    "state": "AZ",
+    "localHighlight": "From downtown Mesa to East Mesa and the Superstition foothills, our technicians provide computer support for Arizona's third-largest city.",
+    "localMetaDesc": "Tech support in Mesa AZ. Computer repair, virus removal, Wi-Fi setup. Same-day service for Mesa and the East Valley."
+  },
+  {
+    "slug": "kansas-city-mo",
+    "cityName": "Kansas City",
+    "state": "MO",
+    "localHighlight": "From the Crossroads to the Plaza and Overland Park across the state line, our KC tech team serves the metro's homes and small businesses.",
+    "localMetaDesc": "Computer repair and tech support in Kansas City. Virus removal, network setup. Same-day service for KC and the metro area."
+  },
+  {
+    "slug": "atlanta-ga",
+    "cityName": "Atlanta",
+    "state": "GA",
+    "localHighlight": "From Midtown to Buckhead, Decatur, and the northern suburbs, our Atlanta technicians bring certified support to the capital of the South.",
+    "localMetaDesc": "Tech support in Atlanta. Computer repair, virus removal, Wi-Fi setup. Same-day service for Atlanta and the metro area."
+  },
+  {
+    "slug": "omaha-ne",
+    "cityName": "Omaha",
+    "state": "NE",
+    "localHighlight": "From the Old Market to West Omaha and Council Bluffs, our Omaha tech team provides computer and network support across the Gateway to the West.",
+    "localMetaDesc": "Computer repair and tech support in Omaha. Virus removal, network setup. Same-day service for Omaha and the metro."
+  },
+  {
+    "slug": "colorado-springs-co",
+    "cityName": "Colorado Springs",
+    "state": "CO",
+    "localHighlight": "From downtown to the North End and Fountain, our Colorado Springs technicians serve military families and outdoor enthusiasts with reliable tech support.",
+    "localMetaDesc": "Tech support in Colorado Springs. Computer repair, virus removal, Wi-Fi setup. Same-day service for the Pikes Peak region."
+  },
+  {
+    "slug": "raleigh-nc",
+    "cityName": "Raleigh",
+    "state": "NC",
+    "localHighlight": "From downtown Raleigh to North Hills and Cary, our Triangle tech team serves the Research Triangle's tech-savvy homeowners.",
+    "localMetaDesc": "Computer repair and tech support in Raleigh NC. Virus removal, network setup. Same-day service for the Triangle."
+  },
+  {
+    "slug": "long-beach-ca",
+    "cityName": "Long Beach",
+    "state": "CA",
+    "localHighlight": "From Belmont Shore to North Long Beach and the port area, our Long Beach technicians provide support for LA County's second-largest city.",
+    "localMetaDesc": "Tech support in Long Beach CA. Computer repair, virus removal, Wi-Fi setup. Same-day service for Long Beach and surrounding areas."
+  },
+  {
+    "slug": "virginia-beach-va",
+    "cityName": "Virginia Beach",
+    "state": "VA",
+    "localHighlight": "From the Oceanfront to Town Center and the suburbs, our Virginia Beach tech team serves Hampton Roads with certified computer support.",
+    "localMetaDesc": "Computer repair and tech support in Virginia Beach. Virus removal, network setup. Same-day service for Virginia Beach and Hampton Roads."
+  },
+  {
+    "slug": "minneapolis-mn",
+    "cityName": "Minneapolis",
+    "state": "MN",
+    "localHighlight": "From Uptown to Northeast and across the river to St. Paul, our Twin Cities technicians bring reliable support to Minnesota's metro.",
+    "localMetaDesc": "Tech support in Minneapolis. Computer repair, virus removal, Wi-Fi setup. Same-day service for the Twin Cities."
+  },
+  {
+    "slug": "tampa-fl",
+    "cityName": "Tampa",
+    "state": "FL",
+    "localHighlight": "From Ybor City to South Tampa and the suburbs of Brandon and Wesley Chapel, our Tampa tech team serves the Gulf Coast.",
+    "localMetaDesc": "Computer repair and tech support in Tampa. Virus removal, network setup. Same-day service for Tampa Bay."
+  },
+  {
+    "slug": "new-orleans-la",
+    "cityName": "New Orleans",
+    "state": "LA",
+    "localHighlight": "From the French Quarter to Uptown and Metairie, our New Orleans technicians provide computer support for the Big Easy's unique mix of homes and businesses.",
+    "localMetaDesc": "Tech support in New Orleans. Computer repair, virus removal, Wi-Fi setup. Same-day service for New Orleans and the metro."
+  },
+  {
+    "slug": "arlington-tx",
+    "cityName": "Arlington",
+    "state": "TX",
+    "localHighlight": "From downtown Arlington to the Entertainment District and surrounding suburbs, our techs serve the heart of the DFW metroplex.",
+    "localMetaDesc": "Computer repair and tech support in Arlington TX. Virus removal, network setup. Same-day service for Arlington and Tarrant County."
+  },
+  {
+    "slug": "bakersfield-ca",
+    "cityName": "Bakersfield",
+    "state": "CA",
+    "localHighlight": "From downtown Bakersfield to the Southwest and Oildale, our technicians provide computer support for California's Central Valley hub.",
+    "localMetaDesc": "Tech support in Bakersfield CA. Computer repair, virus removal, Wi-Fi setup. Same-day service for Kern County."
+  },
+  {
+    "slug": "honolulu-hi",
+    "cityName": "Honolulu",
+    "state": "HI",
+    "localHighlight": "From Waikiki to Kailua and the Windward Side, our Honolulu tech team understands the unique connectivity needs of island living.",
+    "localMetaDesc": "Computer repair and tech support in Honolulu. Virus removal, network setup. Same-day service for Oahu."
+  },
+  {
+    "slug": "anaheim-ca",
+    "cityName": "Anaheim",
+    "state": "CA",
+    "localHighlight": "From the Resort District to Anaheim Hills and the Platinum Triangle, our Orange County techs serve the home of the Angels and Disneyland.",
+    "localMetaDesc": "Tech support in Anaheim CA. Computer repair, virus removal, Wi-Fi setup. Same-day service for Anaheim and Orange County."
+  },
+  {
+    "slug": "aurora-co",
+    "cityName": "Aurora",
+    "state": "CO",
+    "localHighlight": "From Southlands to the Original Aurora and the Fitzsimons area, our Aurora technicians serve Colorado's third-largest city.",
+    "localMetaDesc": "Computer repair and tech support in Aurora CO. Virus removal, network setup. Same-day service for Aurora and the Denver metro."
+  },
+  {
+    "slug": "santa-ana-ca",
+    "cityName": "Santa Ana",
+    "state": "CA",
+    "localHighlight": "From downtown Santa Ana to South Coast Metro and the surrounding OC communities, our technicians serve Orange County's seat.",
+    "localMetaDesc": "Tech support in Santa Ana CA. Computer repair, virus removal, Wi-Fi setup. Same-day service for Santa Ana and Orange County."
+  },
+  {
+    "slug": "corpus-christi-tx",
+    "cityName": "Corpus Christi",
+    "state": "TX",
+    "localHighlight": "From the Bayfront to the Southside and Flour Bluff, our Corpus Christi tech team provides computer support for the Sparkling City by the Sea.",
+    "localMetaDesc": "Computer repair and tech support in Corpus Christi. Virus removal, network setup. Same-day service for the Coastal Bend."
+  }
+]
