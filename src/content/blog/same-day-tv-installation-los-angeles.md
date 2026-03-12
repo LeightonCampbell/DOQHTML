@@ -5,6 +5,7 @@ pubDate: 2026-01-22
 author: "Deals of Quality"
 category: "TV Mounting"
 readingTime: 5
+heroImage: "/images/same-day-tv-installation-los-angeles.png"
 ---
 
 Bought a new TV but realized you don't have the tools, time, or patience to mount it? We offer same-day service in **Hollywood**, **Santa Monica**, and **Burbank**—and throughout the greater Los Angeles area.

@@ -119,9 +119,10 @@ export async function POST({ request, locals }: any) {
     // Setup Environment Variables
     const apiKey = import.meta.env.RESEND_API_KEY || (locals.runtime?.env?.RESEND_API_KEY);
     const fromEmail = import.meta.env.FROM_EMAIL || (locals.runtime?.env?.FROM_EMAIL) || "onboarding@resend.dev";
-    const toEmail = import.meta.env.NOTIFICATION_EMAIL || (locals.runtime?.env?.NOTIFICATION_EMAIL);
+    const toEmail = import.meta.env.NOTIFICATION_EMAIL || (locals.runtime?.env?.NOTIFICATION_EMAIL) || "notifications@dealsofquality.com";
 
     if (!apiKey) {
+      console.error("[send-email] Missing RESEND_API_KEY");
       return new Response(JSON.stringify({ error: "Missing API Key" }), { status: 500 });
     }
 
@@ -138,8 +139,13 @@ export async function POST({ request, locals }: any) {
     });
 
     if (!ownerResponse.ok) {
-      const errorData = await ownerResponse.json();
-      console.error("Resend Owner API Error:", errorData);
+      let errorData: unknown;
+      try {
+        errorData = await ownerResponse.json();
+      } catch {
+        errorData = { raw: await ownerResponse.text(), status: ownerResponse.status };
+      }
+      console.error("[send-email] Resend Owner API Error:", ownerResponse.status, errorData);
       return new Response(JSON.stringify({ error: "Failed to send owner email" }), { status: 500 });
     }
 
@@ -157,15 +163,41 @@ export async function POST({ request, locals }: any) {
       });
 
       if (!customerResponse.ok) {
-        // We log this but don't fail the whole form submission if the customer email bounces
-        console.error("Resend Customer API Error:", await customerResponse.json());
+        let customerError: unknown;
+        try {
+          customerError = await customerResponse.json();
+        } catch {
+          customerError = { raw: await customerResponse.text(), status: customerResponse.status };
+        }
+        console.error("[send-email] Resend Customer API Error:", customerResponse.status, customerError);
+      }
+    }
+
+    // --- DISCORD: Push notification after Resend emails succeed ---
+    const discordWebhookUrl = import.meta.env.DISCORD_WEBHOOK_URL || (locals.runtime?.env?.DISCORD_WEBHOOK_URL);
+    if (discordWebhookUrl) {
+      try {
+        const serviceName = data.service === 'Other' ? (data.serviceOther || 'Other') : (data.service || 'N/A');
+        const timing = data.preferredTiming || data.urgency || 'N/A';
+        await fetch(discordWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            content: `🚨 **NEW LEAD ALERT** 🚨\n\n**Name:** ${data.name || 'N/A'}\n**Phone:** ${data.phone || 'N/A'}\n**Service:** ${serviceName}\n**Timing:** ${timing}\n**ZIP:** ${data.zip || 'N/A'}\n**Notes:** ${data.details || 'N/A'}`
+          })
+        });
+      } catch (discordError) {
+        console.error("[send-email] Discord webhook error:", discordError);
       }
     }
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
 
   } catch (error) {
-    console.error("Server Error:", error);
+    console.error("[send-email] Server Error:", error);
+    if (error instanceof Error) {
+      console.error("[send-email] Stack:", error.stack);
+    }
     return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
   }
 }

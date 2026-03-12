@@ -1,44 +1,465 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/tv-mounting-page.css';
+
+const title = 'Smart Home Integration | Installation & Setup | Deals of Quality';
+const description = 'Professional smart home installation — thermostats, video doorbells, smart locks, and full integration. One hub, one app, one installer. Same-day service in Los Angeles.';
+const canonical = 'https://www.dealsofquality.com/services/smart-home/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Smart Home Integration',
+  serviceType: 'Smart Home Installation',
+  description: 'Professional smart home installation including thermostats, video doorbells, smart locks, and full system integration.',
+  url: canonical,
+  areaServed: { '@type': 'City', name: 'Los Angeles' },
+  provider: { '@type': 'Organization', name: 'Deals of Quality', url: 'https://www.dealsofquality.com/' },
+};
+
 const services = [
-  { title: 'Smart Thermostats', href: '/services/smart-thermostats/', benefit: 'Save up to 23% on energy costs with intelligent temperature control. Professional installation ensures optimal performance.' },
-  { title: 'Video Doorbells', href: '/services/video-doorbells/', benefit: 'See and speak with visitors from anywhere. Enhanced security and convenience with professional installation.' },
-  { title: 'Smart Locks', href: '/services/smart-locks/', benefit: 'Keyless entry with smartphone control. Secure your home with modern technology installed by experts.' },
-  { title: 'Smart Home Integration', href: '/services/smart-home-integration/', benefit: 'Unified control of all your smart devices. Seamless integration for a truly connected home experience.' },
+  { num: '01', name: 'Smart Thermostats', href: '/services/smart-thermostats/', desc: 'Nest, Ecobee, and all major brands. C-wire wiring, app setup, and scheduling so you save energy without thinking about it.', icon: 'thermometer' },
+  { num: '02', name: 'Video Doorbells', href: '/services/video-doorbells/', desc: 'Ring, Nest Hello, and others. Hardwired or battery — we handle mounting, wiring, app setup, and chime pairing.', icon: 'doorbell' },
+  { num: '03', name: 'Smart Locks', href: '/services/smart-locks/', desc: 'Keyless entry, codes, and app control. We install, configure, and integrate with your existing smart home ecosystem.', icon: 'lock' },
+  { num: '04', name: 'Full Integration', href: '/services/smart-home-integration/', desc: 'Unified control of all your devices. One hub, one app — we connect thermostats, locks, lights, and cameras so they work together.', icon: 'hub' },
 ];
+
+const steps = [
+  { title: 'Tell Us What You Want', body: 'Call, fill out the form, or book online. Describe your devices — we\'ll handle the technical details.', icon: 'chat' },
+  { title: 'We Match You', body: 'A smart home specialist is assigned based on your devices and goals — same-day when available.', icon: 'check' },
+  { title: 'Install & Configure', body: 'We install hardware, configure apps, set up automation, and walk you through everything before we leave.', icon: 'wrench' },
+  { title: 'One App to Rule Them All', body: 'We leave you with a single control point — no more juggling five different apps for five different devices.', icon: 'shield' },
+];
+
+const trustPoints = [
+  { title: 'All Major Brands', body: 'Nest, Ring, Ecobee, Yale, August, SmartThings, Alexa, Google — we work with what you have or recommend what you need.' },
+  { title: 'Same-Day When Available', body: 'We often have same-day installation slots. Request your quote early to secure the soonest availability.' },
+  { title: 'One Price, No Surprises', body: 'You\'ll know the cost before we start. No hidden fees, no "I\'ll need to see it first" pricing that changes on arrival.' },
+  { title: 'C-Wire & Wiring Included', body: 'Don\'t have a C-wire? We run one. Don\'t know what that means? We handle it. Thermostat installs done right.' },
+  { title: 'App Setup & Training', body: 'We don\'t just install — we configure your app, set up routines, and show you how to use everything.' },
+];
+
+const testimonials = [
+  { quote: 'Had a Nest thermostat, Ring doorbell, and two smart locks installed in one visit. Everything works from one app now. The installer was patient and showed my wife how to use everything.', author: 'David M.', location: 'Burbank CA', initials: 'DM' },
+  { quote: 'My Ecobee kept showing "no C-wire" and I had no idea what that meant. They ran the wire, installed it properly, and now my AC actually does what the schedule says. Game changer.', author: 'Rachel K.', location: 'Pasadena CA', initials: 'RK' },
+  { quote: 'We wanted to simplify — Ring, Nest, and a bunch of smart bulbs. They integrated everything into Google Home. One voice command turns off the lights and locks the door. Amazing.', author: 'James L.', location: 'Santa Monica CA', initials: 'JL' },
+];
+
+const faqs = [
+  { q: 'What smart home brands do you install?', a: 'We install Nest, Ecobee, Ring, Google Nest Hello, Yale, August, SmartThings, and most major brands. If you have a specific device in mind, ask us — we\'ll confirm compatibility and pricing.' },
+  { q: 'Do I need a C-wire for a smart thermostat?', a: 'Many smart thermostats require a C-wire (common wire) for power. If your home doesn\'t have one, we can run it. It\'s part of our standard thermostat installation — no extra charge for the wire run in most cases.' },
+  { q: 'Can you integrate devices from different brands?', a: 'Yes. We specialize in tying together Nest, Ring, Alexa, Google Home, and others into one unified system. One app or voice assistant to control everything.' },
+  { q: 'How long does installation take?', a: 'A single thermostat is usually 1–2 hours. A full setup (thermostat + doorbell + smart lock) can take 3–4 hours. We\'ll give you a time estimate with your quote.' },
+  { q: 'Do you provide the devices or do I buy them?', a: 'Both options work. You can purchase devices yourself and we install them, or we can recommend and source equipment as part of the project. We\'ll outline pricing clearly either way.' },
+  { q: 'What areas do you serve?', a: 'We serve the Los Angeles area and surrounding communities. Enter your ZIP code in the quote form and we\'ll confirm availability in your area.' },
+  { q: 'How do I get started?', a: 'Fill out the quote form on this page with your devices and ZIP code, or call (818) 584-7389. We respond within an hour with next steps and availability.' },
+];
+
+const quoteFormServices = [
+  { value: 'smart-thermostat', label: 'Smart Thermostat' },
+  { value: 'video-doorbell', label: 'Video Doorbell' },
+  { value: 'smart-lock', label: 'Smart Lock' },
+  { value: 'full-integration', label: 'Full Smart Home Integration' },
+  { value: 'multiple', label: 'Multiple Devices' },
+  { value: 'other', label: 'Other' },
+];
+
+const phone = 'tel:+18185847389';
 ---
 
-<BaseLayout title="Smart Home | Installation & Setup Services | Deals Of Quality" description="Professional smart home installation services. Smart thermostats, video doorbells, smart locks, and home automation. Same-day service available." canonical="https://www.dealsofquality.com/services/smart-home/">
-  <main class="min-h-screen bg-background">
-    <section class="bg-secondary/30 relative overflow-hidden pt-24 pb-12 md:pt-32 md:pb-16">
-      <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div class="lg:max-w-lg">
-            <h1 class="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Smart Home</h1>
-            <p class="text-muted-foreground text-lg">Transform your home with smart technology. We install and configure all major smart home brands.</p>
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <div class="tvm-page">
+    <div class="urgency-banner">
+      <div class="urgency-dot"></div>
+      <span><span class="urgency-strong">Same-day smart home installation available.</span> Need help now? <a href={phone}>(818) 584-7389</a></span>
+    </div>
+
+    <div class="hero-wrap">
+      <div class="hero-bg" style="background-color: #0f172a; background-image: url('/images/smart-home-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <section class="hero">
+        <div class="container">
+          <div class="fade-up visible">
+            <div class="hero-breadcrumb">
+              <a href="/">Home</a>
+              <span>›</span>
+              <a href="/#services">Services</a>
+              <span>›</span>
+              Smart Home
+            </div>
+            <div class="hero-service-pill">
+              <div class="hero-service-pill-dot"></div>
+              SMART HOME INTEGRATION
+            </div>
           </div>
-          <div class="w-80 h-52 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center">
-            <svg class="w-32 h-32 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+          <h1 class="fade-up d1 visible">One app. One hub.<br /><em>Everything connected.</em></h1>
+          <p class="hero-sub fade-up d2 visible">Thermostats, doorbells, locks, lights — we install and integrate it all. Same-day availability, upfront pricing, and a single control point so your smart home actually feels smart.</p>
+          <div class="hero-cta-row fade-up d3 visible">
+            <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="Smart Home Installation">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg>
+              Get a Free Quote
+            </button>
+            <a class="btn-ghost-white" href={phone} style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              (818) 584-7389
+            </a>
+          </div>
+          <div class="hero-trust-strip fade-up d4 visible">
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor"></path></svg> Nest, Ring, Ecobee</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg> C-wire &amp; wiring</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> Same-day available</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3"></path><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> One app control</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> Upfront pricing</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="proof-bar-outer">
+      <div class="container">
+        <div class="proof-bar-inner fade-up visible">
+          <div class="proof-cell">
+            <span class="proof-num">4.8★</span>
+            <span class="proof-lbl">Average rating</span>
+          </div>
+          <div class="proof-cell">
+            <span class="counter" data-target="98" data-suffix="%">98%</span>
+            <span class="proof-lbl">Satisfaction rate</span>
+          </div>
+          <div class="proof-cell">
+            <span class="proof-num">Same-day</span>
+            <span class="proof-lbl">Often available</span>
+          </div>
+          <div class="proof-cell">
+            <span class="proof-num">LA</span>
+            <span class="proof-lbl">Area served</span>
           </div>
         </div>
       </div>
     </section>
-    <section class="section-padding bg-background">
-      <div class="container-max">
-        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">Our Smart Home Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((s) => (
-            <a href={s.href} class="group bg-card border border-border rounded-xl p-6 block hover:border-accent/30 transition-colors">
-              <h3 class="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{s.benefit}</p>
+
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-intro fade-up visible">
+          <div class="section-eyebrow" style="color:#dc2626">Why Smart Homes Get Complicated</div>
+          <h2 class="section-heading">Five apps. Five logins. <em style="color:#dc2626">None of them talk.</em></h2>
+          <p class="section-body">You bought a smart thermostat, a video doorbell, and a smart lock — each with its own app. Your lights are in another. Your camera in another. "Smart home" feels more like a part-time job than a convenience.</p>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Apps that don't talk to each other</h3>
+            <p>Thermostat in one app, doorbell in another, lock in a third. You're constantly switching — and none of them work together. Automation? Forget it.</p>
+          </div>
+          <div class="pain-card fade-up d1">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></div>
+            <h3>Installation headaches</h3>
+            <p>No C-wire? Wrong mounting bracket? Wiring that doesn't match the diagram? DIY smart home installs often stall at step one — or fail silently later.</p>
+          </div>
+          <div class="pain-card fade-up d2">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Devices that never get set up</h3>
+            <p>The box sits in the closet because you don't know how to wire it, pair it, or make it work with what you already have. Sound familiar?</p>
+          </div>
+        </div>
+        <div class="agitate-block fade-up d1 visible">
+          <div class="agitate-text">
+            <h2>Your home deserves to <em>actually</em> be smart.</h2>
+            <p>One installer. One visit. One app controlling everything. No more juggling Nest, Ring, and SmartThings. We integrate it all — thermostats, doorbells, locks, lights — so you have a single control point that actually works.</p>
+          </div>
+          <div class="agitate-stats">
+            <div class="agitate-stat fade-up d2 visible">
+              <div class="as-num">5+</div>
+              <div><div class="as-text-label">apps the average smart home user juggles</div><div class="as-text-sub">Until it's integrated. Then it's one.</div></div>
+            </div>
+            <div class="agitate-stat fade-up d3 visible">
+              <div class="as-num">23%</div>
+              <div><div class="as-text-label">potential energy savings with a smart thermostat</div><div class="as-text-sub">When it's installed and configured correctly.</div></div>
+            </div>
+            <div class="agitate-stat fade-up d4 visible">
+              <div class="as-num">1 visit</div>
+              <div><div class="as-text-label">to install and integrate everything</div><div class="as-text-sub">No more "I'll get to it someday."</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="solve-section">
+      <div class="container">
+        <div class="solve-grid">
+          <div class="solve-photo-col fade-up">
+            <img class="solve-photo" src="/images/smart-home-solution.jpg" alt="Smart home devices integrated and controlled from one app" loading="lazy" width="800" height="520" style="object-fit:cover;" />
+            <div class="solve-badge">
+              <div class="solve-badge-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg></div>
+              <div><div class="solve-badge-num">4.8★</div><div class="solve-badge-label">Smart home avg. rating</div></div>
+            </div>
+          </div>
+          <div class="solve-copy fade-up d1 visible">
+            <div class="section-eyebrow">One Install. One App.</div>
+            <h2 class="solve-heading">We connect <em>everything</em>.</h2>
+            <p>Thermostats, video doorbells, smart locks, lights — we install and integrate them so they work together. One hub. One app. One voice command to lock the door, turn down the AC, and arm the cameras.</p>
+            <p>We work with Nest, Ring, Ecobee, Yale, August, SmartThings, Alexa, and Google. No C-wire? We run one. Confusing setup? We handle it. You get a walkthrough before we leave so you actually know how to use it.</p>
+            <div class="solve-points">
+              {trustPoints.slice(0, 4).map((t) => (
+                <div class="solve-point">
+                  <div class="sp-icon"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                  <div class="sp-text"><strong>{t.title}.</strong> <span>{t.body}</span></div>
+                </div>
+              ))}
+            </div>
+            <button type="button" class="btn-primary-gold tvm-book-btn" data-open-quote="true" data-service="Smart Home Installation"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Smart Home Quote</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="services-intro">
+          <div class="section-eyebrow fade-up">What We Offer</div>
+          <h2 class="section-heading fade-up d1">Four ways we make your home smarter.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">From smart thermostats to full integration — we install, configure, and connect everything so it actually works together.</p>
+        </div>
+        <div class="services-grid">
+          {services.map((s, i) => (
+            <a href={s.href} class="svc-card fade-up {i % 4 === 0 ? 'visible' : ''} {i % 4 === 1 ? 'd1 visible' : ''} {i % 4 === 2 ? 'd2 visible' : ''} {i % 4 === 3 ? 'd3 visible' : ''}">
+              <div class="svc-card-top">
+                <div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                <h3>{s.name}</h3>
+              </div>
+              <p>{s.desc}</p>
+              <span class="svc-card-link">Learn more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
             </a>
           ))}
         </div>
-        <div class="mt-10 text-center">
-          <button type="button" data-open-quote class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 font-medium">Get a Free Quote</button>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="process-section">
+      <div class="container">
+        <div class="process-intro">
+          <div class="section-eyebrow fade-up">Our Process</div>
+          <h2 class="section-heading fade-up d1">Smart home in 4 steps.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">Tell us what you want. We install it. We integrate it. You use it.</p>
+        </div>
+        <div class="process-steps fade-up d1">
+          {steps.map((step, i) => (
+            <div class="process-step">
+              <div class="ps-num">{String(i + 1).padStart(2, '0')}</div>
+              <div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <span class="ps-pill">Step {String(i + 1).padStart(2, '0')}</span>
+              <div class="ps-title">{step.title}</div>
+              <div class="ps-text">{step.body}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  </main>
+
+    <div class="divider"></div>
+
+    <section class="reviews-section">
+      <div class="container">
+        <div class="reviews-intro">
+          <div class="section-eyebrow fade-up">Verified Reviews</div>
+          <h2 class="section-heading fade-up d1">Real reviews from real homeowners.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">From Burbank to Santa Monica — thermostats, doorbells, locks, and full integration.</p>
+        </div>
+        <div class="reviews-grid">
+          {testimonials.map((t, i) => (
+            <div class="review-card fade-up {i === 0 ? 'visible' : ''} {i === 1 ? 'd1 visible' : ''} {i === 2 ? 'd2 visible' : ''}">
+              <span class="review-verified">✓ Verified</span>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-quote">"{t.quote}"</div>
+              <div class="review-author">
+                <div class="review-initials">{t.initials}</div>
+                <div>
+                  <strong>{t.author}</strong>
+                  <div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> {t.location}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="stats-strip fade-up d1 visible">
+          <div class="ss-cell"><span class="ss-num">4.8★</span><span class="ss-lbl">Average rating</span></div>
+          <div class="ss-cell"><span class="ss-num counter" data-target="98" data-suffix="%">98%</span><span class="ss-lbl">Satisfaction rate</span></div>
+          <div class="ss-cell"><span class="ss-num">Same-day</span><span class="ss-lbl">Often available</span></div>
+          <div class="ss-cell"><span class="ss-num">LA</span><span class="ss-lbl">Area served</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="guarantee-strip">
+      <div class="container">
+        <div class="guarantee-inner">
+          <div class="guarantee-card fade-up visible"><div class="gc-icon" style="background:rgba(245,158,11,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#fcd34d"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[0].title}</div><div class="gc-text">{trustPoints[0].body}</div></div>
+          <div class="guarantee-card fade-up d1 visible"><div class="gc-icon" style="background:rgba(0,115,230,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#60a5fa"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 12l4 4 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[1].title}</div><div class="gc-text">{trustPoints[1].body}</div></div>
+          <div class="guarantee-card fade-up d2 visible"><div class="gc-icon" style="background:rgba(22,163,74,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#4ade80"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[2].title}</div><div class="gc-text">{trustPoints[2].body}</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-intro">
+          <div class="section-eyebrow fade-up">FAQ</div>
+          <h2 class="section-heading fade-up d1">Every question before booking, answered.</h2>
+        </div>
+        <div class="faq-cols fade-up d1 visible">
+          <div class="faq-col">
+            {faqs.slice(0, 4).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q"><span class="faq-question-text">{f.q}</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button>
+                <div class="faq-answer"><p>{f.a}</p></div>
+              </div>
+            ))}
+          </div>
+          <div class="faq-col">
+            {faqs.slice(4).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q"><span class="faq-question-text">{f.q}</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button>
+                <div class="faq-answer"><p>{f.a}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quote" class="cta-section">
+      <div class="container">
+        <div class="cta-grid">
+          <div class="cta-copy fade-up visible">
+            <div class="section-eyebrow">Get Your Quote</div>
+            <h2 class="section-heading">Ready for a home that actually works together?</h2>
+            <p>Tell us what devices you have or want — thermostats, doorbells, locks, or full integration. We'll respond within an hour with next steps and availability.</p>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><div><strong>Response within 1 hour</strong><span>We reply with next steps and availability.</span></div></div>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><strong>Same-day when available</strong><span>Install in as soon as today.</span></div></div>
+          </div>
+          <div id="sh-quote-form" class="quote-card fade-up d2 visible">
+            <div class="progress-wrap">
+              <div class="progress-steps">
+                <div class="prog-step active" data-step="1"><div class="prog-dot">1</div><span class="prog-label">Your Setup</span></div>
+                <div class="prog-step" data-step="2"><div class="prog-dot">2</div><span class="prog-label">Contact</span></div>
+              </div>
+            </div>
+            <div id="form-wrap">
+              <div class="form-step active" data-step="1">
+                <div class="step-title">Your Setup</div>
+                <div class="step-subtitle">What do you want to install or integrate?</div>
+                <div class="form-group"><label for="sh-issue">Device / Service</label><select id="sh-issue" class="form-control"><option value="">Select…</option>{quoteFormServices.map((s) => <option value={s.value}>{s.label}</option>)}</select></div>
+                <div class="form-group"><label for="sh-zip">ZIP Code</label><input id="sh-zip" class="form-control" type="text" placeholder="e.g. 90210" maxlength="10" /></div>
+                <button type="button" class="btn-next" onclick="shNextStep(2)">Continue →</button>
+              </div>
+              <div class="form-step" data-step="2">
+                <button type="button" class="btn-back" onclick="shNextStep(1)">← Back</button>
+                <div class="step-title">Contact</div>
+                <div class="step-subtitle">How we'll send your quote.</div>
+                <div class="form-group"><label for="sh-name">Full Name</label><input id="sh-name" class="form-control" type="text" placeholder="Jane Smith" /></div>
+                <div class="form-group"><label for="sh-email">Email Address</label><input id="sh-email" class="form-control" type="email" placeholder="jane@example.com" /></div>
+                <div class="form-group"><label for="sh-phone">Phone Number</label><input id="sh-phone" class="form-control" type="tel" placeholder="(555) 000-0000" /></div>
+                <div class="form-group"><label for="sh-notes">Notes <span style="color:var(--tvm-muted);font-weight:400">(optional)</span></label><textarea id="sh-notes" class="form-control" rows="2" placeholder="e.g. Nest thermostat + Ring doorbell…"></textarea></div>
+                <button type="button" class="btn-next gold" onclick="shSubmitForm()">Get My Free Quote</button>
+              </div>
+            </div>
+            <div id="sh-form-success" class="form-success">
+              <div class="form-success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <h3>Quote request received!</h3>
+              <p>We'll be in touch within an hour with next steps and availability. Questions? Call us at <a href={phone}>(818) 584-7389</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="section-eyebrow">Your Smart Home Awaits</div>
+        <h2>One installer. One app. Everything connected.</h2>
+        <p>Thermostats, doorbells, locks, and full integration. Same-day when available. Upfront pricing. We make your home actually smart.</p>
+        <div class="final-cta-btns">
+          <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="Smart Home Installation"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Quote</button>
+          <a class="btn-ghost-white-final" href={phone} style="color:#ffffff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            Call (818) 584-7389
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline define:vars={{}}>
+    (function() {
+      var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+      document.querySelectorAll('.tvm-page .fade-up').forEach(function(el) { obs.observe(el); });
+
+      function animateCounter(el) {
+        var target = parseFloat(el.dataset.target);
+        var decimals = parseInt(el.dataset.decimal || '0', 10);
+        var suffix = el.dataset.suffix || '';
+        var duration = 1800;
+        var start = performance.now();
+        function step(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = decimals ? (e * target).toFixed(decimals) + suffix : Math.floor(e * target).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = decimals ? target.toFixed(decimals) + suffix : target.toLocaleString() + suffix;
+        }
+        requestAnimationFrame(step);
+      }
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.querySelectorAll('.counter').forEach(animateCounter); cObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      document.querySelectorAll('.tvm-page .stats-strip, .tvm-page .proof-bar-inner').forEach(function(el) { cObs.observe(el); });
+
+      document.querySelectorAll('.tvm-page .faq-q').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var open = item.classList.contains('open');
+          document.querySelectorAll('.tvm-page .faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+          if (!open) item.classList.add('open');
+        });
+      });
+
+      window.shNextStep = function(step) {
+        if (step === 2) {
+          if (!document.getElementById('sh-issue').value) { alert('Please select a device or service.'); return; }
+          if (!document.getElementById('sh-zip').value.trim()) { alert('Please enter your ZIP code.'); return; }
+        }
+        document.querySelectorAll('#sh-quote-form .form-step').forEach(function(el, i) { el.classList.toggle('active', (el.dataset.step || (i+1)) == step); });
+        document.querySelectorAll('#sh-quote-form .prog-step').forEach(function(el, i) {
+          el.classList.remove('active', 'done');
+          var dot = el.querySelector('.prog-dot');
+          if (i + 1 < step) { el.classList.add('done'); dot.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
+          else { dot.textContent = i + 1; if (i + 1 === step) el.classList.add('active'); }
+        });
+      };
+      window.shSubmitForm = function() {
+        var name = document.getElementById('sh-name').value.trim();
+        var email = document.getElementById('sh-email').value.trim();
+        var phone = document.getElementById('sh-phone').value.trim();
+        if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('sh-form-success').style.display = 'block';
+        document.querySelector('#sh-quote-form .progress-wrap').style.display = 'none';
+      };
+    })();
+  </script>
 </BaseLayout>

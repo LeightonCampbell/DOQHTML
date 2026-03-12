@@ -5,6 +5,7 @@ pubDate: 2026-01-12
 author: "Deals of Quality"
 category: "TV Mounting"
 readingTime: 6
+heroImage: "/images/tv-blog-img.jpg"
 ---
 
 TV mounting might seem straightforward, but there are numerous pitfalls that can turn your DIY project into a disaster. We've seen it all—from TVs crashing to the floor to expensive wall repairs. Here are the top five mistakes people make when mounting their TVs, and how to avoid them.

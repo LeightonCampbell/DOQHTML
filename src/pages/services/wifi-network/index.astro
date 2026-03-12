@@ -1,44 +1,465 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/tv-mounting-page.css';
+
+const title = 'Wi-Fi & Networking | Setup, Optimization & Dead Zones | Deals of Quality';
+const description = 'Professional Wi-Fi and network services — router setup, mesh networks, dead zone elimination, and business networks. Fast, reliable coverage throughout your home or office. Same-day in Los Angeles.';
+const canonical = 'https://www.dealsofquality.com/services/wifi-network/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Wi-Fi & Network Setup',
+  serviceType: 'Network Installation',
+  description: 'Professional Wi-Fi and network services including router setup, mesh networks, dead zone elimination, and business network solutions.',
+  url: canonical,
+  areaServed: { '@type': 'City', name: 'Los Angeles' },
+  provider: { '@type': 'Organization', name: 'Deals of Quality', url: 'https://www.dealsofquality.com/' },
+};
+
 const services = [
-  { title: 'Router Setup', href: '/router-setup/', benefit: 'Proper router configuration for maximum speed and security. Get the most out of your internet connection with expert setup.' },
-  { title: 'Network Optimization', href: '/network-optimization/', benefit: 'Boost your network performance and eliminate bottlenecks. Faster speeds and more reliable connections throughout your space.' },
-  { title: 'Dead Zone Elimination', href: '/router-setup/', benefit: 'Say goodbye to WiFi dead zones. Professional solutions ensure strong, consistent coverage in every room of your home or office.' },
-  { title: 'Business Networks', href: '/business-networks/', benefit: 'Enterprise-grade network solutions for your business. Secure, scalable infrastructure that supports your growing operations.' },
+  { num: '01', name: 'Router Setup & Configuration', href: '/services/router-setup/', desc: 'Proper router configuration for maximum speed and security. We optimize settings, secure your network, and get the most out of your connection.', icon: 'router' },
+  { num: '02', name: 'Mesh Network & Dead Zones', href: '/services/router-setup/', desc: 'Say goodbye to dead zones. Mesh systems, extenders, and strategic placement — we deliver strong, consistent coverage in every room.', icon: 'mesh' },
+  { num: '03', name: 'Network Optimization', href: '/services/router-setup/', desc: 'Boost performance and eliminate bottlenecks. Channel optimization, QoS configuration, and firmware updates so your network runs at its best.', icon: 'speed' },
+  { num: '04', name: 'Business Networks', href: '/services/business/', desc: 'Enterprise-grade network solutions for small business. Secure, scalable infrastructure that supports your growing operations.', icon: 'business' },
 ];
+
+const steps = [
+  { title: 'Tell Us Your Problem', body: 'Call, fill out the form, or book online. Dead zones? Slow speeds? New router? We\'ll figure out the right solution.', icon: 'chat' },
+  { title: 'We Assess & Quote', body: 'A network specialist reviews your setup — we\'ll recommend router placement, mesh units, or upgrades and give you a firm price.', icon: 'check' },
+  { title: 'Install & Configure', body: 'We install hardware, configure settings, secure the network, and verify coverage in every room before we leave.', icon: 'wrench' },
+  { title: 'Fast & Reliable', body: 'You get a network that actually performs — no more buffering, dropped calls, or "why is it slow in the bedroom?"', icon: 'shield' },
+];
+
+const trustPoints = [
+  { title: 'All Major Brands', body: 'Netgear, TP-Link, Eero, Google Nest Wifi, Ubiquiti, ASUS — we work with what you have or recommend what you need.' },
+  { title: 'Same-Day When Available', body: 'We often have same-day network installation slots. Request your quote early to secure the soonest availability.' },
+  { title: 'Flat-Rate Upfront Pricing', body: 'You\'ll know the cost before we start. No hourly surprises, no "I\'ll need to see it first" pricing that changes.' },
+  { title: 'Dead Zones Eliminated', body: 'We map your space, identify weak spots, and deploy mesh nodes or extenders where they actually make a difference.' },
+  { title: 'Security Hardening Included', body: 'Strong passwords, guest networks, firewall settings — we lock down your network so it\'s fast and safe.' },
+];
+
+const testimonials = [
+  { quote: 'Our WiFi was unusable in the backyard and our bedroom. They installed a mesh system and now we get full bars everywhere. Game changer for working from home.', author: 'Michelle T.', location: 'Glendale CA', initials: 'MT' },
+  { quote: 'I bought a new router and had no idea how to set it up. They configured everything, created a guest network, and showed me how to manage it. Worth every penny.', author: 'Robert H.', location: 'West Hollywood CA', initials: 'RH' },
+  { quote: 'Our office had constant dropouts. They upgraded our setup, ran new cables where needed, and our network has been rock solid for months. Professional from start to finish.', author: 'Amanda C.', location: 'Burbank CA', initials: 'AC' },
+];
+
+const faqs = [
+  { q: 'What\'s the difference between a router and a mesh system?', a: 'A router broadcasts Wi-Fi from one point. A mesh system uses multiple nodes that work together — better coverage, fewer dead zones. For larger homes or offices, mesh is often the right choice. We\'ll assess your space and recommend accordingly.' },
+  { q: 'Can you fix dead zones without replacing my router?', a: 'Sometimes. Extenders or mesh nodes can often solve dead zones. If your router is old or underpowered, an upgrade might be the better fix. We\'ll evaluate and give you options with clear pricing.' },
+  { q: 'Do you run ethernet cables?', a: 'Yes. For gaming, home offices, or devices that need the most reliable connection, we run ethernet where it makes sense. We can also install wired backhaul for mesh systems for better performance.' },
+  { q: 'How long does network setup take?', a: 'A simple router setup is usually 1–2 hours. A full mesh installation or multi-room optimization can take 2–4 hours. We\'ll give you a time estimate with your quote.' },
+  { q: 'What about smart home and IoT devices?', a: 'We can segment IoT devices, set up guest networks, and ensure your smart home doesn\'t become a back door into your main network. Network security is part of every installation.' },
+  { q: 'What areas do you serve?', a: 'We serve the Los Angeles area and surrounding communities. Enter your ZIP code in the quote form and we\'ll confirm availability in your area.' },
+  { q: 'How do I get started?', a: 'Fill out the quote form on this page with your network needs and ZIP code, or call (818) 584-7389. We respond within an hour with next steps and availability.' },
+];
+
+const quoteFormServices = [
+  { value: 'router-setup', label: 'Router Setup & Configuration' },
+  { value: 'mesh-dead-zones', label: 'Mesh Network / Dead Zone Elimination' },
+  { value: 'optimization', label: 'Network Optimization' },
+  { value: 'business', label: 'Business Network' },
+  { value: 'multiple', label: 'Multiple Issues' },
+  { value: 'other', label: 'Other' },
+];
+
+const phone = 'tel:+18185847389';
 ---
 
-<BaseLayout title="WiFi & Network | Setup & Optimization Services | Deals Of Quality" description="Professional WiFi and network services. Router setup, network optimization, dead zone elimination, and business network solutions. Same-day service available." canonical="https://www.dealsofquality.com/services/wifi-network/">
-  <main class="min-h-screen bg-background">
-    <section class="bg-secondary/30 relative overflow-hidden pt-24 pb-12 md:pt-32 md:pb-16">
-      <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div class="lg:max-w-lg">
-            <h1 class="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">WiFi & Network</h1>
-            <p class="text-muted-foreground text-lg">Get fast, reliable internet throughout your home or office. We optimize networks for maximum performance.</p>
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <div class="tvm-page">
+    <div class="urgency-banner">
+      <div class="urgency-dot"></div>
+      <span><span class="urgency-strong">Same-day Wi-Fi setup available.</span> Buffering? Dead zones? <a href={phone}>(818) 584-7389</a></span>
+    </div>
+
+    <div class="hero-wrap">
+      <div class="hero-bg" style="background-color: #0f172a; background-image: url('/images/wifi-network-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <section class="hero">
+        <div class="container">
+          <div class="fade-up visible">
+            <div class="hero-breadcrumb">
+              <a href="/">Home</a>
+              <span>›</span>
+              <a href="/#services">Services</a>
+              <span>›</span>
+              Wi-Fi &amp; Networking
+            </div>
+            <div class="hero-service-pill">
+              <div class="hero-service-pill-dot"></div>
+              WIFI &amp; NETWORKING
+            </div>
           </div>
-          <div class="w-80 h-52 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center">
-            <svg class="w-32 h-32 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
+          <h1 class="fade-up d1 visible">Fast Wi‑Fi. <em>Every room.</em></h1>
+          <p class="hero-sub fade-up d2 visible">Dead zones, slow speeds, or a new router that won't cooperate — we fix it. Router setup, mesh networks, and optimization so you get the connection you're actually paying for.</p>
+          <div class="hero-cta-row fade-up d3 visible">
+            <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="WiFi & Network Setup">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg>
+              Get a Free Quote
+            </button>
+            <a class="btn-ghost-white" href={phone} style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              (818) 584-7389
+            </a>
+          </div>
+          <div class="hero-trust-strip fade-up d4 visible">
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor"></path></svg> Router &amp; mesh</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg> Dead zone fix</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> Same-day available</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3"></path><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> Secured networks</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> Upfront pricing</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="proof-bar-outer">
+      <div class="container">
+        <div class="proof-bar-inner fade-up visible">
+          <div class="proof-cell">
+            <span class="proof-num">4.8★</span>
+            <span class="proof-lbl">Average rating</span>
+          </div>
+          <div class="proof-cell">
+            <span class="counter" data-target="98" data-suffix="%">98%</span>
+            <span class="proof-lbl">Satisfaction rate</span>
+          </div>
+          <div class="proof-cell">
+            <span class="proof-num">Same-day</span>
+            <span class="proof-lbl">Often available</span>
+          </div>
+          <div class="proof-cell">
+            <span class="proof-num">LA</span>
+            <span class="proof-lbl">Area served</span>
           </div>
         </div>
       </div>
     </section>
-    <section class="section-padding bg-background">
-      <div class="container-max">
-        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">Our WiFi & Network Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((s) => (
-            <a href={s.href} class="group bg-card border border-border rounded-xl p-6 block hover:border-accent/30 transition-colors">
-              <h3 class="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{s.benefit}</p>
+
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-intro fade-up visible">
+          <div class="section-eyebrow" style="color:#dc2626">Why Wi-Fi Problems Don't Fix Themselves</div>
+          <h2 class="section-heading">Dead zones. Buffering. <em style="color:#dc2626">"Have you tried turning it off and on?"</em></h2>
+          <p class="section-body">You're paying for fast internet — but the bedroom gets one bar, the backyard is a dead zone, and video calls drop halfway through. Restarting the router worked once. It doesn't anymore.</p>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Dead zones and weak signals</h3>
+            <p>The router is in the living room but the office gets one bar. The backyard is a black hole. You've moved the router, added an extender that didn't help — and you're still stuck.</p>
+          </div>
+          <div class="pain-card fade-up d1">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Slow speeds and constant buffering</h3>
+            <p>Your plan says 300 Mbps but you're lucky to get 50. Video calls freeze. Downloads crawl. The ISP blames your equipment — and maybe they're right. Or maybe it's fixable.</p>
+          </div>
+          <div class="pain-card fade-up d2">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></div>
+            <h3>Security concerns</h3>
+            <p>Default passwords, open guest networks, or smart home devices you're not sure are locked down. Your network is your front door — and it might be standing open.', '</p>
+          </div>
+        </div>
+        <div class="agitate-block fade-up d1 visible">
+          <div class="agitate-text">
+            <h2>The connection you're paying for <em>is</em> possible.</h2>
+            <p>Most homes have fixable problems — wrong router placement, outdated settings, or a single router trying to cover too much space. Mesh systems, proper configuration, and strategic placement can transform "unusable" into "every room, full bars."</p>
+          </div>
+          <div class="agitate-stats">
+            <div class="agitate-stat fade-up d2 visible">
+              <div class="as-num">40%</div>
+              <div><div class="as-text-label">of speed issues are router-related</div><div class="as-text-sub">Not your ISP. Not your plan. Fixable.</div></div>
+            </div>
+            <div class="agitate-stat fade-up d3 visible">
+              <div class="as-num">1 router</div>
+              <div><div class="as-text-label">often can't cover 2000+ sq ft well</div><div class="as-text-sub">Mesh or extenders fix that. We'll recommend the right solution.</div></div>
+            </div>
+            <div class="agitate-stat fade-up d4 visible">
+              <div class="as-num">Same-day</div>
+              <div><div class="as-text-label">installation when you're ready</div><div class="as-text-sub">Stop limping along. Get it fixed today.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="solve-section">
+      <div class="container">
+        <div class="solve-grid">
+          <div class="solve-photo-col fade-up">
+            <img class="solve-photo" src="/images/wifi-network-solution.jpg" alt="Professional Wi-Fi network setup and router configuration" loading="lazy" width="800" height="520" style="object-fit:cover;" />
+            <div class="solve-badge">
+              <div class="solve-badge-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg></div>
+              <div><div class="solve-badge-num">4.8★</div><div class="solve-badge-label">Wi-Fi avg. rating</div></div>
+            </div>
+          </div>
+          <div class="solve-copy fade-up d1 visible">
+            <div class="section-eyebrow">Fast. Reliable. Secure.</div>
+            <h2 class="solve-heading">We make your network <em>actually</em> work.</h2>
+            <p>Router setup, mesh installation, dead zone elimination, and network optimization — we fix the problems that restarting never will. Proper configuration, strategic placement, and security hardening so you get the connection you're paying for.</p>
+            <p>We work with Netgear, TP-Link, Eero, Google Nest Wifi, Ubiquiti, and all major brands. No more guessing which channel to use or where to put the router. We assess, install, and verify coverage in every room.</p>
+            <div class="solve-points">
+              {trustPoints.slice(0, 4).map((t) => (
+                <div class="solve-point">
+                  <div class="sp-icon"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                  <div class="sp-text"><strong>{t.title}.</strong> <span>{t.body}</span></div>
+                </div>
+              ))}
+            </div>
+            <button type="button" class="btn-primary-gold tvm-book-btn" data-open-quote="true" data-service="WiFi & Network Setup"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Wi-Fi Quote</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="services-intro">
+          <div class="section-eyebrow fade-up">What We Offer</div>
+          <h2 class="section-heading fade-up d1">Four ways we fix your network.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">From router setup to mesh networks, dead zones, and business solutions — we get you fast, reliable coverage.</p>
+        </div>
+        <div class="services-grid">
+          {services.map((s, i) => (
+            <a href={s.href} class="svc-card fade-up {i % 4 === 0 ? 'visible' : ''} {i % 4 === 1 ? 'd1 visible' : ''} {i % 4 === 2 ? 'd2 visible' : ''} {i % 4 === 3 ? 'd3 visible' : ''}">
+              <div class="svc-card-top">
+                <div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                <h3>{s.name}</h3>
+              </div>
+              <p>{s.desc}</p>
+              <span class="svc-card-link">Learn more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
             </a>
           ))}
         </div>
-        <div class="mt-10 text-center">
-          <button type="button" data-open-quote class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 font-medium">Get a Free Quote</button>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="process-section">
+      <div class="container">
+        <div class="process-intro">
+          <div class="section-eyebrow fade-up">Our Process</div>
+          <h2 class="section-heading fade-up d1">Wi-Fi fixed in 4 steps.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">No more guesswork. We assess, install, and verify — so you finally get the connection you're paying for.</p>
+        </div>
+        <div class="process-steps fade-up d1">
+          {steps.map((step, i) => (
+            <div class="process-step">
+              <div class="ps-num">{String(i + 1).padStart(2, '0')}</div>
+              <div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <span class="ps-pill">Step {String(i + 1).padStart(2, '0')}</span>
+              <div class="ps-title">{step.title}</div>
+              <div class="ps-text">{step.body}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  </main>
+
+    <div class="divider"></div>
+
+    <section class="reviews-section">
+      <div class="container">
+        <div class="reviews-intro">
+          <div class="section-eyebrow fade-up">Verified Reviews</div>
+          <h2 class="section-heading fade-up d1">Real reviews from real customers.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">From Glendale to Burbank — router setup, mesh installs, and dead zone elimination.</p>
+        </div>
+        <div class="reviews-grid">
+          {testimonials.map((t, i) => (
+            <div class="review-card fade-up {i === 0 ? 'visible' : ''} {i === 1 ? 'd1 visible' : ''} {i === 2 ? 'd2 visible' : ''}">
+              <span class="review-verified">✓ Verified</span>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-quote">"{t.quote}"</div>
+              <div class="review-author">
+                <div class="review-initials">{t.initials}</div>
+                <div>
+                  <strong>{t.author}</strong>
+                  <div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> {t.location}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="stats-strip fade-up d1 visible">
+          <div class="ss-cell"><span class="ss-num">4.8★</span><span class="ss-lbl">Average rating</span></div>
+          <div class="ss-cell"><span class="ss-num counter" data-target="98" data-suffix="%">98%</span><span class="ss-lbl">Satisfaction rate</span></div>
+          <div class="ss-cell"><span class="ss-num">Same-day</span><span class="ss-lbl">Often available</span></div>
+          <div class="ss-cell"><span class="ss-num">LA</span><span class="ss-lbl">Area served</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <section class="guarantee-strip">
+      <div class="container">
+        <div class="guarantee-inner">
+          <div class="guarantee-card fade-up visible"><div class="gc-icon" style="background:rgba(245,158,11,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#fcd34d"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[0].title}</div><div class="gc-text">{trustPoints[0].body}</div></div>
+          <div class="guarantee-card fade-up d1 visible"><div class="gc-icon" style="background:rgba(0,115,230,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#60a5fa"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 12l4 4 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[1].title}</div><div class="gc-text">{trustPoints[1].body}</div></div>
+          <div class="guarantee-card fade-up d2 visible"><div class="gc-icon" style="background:rgba(22,163,74,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#4ade80"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[2].title}</div><div class="gc-text">{trustPoints[2].body}</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-intro">
+          <div class="section-eyebrow fade-up">FAQ</div>
+          <h2 class="section-heading fade-up d1">Every question before booking, answered.</h2>
+        </div>
+        <div class="faq-cols fade-up d1 visible">
+          <div class="faq-col">
+            {faqs.slice(0, 4).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q"><span class="faq-question-text">{f.q}</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button>
+                <div class="faq-answer"><p>{f.a}</p></div>
+              </div>
+            ))}
+          </div>
+          <div class="faq-col">
+            {faqs.slice(4).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q"><span class="faq-question-text">{f.q}</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button>
+                <div class="faq-answer"><p>{f.a}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quote" class="cta-section">
+      <div class="container">
+        <div class="cta-grid">
+          <div class="cta-copy fade-up visible">
+            <div class="section-eyebrow">Get Your Quote</div>
+            <h2 class="section-heading">Ready for Wi-Fi that actually works?</h2>
+            <p>Tell us your network problem — dead zones, slow speeds, new router, or business setup. We'll respond within an hour with next steps and availability.</p>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><div><strong>Response within 1 hour</strong><span>We reply with next steps and availability.</span></div></div>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><strong>Same-day when available</strong><span>Get your network fixed today.</span></div></div>
+          </div>
+          <div id="wifi-quote-form" class="quote-card fade-up d2 visible">
+            <div class="progress-wrap">
+              <div class="progress-steps">
+                <div class="prog-step active" data-step="1"><div class="prog-dot">1</div><span class="prog-label">Your Issue</span></div>
+                <div class="prog-step" data-step="2"><div class="prog-dot">2</div><span class="prog-label">Contact</span></div>
+              </div>
+            </div>
+            <div id="form-wrap">
+              <div class="form-step active" data-step="1">
+                <div class="step-title">Your Issue</div>
+                <div class="step-subtitle">What's wrong with your network?</div>
+                <div class="form-group"><label for="wifi-issue">Service type</label><select id="wifi-issue" class="form-control"><option value="">Select…</option>{quoteFormServices.map((s) => <option value={s.value}>{s.label}</option>)}</select></div>
+                <div class="form-group"><label for="wifi-zip">ZIP Code</label><input id="wifi-zip" class="form-control" type="text" placeholder="e.g. 90210" maxlength="10" /></div>
+                <button type="button" class="btn-next" onclick="wifiNextStep(2)">Continue →</button>
+              </div>
+              <div class="form-step" data-step="2">
+                <button type="button" class="btn-back" onclick="wifiNextStep(1)">← Back</button>
+                <div class="step-title">Contact</div>
+                <div class="step-subtitle">How we'll send your quote.</div>
+                <div class="form-group"><label for="wifi-name">Full Name</label><input id="wifi-name" class="form-control" type="text" placeholder="Jane Smith" /></div>
+                <div class="form-group"><label for="wifi-email">Email Address</label><input id="wifi-email" class="form-control" type="email" placeholder="jane@example.com" /></div>
+                <div class="form-group"><label for="wifi-phone">Phone Number</label><input id="wifi-phone" class="form-control" type="tel" placeholder="(555) 000-0000" /></div>
+                <div class="form-group"><label for="wifi-notes">Notes <span style="color:var(--tvm-muted);font-weight:400">(optional)</span></label><textarea id="wifi-notes" class="form-control" rows="2" placeholder="e.g. Dead zone in bedroom, slow in office…"></textarea></div>
+                <button type="button" class="btn-next gold" onclick="wifiSubmitForm()">Get My Free Quote</button>
+              </div>
+            </div>
+            <div id="wifi-form-success" class="form-success">
+              <div class="form-success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <h3>Quote request received!</h3>
+              <p>We'll be in touch within an hour with next steps and availability. Questions? Call us at <a href={phone}>(818) 584-7389</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="section-eyebrow">Your Network Awaits</div>
+        <h2>Fast. Reliable. Every room.</h2>
+        <p>Router setup, mesh networks, dead zone elimination. Same-day when available. Upfront pricing. We make your Wi-Fi actually work.</p>
+        <div class="final-cta-btns">
+          <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="WiFi & Network Setup"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Quote</button>
+          <a class="btn-ghost-white-final" href={phone} style="color:#ffffff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            Call (818) 584-7389
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline define:vars={{}}>
+    (function() {
+      var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+      document.querySelectorAll('.tvm-page .fade-up').forEach(function(el) { obs.observe(el); });
+
+      function animateCounter(el) {
+        var target = parseFloat(el.dataset.target);
+        var decimals = parseInt(el.dataset.decimal || '0', 10);
+        var suffix = el.dataset.suffix || '';
+        var duration = 1800;
+        var start = performance.now();
+        function step(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = decimals ? (e * target).toFixed(decimals) + suffix : Math.floor(e * target).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = decimals ? target.toFixed(decimals) + suffix : target.toLocaleString() + suffix;
+        }
+        requestAnimationFrame(step);
+      }
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.querySelectorAll('.counter').forEach(animateCounter); cObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      document.querySelectorAll('.tvm-page .stats-strip, .tvm-page .proof-bar-inner').forEach(function(el) { cObs.observe(el); });
+
+      document.querySelectorAll('.tvm-page .faq-q').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var open = item.classList.contains('open');
+          document.querySelectorAll('.tvm-page .faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+          if (!open) item.classList.add('open');
+        });
+      });
+
+      window.wifiNextStep = function(step) {
+        if (step === 2) {
+          if (!document.getElementById('wifi-issue').value) { alert('Please select a service type.'); return; }
+          if (!document.getElementById('wifi-zip').value.trim()) { alert('Please enter your ZIP code.'); return; }
+        }
+        document.querySelectorAll('#wifi-quote-form .form-step').forEach(function(el, i) { el.classList.toggle('active', (el.dataset.step || (i+1)) == step); });
+        document.querySelectorAll('#wifi-quote-form .prog-step').forEach(function(el, i) {
+          el.classList.remove('active', 'done');
+          var dot = el.querySelector('.prog-dot');
+          if (i + 1 < step) { el.classList.add('done'); dot.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
+          else { dot.textContent = i + 1; if (i + 1 === step) el.classList.add('active'); }
+        });
+      };
+      window.wifiSubmitForm = function() {
+        var name = document.getElementById('wifi-name').value.trim();
+        var email = document.getElementById('wifi-email').value.trim();
+        var phone = document.getElementById('wifi-phone').value.trim();
+        if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('wifi-form-success').style.display = 'block';
+        document.querySelector('#wifi-quote-form .progress-wrap').style.display = 'none';
+      };
+    })();
+  </script>
 </BaseLayout>

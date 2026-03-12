@@ -5,6 +5,7 @@ pubDate: 2026-01-15
 author: "Deals of Quality"
 category: "TV Mounting"
 readingTime: 7
+heroImage: "/images/tv-mounting-done-right.jpg"
 ---
 
 <!-- ─── STICKY BOTTOM BAR ─── -->

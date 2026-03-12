@@ -18,6 +18,9 @@ export type TechLandingContent = {
   hero: {
     h1: string;
     sub: string;
+    /** Optional hero background image for this spoke page */
+    image?: string;
+    imageAlt?: string;
   };
   pain: {
     eyebrow: string;
@@ -36,6 +39,9 @@ export type TechLandingContent = {
     heading: string;
     paragraphs: string[];
     points: SolvePoint[];
+    /** Optional image for the solution section */
+    image?: string;
+    imageAlt?: string;
   };
   process: {
     eyebrow: string;
@@ -86,6 +92,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Stop staring at error messages<br /><em>that make no sense.</em>',
       sub: 'Our certified technicians connect securely to your device and fix software glitches, OS errors, and setup issues in real time — no drive, no wait. Available 24/7.',
+      image: '/images/tech-support/remote-support-hero.jpg',
+      imageAlt: 'Remote technician helping a customer over a secure connection',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -123,6 +131,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'One price, no surprises', text: 'We quote before we start. What we quote is what you pay — no hourly creep or hidden fees.' },
         { strong: 'Certified on your platform', text: 'Windows, Mac, or mixed environment — our techs are certified on what you use, so you get the right fix the first time.' },
       ],
+      image: '/images/tech-support/remote-support-solution.jpg',
+      imageAlt: 'Laptop screen showing a remote support session in progress',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From "something\'s wrong" to "all set" in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -145,6 +155,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Your computer shouldn\'t slow you down<br /><em>or leave you stranded.</em>',
       sub: 'Hardware failures, broken components, slow performance — our certified technicians come to you. We diagnose, repair, and get you back up and running with upfront pricing and a 30-day guarantee.',
+      image: '/images/tech-support/computer-repair-hero.jpg',
+      imageAlt: 'Technician repairing a desktop computer on a workbench',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -182,6 +194,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Upfront price, final price', text: 'We quote before we start. What we quote is what you pay — no hourly creep or hidden parts markup.' },
         { strong: 'Certified on your device', text: 'PC or Mac, desktop or laptop — we match you to a tech who knows your hardware and your OS.' },
       ],
+      image: '/images/tech-support/computer-repair-solution.jpg',
+      imageAlt: 'Side view of an open computer case with components being tested',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From broken or slow to fixed in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -204,6 +218,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Your Wi-Fi should just work.<br /><em>Every room. Every device.</em>',
       sub: 'From router setup and mesh networks to security hardening — we get your connection fast, stable, and protected. Certified technicians, clear pricing, and a network you can rely on.',
+      image: '/images/tech-support/network-setup-hero.jpg',
+      imageAlt: 'Floor plan with Wi‑Fi coverage zones highlighted',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -241,6 +257,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Security done right', text: 'Strong passwords, updated firmware, and locked-down settings so your network isn\'t the weak link.' },
         { strong: 'One price, no surprises', text: 'We quote before we start. Equipment recommendations are clear; labor and setup are transparent.' },
       ],
+      image: '/images/tech-support/network-setup-solution.jpg',
+      imageAlt: 'Technician configuring a Wi‑Fi router on a desk',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From "my Wi-Fi is a mess" to "it just works" in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -263,6 +281,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'That pop-up isn\'t "just a bug."<br /><em>And waiting could cost you everything.</em>',
       sub: 'Viruses, malware, and ransomware don\'t get better on their own. Our certified technicians run deep scans, remove every trace of the threat, and harden your system so it doesn\'t happen again.',
+      image: '/images/tech-support/virus-removal-hero.jpg',
+      imageAlt: 'Computer screen with warning symbols indicating a virus infection',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -300,6 +320,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Post-removal hardening', text: 'We update software, lock down settings, and give you clear steps so your system stays protected.' },
         { strong: 'Plain-English explanation', text: 'You\'ll know what happened, how it got in, and how to avoid it next time.' },
       ],
+      image: '/images/tech-support/virus-removal-solution.jpg',
+      imageAlt: 'Technician running security scans on a desktop computer',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From infected to clean and secure in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -322,6 +344,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Your files shouldn\'t disappear<br /><em>when your device does.</em>',
       sub: 'Whether your hard drive crashed or you accidentally deleted years of photos — we recover what we can and set up backup systems so it never happens again. Certified technicians, transparent pricing.',
+      image: '/images/tech-support/data-backup-recovery-hero.jpg',
+      imageAlt: 'External drives and cloud icons representing data backup',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -359,6 +383,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'No surprise fees', text: 'We quote recovery and backup setup upfront. You\'ll know the cost before we start.' },
         { strong: 'You\'ll know how to restore', text: 'We don\'t just set it and leave — we show you how to verify and restore so you\'re never guessing.' },
       ],
+      image: '/images/tech-support/data-backup-recovery-solution.jpg',
+      imageAlt: 'Technician reviewing recovered files on a laptop',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From "I lost everything" to recovered and protected in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -381,6 +407,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'The cloud should simplify your life.<br /><em>Not add another headache.</em>',
       sub: 'Microsoft 365, Google Workspace, and other cloud platforms — we handle setup, migration, and ongoing support so you can work and collaborate without the tech headaches.',
+      image: '/images/tech-support/cloud-services-hero.jpg',
+      imageAlt: 'Team collaborating in front of a large screen with cloud icons',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -417,6 +445,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Migration that preserves everything', text: 'Email, calendars, files — we move them in the right order and verify so nothing is lost or broken.' },
         { strong: 'You\'ll know how to use it', text: 'We leave you with a quick reference and support so you can work confidently in the cloud.' },
       ],
+      image: '/images/tech-support/cloud-services-solution.jpg',
+      imageAlt: 'Diagram of a secure cloud architecture on a laptop screen',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From scattered to organized in the cloud in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -439,6 +469,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Software should help you work.<br /><em>Not fight you every step.</em>',
       sub: 'Installation, updates, license management, and performance tuning — we get your software running smoothly and keep it that way. Consumer or business, we\'ve got you covered.',
+      image: '/images/tech-support/software-support-hero.jpg',
+      imageAlt: 'Person updating software on a laptop with progress bar visible',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -475,6 +507,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Updates and conflicts resolved', text: 'We apply updates safely and fix conflicts so your system stays stable.' },
         { strong: 'Performance tuning when needed', text: 'If your software is slow or crashing, we find the cause — whether it\'s the app, the OS, or something else.' },
       ],
+      image: '/images/tech-support/software-support-solution.jpg',
+      imageAlt: 'Close-up of software settings being optimized on screen',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From "it won\'t work" to "it just works" in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,
@@ -497,6 +531,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Your printer should print.<br /><em>Every time. From every device.</em>',
       sub: 'Installation, wireless setup, driver issues, and "why won\'t it connect?" — we get your printer working from your computer, phone, and tablet. Inkjet, laser, and all-in-one.',
+      image: '/images/tech-support/printer-setup-hero.jpg',
+      imageAlt: 'Home office printer on a desk ready to print',
     },
     pain: {
       eyebrow: 'THE REAL COST OF WAITING',
@@ -533,6 +569,8 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Wireless from every device', text: 'We set up network printing so your laptop, desktop, and phone can all print without cables or workarounds.' },
         { strong: 'One price, no surprises', text: 'We quote before we start. Setup and testing are included so you\'re not left with "it worked when you were here."' },
       ],
+      image: '/images/tech-support/printer-setup-solution.jpg',
+      imageAlt: 'Technician configuring a wireless printer for a client',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From "printer offline" to printing from every device in four steps.', steps: sharedProcessSteps },
     guarantee: sharedGuarantee,

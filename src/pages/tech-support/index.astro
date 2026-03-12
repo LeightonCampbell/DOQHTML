@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/tv-mounting-page.css';
 
-const title = 'Tech Support Services | Deals of Quality – Nationwide Computer & IT Help';
-const description = 'Professional tech support across 50 US cities. Remote help, computer repair, virus removal, network setup, and data recovery — by certified technicians, available 24/7.';
+const title = 'Tech Support Services | Deals of Quality – On‑Site & Remote Help That Just Fixes It';
+const description = 'Slow computer, broken Wi‑Fi, strange pop‑ups, or lost files? We fix your tech problems on‑site or online — remote support, computer repair, virus removal, network setup, and data recovery.';
 const canonical = 'https://www.dealsofquality.com/tech-support/';
 
 const schema = {
@@ -13,88 +14,39 @@ const schema = {
   description:
     'Nationwide tech support service providing remote help, computer repair, virus removal, network setup, and data recovery across 50 major US cities.',
   url: canonical,
-  areaServed: {
-    '@type': 'Country',
-    name: 'United States',
-  },
-  provider: {
-    '@type': 'Organization',
-    name: 'Deals of Quality',
-    url: 'https://www.dealsofquality.com/',
-  },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  provider: { '@type': 'Organization', name: 'Deals of Quality', url: 'https://www.dealsofquality.com/' },
 };
 
 const services = [
-  { num: '01', name: 'Remote Support & Troubleshooting', href: '/tech-support/remote-support/', desc: '24/7 assistance for software glitches, OS errors, and cryptic error messages — resolved via secure remote access without leaving your home.' },
-  { num: '02', name: 'Computer & Device Repair', href: '/tech-support/computer-repair/', desc: 'On-site PC and Mac repair for hardware failures, broken components, slow performance, and everything in between — at your location.' },
-  { num: '03', name: 'Network Setup & Support', href: '/tech-support/network-setup/', desc: 'Wi-Fi installation, router configuration, mesh networks, and network security hardening so your connection is fast, stable, and protected.' },
-  { num: '04', name: 'Virus & Malware Removal', href: '/tech-support/virus-removal/', desc: 'Deep-scan diagnostics, complete threat elimination, and post-removal hardening to make sure what got in once, never gets in again.' },
-  { num: '05', name: 'Data Backup & Recovery', href: '/tech-support/data-backup-recovery/', desc: 'Whether your hard drive crashed or you accidentally deleted years of photos — we recover it and set up backup systems so it never happens again.' },
-  { num: '06', name: 'Cloud Services', href: '/tech-support/cloud-services/', desc: 'Setup, migration, and ongoing management of Microsoft 365, Google Workspace, and other cloud platforms for homes and small businesses.' },
-  { num: '07', name: 'Software Support', href: '/tech-support/software-support/', desc: 'Installation, updates, license management, and performance optimization for any software application — consumer or business-grade.' },
-  { num: '08', name: 'Printer Setup & Support', href: '/tech-support/printer-setup/', desc: 'Printer installation, driver configuration, wireless printing setup, and troubleshooting for inkjet, laser, and all-in-one devices.' },
+  { num: '01', name: 'Remote Support & Troubleshooting', href: '/tech-support/remote-support/', desc: '24/7 assistance for software glitches, OS errors, and cryptic error messages — resolved via secure remote access without leaving your home.', icon: 'monitor' },
+  { num: '02', name: 'Computer & Device Repair', href: '/tech-support/computer-repair/', desc: 'On-site PC and Mac repair for hardware failures, broken components, slow performance, and everything in between — at your location.', icon: 'wrench' },
+  { num: '03', name: 'Network Setup & Support', href: '/tech-support/network-setup/', desc: 'Wi-Fi installation, router configuration, mesh networks, and network security hardening so your connection is fast, stable, and protected.', icon: 'wifi' },
+  { num: '04', name: 'Virus & Malware Removal', href: '/tech-support/virus-removal/', desc: 'Deep-scan diagnostics, complete threat elimination, and post-removal hardening to make sure what got in once, never gets in again.', icon: 'shield' },
+  { num: '05', name: 'Data Backup & Recovery', href: '/tech-support/data-backup-recovery/', desc: 'Whether your hard drive crashed or you accidentally deleted years of photos — we recover it and set up backup systems so it never happens again.', icon: 'database' },
+  { num: '06', name: 'Cloud Services', href: '/tech-support/cloud-services/', desc: 'Setup, migration, and ongoing management of Microsoft 365, Google Workspace, and other cloud platforms for homes and small businesses.', icon: 'cloud' },
+  { num: '07', name: 'Software Support', href: '/tech-support/software-support/', desc: 'Installation, updates, license management, and performance optimization for any software application — consumer or business-grade.', icon: 'code' },
+  { num: '08', name: 'Printer Setup & Support', href: '/tech-support/printer-setup/', desc: 'Printer installation, driver configuration, wireless printing setup, and troubleshooting for inkjet, laser, and all-in-one devices.', icon: 'printer' },
 ];
 
-const marqueeItems = ['Remote Support', 'Computer Repair', 'Virus Removal', 'Network Setup', 'Data Recovery', 'Cloud Services', 'Software Support', 'Printer Setup'];
-
 const steps = [
-  { title: 'Tell Us What\'s Wrong', body: 'Call, chat, or book online. Describe the issue in plain English — we\'ll figure out the technical details.' },
-  { title: 'We Match You to a Tech', body: 'A certified technician specializing in your exact issue is assigned immediately — remote or on-site, your choice.' },
-  { title: 'Problem Solved', body: 'We fix the issue completely, explain what happened in plain language, and make sure everything is working before we leave.' },
-  { title: 'Stay Protected', body: 'We leave you with a quick-reference guide and follow-up support so the problem stays solved long after we\'re gone.' },
+  { title: 'Tell Us What\'s Wrong', body: 'Call, chat, or book online. Describe the issue in plain English — we\'ll figure out the technical details.', icon: 'chat' },
+  { title: 'We Match You to a Tech', body: 'A specialist for your exact issue is assigned immediately — remote or on-site, your choice.', icon: 'check' },
+  { title: 'Problem Solved', body: 'We fix the issue completely, explain what happened in plain language, and make sure everything is working before we leave.', icon: 'wrench' },
+  { title: 'Stay Protected', body: 'We leave you with a quick-reference guide and follow-up support so the problem stays solved long after we\'re gone.', icon: 'shield' },
 ];
 
 const cities = [
-  { name: 'New York', state: 'NY', slug: 'new-york-ny' },
-  { name: 'Los Angeles', state: 'CA', slug: 'los-angeles-ca' },
-  { name: 'Chicago', state: 'IL', slug: 'chicago-il' },
-  { name: 'Houston', state: 'TX', slug: 'houston-tx' },
-  { name: 'Phoenix', state: 'AZ', slug: 'phoenix-az' },
-  { name: 'Philadelphia', state: 'PA', slug: 'philadelphia-pa' },
-  { name: 'San Antonio', state: 'TX', slug: 'san-antonio-tx' },
-  { name: 'San Diego', state: 'CA', slug: 'san-diego-ca' },
-  { name: 'Dallas', state: 'TX', slug: 'dallas-tx' },
-  { name: 'San Jose', state: 'CA', slug: 'san-jose-ca' },
-  { name: 'Austin', state: 'TX', slug: 'austin-tx' },
-  { name: 'Jacksonville', state: 'FL', slug: 'jacksonville-fl' },
-  { name: 'Fort Worth', state: 'TX', slug: 'fort-worth-tx' },
-  { name: 'Columbus', state: 'OH', slug: 'columbus-oh' },
-  { name: 'Charlotte', state: 'NC', slug: 'charlotte-nc' },
-  { name: 'Indianapolis', state: 'IN', slug: 'indianapolis-in' },
-  { name: 'San Francisco', state: 'CA', slug: 'san-francisco-ca' },
-  { name: 'Seattle', state: 'WA', slug: 'seattle-wa' },
-  { name: 'Denver', state: 'CO', slug: 'denver-co' },
-  { name: 'Nashville', state: 'TN', slug: 'nashville-tn' },
-  { name: 'Oklahoma City', state: 'OK', slug: 'oklahoma-city-ok' },
-  { name: 'El Paso', state: 'TX', slug: 'el-paso-tx' },
-  { name: 'Washington', state: 'DC', slug: 'washington-dc' },
-  { name: 'Las Vegas', state: 'NV', slug: 'las-vegas-nv' },
-  { name: 'Louisville', state: 'KY', slug: 'louisville-ky' },
-  { name: 'Memphis', state: 'TN', slug: 'memphis-tn' },
-  { name: 'Portland', state: 'OR', slug: 'portland-or' },
-  { name: 'Baltimore', state: 'MD', slug: 'baltimore-md' },
-  { name: 'Milwaukee', state: 'WI', slug: 'milwaukee-wi' },
-  { name: 'Albuquerque', state: 'NM', slug: 'albuquerque-nm' },
-  { name: 'Tucson', state: 'AZ', slug: 'tucson-az' },
-  { name: 'Fresno', state: 'CA', slug: 'fresno-ca' },
-  { name: 'Mesa', state: 'AZ', slug: 'mesa-az' },
-  { name: 'Kansas City', state: 'MO', slug: 'kansas-city-mo' },
-  { name: 'Atlanta', state: 'GA', slug: 'atlanta-ga' },
-  { name: 'Omaha', state: 'NE', slug: 'omaha-ne' },
-  { name: 'Colorado Springs', state: 'CO', slug: 'colorado-springs-co' },
-  { name: 'Raleigh', state: 'NC', slug: 'raleigh-nc' },
-  { name: 'Long Beach', state: 'CA', slug: 'long-beach-ca' },
-  { name: 'Virginia Beach', state: 'VA', slug: 'virginia-beach-va' },
-  { name: 'Minneapolis', state: 'MN', slug: 'minneapolis-mn' },
-  { name: 'Tampa', state: 'FL', slug: 'tampa-fl' },
-  { name: 'New Orleans', state: 'LA', slug: 'new-orleans-la' },
-  { name: 'Arlington', state: 'TX', slug: 'arlington-tx' },
-  { name: 'Bakersfield', state: 'CA', slug: 'bakersfield-ca' },
-  { name: 'Honolulu', state: 'HI', slug: 'honolulu-hi' },
-  { name: 'Anaheim', state: 'CA', slug: 'anaheim-ca' },
-  { name: 'Aurora', state: 'CO', slug: 'aurora-co' },
-  { name: 'Santa Ana', state: 'CA', slug: 'santa-ana-ca' },
-  { name: 'Corpus Christi', state: 'TX', slug: 'corpus-christi-tx' },
+  { name: 'New York', state: 'NY' }, { name: 'Los Angeles', state: 'CA' }, { name: 'Chicago', state: 'IL' }, { name: 'Houston', state: 'TX' }, { name: 'Phoenix', state: 'AZ' },
+  { name: 'Philadelphia', state: 'PA' }, { name: 'San Antonio', state: 'TX' }, { name: 'San Diego', state: 'CA' }, { name: 'Dallas', state: 'TX' }, { name: 'San Jose', state: 'CA' },
+  { name: 'Austin', state: 'TX' }, { name: 'Jacksonville', state: 'FL' }, { name: 'Fort Worth', state: 'TX' }, { name: 'Columbus', state: 'OH' }, { name: 'Charlotte', state: 'NC' },
+  { name: 'Indianapolis', state: 'IN' }, { name: 'San Francisco', state: 'CA' }, { name: 'Seattle', state: 'WA' }, { name: 'Denver', state: 'CO' }, { name: 'Nashville', state: 'TN' },
+  { name: 'Oklahoma City', state: 'OK' }, { name: 'El Paso', state: 'TX' }, { name: 'Washington', state: 'DC' }, { name: 'Las Vegas', state: 'NV' }, { name: 'Louisville', state: 'KY' },
+  { name: 'Memphis', state: 'TN' }, { name: 'Portland', state: 'OR' }, { name: 'Baltimore', state: 'MD' }, { name: 'Milwaukee', state: 'WI' }, { name: 'Albuquerque', state: 'NM' },
+  { name: 'Tucson', state: 'AZ' }, { name: 'Fresno', state: 'CA' }, { name: 'Mesa', state: 'AZ' }, { name: 'Kansas City', state: 'MO' }, { name: 'Atlanta', state: 'GA' },
+  { name: 'Omaha', state: 'NE' }, { name: 'Colorado Springs', state: 'CO' }, { name: 'Raleigh', state: 'NC' }, { name: 'Long Beach', state: 'CA' }, { name: 'Virginia Beach', state: 'VA' },
+  { name: 'Minneapolis', state: 'MN' }, { name: 'Tampa', state: 'FL' }, { name: 'New Orleans', state: 'LA' }, { name: 'Arlington', state: 'TX' }, { name: 'Bakersfield', state: 'CA' },
+  { name: 'Honolulu', state: 'HI' }, { name: 'Anaheim', state: 'CA' }, { name: 'Aurora', state: 'CO' }, { name: 'Santa Ana', state: 'CA' }, { name: 'Corpus Christi', state: 'TX' },
 ];
 
 const trustPoints = [
@@ -106,9 +58,31 @@ const trustPoints = [
 ];
 
 const testimonials = [
-  { quote: 'My laptop had been running slow for months. The remote session fixed everything in under 30 minutes. The tech explained exactly what was causing the issue. Worth every penny.', author: 'Sandra L.', location: 'Chicago IL', stars: 5 },
-  { quote: 'Recovered six years of family photos from a failed hard drive I thought was gone forever. I genuinely cried. These people are miracle workers.', author: 'Marcus R.', location: 'Houston TX', stars: 5 },
-  { quote: 'The technician showed up on time, set up our entire home network, secured it properly, and even helped my elderly mother understand how to use her tablet. Exceptional.', author: 'Jennifer P.', location: 'Denver CO', stars: 5 },
+  { quote: 'My laptop had been running slow for months. The remote session fixed everything in under 30 minutes. The tech explained exactly what was causing the issue. Worth every penny.', author: 'Sandra L.', location: 'Chicago IL', initials: 'SL' },
+  { quote: 'Recovered six years of family photos from a failed hard drive I thought was gone forever. I genuinely cried. These people are miracle workers.', author: 'Marcus R.', location: 'Houston TX', initials: 'MR' },
+  { quote: 'The technician showed up on time, set up our entire home network, secured it properly, and even helped my elderly mother understand how to use her tablet. Exceptional.', author: 'Jennifer P.', location: 'Denver CO', initials: 'JP' },
+];
+
+const faqs = [
+  { q: 'Do you offer remote support?', a: 'Yes. We connect securely to your device and fix software glitches, OS errors, and setup issues in real time — no drive, no wait. Average connection time is under 15 minutes from when you call. Available 24/7 for remote support.' },
+  { q: 'What if I need someone to come to my home?', a: 'We offer on-site tech support across 50 major US cities. Call or request a quote with your ZIP code — we\'ll match you with a technician who can come to your location for hardware repairs, network setup, printer issues, and more.' },
+  { q: 'How much does tech support cost?', a: 'We quote before we start. Remote support typically runs less than an on-site visit. You\'ll get a firm price or range when you describe your issue — no surprise charges, no hourly billing that drags on.' },
+  { q: 'Can you recover lost or deleted files?', a: 'Yes. Whether your hard drive crashed or you accidentally deleted years of photos, we recover data and set up backup systems so it never happens again. Data recovery success depends on the condition of the drive — we\'ll assess and give you an honest estimate.' },
+  { q: 'Are your technicians certified?', a: 'Yes. Our techs are Microsoft Certified, Apple Authorized, CompTIA A+ certified, and Google Partners. We carry credentials, not just toolboxes.' },
+  { q: 'Is your work guaranteed?', a: 'Yes. If the same issue returns within 30 days of our visit, we come back and fix it at no additional charge. No forms. No questions.' },
+  { q: 'How do I get help?', a: 'Fill out the quote form on this page (describe your issue, ZIP, remote vs. on-site preference) or call (818) 584-7389. We respond within the hour with next steps and availability. Same-day remote support is often available immediately.' },
+];
+
+const quoteFormServices = [
+  { value: 'remote-support', label: 'Remote Support & Troubleshooting' },
+  { value: 'computer-repair', label: 'Computer & Device Repair' },
+  { value: 'network-setup', label: 'Network Setup & Support' },
+  { value: 'virus-removal', label: 'Virus & Malware Removal' },
+  { value: 'data-recovery', label: 'Data Backup & Recovery' },
+  { value: 'cloud-services', label: 'Cloud Services' },
+  { value: 'software-support', label: 'Software Support' },
+  { value: 'printer-setup', label: 'Printer Setup & Support' },
+  { value: 'other', label: 'Other' },
 ];
 
 const phone = 'tel:+18185847389';
@@ -116,235 +90,502 @@ const phone = 'tel:+18185847389';
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <main id="main-content" class="min-h-screen bg-background text-foreground">
-    <!-- 1. HERO -->
-    <section class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-50">
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.12),transparent)]" aria-hidden="true" />
-      <div class="container-max px-4 md:px-8 lg:px-16 relative z-10">
-        <div class="max-w-4xl">
-          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-[1.1] tracking-tight">
-            Tech Support Done Right.
-          </h1>
-          <p class="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-            From cracked screens to crashed systems — our certified technicians solve it fast, whether remotely or right at your door. Serving 50 cities across the US, 24 hours a day.
-          </p>
-          <div class="flex flex-wrap gap-4 mb-10">
-            <a href="/tech-support/contact/" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg transition-all">
-              Get Help Now
-            </a>
-            <a href="#services" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-primary !text-[#004080] bg-transparent hover:bg-primary/10 transition-all">
-              Browse Services
-            </a>
-          </div>
-          <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-foreground/90">
-            <span>50 Cities Covered</span>
-            <span aria-hidden="true">·</span>
-            <span>24/7 Available</span>
-            <span aria-hidden="true">·</span>
-            <span>8 Core Services</span>
-            <span aria-hidden="true">·</span>
-            <span>98% Satisfaction Rate</span>
-          </div>
-          <div class="flex flex-wrap gap-3 mt-8">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">Microsoft Certified</span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">Apple Authorized</span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">CompTIA A+ Techs</span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">Google Partner</span>
-          </div>
-        </div>
-      </div>
-    </section>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
-    <!-- 2. MARQUEE -->
-    <section class="border-y border-border bg-muted/50 py-4 overflow-hidden" aria-label="Services list">
-      <div class="flex w-max animate-scroll-left gap-12 md:gap-16">
-        {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item) => (
-          <span class="text-sm md:text-base font-bold text-foreground/80 whitespace-nowrap">{item}</span>
-        ))}
-      </div>
-    </section>
+  <div class="tvm-page">
+    <!-- Urgency banner (fixed at bottom) -->
+    <div class="urgency-banner urgency-banner--bottom">
+      <div class="urgency-dot"></div>
+      <span><span class="urgency-strong">24/7 remote support available.</span> Need help now? <a href={phone}>(818) 584-7389</a></span>
+    </div>
 
-    <!-- 3. SERVICES GRID -->
-    <section id="services" class="section-padding bg-background scroll-mt-20" aria-labelledby="services-heading">
-      <div class="container-max px-4 md:px-8 lg:px-16">
-        <h2 id="services-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-4">
-          Every Tech Problem. Solved.
-        </h2>
-        <p class="text-lg text-muted-foreground mb-12 max-w-2xl">
-          Eight specialized service areas, each handled by certified technicians who know your device, your software, and your time is valuable.
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((s, i) => (
-            <a href={s.href} class="tech-card group block rounded-2xl border-2 border-border bg-card p-6 transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-              <span class="text-3xl font-display font-bold text-primary/70 group-hover:text-primary" aria-hidden="true">{s.num}</span>
-              <h3 class="font-display text-lg font-bold text-foreground mt-2 mb-3 group-hover:text-primary transition-colors">{s.name}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. HOW IT WORKS -->
-    <section class="section-padding bg-secondary/50" aria-labelledby="how-heading">
-      <div class="container-max px-4 md:px-8 lg:px-16">
-        <h2 id="how-heading" class="font-display text-3xl md:text-4xl font-extrabold text-foreground text-center mb-4">
-          Help in 4 Easy Steps
-        </h2>
-        <p class="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          No confusing menus. No waiting rooms. Getting tech help should be as simple as the problem isn't.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, i) => (
-            <div class="tech-step text-center md:text-left">
-              <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg mb-4" aria-hidden="true">{i + 1}</span>
-              <h3 class="font-display text-xl font-bold text-foreground mb-2">{step.title}</h3>
-              <p class="text-muted-foreground leading-relaxed">{step.body}</p>
+    <!-- Hero -->
+    <div class="hero-wrap">
+      <div class="hero-bg" style="background-color: #0f172a; background-image: url('/images/tech-support-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <section class="hero">
+        <div class="container">
+          <div class="fade-up visible">
+            <div class="hero-breadcrumb">
+              <a href="/">Home</a>
+              <span>›</span>
+              <a href="/#services">Services</a>
+              <span>›</span>
+              Tech Support
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. CITIES GRID -->
-    <section id="cities" class="section-padding bg-background scroll-mt-20" aria-labelledby="cities-heading">
-      <div class="container-max px-4 md:px-8 lg:px-16">
-        <h2 id="cities-heading" class="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-          50 Cities. One Standard.
-        </h2>
-        <p class="text-lg text-muted-foreground mb-10 max-w-2xl">
-          Whether you're in New York or Tucson, our technicians deliver the same certified service, the same fast response, and the same guarantee. Find your city below and get location-specific help.
-        </p>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3" aria-label="Cities we serve">
-          {cities.map((c) => (
-            <a href="/tech-support/" class="rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground hover:border-primary hover:bg-primary/5 transition-colors text-center">
-              {c.name} {c.state}
-            </a>
-          ))}
-        </div>
-
-        <div class="mt-10 text-center">
-          <p class="text-muted-foreground mb-4">Don't see your city? We probably still cover it.</p>
-          <div class="flex flex-col sm:flex-row gap-2 justify-center items-center">
-            <input type="text" id="tech-support-zip" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="ZIP code" class="h-11 w-32 rounded-lg border border-input bg-background px-3 py-2 text-sm" aria-label="ZIP code" />
-            <button type="button" id="tech-support-get-help-btn" class="inline-flex items-center justify-center rounded-xl h-11 px-8 text-base font-semibold bg-primary !text-white hover:bg-primary/90 shadow-lg transition-all shrink-0">
-              Get Tech Support
+            <div class="hero-service-pill">
+              <div class="hero-service-pill-dot"></div>
+              TECH SUPPORT
+            </div>
+          </div>
+          <h1 class="fade-up d1 visible">Your tech should just work.<br /><em>We make sure it does.</em></h1>
+          <p class="hero-sub fade-up d2 visible">Slow computers, broken Wi‑Fi, strange pop‑ups, or lost files — we fix the everyday tech problems that stall your work and your life, on‑site or over a secure remote session.</p>
+          <div class="hero-cta-row fade-up d3 visible">
+            <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="Tech Support">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg>
+              Get a Free Quote
             </button>
+            <a class="btn-ghost-white" href={phone} style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              (818) 584-7389
+            </a>
+          </div>
+          <div class="hero-trust-strip fade-up d4 visible">
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor"></path></svg> On‑site &amp; remote</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg> 50 cities covered</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> 24/7 remote available</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3"></path><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> 30-day guarantee</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> Upfront pricing</div>
+          </div>
+          <div class="hero-badges fade-up d4 visible">
+            <span class="hero-badge">Microsoft Certified</span>
+            <span class="hero-badge">Apple Authorized</span>
+            <span class="hero-badge">CompTIA A+ Techs</span>
+            <span class="hero-badge">Google Partner</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Proof bar -->
+    <section class="proof-bar-outer">
+      <div class="container">
+        <div class="proof-bar-inner fade-up visible">
+          <div class="proof-cell">
+            <span class="proof-num">50+</span>
+            <span class="proof-lbl">Cities served</span>
+          </div>
+          <div class="proof-cell">
+            <span class="counter" data-target="4.8" data-suffix="★" data-decimal="1">4.8★</span>
+            <span class="proof-lbl">Average rating</span>
+          </div>
+          <div class="proof-cell">
+            <span class="counter" data-target="98" data-suffix="%">98%</span>
+            <span class="proof-lbl">Satisfaction rate</span>
+          </div>
+          <div class="proof-cell">
+            <span class="proof-num">30</span>
+            <span class="proof-lbl">Day guarantee</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. WHY CHOOSE US + TESTIMONIALS -->
-    <section class="section-padding bg-secondary/30" aria-labelledby="why-heading">
-      <div class="container-max px-4 md:px-8 lg:px-16">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          <div>
-            <h2 id="why-heading" class="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-8">
-              Not Just Techs. Experts.
-            </h2>
-            <ul class="space-y-6">
-              {trustPoints.map((t) => (
-                <li class="tech-trust flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-primary" aria-hidden="true">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  </span>
-                  <div>
-                    <h3 class="font-display font-bold text-foreground mb-1">{t.title}</h3>
-                    <p class="text-muted-foreground text-sm leading-relaxed">{t.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+    <!-- Pain section -->
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-intro fade-up visible">
+          <div class="section-eyebrow" style="color:#dc2626">Why Tech Problems Don't Fix Themselves</div>
+          <h2 class="section-heading">Everyday tech problems that <em style="color:#dc2626">quietly steal your time.</em></h2>
+          <p class="section-body">A slow laptop, "iffy" Wi‑Fi, strange pop‑ups, or a printer that only works on Tuesdays — none of these fix themselves. Left alone, they turn into missed deadlines, lost files, and hours you don't get back.</p>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Slow machines and random crashes</h3>
+            <p>You're rebooting constantly, staring at spinning wheels, and hoping this won't be the day your computer just doesn't come back on. The slow crawl drains productivity and adds stress to every task that depends on that machine.</p>
           </div>
-          <div>
-            <h2 class="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-8">
-              Real Reviews From Real People
-            </h2>
-            <div class="space-y-8">
-              {testimonials.map((t) => (
-                <blockquote class="tech-testimonial rounded-2xl border border-border bg-card p-6">
-                  <div class="flex gap-1 mb-3" aria-label={`${t.stars} out of 5 stars`}>
-                    {Array.from({ length: t.stars }).map(() => (
-                      <svg class="w-5 h-5 text-cta fill-cta" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    ))}
-                  </div>
-                  <p class="text-foreground leading-relaxed mb-4">"{t.quote}"</p>
-                  <footer class="text-sm text-muted-foreground">— {t.author}, {t.location}</footer>
-                </blockquote>
-              ))}
+          <div class="pain-card fade-up d1">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5"></path><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+            <h3>Wi‑Fi, network, and printer chaos</h3>
+            <p>Calls drop, pages time out, and the printer is always "offline" when you need it most — and somehow you're the one expected to fix it. Network problems affect every device in the house and rarely resolve themselves.</p>
+          </div>
+          <div class="pain-card fade-up d2">
+            <div class="pain-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Security worries and missing files</h3>
+            <p>Pop‑ups, suspicious emails, or folders that suddenly vanish. You're not sure what's broken — only that you can't afford to lose what's on that machine. Data loss and security breaches don't wait for a convenient time.</p>
+          </div>
+        </div>
+        <div class="agitate-block fade-up d1 visible">
+          <div class="agitate-text">
+            <h2>The longer you wait, <em>the more it costs.</em></h2>
+            <p>Most people live with "good enough" tech for months — until the slow laptop won't boot, the Wi‑Fi dies mid‑meeting, or files vanish for good. By then, a simple fix has turned into a rescue mission. Remote help can often start in minutes.</p>
+          </div>
+          <div class="agitate-stats">
+            <div class="agitate-stat fade-up d2 visible">
+              <div class="as-num">4.2h</div>
+              <div><div class="as-text-label">Average time wasted per failed DIY tech fix</div><div class="as-text-sub">Restarting, reinstalling, Googling — before you call for help anyway.</div></div>
+            </div>
+            <div class="agitate-stat fade-up d3 visible">
+              <div class="as-num">1 in 3</div>
+              <div><div class="as-text-label">people have lost important files to a tech problem</div><div class="as-text-sub">Drives fail, accounts get locked, and "I'll back up later" becomes "I wish I had."</div></div>
+            </div>
+            <div class="agitate-stat fade-up d4 visible">
+              <div class="as-num">&lt;15 min</div>
+              <div><div class="as-text-label">to start a remote session when you're ready</div><div class="as-text-sub">Fix it now — not after another week of limping along.</div></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 7. FINAL CTA BAND -->
-    <section class="section-padding bg-primary text-primary-foreground" aria-labelledby="cta-heading">
-      <div class="container-max px-4 md:px-8 lg:px-16 text-center">
-        <h2 id="cta-heading" class="font-display text-3xl md:text-4xl font-extrabold mb-4">
-          Your Tech Problem Ends Today.
-        </h2>
-        <p class="text-primary-foreground/90 text-lg mb-8 max-w-xl mx-auto">
-          Available right now. No appointment needed for remote support.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href={phone} class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-white hover:bg-white/90 shadow-lg transition" style="color: #004080;">
-            Call Now — Free Diagnosis
-          </a>
-          <button type="button" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold border-2 border-white text-white hover:bg-white/20 transition" data-open-booking="true" data-service="Tech Support">
-            Book Online
-          </button>
+    <div class="divider--cream"></div>
+
+    <!-- Solution section -->
+    <section class="solve-section">
+      <div class="container">
+        <div class="solve-grid">
+          <div class="solve-photo-col fade-up">
+            <img class="solve-photo" src="/images/tech-support-solution.jpg" alt="Technician helping customer with computer support" loading="lazy" width="800" height="520" />
+            <div class="solve-badge">
+              <div class="solve-badge-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg></div>
+              <div><div class="solve-badge-num">4.8★</div><div class="solve-badge-label">Tech support avg. rating</div></div>
+            </div>
+          </div>
+          <div class="solve-copy fade-up d1 visible">
+            <div class="section-eyebrow">Every Tech Problem. Solved.</div>
+            <h2 class="solve-heading">On‑site or online. <em>Fixed fast.</em></h2>
+            <p>We don't leave you guessing. Tell us what's wrong — we match you to the right kind of help and fix it on‑site or over a secure remote session. Eight focused service areas so you don't have to figure out who to call.</p>
+            <p>Microsoft Certified, Apple Authorized, CompTIA A+ techs. Flat-rate quotes before we start. A 30-day guarantee if the same issue returns. And for remote support — average connection time under 15 minutes from when you call.</p>
+            <div class="solve-points">
+              {trustPoints.slice(0, 4).map((t) => (
+                <div class="solve-point">
+                  <div class="sp-icon"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                  <div class="sp-text"><strong>{t.title}.</strong> <span>{t.body}</span></div>
+                </div>
+              ))}
+            </div>
+            <button type="button" class="btn-primary-gold tvm-book-btn" data-open-quote="true" data-service="Tech Support"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Tech Support Quote</button>
+          </div>
         </div>
       </div>
     </section>
 
-  </main>
+    <div class="divider"></div>
 
-  <script is:inline>
-    (function () {
-      function setupGetTechSupport() {
-        var getHelpBtn = document.getElementById('tech-support-get-help-btn');
-        var zipInput = document.getElementById('tech-support-zip');
-        if (getHelpBtn && zipInput) {
-          getHelpBtn.addEventListener('click', function () {
-            var zip = (zipInput.value || '').replace(/\D/g, '').slice(0, 10);
-            document.dispatchEvent(new CustomEvent('open-quote-modal-step-3', { detail: { service: 'Tech Support', zip: zip } }));
-          });
+    <!-- Services offered -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="services-intro">
+          <div class="section-eyebrow fade-up">What We Offer</div>
+          <h2 class="section-heading fade-up d1">Eight service areas. One standard.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">From remote troubleshooting to on-site repairs, virus removal, data recovery, and everything in between — we handle it with the right expertise and transparent pricing.</p>
+        </div>
+        <div class="services-grid">
+          {services.map((s, i) => (
+            <a href={s.href} class="svc-card fade-up {i % 4 === 0 ? 'visible' : ''} {i % 4 === 1 ? 'd1 visible' : ''} {i % 4 === 2 ? 'd2 visible' : ''} {i % 4 === 3 ? 'd3 visible' : ''}">
+              <div class="svc-card-top">
+                <div class="svc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M8 22h8M12 18v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+                <h3>{s.name}</h3>
+              </div>
+              <p>{s.desc}</p>
+              <span class="svc-card-link">Learn more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- Process -->
+    <section class="process-section">
+      <div class="container">
+        <div class="process-intro">
+          <div class="section-eyebrow fade-up">Our Process</div>
+          <h2 class="section-heading fade-up d1">Help in 4 easy steps.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">No confusing menus. No waiting rooms. Getting tech help should be as simple as the problem isn't.</p>
+        </div>
+        <div class="process-steps fade-up d1">
+          {steps.map((step, i) => (
+            <div class="process-step">
+              <div class="ps-num">{String(i + 1).padStart(2, '0')}</div>
+              <div class="ps-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <span class="ps-pill">Step {String(i + 1).padStart(2, '0')}</span>
+              <div class="ps-title">{step.title}</div>
+              <div class="ps-text">{step.body}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+      <div class="container">
+        <div class="reviews-intro">
+          <div class="section-eyebrow fade-up">Verified Reviews</div>
+          <h2 class="section-heading fade-up d1">Real reviews from real people.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">Remote sessions, on-site visits, data recovery — from Chicago to Houston and beyond.</p>
+        </div>
+        <div class="reviews-grid">
+          {testimonials.map((t, i) => (
+            <div class="review-card fade-up {i === 0 ? 'visible' : ''} {i === 1 ? 'd1 visible' : ''} {i === 2 ? 'd2 visible' : ''}">
+              <span class="review-verified">✓ Verified</span>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-quote">"{t.quote}"</div>
+              <div class="review-author">
+                <div class="review-initials">{t.initials}</div>
+                <div>
+                  <strong>{t.author}</strong>
+                  <div class="review-source"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"></path></svg> {t.location}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="stats-strip fade-up d1 visible">
+          <div class="ss-cell"><span class="ss-num">50+</span><span class="ss-lbl">Cities served</span></div>
+          <div class="ss-cell"><span class="ss-num counter" data-target="4.8" data-suffix="★" data-decimal="1">4.8★</span><span class="ss-lbl">Average rating</span></div>
+          <div class="ss-cell"><span class="ss-num counter" data-target="98" data-suffix="%">98%</span><span class="ss-lbl">Satisfaction rate</span></div>
+          <div class="ss-cell"><span class="ss-num">30</span><span class="ss-lbl">Day guarantee</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- Guarantee strip -->
+    <section class="guarantee-strip">
+      <div class="container">
+        <div class="guarantee-inner">
+          <div class="guarantee-card fade-up visible"><div class="gc-icon" style="background:rgba(245,158,11,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#fcd34d"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[0].title}</div><div class="gc-text">{trustPoints[0].body}</div></div>
+          <div class="guarantee-card fade-up d1 visible"><div class="gc-icon" style="background:rgba(0,115,230,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#60a5fa"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 12l4 4 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[1].title}</div><div class="gc-text">{trustPoints[1].body}</div></div>
+          <div class="guarantee-card fade-up d2 visible"><div class="gc-icon" style="background:rgba(22,163,74,0.15)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#4ade80"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="gc-title">{trustPoints[2].title}</div><div class="gc-text">{trustPoints[2].body}</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-intro">
+          <div class="section-eyebrow fade-up">FAQ</div>
+          <h2 class="section-heading fade-up d1">Every question before booking, answered.</h2>
+        </div>
+        <div class="faq-cols fade-up d1 visible">
+          <div class="faq-col">
+            {faqs.slice(0, 4).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q"><span class="faq-question-text">{f.q}</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button>
+                <div class="faq-answer"><p>{f.a}</p></div>
+              </div>
+            ))}
+          </div>
+          <div class="faq-col">
+            {faqs.slice(4).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q"><span class="faq-question-text">{f.q}</span><div class="faq-icon"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></button>
+                <div class="faq-answer"><p>{f.a}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote form -->
+    <section id="quote" class="cta-section">
+      <div class="container">
+        <div class="cta-grid">
+          <div class="cta-copy fade-up visible">
+            <div class="section-eyebrow">Get Your Quote</div>
+            <h2 class="section-heading">Ready for tech that just works?</h2>
+            <p>Tell us your issue, ZIP code, and whether you prefer remote or on-site support. We'll respond within an hour with next steps and availability.</p>
+            <div class="urgency-callout">
+              <div class="urgency-callout-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <div><div class="urgency-callout-title">Remote support often available immediately</div><div class="urgency-callout-text">No appointment needed for remote sessions. We'll confirm when we reply.</div></div>
+            </div>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><div><strong>Response within 1 hour</strong><span>We reply with next steps and availability.</span></div></div>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><strong>Microsoft, Apple, CompTIA certified</strong><span>Credentials you can verify — not just toolboxes.</span></div></div>
+            <div class="trust-row"><div class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><strong>Your data is never sold</strong><span>One match — no spam, no lead sales.</span></div></div>
+          </div>
+          <div id="quote-form" class="quote-card fade-up d2 visible">
+            <div class="progress-wrap">
+              <div class="progress-steps">
+                <div class="prog-step active" data-step="1"><div class="prog-dot">1</div><span class="prog-label">Your Issue</span></div>
+                <div class="prog-step" data-step="2"><div class="prog-dot">2</div><span class="prog-label">Contact</span></div>
+              </div>
+            </div>
+            <div id="form-wrap">
+              <div class="form-step active" data-step="1">
+                <div class="step-title">Your Issue</div>
+                <div class="step-subtitle">Tell us what's wrong and where you're located.</div>
+                <div class="form-group"><label for="ts-issue">Issue type</label><select id="ts-issue" class="form-control"><option value="">Select…</option>{quoteFormServices.map((s) => <option value={s.value}>{s.label}</option>)}</select></div>
+                <div class="form-group"><label for="ts-zip">ZIP Code</label><input id="ts-zip" class="form-control" type="text" placeholder="e.g. 90210" maxlength="10" /></div>
+                <div class="form-group">
+                  <label>Remote or on-site?</label>
+                  <div class="timing-options" id="ts-mode-group">
+                    <div class="timing-opt" data-val="remote" onclick="selectTsMode(this)"><span class="timing-opt-icon">💻</span><span class="timing-opt-label">Remote</span></div>
+                    <div class="timing-opt" data-val="onsite" onclick="selectTsMode(this)"><span class="timing-opt-icon">🏠</span><span class="timing-opt-label">On-site</span></div>
+                    <div class="timing-opt" data-val="either" onclick="selectTsMode(this)"><span class="timing-opt-icon">🔄</span><span class="timing-opt-label">Either</span></div>
+                  </div>
+                </div>
+                <button type="button" class="btn-next" onclick="tsNextStep(2)">Continue →</button>
+              </div>
+              <div class="form-step" data-step="2">
+                <button type="button" class="btn-back" onclick="tsNextStep(1)">← Back</button>
+                <div class="step-title">Contact</div>
+                <div class="step-subtitle">How we'll send your quote and confirm.</div>
+                <div class="form-group"><label for="ts-name">Full Name</label><input id="ts-name" class="form-control" type="text" placeholder="Jane Smith" /></div>
+                <div class="form-group"><label for="ts-email">Email Address</label><input id="ts-email" class="form-control" type="email" placeholder="jane@example.com" /></div>
+                <div class="form-group"><label for="ts-phone">Phone Number</label><input id="ts-phone" class="form-control" type="tel" placeholder="(555) 000-0000" /></div>
+                <div class="form-group"><label for="ts-notes">Describe your issue <span style="color:var(--tvm-muted);font-weight:400">(optional)</span></label><textarea id="ts-notes" class="form-control" rows="2" placeholder="e.g. Laptop slow, random blue screens…"></textarea></div>
+                <button type="button" class="btn-next gold" onclick="tsSubmitForm()">Get My Free Quote</button>
+                <p class="form-note"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M7 1L3 2.5v4c0 2.5 2 4.5 4 5 2-.5 4-2.5 4-5v-4L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path><path d="M5 7l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> Private. Never sold. One match — no spam calls.</p>
+              </div>
+            </div>
+            <div id="ts-form-success" class="form-success">
+              <div class="form-success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <h3>Quote request received!</h3>
+              <p>We'll be in touch within an hour with next steps and availability. Questions? Call us at <a href={phone}>(818) 584-7389</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cities -->
+    <section class="locations-section" id="cities">
+      <div class="container">
+        <div class="locations-intro">
+          <div class="section-eyebrow fade-up visible">Service Areas</div>
+          <h2 class="section-heading fade-up d1 visible">Tech support near you.</h2>
+          <p class="section-body fade-up d2 visible" style="margin:0 auto;">We serve 50 major US cities with the same certified support, same transparent pricing, and the same 30-day guarantee — whether you're in New York or Tucson.</p>
+        </div>
+        <div class="locations-grid fade-up d1 visible">
+          {cities.map((c) => (
+            <a class="loc-card" href="/tech-support/#quote">
+              <div class="loc-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"></circle></svg></div>
+              <span class="loc-card-name">{c.name} {c.state}</span>
+              <span class="loc-card-sub">Remote &amp; on-site support</span>
+              <span class="loc-card-link">Get a quote <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            </a>
+          ))}
+        </div>
+        <div class="mt-10 text-center" style="margin-top: 2.5rem;">
+          <p class="section-body" style="margin-bottom: 1rem;">Don't see your city? We probably still cover it.</p>
+          <div class="flex flex-col sm:flex-row gap-2 justify-center items-center" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+            <input type="text" id="tech-support-zip" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="ZIP code" class="form-control" style="width: 8rem;" aria-label="ZIP code" />
+            <button type="button" id="tech-support-get-help-btn" class="btn-next gold" style="padding: 12px 24px; width: auto;">Get Tech Support</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <div class="section-eyebrow">Your Tech Problem Ends Today</div>
+        <h2>On-site or online. We fix it.</h2>
+        <p>50+ cities. Microsoft Certified, Apple Authorized, CompTIA A+ techs. Remote support in under 15 minutes. Same transparent pricing, same 30-day guarantee.</p>
+        <div class="final-cta-btns">
+          <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="Tech Support"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Quote</button>
+          <a class="btn-ghost-white-final" href={phone} style="color:#ffffff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            Call (818) 584-7389
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .tvm-page .urgency-banner.urgency-banner--bottom { top: auto; bottom: 0; border-top: 1px solid rgba(255,255,255,0.08); box-shadow: 0 -4px 20px rgba(0,0,0,0.35); }
+    @media (max-width: 640px) { .tvm-page .urgency-banner.urgency-banner--bottom { bottom: 72px; } }
+    .tvm-page .hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+    .tvm-page .hero-badge { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 100px; }
+    .tvm-page .locations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .tvm-page .locations-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px) { .tvm-page .locations-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+
+  <script is:inline define:vars={{}}>
+    (function() {
+      var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+      document.querySelectorAll('.tvm-page .fade-up').forEach(function(el) { obs.observe(el); });
+
+      function animateCounter(el) {
+        var target = parseFloat(el.dataset.target);
+        var decimals = parseInt(el.dataset.decimal || '0', 10);
+        var suffix = el.dataset.suffix || '';
+        var duration = 1800;
+        var start = performance.now();
+        function step(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = decimals ? (e * target).toFixed(decimals) + suffix : Math.floor(e * target).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = decimals ? target.toFixed(decimals) + suffix : target.toLocaleString() + suffix;
         }
+        requestAnimationFrame(step);
       }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupGetTechSupport);
-      } else {
-        setupGetTechSupport();
-      }
-      function observeFadeUp() {
-        var selectors = '.tech-card, .tech-step, .tech-trust, .tech-testimonial';
-        var els = document.querySelectorAll(selectors);
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          els.forEach(function (el) { el.classList.add('animate-fade-in-up'); });
-          return;
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.querySelectorAll('.counter').forEach(animateCounter); cObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      document.querySelectorAll('.tvm-page .stats-strip, .tvm-page .proof-bar-inner').forEach(function(el) { cObs.observe(el); });
+
+      document.querySelectorAll('.tvm-page .faq-q').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var open = item.classList.contains('open');
+          document.querySelectorAll('.tvm-page .faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+          if (!open) item.classList.add('open');
+        });
+      });
+
+      window.selectTsMode = function(el) {
+        document.querySelectorAll('#ts-mode-group .timing-opt').forEach(function(o) { o.classList.remove('selected'); });
+        el.classList.add('selected');
+        window.selectedTsMode = el.dataset.val;
+      };
+      window.tsNextStep = function(step) {
+        if (step === 2) {
+          if (!document.getElementById('ts-issue').value) { alert('Please select an issue type.'); return; }
+          if (!document.getElementById('ts-zip').value.trim()) { alert('Please enter your ZIP code.'); return; }
+          if (!window.selectedTsMode) { alert('Please select remote, on-site, or either.'); return; }
         }
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animate-fade-in-up');
-              entry.target.setAttribute('data-animated', 'true');
-            }
-          });
-        }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
-        els.forEach(function (el) {
-          if (el.getAttribute('data-animated')) return;
-          el.style.opacity = '0';
-          io.observe(el);
+        document.querySelectorAll('#quote-form .form-step').forEach(function(el, i) { el.classList.toggle('active', (el.dataset.step || (i+1)) == step); });
+        document.querySelectorAll('#quote-form .prog-step').forEach(function(el, i) {
+          el.classList.remove('active', 'done');
+          var dot = el.querySelector('.prog-dot');
+          if (i + 1 < step) { el.classList.add('done'); dot.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
+          else { dot.textContent = i + 1; if (i + 1 === step) el.classList.add('active'); }
+        });
+      };
+      window.tsSubmitForm = function() {
+        var name = document.getElementById('ts-name').value.trim();
+        var email = document.getElementById('ts-email').value.trim();
+        var phone = document.getElementById('ts-phone').value.trim();
+        if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('ts-form-success').style.display = 'block';
+        document.querySelector('#quote-form .progress-wrap').style.display = 'none';
+      };
+
+      var getHelpBtn = document.getElementById('tech-support-get-help-btn');
+      var zipInput = document.getElementById('tech-support-zip');
+      if (getHelpBtn && zipInput) {
+        getHelpBtn.addEventListener('click', function() {
+          var zip = (zipInput.value || '').replace(/\D/g, '').slice(0, 10);
+          document.dispatchEvent(new CustomEvent('open-quote-modal-step-3', { detail: { service: 'Tech Support', zip: zip } }));
         });
       }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', observeFadeUp);
-      } else {
-        observeFadeUp();
-      }
+
+      (function() {
+        var banner = document.querySelector('.tvm-page .urgency-banner');
+        if (!banner || banner.classList.contains('urgency-banner--bottom')) return;
+        var isBottom = false;
+        window.addEventListener('scroll', function() {
+          var shouldBeBottom = window.scrollY > 150;
+          if (shouldBeBottom && !isBottom) {
+            isBottom = true;
+            banner.classList.add('tvm-banner-fading');
+            setTimeout(function() { banner.classList.add('tvm-banner-bottom'); banner.classList.remove('tvm-banner-fading'); }, 250);
+          } else if (!shouldBeBottom && isBottom) {
+            isBottom = false;
+            banner.classList.add('tvm-banner-fading');
+            setTimeout(function() { banner.classList.remove('tvm-banner-bottom'); banner.classList.remove('tvm-banner-fading'); }, 250);
+          }
+        }, { passive: true });
+      })();
     })();
   </script>
 </BaseLayout>

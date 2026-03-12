@@ -37,7 +37,11 @@ const genericReviews = [
 
     <!-- HERO -->
     <div class="hero-wrap">
-      <div class="hero-bg tech-hero-bg" aria-hidden="true"></div>
+      <div
+        class="hero-bg tech-hero-bg"
+        style={content.hero.image ? `background-image: url('${content.hero.image}'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;` : ''}
+        aria-hidden="true"
+      ></div>
       <section class="hero tech-landing-hero">
         <div class="container">
           <div class="fade-up">
@@ -135,30 +139,65 @@ const genericReviews = [
     <!-- SOLUTION -->
     <section class="solve-section">
       <div class="container">
-        <div class="solve-grid solve-grid--single">
-          <div class="solve-copy fade-up">
-            <div class="section-eyebrow section-eyebrow--accent">{content.solve.eyebrow}</div>
-            <h2 class="solve-heading" set:html={content.solve.heading} />
-            {content.solve.paragraphs.map((p) => <p>{p}</p>)}
-            <div class="solve-points">
-              {content.solve.points.map((point) => (
-                <div class="solve-point">
-                  <div class="sp-icon">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                  </div>
-                  <div class="sp-text">
-                    <strong>{point.strong}</strong>
-                    <span>{point.text}</span>
-                  </div>
-                </div>
-              ))}
+        {content.solve.image ? (
+          <div class="solve-grid">
+            <div class="solve-photo-col fade-up">
+              <img
+                class="solve-photo"
+                src={content.solve.image}
+                alt={content.solve.imageAlt ?? `${content.serviceLabel} solution in action`}
+                loading="lazy"
+              />
             </div>
-            <button type="button" class="btn-primary-gold" data-open-booking="true" data-service="Tech Support">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
-              Book Online
-            </button>
+            <div class="solve-copy fade-up d1">
+              <div class="section-eyebrow section-eyebrow--accent">{content.solve.eyebrow}</div>
+              <h2 class="solve-heading" set:html={content.solve.heading} />
+              {content.solve.paragraphs.map((p) => <p>{p}</p>)}
+              <div class="solve-points">
+                {content.solve.points.map((point) => (
+                  <div class="solve-point">
+                    <div class="sp-icon">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    </div>
+                    <div class="sp-text">
+                      <strong>{point.strong}</strong>
+                      <span>{point.text}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button type="button" class="btn-primary-gold" data-open-booking="true" data-service="Tech Support">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                Book Online
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div class="solve-grid solve-grid--single">
+            <div class="solve-copy fade-up">
+              <div class="section-eyebrow section-eyebrow--accent">{content.solve.eyebrow}</div>
+              <h2 class="solve-heading" set:html={content.solve.heading} />
+              {content.solve.paragraphs.map((p) => <p>{p}</p>)}
+              <div class="solve-points">
+                {content.solve.points.map((point) => (
+                  <div class="solve-point">
+                    <div class="sp-icon">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    </div>
+                    <div class="sp-text">
+                      <strong>{point.strong}</strong>
+                      <span>{point.text}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button type="button" class="btn-primary-gold" data-open-booking="true" data-service="Tech Support">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                Book Online
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
 
@@ -326,7 +365,8 @@ const genericReviews = [
     .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .fade-up.d1 { transition-delay: 0.08s; } .fade-up.d2 { transition-delay: 0.16s; } .fade-up.d3 { transition-delay: 0.24s; } .fade-up.d4 { transition-delay: 0.32s; }
-    .urgency-banner { background: var(--ink); color: rgba(255,255,255,0.9); text-align: center; padding: 10px 24px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px; position: fixed; top: 64px; left: 0; right: 0; z-index: 199; }
+    .urgency-banner { background: var(--ink); color: rgba(255,255,255,0.9); text-align: center; padding: 10px 24px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px; position: fixed; top: auto; bottom: 0; left: 0; right: 0; z-index: 199; border-top: 1px solid rgba(255,255,255,0.08); box-shadow: 0 -4px 20px rgba(0,0,0,0.35); }
+    @media (max-width: 640px) { .tech-landing-main .urgency-banner { bottom: 72px; } }
     .urgency-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: pulse-dot 2s infinite; }
     @keyframes pulse-dot { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.6; transform:scale(1.4); } }
     .urgency-strong { color: #fff; font-weight: 500; }
@@ -335,9 +375,10 @@ const genericReviews = [
     .hero-bg { position: absolute; inset: 0; z-index: 0; }
     .tech-hero-bg { background: linear-gradient(135deg, #0d1f35 0%, #1e293b 50%, #0f172a 100%); }
     .tech-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,14,20,0.4) 0%, rgba(10,14,20,0.6) 100%); pointer-events: none; }
-    .hero { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 130px 0 80px; }
+    .hero { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 130px 0 80px; text-align: center; }
     .tech-landing-hero { background: none !important; }
-    .hero-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+    .tech-landing-main .hero .container { display: flex; flex-direction: column; align-items: center; max-width: 1100px; }
+    .hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
     .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
     .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
     .hero-service-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; font-size: 12px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; }
@@ -345,7 +386,7 @@ const genericReviews = [
     .tech-landing-main .hero h1 { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 72px); line-height: 1.06; letter-spacing: -1.2px; color: #fff; max-width: 800px; margin-bottom: 20px; }
     .tech-landing-main .hero h1 em { font-style: italic; color: #fcd34d; }
     .hero-sub { font-size: clamp(16px, 1.8vw, 19px); color: rgba(255,255,255,0.78); max-width: 560px; line-height: 1.65; margin-bottom: 36px; }
-    .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .hero-cta-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
     @media (max-width: 768px) {
       .hero-cta-row { flex-direction: column; }
       .hero-cta-row .btn-primary-gold,
@@ -355,7 +396,7 @@ const genericReviews = [
     .btn-primary-gold:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); }
     .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.12); color: #fff; font-family: var(--sans); font-size: 14px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); }
     .btn-ghost-white:hover { background: rgba(255,255,255,0.22); }
-    .hero-trust-strip { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.14); }
+    .hero-trust-strip { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.14); }
     .hts-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
     .hts-item svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
     .pain-section { background: var(--cream); padding: 88px 0; }
@@ -390,6 +431,8 @@ const genericReviews = [
     .solve-heading { font-family: var(--serif); font-size: clamp(32px, 3.5vw, 44px); line-height: 1.2; color: var(--ink); margin-bottom: 20px; }
     .solve-heading em { font-style: italic; color: var(--accent); }
     .solve-copy p { font-size: 16px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .solve-photo-col { position: relative; }
+    .solve-photo { width: 100%; border-radius: 18px; display: block; box-shadow: 0 20px 45px rgba(15,23,42,0.35); object-fit: cover; }
     .solve-points { margin-bottom: 28px; }
     .solve-point { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
     .sp-icon { width: 30px; height: 30px; min-width: 30px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
