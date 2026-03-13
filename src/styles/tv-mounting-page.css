@@ -75,7 +75,7 @@
 .tvm-page .urgency-dot { width: 7px; height: 7px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: tvm-pulse-dot 2s infinite; }
 @keyframes tvm-pulse-dot { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.6; transform:scale(1.4); } }
 .tvm-page .urgency-strong { color: #fff; font-weight: 500; }
-.tvm-page .urgency-banner a { color: #fcd34d; text-decoration: none; font-weight: 500; }
+.tvm-page .urgency-banner a { color: #F59E0B; text-decoration: none; font-weight: 500; }
 
 .tvm-page .hero-wrap { position: relative; overflow: hidden; min-height: 92vh; display: flex; flex-direction: column; }
 .tvm-page .hero-bg { position: absolute; inset: 0; z-index: 0; }

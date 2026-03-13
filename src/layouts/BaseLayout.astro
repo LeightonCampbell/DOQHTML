@@ -24,11 +24,11 @@ const isHomePage = Astro.url.pathname === '/';
     <Head title={title} description={description} canonical={canonical} noindex={noindex} />
   </head>
   <body class="min-h-screen bg-background text-foreground antialiased">
+    <Modals />
     <HeroNav isHomePage={isHomePage} />
     <main id="main-content" data-hero-nav="true">
       <slot />
     </main>
     <Footer />
-    <Modals />
   </body>
 </html>
