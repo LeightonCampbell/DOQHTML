@@ -135,20 +135,25 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
   <div class="services-page">
-    <!-- Hero with search bar (mobile-first, matches homepage) -->
-    <section class="services-hero">
-      <div class="services-hero-bg" style="background-image: url('/images/service-hero.jpg');"></div>
-      <div class="services-hero-overlay" aria-hidden="true"></div>
-      <div class="services-hero-content">
-        <div class="services-hero-badge">
-          <span class="services-hero-dot"></span>
-          Browse & Book
-        </div>
-        <h1 class="services-hero-title"><span class="services-hero-line services-hero-line-white">Your next home project deserves</span><span class="services-hero-line services-hero-line-yellow">a Qualified Professional</span></h1>
-        <p class="services-hero-sub">Search below or browse by category.</p>
+    <!-- Hero with search bar (matches handyman pattern: hero-wrap > hero-bg > hero) -->
+    <div class="services-hero-wrap">
+      <div class="services-hero-bg" style="background-image: url('/images/service-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <section class="services-hero">
+        <div class="services-hero-container">
+          <nav class="services-hero-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            Services
+          </nav>
+          <div class="services-hero-badge">
+            <span class="services-hero-dot"></span>
+            Browse & Book
+          </div>
+          <h1 class="services-hero-title"><span class="services-hero-line services-hero-line-white">Your next home project deserves</span><span class="services-hero-line services-hero-line-yellow">a Qualified Professional</span></h1>
+          <p class="services-hero-sub">Search below or browse by category.</p>
 
-        <!-- Search bar (same as homepage) -->
-        <div class="services-search-wrap">
+          <!-- Search bar (same as homepage) -->
+          <div class="services-search-wrap">
           <div class="search-wrap-rel relative">
             <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
               <div class="flex flex-1 min-w-0">
@@ -161,14 +166,15 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
             </div>
             <div id="services-search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
           </div>
-          <div class="flex flex-wrap gap-2 justify-center mt-3 sm:mt-3.5 mb-0 services-hero-tags">
-            {heroTags.map(({ label, href }) => (
-              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
-            ))}
+            <div class="flex flex-wrap gap-2 justify-center mt-3 sm:mt-3.5 mb-0 services-hero-tags">
+              {heroTags.map(({ label, href }) => (
+                <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- Trust strip (subtle) -->
     <div class="services-trust-strip">
@@ -238,12 +244,51 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
 
   <style>
     .services-page { padding-bottom: 0; }
-    #main-content section.services-hero { padding: 0 1rem; padding-top: calc(4rem + 4.5rem + 40px); padding-bottom: 0; }
-    .services-hero { position: relative; min-height: 50vh; min-height: min(50vh, 380px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; margin-top: -4rem; }
-    .services-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
-    .services-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%); }
-    .services-hero-content { position: relative; z-index: 1; width: 100%; max-width: 640px; margin: 0 auto; }
-    .services-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 100px; border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; background: rgba(245,158,11,0.18); margin-bottom: 1.5rem; }
+    /* Handyman-style hero: wrap > bg (with ::after overlay) > hero section */
+    .services-hero-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .services-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .services-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%);
+      pointer-events: none;
+    }
+    .services-hero {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 130px 0 80px;
+      text-align: center;
+    }
+    .services-hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .services-hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+    .services-hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .services-hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
+    .services-hero-breadcrumb span { color: rgba(255,255,255,0.3); }
+    .services-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 100px; border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; background: rgba(245,158,11,0.18); margin-bottom: 1rem; }
     .services-hero-dot { width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; }
     .services-hero-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 0 0.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; }
     .services-hero-line { display: block; white-space: nowrap; }
@@ -252,7 +297,7 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
     .services-hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 300; color: rgba(255,255,255,0.78); margin: 0 0 1.5rem; text-shadow: 0 1px 8px rgba(0,0,0,0.25); line-height: 1.65; }
     .services-search-wrap { width: 100%; max-width: 640px; margin: 0 auto; }
     .services-hero-tags { margin-bottom: 0 !important; }
-    .services-trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; padding: 0.75rem 1.5rem; background: #fff; border-bottom: 1px solid #E8E5E0; font-size: 0.8rem; color: #6B6560; margin-top: -0.5rem; }
+    .services-trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; padding: 1rem 1.5rem; background: #fff; border-bottom: 1px solid #E8E5E0; font-size: 0.8rem; color: #6B6560; }
     .services-trust-item { display: flex; align-items: center; gap: 0.4rem; }
     .services-trust-icon { color: #16a34a; font-weight: 700; }
     .services-dir-section { padding: 2rem 1rem 6rem; background: #FAFAF8; }

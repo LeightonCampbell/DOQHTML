@@ -475,6 +475,14 @@ const canonical = 'https://www.dealsofquality.com/';
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      (function() {
+        const banner = document.querySelector('.home-urgency');
+        if (!banner) return;
+        window.addEventListener('scroll', function() {
+          banner.classList.toggle('home-urgency-visible', window.scrollY > 150);
+        }, { passive: true });
+      })();
+
       const obs = new IntersectionObserver(
         (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
         { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }

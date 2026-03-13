@@ -404,6 +404,30 @@ const phone = 'tel:+18185847389';
 
   <script is:inline define:vars={{}}>
     (function() {
+      (function() {
+        var banner = document.querySelector('.tvm-page .urgency-banner');
+        if (!banner) return;
+        var isBottom = false;
+        window.addEventListener('scroll', function() {
+          var shouldBeBottom = window.scrollY > 150;
+          if (shouldBeBottom && !isBottom) {
+            isBottom = true;
+            banner.classList.add('tvm-banner-fading');
+            setTimeout(function() {
+              banner.classList.add('tvm-banner-bottom');
+              banner.classList.remove('tvm-banner-fading');
+            }, 250);
+          } else if (!shouldBeBottom && isBottom) {
+            isBottom = false;
+            banner.classList.add('tvm-banner-fading');
+            setTimeout(function() {
+              banner.classList.remove('tvm-banner-bottom');
+              banner.classList.remove('tvm-banner-fading');
+            }, 250);
+          }
+        }, { passive: true });
+      })();
+
       var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
       document.querySelectorAll('.tvm-page .fade-up').forEach(function(el) { obs.observe(el); });
 
