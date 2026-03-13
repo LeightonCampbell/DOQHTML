@@ -135,38 +135,46 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
   <div class="services-page">
-    <!-- Hero with search bar (matches handyman pattern: hero-wrap > hero-bg > hero) -->
-    <div class="services-hero-wrap">
-      <div class="services-hero-bg" style="background-image: url('/images/service-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
-      <section class="services-hero">
-        <div class="services-hero-container">
-          <nav class="services-hero-breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span>›</span>
+    <!-- Hero: homepage structure (hero-wrap > hero-bg-photo > hero-bg-overlay > hero-content) -->
+    <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
+      <div
+        class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style="background-image: url('/images/service-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"
+      ></div>
+      <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
+      <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[140px] pb-20 px-6 text-center" aria-label="Hero">
+        <div class="container-max max-w-[1100px] mx-auto px-6">
+          <nav class="services-hero-breadcrumb flex items-center justify-center gap-2 mb-4 text-xs text-white/55" aria-label="Breadcrumb">
+            <a href="/" class="text-white/55 no-underline hover:text-white/90">Home</a>
+            <span class="text-white/30">›</span>
             Services
           </nav>
-          <div class="services-hero-badge">
-            <span class="services-hero-dot"></span>
+          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(245,158,11,0.45)] text-[#fcd34d] bg-[rgba(245,158,11,0.18)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
             Browse & Book
           </div>
-          <h1 class="services-hero-title"><span class="services-hero-line services-hero-line-white">Your next home project deserves</span><span class="services-hero-line services-hero-line-yellow">a Qualified Professional</span></h1>
-          <p class="services-hero-sub">Search below or browse by category.</p>
+          <h1 class="font-display text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.06] tracking-[-0.025em] max-w-[900px] mx-auto mb-5 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
+            Your next home project deserves<br /><em class="italic text-[#fcd34d]">a Qualified Professional</em>
+          </h1>
+          <p class="hero-sub text-[clamp(1rem,2vw,1.25rem)] font-light max-w-[520px] mx-auto leading-[1.65] mb-10" style="color: rgba(255,255,255,0.78); text-shadow: 0 1px 8px rgba(0,0,0,0.25);">
+            Search below or browse by category.
+          </p>
 
           <!-- Search bar (same as homepage) -->
-          <div class="services-search-wrap">
-          <div class="search-wrap-rel relative">
-            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
-              <div class="flex flex-1 min-w-0">
-                <span class="py-0 px-3 sm:px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
-                  <svg class="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </span>
-                <input id="services-search-input" type="text" placeholder="What do you need? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[14px] sm:text-[15px] text-[#141210] bg-transparent py-[14px] sm:py-[17px] placeholder:text-[#aaa] min-w-0" />
+          <div class="mt-10 mx-auto max-w-[640px] w-full">
+            <div class="search-wrap-rel relative">
+              <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
+                <div class="flex flex-1 min-w-0">
+                  <span class="py-0 px-3 sm:px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
+                    <svg class="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <input id="services-search-input" type="text" placeholder="What do you need? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[14px] sm:text-[15px] text-[#141210] bg-transparent py-[14px] sm:py-[17px] placeholder:text-[#aaa] min-w-0" />
+                </div>
+                <button type="button" onclick="handleServicesSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-2.5 sm:py-3 px-4 sm:px-6 m-[6px] sm:m-[7px] rounded-[9px] text-[13px] sm:text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
               </div>
-              <button type="button" onclick="handleServicesSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-2.5 sm:py-3 px-4 sm:px-6 m-[6px] sm:m-[7px] rounded-[9px] text-[13px] sm:text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
+              <div id="services-search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
             </div>
-            <div id="services-search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
-          </div>
-            <div class="flex flex-wrap gap-2 justify-center mt-3 sm:mt-3.5 mb-0 services-hero-tags">
+            <div class="flex flex-wrap gap-2 justify-center mt-3 sm:mt-3.5">
               {heroTags.map(({ label, href }) => (
                 <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
               ))}
@@ -244,59 +252,6 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
 
   <style>
     .services-page { padding-bottom: 0; }
-    /* Handyman-style hero: wrap > bg (with ::after overlay) > hero section */
-    .services-hero-wrap {
-      position: relative;
-      overflow: hidden;
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .services-hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .services-hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%);
-      pointer-events: none;
-    }
-    .services-hero {
-      position: relative;
-      z-index: 1;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 130px 0 80px;
-      text-align: center;
-    }
-    .services-hero-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .services-hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
-    .services-hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-    .services-hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
-    .services-hero-breadcrumb span { color: rgba(255,255,255,0.3); }
-    .services-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 100px; border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; background: rgba(245,158,11,0.18); margin-bottom: 1rem; }
-    .services-hero-dot { width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; }
-    .services-hero-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 0 0.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; }
-    .services-hero-line { display: block; white-space: nowrap; }
-    .services-hero-line-white { color: #ffffff; }
-    .services-hero-line-yellow { color: #fcd34d; }
-    .services-hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 300; color: rgba(255,255,255,0.78); margin: 0 0 1.5rem; text-shadow: 0 1px 8px rgba(0,0,0,0.25); line-height: 1.65; }
-    .services-search-wrap { width: 100%; max-width: 640px; margin: 0 auto; }
-    .services-hero-tags { margin-bottom: 0 !important; }
     .services-trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; padding: 1rem 1.5rem; background: #fff; border-bottom: 1px solid #E8E5E0; font-size: 0.8rem; color: #6B6560; }
     .services-trust-item { display: flex; align-items: center; gap: 0.4rem; }
     .services-trust-icon { color: #16a34a; font-weight: 700; }
