@@ -42,6 +42,16 @@
   padding-top: 4rem;
 }
 
+/* Service pages: reset homepage .hero margin-top - they use hero-wrap > hero, not the homepage layout.
+   The -4rem pulls content up; service pages need margin-top: 0 so the hero stays in flow below the header. */
+.handyman-main .hero,
+.house-cleaning-main .hero,
+.plumbing-main .hero,
+.electrical-main .hero,
+.security-cameras-main .hero {
+  margin-top: 0 !important;
+}
+
 .hero-content {
   padding: 6rem 5%;
   position: relative; z-index: 2;
