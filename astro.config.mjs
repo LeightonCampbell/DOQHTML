@@ -71,7 +71,14 @@ const LEGACY_REDIRECTS = {
   '/services/data-backup/': '/tech-support/data-backup-recovery/',
 };
 
-/** Build /blog/[slug]/ → /articles/[slug]/ redirects (301 permanent) */
+/** Add both /path and /path/ variants so redirects work regardless of trailing slash */
+function addBothVariants(redirects, from, to) {
+  redirects[from] = { status: 301, destination: to };
+  const fromAlt = from.endsWith('/') ? from.slice(0, -1) : from + '/';
+  redirects[fromAlt] = { status: 301, destination: to };
+}
+
+/** Build /blog/[slug] → /articles/[slug]/ redirects (301 permanent) - both /path and /path/ variants */
 function getBlogRedirects() {
   const redirects = {};
   try {
@@ -81,7 +88,7 @@ function getBlogRedirects() {
       .filter((f) => f.endsWith('.md'))
       .map((f) => f.replace(/\.md$/, ''));
     slugs.forEach((slug) => {
-      redirects[`/blog/${slug}/`] = { status: 301, destination: `/articles/${slug}/` };
+      addBothVariants(redirects, `/blog/${slug}/`, `/articles/${slug}/`);
     });
   } catch (_) {
     // ignore if dir missing at config load time
@@ -91,8 +98,8 @@ function getBlogRedirects() {
 
 const BLOG_REDIRECTS = getBlogRedirects();
 
-// Redirect old blog index to articles index
-BLOG_REDIRECTS['/blog/'] = { status: 301, destination: '/articles/' };
+// Redirect old blog index to articles index - both /blog and /blog/
+addBothVariants(BLOG_REDIRECTS, '/blog/', '/articles/');
 
 // https://astro.build/config
 export default defineConfig({
@@ -100,15 +107,12 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
   trailingSlash: 'always',
-  redirects: {
-    ...Object.fromEntries(
-      Object.entries(LEGACY_REDIRECTS).map(([from, to]) => [
-        from,
-        { status: 301, destination: to },
-      ])
-    ),
-    ...BLOG_REDIRECTS,
-  },
+  redirects: (() => {
+    const r = {};
+    Object.entries(LEGACY_REDIRECTS).forEach(([from, to]) => addBothVariants(r, from, to));
+    Object.assign(r, BLOG_REDIRECTS);
+    return r;
+  })(),
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),

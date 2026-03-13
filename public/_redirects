@@ -1,5 +1,19 @@
-# Legacy URL redirects (301 permanent)
+# Legacy URL redirects (301 permanent) - both /path and /path/ variants
+/blog /articles/ 301
 /blog/ /articles/ 301
+/blog/* /articles/:splat/ 301
+/blog/*/ /articles/:splat/ 301
+/electrical /services/electrical/ 301
 /electrical/ /services/electrical/ 301
+/house-cleaning /services/house-cleaning/ 301
 /house-cleaning/ /services/house-cleaning/ 301
+/plumbing /services/plumbing/ 301
 /plumbing/ /services/plumbing/ 301
+/services/computer-repair /tech-support/computer-repair/ 301
+/services/computer-repair/ /tech-support/computer-repair/ 301
+/services/virus-removal /tech-support/virus-removal/ 301
+/services/virus-removal/ /tech-support/virus-removal/ 301
+/services/printer-setup /tech-support/printer-setup/ 301
+/services/printer-setup/ /tech-support/printer-setup/ 301
+/services/data-backup /tech-support/data-backup-recovery/ 301
+/services/data-backup/ /tech-support/data-backup-recovery/ 301

@@ -32,13 +32,11 @@ const quoteFormServices = [
     </div>
 
     <!-- HERO -->
-    <div class="hero-wrap">
-      <div
-        class="hero-bg"
-        style="background-image: url('/images/handyman-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"
-      ></div>
-      <section class="hero handyman-hero">
-        <div class="container">
+    <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
+      <div class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/handyman-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
+      <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
+        <div class="container-max max-w-[1100px] mx-auto px-6">
           <div class="fade-up">
             <div class="hero-breadcrumb">
               <a href="/">Home</a>
@@ -1324,151 +1322,12 @@ const quoteFormServices = [
       }
     }
 
-    .hero-wrap {
-      position: relative;
-      overflow: hidden;
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-bg::after {
-      /* Dark gradient overlay, matched to homepage hero for strong text contrast. */
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(10, 14, 20, 0.52) 0%,
-        rgba(10, 14, 20, 0.38) 35%,
-        rgba(10, 14, 20, 0.55) 70%,
-        rgba(10, 14, 20, 0.82) 100%
-      );
-      pointer-events: none;
-    }
-    .hero {
-      position: relative;
-      z-index: 1;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 130px 0 80px !important;
-      text-align: center;
-    }
-    .handyman-main .hero .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    /* Override global homepage .hero background (var(--navy)) so the photo shows. */
-    .handyman-hero {
-      background: none !important;
-    }
-    .hero-breadcrumb {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 20px;
-    }
-    .hero-breadcrumb a {
-      color: rgba(255, 255, 255, 0.55);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .hero-breadcrumb a:hover {
-      color: rgba(255, 255, 255, 0.9);
-    }
-    .hero-breadcrumb span {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    .hero-service-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245, 158, 11, 0.2);
-      border: 1px solid rgba(245, 158, 11, 0.45);
-      color: #fcd34d;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-      backdrop-filter: blur(4px);
-    }
-    .hero-service-pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-    }
-
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(40px, 5.5vw, 72px);
-      line-height: 1.06;
-      letter-spacing: -1.2px;
-      color: #fff;
-      max-width: 800px;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: #fcd34d;
-    }
     @media (max-width: 768px) {
-      .handyman-main .hero h1 {
-        font-size: 1.75rem !important;
-        line-height: 1.15;
+      .handyman-main .hero-content .hero-breadcrumb {
+        display: none;
       }
       .handyman-main .section-heading {
         text-align: center;
-      }
-    }
-    .hero-sub {
-      font-size: clamp(16px, 1.8vw, 19px);
-      color: rgba(255, 255, 255, 0.78);
-      font-weight: 300;
-      max-width: 560px;
-      line-height: 1.65;
-      margin-bottom: 36px;
-      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .hero-cta-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      width: 100%;
-      max-width: 480px;
-      justify-content: center;
-    }
-    .handyman-main .hero-cta-row .btn-primary-gold,
-    .handyman-main .hero-cta-row .btn-ghost-white {
-      flex: 1 1 0;
-      min-width: 0;
-      justify-content: center;
-    }
-    @media (max-width: 768px) {
-      .handyman-main .hero-cta-row {
-        flex-direction: column;
-      }
-      .handyman-main .hero-cta-row .btn-primary-gold,
-      .handyman-main .hero-cta-row .btn-ghost-white {
-        width: 100%;
       }
     }
     .btn-primary-gold {
@@ -1526,16 +1385,6 @@ const quoteFormServices = [
       height: 15px;
     }
 
-    .hero-trust-strip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 36px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-    }
     .hts-item {
       display: flex;
       align-items: center;

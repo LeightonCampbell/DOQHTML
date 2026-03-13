@@ -56,9 +56,6 @@
   padding: 6rem 5%;
   position: relative; z-index: 2;
 }
-#main-content .hero-content h1 {
-  font-family: var(--serif);
-}
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -157,6 +154,182 @@
 /* Hero gradient overlay (hero-wrap > hero-bg-photo > hero-bg-overlay) */
 .hero-bg-overlay {
   background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%);
+}
+
+/* ── SERVICE LANDING HERO (mobile-first, shared: plumbing, electrical, house-cleaning, tv-mounting, tech-support, etc.) ── */
+#main-content .hero-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#main-content .hero-bg-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+}
+#main-content .hero-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 24px 80px;
+  text-align: center;
+}
+#main-content .hero-content .container-max {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+#main-content .hero-content .hero-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 20px;
+}
+#main-content .hero-content .hero-breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+}
+#main-content .hero-content .hero-breadcrumb a:hover {
+  color: rgba(255,255,255,0.9);
+}
+#main-content .hero-content .hero-breadcrumb span {
+  color: rgba(255,255,255,0.3);
+}
+#main-content .hero-content .hero-service-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,158,11,0.2);
+  border: 1px solid rgba(245,158,11,0.45);
+  color: #fcd34d;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+#main-content .hero-content .hero-service-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #F59E0B;
+}
+#main-content .hero-content h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5.5vw, 4.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #fff;
+  max-width: 800px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+}
+#main-content .hero-content h1 em {
+  font-style: italic;
+  color: #fcd34d;
+}
+#main-content .hero-content .hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: rgba(255,255,255,0.78);
+  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+  font-weight: 300;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+}
+#main-content .hero-content .hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 520px;
+  justify-content: center;
+}
+#main-content .hero-content .hero-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+}
+#main-content .hero-content .hero-trust-strip .hts-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+#main-content .hero-content .btn-primary-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #F59E0B;
+  color: #141210;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+}
+#main-content .hero-content .btn-primary-gold:hover {
+  background: #D97706;
+  color: #fff;
+}
+#main-content .hero-content .btn-ghost-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.28);
+}
+#main-content .hero-content .btn-ghost-white:hover {
+  background: rgba(255,255,255,0.2);
+}
+@media (max-width: 768px) {
+  #main-content .hero-content h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.15;
+  }
+  #main-content .hero-content .hero-cta-row {
+    flex-direction: column;
+  }
+  #main-content .hero-content .hero-cta-row .btn-primary-gold,
+  #main-content .hero-content .hero-cta-row .btn-ghost-white {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ── SECTION COMMONS ── */

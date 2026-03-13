@@ -26,10 +26,11 @@ const quoteFormServices = [
       <span><span class="urgency-strong">Same-day house cleaning available today</span> — call before noon. <a href="tel:8185847389">(818) 584-7389</a></span>
     </div>
 
-    <div class="hero-wrap">
-      <div class="hero-bg" style="background-image: url('/images/cleaning-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
-      <section class="hero cleaning-hero">
-        <div class="container">
+    <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
+      <div class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/cleaning-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
+      <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
+        <div class="container-max max-w-[1100px] mx-auto px-6">
           <div class="fade-up">
             <div class="hero-breadcrumb">
               <a href="/">Home</a><span>›</span><a href="/services/">Services</a><span>›</span>House Cleaning
@@ -466,33 +467,13 @@ const quoteFormServices = [
     .urgency-strong { color: #fff; font-weight: 500; }
     .urgency-banner a { color: #F59E0B; text-decoration: none; font-weight: 500; }
     @media (max-width: 768px) { .house-cleaning-main .urgency-banner { display: none !important; } }
-    .hero-wrap { position: relative; overflow: hidden; min-height: 90vh; display: flex; flex-direction: column; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%); pointer-events: none; }
-    .hero { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 130px 0 80px; text-align: center; }
-    .house-cleaning-main .hero .container { display: flex; flex-direction: column; align-items: center; }
-    .cleaning-hero { background: none !important; }
-    .hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
-    .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-    .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
-    .hero-breadcrumb span { color: rgba(255,255,255,0.3); }
-    @media (max-width: 768px) { .house-cleaning-main .hero-breadcrumb { display: none; } }
-    .hero-service-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; font-size: 12px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; backdrop-filter: blur(4px); }
-    .hero-service-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-    .hero h1 { font-family: var(--serif); font-size: clamp(40px,5.5vw,72px); line-height: 1.06; letter-spacing: -1.2px; color: #fff; max-width: 800px; margin-bottom: 20px; text-shadow: 0 2px 24px rgba(0,0,0,0.3); }
-    .hero h1 em { font-style: italic; color: #fcd34d; }
-    @media (max-width: 768px) { .house-cleaning-main .hero h1 { font-size: 1.75rem !important; line-height: 1.15; } .house-cleaning-main .section-heading { text-align: center; } }
-    .hero-sub { font-size: clamp(16px,1.8vw,19px); color: rgba(255,255,255,0.78); font-weight: 300; max-width: 560px; line-height: 1.65; margin-bottom: 36px; text-shadow: 0 1px 8px rgba(0,0,0,0.2); }
-    .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; width: 100%; max-width: 480px; justify-content: center; }
-    .house-cleaning-main .hero-cta-row .btn-primary-gold, .house-cleaning-main .hero-cta-row .btn-ghost-white { flex: 1 1 0; min-width: 0; justify-content: center; }
-    @media (max-width: 768px) { .house-cleaning-main .hero-cta-row { flex-direction: column; } .house-cleaning-main .hero-cta-row .btn-primary-gold, .house-cleaning-main .hero-cta-row .btn-ghost-white { width: 100%; } }
+    @media (max-width: 768px) { .house-cleaning-main .hero-content .hero-breadcrumb { display: none; } .house-cleaning-main .section-heading { text-align: center; } }
     .btn-primary-gold { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: var(--ink); font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 15px 30px; border-radius: 10px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(245,158,11,0.35); }
     .btn-primary-gold:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(245,158,11,0.4); }
     .btn-primary-gold svg { width: 17px; height: 17px; }
     .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.12); color: #fff; font-family: var(--sans); font-size: 14px; font-weight: 500; padding: 14px 24px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); backdrop-filter: blur(4px); transition: background 0.2s; }
     #main-content .btn-ghost-white { color: #fff !important; }
     .btn-ghost-white:hover { background: rgba(255,255,255,0.22); }
-    .hero-trust-strip { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.14); }
     .hts-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
     .hts-item svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
     .pain-section { background: var(--cream); padding: 88px 0; }

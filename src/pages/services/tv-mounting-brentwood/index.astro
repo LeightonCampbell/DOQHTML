@@ -42,10 +42,11 @@ const locations = TV_MOUNTING_CITIES.map(({ slug: s, name }) => ({
       <span><span class="urgency-strong">Same-day TV mounting available in Brentwood</span> — book before noon. <a href="tel:8185847389">(818) 584-7389</a></span>
     </div>
 
-    <div class="hero-wrap">
-      <div class="hero-bg" style="background-image: url('/images/tv-mounting-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
-      <section class="hero">
-        <div class="container">
+    <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
+      <div class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/tv-mounting-hero.jpg'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"></div>
+      <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
+      <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
+        <div class="container-max max-w-[1100px] mx-auto px-6">
           <div class="fade-up visible">
             <div class="hero-breadcrumb">
               <a href="/">Home</a><span>›</span><a href="/#services">Services</a><span>›</span><a href="/services/tv-mounting/">TV Mounting</a><span>›</span>Beverly Hills
