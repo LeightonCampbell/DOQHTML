@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/homepage.css';
 
 const canonical = 'https://www.dealsofquality.com/services/';
 
@@ -9,17 +10,14 @@ interface ServiceItem {
   icon: string;
   href: string;
   isHot?: boolean;
-  /** When true, clicking opens the quote modal at the ZIP step with this item's name pre-filled (no navigation). */
   openQuoteAtZip?: boolean;
 }
 interface Category {
   title: string;
-  /** When set, the category heading is rendered as a link to this URL. */
   titleHref?: string;
   items: ServiceItem[];
 }
 
-// ── Icon path constants ────────────────────────────────────────────────────
 const icons = {
   wrench:    'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
   paint:     'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
@@ -48,94 +46,83 @@ const icons = {
 };
 
 const categories: Category[] = [
-  {
-    title: 'Home Improvement & Outdoor',
-    items: [
-      { name: 'Handyman Services',          description: 'Furniture assembly, repairs & odd jobs',          icon: icons.wrench,  href: '/services/handyman-services/' },
-      { name: 'Painting (Interior & Exterior)', description: 'Interior and exterior painting services',     icon: icons.paint,   href: '/services/painting/' },
-      { name: 'Kitchen Remodeling',         description: 'Complete kitchen renovation services',            icon: icons.home,    href: '/services/kitchen-remodeling/',    isHot: true },
-      { name: 'Bathroom Remodeling',        description: 'Bathroom renovation and remodeling',              icon: icons.droplet, href: '/services/bathroom-remodeling/' },
-      { name: 'Landscaping',                description: 'Landscape design and maintenance',                icon: icons.leaf,    href: '/services/landscaping/' },
-      { name: 'Smart Irrigation',           description: 'Smart irrigation system installation',            icon: icons.droplet, href: '/services/smart-irrigation-installation/' },
-      { name: 'Fence & Gate Installation',  description: 'Fence and gate installation services',            icon: icons.fence,   href: '/services/fence-installation/' },
-      { name: 'Holiday Lighting',           description: 'Holiday lighting installation and removal',       icon: icons.star,    href: '/services/holiday-lighting-installation/' },
-    ],
-  },
-  {
-    title: 'Cleaning & Property Care',
-    items: [
-      { name: 'House Cleaning / Maid Service', description: 'Professional house cleaning and maid services', icon: icons.broom,    href: '/services/house-cleaning/', isHot: true },
-      { name: 'Carpet Cleaning',               description: 'Professional carpet cleaning services',         icon: icons.cleaning, href: '/services/carpet-cleaning/' },
-      { name: 'Window Cleaning',               description: 'Interior and exterior window cleaning',         icon: icons.window,   href: '/services/window-cleaning/' },
-      { name: 'Gutter Cleaning',               description: 'Professional gutter cleaning services',         icon: icons.droplet,  href: '/services/gutter-cleaning/' },
-      { name: 'Pressure Washing',              description: 'Exterior cleaning & maintenance',               icon: icons.droplet,  href: '/services/pressure-washing/' },
-      { name: 'Junk Removal',                  description: 'Junk and debris removal services',              icon: icons.truck,    href: '/services/junk-removal/' },
-    ],
-  },
-  {
-    title: 'Repairs & Electrical',
-    items: [
-      { name: 'Plumbing Services',         description: 'Repairs, installations & emergencies',         icon: icons.droplet,  href: '/services/plumbing/' },
-      { name: 'Electrical Services',       description: 'Safe, licensed electrical work',               icon: icons.bolt,     href: '/services/electrical/' },
-      { name: 'Light Fixture Replacement', description: 'Safe, licensed electrical work',               icon: icons.lightbulb,href: '/services/light-fixture-replacement/' },
-      { name: 'HVAC (Heating & Air)',       description: 'HVAC installation, repair, and maintenance',  icon: icons.fire,     href: '/services/hvac/' },
-      { name: 'Appliance Repair',          description: 'Professional appliance repair services',       icon: icons.wrench,   href: '/services/appliance-repair/' },
-      { name: 'Roofing',                   description: 'Roofing installation and repair',              icon: icons.home,     href: '/services/roofing/' },
-      { name: 'Drywall Repair',            description: 'Drywall installation and repair',              icon: icons.chip,     href: '/services/drywall-installation/' },
-    ],
-  },
-  {
-    title: 'TV Mounting & Entertainment',
-    items: [
-      { name: 'TV Mounting (up to 50")',   description: 'Professional TV mounting for TVs up to 50 inches',      icon: icons.tv, href: '#', openQuoteAtZip: true },
-      { name: 'TV Mounting (51" to 65")',  description: 'Professional TV mounting for 51 to 65 inch TVs',        icon: icons.tv, href: '#', isHot: true, openQuoteAtZip: true },
-      { name: 'TV Mounting (over 65")',    description: 'Professional TV mounting for large TVs over 65 inches', icon: icons.tv, href: '#', openQuoteAtZip: true },
-      { name: 'TV Dismount & Remount',     description: 'TV removal and reinstallation services',                icon: icons.tv, href: '/services/tv-dismount-remount/' },
-      { name: 'TV Cable Concealment',      description: 'Hide and organize TV cables professionally',            icon: icons.tv, href: '/services/tv-cable-concealment/' },
-      { name: 'Soundbar Installation',     description: 'Professional soundbar installation and setup',          icon: icons.tv, href: '/services/soundbar-installation/' },
-      { name: 'Home Theater Setup',        description: 'Surround sound & streaming setup',                      icon: icons.tv, href: '/services/home-theater/' },
-      { name: 'Surround Sound',            description: 'Surround sound system installation',                    icon: icons.tv, href: '/services/surround-sound/' },
-      { name: 'Gaming Setup',              description: 'Gaming console setup and optimization',                 icon: icons.tv, href: '/services/gaming-setup/' },
-      { name: 'Streaming Setup',           description: 'Streaming device setup and configuration',              icon: icons.tv, href: '/services/streaming-setup/' },
-    ],
-  },
-  {
-    title: 'Smart Home & Security',
-    items: [
-      { name: 'Wi-Fi & Networking',      description: 'Setup, optimization & dead zones',             icon: icons.wifi,   href: '/services/router-setup/',        isHot: true },
-      { name: 'Security Camera Setup',   description: 'Professional camera installation',              icon: icons.shield, href: '/services/security-cameras/',    isHot: true },
-      { name: 'Video Doorbell Setup',    description: 'Video doorbell installation',                   icon: icons.bell,   href: '/services/video-doorbells/' },
-      { name: 'Smart Lock Install',      description: 'Smart lock installation and setup',             icon: icons.shield, href: '/services/smart-locks/' },
-      { name: 'Smart Thermostats',       description: 'Smart thermostat installation',                 icon: icons.chip,   href: '/services/smart-thermostats/' },
-      { name: 'Smart Home Integration',  description: 'Complete smart home system integration',        icon: icons.home,   href: '/services/smart-home-integration/' },
-      { name: 'Motion Sensors',          description: 'Motion sensor installation and setup',          icon: icons.shield, href: '/services/motion-sensors/' },
-      { name: 'Smoke Detector Install',  description: 'Smoke detector installation and testing',       icon: icons.bell,   href: '/services/smoke-detector-installation/' },
-    ],
-  },
-  {
-    title: 'Tech Support',
-    titleHref: '/tech-support/',
-    items: [
-      { name: 'Remote Support & Troubleshooting', description: '24/7 help for software glitches and errors via secure remote access', icon: icons.support, href: '/tech-support/remote-support/' },
-      { name: 'Computer & Device Repair', description: 'On-site PC and Mac repair at your location', icon: icons.desktop, href: '/tech-support/computer-repair/' },
-      { name: 'Network Setup & Support', description: 'Wi-Fi, router, mesh networks, and security', icon: icons.wifi, href: '/tech-support/network-setup/' },
-      { name: 'Virus & Malware Removal', description: 'Deep-scan diagnostics and complete threat removal', icon: icons.shield, href: '/tech-support/virus-removal/' },
-      { name: 'Data Backup & Recovery', description: 'Recover lost data and set up backup systems', icon: icons.database, href: '/tech-support/data-backup-recovery/' },
-      { name: 'Cloud Services', description: 'Microsoft 365, Google Workspace setup and migration', icon: icons.globe, href: '/tech-support/cloud-services/' },
-      { name: 'Software Support', description: 'Installation, updates, licenses, and optimization', icon: icons.chip, href: '/tech-support/software-support/' },
-      { name: 'Printer Setup & Support', description: 'Printer installation, wireless setup, and troubleshooting', icon: icons.printer, href: '/tech-support/printer-setup/' },
-    ],
-  },
-  {
-    title: 'Business Services',
-    items: [
-      { name: 'Website Design',       description: 'Professional website design for businesses', icon: icons.globe,   href: '/services/website-design/' },
-      { name: 'Remote Support',       description: 'Remote technical support services',          icon: icons.support, href: '/remote-support/' },
-      { name: 'Business IT Solutions',description: 'Complete IT solutions for businesses',       icon: icons.chip,    href: '/services/business-it-solutions/' },
-      { name: 'Custom Solutions',     description: 'Custom technology solutions',                icon: icons.star,    href: '/services/custom-solutions/' },
-    ],
-  },
+  { title: 'Home Improvement & Outdoor', items: [
+    { name: 'Handyman Services', description: 'Furniture assembly, repairs & odd jobs', icon: icons.wrench, href: '/services/handyman-services/' },
+    { name: 'Painting (Interior & Exterior)', description: 'Interior and exterior painting services', icon: icons.paint, href: '/services/painting/' },
+    { name: 'Kitchen Remodeling', description: 'Complete kitchen renovation services', icon: icons.home, href: '/services/kitchen-remodeling/', isHot: true },
+    { name: 'Bathroom Remodeling', description: 'Bathroom renovation and remodeling', icon: icons.droplet, href: '/services/bathroom-remodeling/' },
+    { name: 'Landscaping', description: 'Landscape design and maintenance', icon: icons.leaf, href: '/services/landscaping/' },
+    { name: 'Smart Irrigation', description: 'Smart irrigation system installation', icon: icons.droplet, href: '/services/smart-irrigation-installation/' },
+    { name: 'Fence & Gate Installation', description: 'Fence and gate installation services', icon: icons.fence, href: '/services/fence-installation/' },
+    { name: 'Holiday Lighting', description: 'Holiday lighting installation and removal', icon: icons.star, href: '/services/holiday-lighting-installation/' },
+  ]},
+  { title: 'Cleaning & Property Care', items: [
+    { name: 'House Cleaning / Maid Service', description: 'Professional house cleaning and maid services', icon: icons.broom, href: '/services/house-cleaning/', isHot: true },
+    { name: 'Carpet Cleaning', description: 'Professional carpet cleaning services', icon: icons.cleaning, href: '/services/carpet-cleaning/' },
+    { name: 'Window Cleaning', description: 'Interior and exterior window cleaning', icon: icons.window, href: '/services/window-cleaning/' },
+    { name: 'Gutter Cleaning', description: 'Professional gutter cleaning services', icon: icons.droplet, href: '/services/gutter-cleaning/' },
+    { name: 'Pressure Washing', description: 'Exterior cleaning & maintenance', icon: icons.droplet, href: '/services/pressure-washing/' },
+    { name: 'Junk Removal', description: 'Junk and debris removal services', icon: icons.truck, href: '/services/junk-removal/' },
+  ]},
+  { title: 'Repairs & Electrical', items: [
+    { name: 'Plumbing Services', description: 'Repairs, installations & emergencies', icon: icons.droplet, href: '/services/plumbing/' },
+    { name: 'Electrical Services', description: 'Safe, licensed electrical work', icon: icons.bolt, href: '/services/electrical/' },
+    { name: 'Light Fixture Replacement', description: 'Safe, licensed electrical work', icon: icons.lightbulb, href: '/services/light-fixture-replacement/' },
+    { name: 'HVAC (Heating & Air)', description: 'HVAC installation, repair, and maintenance', icon: icons.fire, href: '/services/hvac/' },
+    { name: 'Appliance Repair', description: 'Professional appliance repair services', icon: icons.wrench, href: '/services/appliance-repair/' },
+    { name: 'Roofing', description: 'Roofing installation and repair', icon: icons.home, href: '/services/roofing/' },
+    { name: 'Drywall Repair', description: 'Drywall installation and repair', icon: icons.chip, href: '/services/drywall-installation/' },
+  ]},
+  { title: 'TV Mounting & Entertainment', items: [
+    { name: 'TV Mounting (up to 50")', description: 'Professional TV mounting for TVs up to 50 inches', icon: icons.tv, href: '#', openQuoteAtZip: true },
+    { name: 'TV Mounting (51" to 65")', description: 'Professional TV mounting for 51 to 65 inch TVs', icon: icons.tv, href: '#', isHot: true, openQuoteAtZip: true },
+    { name: 'TV Mounting (over 65")', description: 'Professional TV mounting for large TVs over 65 inches', icon: icons.tv, href: '#', openQuoteAtZip: true },
+    { name: 'TV Dismount & Remount', description: 'TV removal and reinstallation services', icon: icons.tv, href: '/services/tv-dismount-remount/' },
+    { name: 'TV Cable Concealment', description: 'Hide and organize TV cables professionally', icon: icons.tv, href: '/services/tv-cable-concealment/' },
+    { name: 'Soundbar Installation', description: 'Professional soundbar installation and setup', icon: icons.tv, href: '/services/soundbar-installation/' },
+    { name: 'Home Theater Setup', description: 'Surround sound & streaming setup', icon: icons.tv, href: '/services/home-theater/' },
+    { name: 'Surround Sound', description: 'Surround sound system installation', icon: icons.tv, href: '/services/surround-sound/' },
+    { name: 'Gaming Setup', description: 'Gaming console setup and optimization', icon: icons.tv, href: '/services/gaming-setup/' },
+    { name: 'Streaming Setup', description: 'Streaming device setup and configuration', icon: icons.tv, href: '/services/streaming-setup/' },
+  ]},
+  { title: 'Smart Home & Security', items: [
+    { name: 'Wi-Fi & Networking', description: 'Setup, optimization & dead zones', icon: icons.wifi, href: '/services/router-setup/', isHot: true },
+    { name: 'Security Camera Setup', description: 'Professional camera installation', icon: icons.shield, href: '/services/security-cameras/', isHot: true },
+    { name: 'Video Doorbell Setup', description: 'Video doorbell installation', icon: icons.bell, href: '/services/video-doorbells/' },
+    { name: 'Smart Lock Install', description: 'Smart lock installation and setup', icon: icons.shield, href: '/services/smart-locks/' },
+    { name: 'Smart Thermostats', description: 'Smart thermostat installation', icon: icons.chip, href: '/services/smart-thermostats/' },
+    { name: 'Smart Home Integration', description: 'Complete smart home system integration', icon: icons.home, href: '/services/smart-home-integration/' },
+    { name: 'Motion Sensors', description: 'Motion sensor installation and setup', icon: icons.shield, href: '/services/motion-sensors/' },
+    { name: 'Smoke Detector Install', description: 'Smoke detector installation and testing', icon: icons.bell, href: '/services/smoke-detector-installation/' },
+  ]},
+  { title: 'Tech Support', titleHref: '/tech-support/', items: [
+    { name: 'Remote Support & Troubleshooting', description: '24/7 help for software glitches and errors via secure remote access', icon: icons.support, href: '/tech-support/remote-support/' },
+    { name: 'Computer & Device Repair', description: 'On-site PC and Mac repair at your location', icon: icons.desktop, href: '/tech-support/computer-repair/' },
+    { name: 'Network Setup & Support', description: 'Wi-Fi, router, mesh networks, and security', icon: icons.wifi, href: '/tech-support/network-setup/' },
+    { name: 'Virus & Malware Removal', description: 'Deep-scan diagnostics and complete threat removal', icon: icons.shield, href: '/tech-support/virus-removal/' },
+    { name: 'Data Backup & Recovery', description: 'Recover lost data and set up backup systems', icon: icons.database, href: '/tech-support/data-backup-recovery/' },
+    { name: 'Cloud Services', description: 'Microsoft 365, Google Workspace setup and migration', icon: icons.globe, href: '/tech-support/cloud-services/' },
+    { name: 'Software Support', description: 'Installation, updates, licenses, and optimization', icon: icons.chip, href: '/tech-support/software-support/' },
+    { name: 'Printer Setup & Support', description: 'Printer installation, wireless setup, and troubleshooting', icon: icons.printer, href: '/tech-support/printer-setup/' },
+  ]},
+  { title: 'Business Services', items: [
+    { name: 'Website Design', description: 'Professional website design for businesses', icon: icons.globe, href: '/services/website-design/' },
+    { name: 'Remote Support', description: 'Remote technical support services', icon: icons.support, href: '/remote-support/' },
+    { name: 'Business IT Solutions', description: 'Complete IT solutions for businesses', icon: icons.chip, href: '/services/business-it-solutions/' },
+    { name: 'Custom Solutions', description: 'Custom technology solutions', icon: icons.star, href: '/services/custom-solutions/' },
+  ]},
 ];
+
+const heroTags = [
+  { label: 'House Cleaning', href: '/services/house-cleaning/' },
+  { label: 'Plumbing', href: '/services/plumbing/' },
+  { label: 'Handyman', href: '/services/handyman-services/' },
+  { label: 'TV Mounting', href: '/services/tv-mounting/' },
+  { label: 'Electrical', href: '/services/electrical/' },
+  { label: 'Security Cameras', href: '/services/security-cameras/' },
+];
+
+const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name));
 ---
 
 <BaseLayout
@@ -143,101 +130,209 @@ const categories: Category[] = [
   description="Browse all home services — from cleaning and handyman to smart home, electrical, and more. Fast, reliable, vetted local pros."
   canonical={canonical}
 >
-  <!-- HERO -->
-  <section class="services-dir-hero flex min-h-[50vh] flex-col items-center justify-center border-b border-slate-200 bg-white px-4 pt-16 pb-4 text-center">
-    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-      Your Next Project, Handled.
-    </h1>
-    <p class="mx-auto mt-3 max-w-xl text-base text-slate-500">
-      Select a service to view more details or book a vetted local pros.
-    </p>
-  </section>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
-  <!-- CATEGORY DIRECTORY GRID -->
-  <section class="bg-white px-6 py-14 sm:px-10 lg:px-16">
-    <div class="mx-auto max-w-7xl">
-      <div class="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-        {categories.map((cat) => (
-          <div>
-            <h2 class="mb-5 text-xl font-semibold text-[#004080]">
-              {cat.titleHref ? (
-                <a href={cat.titleHref} class="hover:underline">{cat.title}</a>
-              ) : (
-                cat.title
-              )}
-            </h2>
-            <ul class="space-y-0">
-              {cat.items.map((item) => (
-                <li>
-                  {item.openQuoteAtZip ? (
-                    <button
-                      type="button"
-                      data-open-quote
-                      data-service={item.name}
-                      data-quote-step="2"
-                      class="group flex w-full items-start gap-3 py-2.5 text-left transition-colors hover:text-[#0073e6] cursor-pointer border-0 bg-transparent p-0"
-                    >
-                      <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 text-slate-400 transition-colors group-hover:text-[#0073e6]" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                          <path d={item.icon} />
-                        </svg>
-                      </span>
-                      <span class="flex flex-col">
-                        <span class="flex items-center gap-2">
-                          <span class="text-sm font-medium text-slate-800 transition-colors group-hover:text-[#0073e6]">
-                            {item.name}
-                          </span>
-                          {item.isHot && (
-                            <span class="inline-flex items-center rounded-sm bg-orange-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-500">
-                              Hot
-                            </span>
-                          )}
-                        </span>
-                        <span class="mt-0.5 text-xs text-slate-500">{item.description}</span>
-                      </span>
-                    </button>
-                  ) : (
-                    <a href={item.href} class="group flex items-start gap-3 py-2.5 transition-colors hover:text-[#0073e6]">
-                      <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 text-slate-400 transition-colors group-hover:text-[#0073e6]" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                          <path d={item.icon} />
-                        </svg>
-                      </span>
-                      <span class="flex flex-col">
-                        <span class="flex items-center gap-2">
-                          <span class="text-sm font-medium text-slate-800 transition-colors group-hover:text-[#0073e6]">
-                            {item.name}
-                          </span>
-                          {item.isHot && (
-                            <span class="inline-flex items-center rounded-sm bg-orange-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-500">
-                              Hot
-                            </span>
-                          )}
-                        </span>
-                        <span class="mt-0.5 text-xs text-slate-500">{item.description}</span>
-                      </span>
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
+  <div class="services-page">
+    <!-- Hero with search bar (mobile-first, matches homepage) -->
+    <section class="services-hero">
+      <div class="services-hero-bg" style="background-image: url('/images/service-hero.jpg');"></div>
+      <div class="services-hero-overlay" aria-hidden="true"></div>
+      <div class="services-hero-content">
+        <div class="services-hero-badge">
+          <span class="services-hero-dot"></span>
+          Browse & Book
+        </div>
+        <h1 class="services-hero-title"><span class="services-hero-line services-hero-line-white">Your next home project deserves</span><span class="services-hero-line services-hero-line-yellow">a Qualified Professional</span></h1>
+        <p class="services-hero-sub">Search below or browse by category.</p>
+
+        <!-- Search bar (same as homepage) -->
+        <div class="services-search-wrap">
+          <div class="search-wrap-rel relative">
+            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
+              <div class="flex flex-1 min-w-0">
+                <span class="py-0 px-3 sm:px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
+                  <svg class="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <input id="services-search-input" type="text" placeholder="What do you need? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[14px] sm:text-[15px] text-[#141210] bg-transparent py-[14px] sm:py-[17px] placeholder:text-[#aaa] min-w-0" />
+              </div>
+              <button type="button" onclick="handleServicesSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-2.5 sm:py-3 px-4 sm:px-6 m-[6px] sm:m-[7px] rounded-[9px] text-[13px] sm:text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
+            </div>
+            <div id="services-search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
           </div>
-        ))}
+          <div class="flex flex-wrap gap-2 justify-center mt-3 sm:mt-3.5 mb-0 services-hero-tags">
+            {heroTags.map(({ label, href }) => (
+              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust strip (subtle) -->
+    <div class="services-trust-strip">
+      <div class="services-trust-item"><span class="services-trust-icon">✓</span> Vetted pros</div>
+      <div class="services-trust-item"><span class="services-trust-icon">✓</span> Same-day available</div>
+      <div class="services-trust-item"><span class="services-trust-icon">✓</span> Quality guarantee</div>
+    </div>
+
+    <!-- Category directory (mobile-first grid) -->
+    <section class="services-dir-section">
+      <div class="services-dir-container">
+        <div class="services-dir-grid">
+          {categories.map((cat) => (
+            <div class="services-dir-category">
+              <h2 class="services-dir-cat-title">
+                {cat.titleHref ? <a href={cat.titleHref} class="hover:underline">{cat.title}</a> : cat.title}
+              </h2>
+              <ul class="services-dir-list">
+                {cat.items.map((item) => (
+                  <li>
+                    {item.openQuoteAtZip ? (
+                      <button type="button" data-open-quote data-service={item.name} data-quote-step="2" class="services-dir-item">
+                        <span class="services-dir-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={item.icon} /></svg></span>
+                        <span class="services-dir-text">
+                          <span class="services-dir-name">{item.name}{item.isHot ? <span class="services-dir-hot">Hot</span> : ''}</span>
+                          <span class="services-dir-desc">{item.description}</span>
+                        </span>
+                      </button>
+                    ) : (
+                      <a href={item.href} class="services-dir-item">
+                        <span class="services-dir-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={item.icon} /></svg></span>
+                        <span class="services-dir-text">
+                          <span class="services-dir-name">{item.name}{item.isHot ? <span class="services-dir-hot">Hot</span> : ''}</span>
+                          <span class="services-dir-desc">{item.description}</span>
+                        </span>
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky CTA bar (bottom) -->
+    <div id="services-sticky-cta" class="services-sticky-cta">
+      <div class="services-sticky-inner">
+        <div class="services-sticky-left">
+          <span class="services-sticky-text">Need a quote? Vetted pros · Same-day available</span>
+        </div>
+        <div class="services-sticky-right">
+          <a href="tel:8185847389" class="services-sticky-phone">(818) 584-7389</a>
+          <button type="button" data-open-quote="true" class="services-sticky-btn">Get Free Quote</button>
+          <button type="button" class="services-sticky-dismiss" aria-label="Dismiss" id="services-sticky-dismiss">×</button>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- MOBILE CTA BAR -->
-  <div class="mobile-cta">
-    <a href="tel:+18185847389" class="btn-outline" style="flex:1; text-align:center; padding:0.75rem 1rem; font-size:0.9rem;">📞 Call Now</a>
-    <button type="button" data-open-quote="true" class="btn-primary" style="flex:1; text-align:center; padding:0.75rem 1rem; font-size:0.9rem;">Get Free Quote</button>
+    <div id="services-sticky-spacer" aria-hidden="true"></div>
+    <div id="services-search-data" data-services={JSON.stringify(searchServiceNames)} hidden aria-hidden="true"></div>
   </div>
 
-  <style>
-    .services-dir-hero {
-      /* Extend under the navbar gracefully */
-      margin-top: -4rem;
-      padding-top: 4rem;
-    }
+  <style is:global>
+    .suggestion-item:hover { background: #FEF3C7 !important; }
   </style>
+
+  <style>
+    .services-page { padding-bottom: 0; }
+    #main-content section.services-hero { padding: 0 1rem; padding-top: calc(4rem + 4.5rem + 40px); padding-bottom: 0; }
+    .services-hero { position: relative; min-height: 50vh; min-height: min(50vh, 380px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; margin-top: -4rem; }
+    .services-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+    .services-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%); }
+    .services-hero-content { position: relative; z-index: 1; width: 100%; max-width: 640px; margin: 0 auto; }
+    .services-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 100px; border: 1px solid rgba(245,158,11,0.45); color: #fcd34d; background: rgba(245,158,11,0.18); margin-bottom: 1.5rem; }
+    .services-hero-dot { width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; }
+    .services-hero-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 0 0.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; }
+    .services-hero-line { display: block; white-space: nowrap; }
+    .services-hero-line-white { color: #ffffff; }
+    .services-hero-line-yellow { color: #fcd34d; }
+    .services-hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 300; color: rgba(255,255,255,0.78); margin: 0 0 1.5rem; text-shadow: 0 1px 8px rgba(0,0,0,0.25); line-height: 1.65; }
+    .services-search-wrap { width: 100%; max-width: 640px; margin: 0 auto; }
+    .services-hero-tags { margin-bottom: 0 !important; }
+    .services-trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; padding: 0.75rem 1.5rem; background: #fff; border-bottom: 1px solid #E8E5E0; font-size: 0.8rem; color: #6B6560; margin-top: -0.5rem; }
+    .services-trust-item { display: flex; align-items: center; gap: 0.4rem; }
+    .services-trust-icon { color: #16a34a; font-weight: 700; }
+    .services-dir-section { padding: 2rem 1rem 6rem; background: #FAFAF8; }
+    .services-dir-container { max-width: 1200px; margin: 0 auto; }
+    .services-dir-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    @media (min-width: 640px) { .services-dir-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .services-dir-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+    .services-dir-category { background: #fff; border-radius: 1rem; padding: 1.5rem; border: 1px solid #E8E5E0; }
+    .services-dir-cat-title { font-size: 1rem; font-weight: 600; color: #004080; margin: 0 0 1rem; }
+    .services-dir-cat-title a { color: inherit; text-decoration: none; }
+    .services-dir-cat-title a:hover { text-decoration: underline; }
+    .services-dir-list { list-style: none; margin: 0; padding: 0; }
+    .services-dir-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; text-align: left; width: 100%; background: none; border: 0; cursor: pointer; font: inherit; color: inherit; transition: color 0.2s; }
+    .services-dir-item:hover { color: #0073e6; }
+    .services-dir-icon { flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: #94a3b8; margin-top: 0.15rem; }
+    .services-dir-item:hover .services-dir-icon { color: #0073e6; }
+    .services-dir-icon svg { width: 100%; height: 100%; }
+    .services-dir-text { display: flex; flex-direction: column; gap: 0.15rem; }
+    .services-dir-name { font-size: 0.875rem; font-weight: 500; color: #1e293b; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .services-dir-desc { font-size: 0.75rem; color: #64748b; }
+    .services-dir-hot { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #fff7ed; color: #ea580c; padding: 0.15rem 0.4rem; border-radius: 4px; }
+    .services-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: #0a0e14; border-top: 2px solid #F59E0B; padding: 0.75rem 1rem; padding-bottom: env(safe-area-inset-bottom, 0.75rem); }
+    .services-sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; max-width: 1100px; margin: 0 auto; }
+    .services-sticky-left { display: flex; align-items: center; }
+    .services-sticky-text { color: rgba(255,255,255,0.95); font-size: 0.9rem; white-space: nowrap; }
+    .services-sticky-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+    .services-sticky-phone { color: #ffffff !important; font-weight: 600; font-size: 0.9rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; padding: 0.5rem 0.75rem; white-space: nowrap; }
+    .services-sticky-btn { background: #F59E0B; color: #000; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; white-space: nowrap; }
+    .services-sticky-dismiss { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.25rem; cursor: pointer; padding: 0 0.25rem; line-height: 1; }
+    @media (max-width: 640px) {
+      .services-sticky-inner { flex-wrap: wrap; }
+      .services-sticky-left { display: none; }
+      .services-sticky-right { width: 100%; justify-content: space-between; gap: 0.5rem; }
+      .services-sticky-phone, .services-sticky-btn { font-size: 0.85rem; padding: 0.55rem 0.65rem; }
+    }
+    #services-sticky-spacer { height: 0; }
+  </style>
+
+  <script is:inline>
+    (function() {
+      const dataEl = document.getElementById('services-search-data');
+      const services = (dataEl && dataEl.dataset.services) ? JSON.parse(dataEl.dataset.services) : [];
+      const input = document.getElementById('services-search-input');
+      const sugBox = document.getElementById('services-search-suggestions');
+      if (input && sugBox) {
+        input.addEventListener('input', function() {
+          const q = input.value.trim().toLowerCase();
+          if (!q) { sugBox.style.display = 'none'; return; }
+          const matches = services.filter(function(s) { return s.toLowerCase().includes(q); }).slice(0, 6);
+          if (!matches.length) { sugBox.style.display = 'none'; return; }
+          sugBox.innerHTML = matches.map(function(m) {
+            return '<div class="suggestion-item py-2.5 px-4 text-sm cursor-pointer flex items-center gap-2.5 text-[#141210] hover:bg-[#E6F2FF]" data-suggestion="' + m.replace(/"/g, '&quot;') + '"><svg class="w-3.5 h-3.5 text-[#6B6560] flex-shrink-0" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' + m + '</div>';
+          }).join('');
+          sugBox.style.display = 'block';
+          sugBox.querySelectorAll('[data-suggestion]').forEach(function(el) {
+            el.addEventListener('click', function() {
+              const val = el.getAttribute('data-suggestion');
+              if (val) document.dispatchEvent(new CustomEvent('open-quote-modal', { detail: { service: val } }));
+              sugBox.style.display = 'none';
+            });
+          });
+        });
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.search-wrap-rel')) sugBox.style.display = 'none';
+        });
+        input.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleServicesSearch(); });
+      }
+      window.handleServicesSearch = function() {
+        const q = (input && input.value.trim()) || '';
+        document.dispatchEvent(new CustomEvent('open-quote-modal', { detail: { service: q, details: q } }));
+        if (sugBox) sugBox.style.display = 'none';
+      };
+
+      var bar = document.getElementById('services-sticky-cta');
+      var spacer = document.getElementById('services-sticky-spacer');
+      var dismiss = document.getElementById('services-sticky-dismiss');
+      function sync() { if (bar && spacer && bar.style.display !== 'none') spacer.style.height = bar.offsetHeight + 'px'; }
+      if (dismiss) dismiss.addEventListener('click', function() { bar.style.display = 'none'; spacer.style.height = '0'; });
+      sync();
+      window.addEventListener('resize', sync);
+    })();
+  </script>
 </BaseLayout>
