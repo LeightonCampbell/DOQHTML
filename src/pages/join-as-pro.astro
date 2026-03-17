@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProApplicationForm from '../components/ProApplicationForm.astro';
 ---
 
 <BaseLayout
@@ -258,19 +259,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Claim Your Territory Today (dark blue CTA) -->
     <section id="apply-cta" class="py-16 md:py-20 scroll-mt-20 text-white" style="background-color: #004080;">
       <div class="container-max px-4">
-        <div class="max-w-2xl mx-auto text-center">
+        <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
             Claim Your Territory Today
           </h2>
           <p class="text-lg text-white/90 mb-8">
-            Join our network of elite Pros and start receiving exclusive leads in your service area. —Most Pros are approved within 24 hours.
+            Join our network of elite Pros and start receiving exclusive leads in your service area. Most Pros are approved within 24 hours.
           </p>
-          <button type="button" data-open-join-pro class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg h-12 px-8 text-lg font-semibold bg-white text-[#004080] hover:bg-white/90 border-2 border-[#004080] shadow-md ring-offset-2 ring-offset-[#004080] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004080]">
-            Get My Exclusive Leads
-          </button>
-          <p class="text-sm text-white/80 mt-4">
-            No credit card required to join.
-          </p>
+          <div class="bg-white/5 border border-white/20 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
+            <ProApplicationForm />
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,518 @@
+---
+const services = [
+  'House Cleaning / Maid Service',
+  'Plumbing',
+  'Handyman',
+  'Electrical',
+  'TV Mounting',
+  'Security Cameras',
+  'Wi‑Fi & Networking',
+  'Smart Home',
+  'Other',
+];
+---
+
+<section class="pro-application-section" id="join-as-a-pro">
+  <div class="pro-form-container">
+    <h2 class="pro-form-title">Join as a Pro</h2>
+    <p class="pro-form-subtitle">Tell us a bit about your business and we’ll reach out with next steps.</p>
+
+    <form id="pro-application-form" method="post" action="/api/apply">
+      <div class="pro-steps-indicator" aria-hidden="true">
+        <div class="pro-step-dot" data-step-indicator="1">1</div>
+        <div class="pro-step-dot" data-step-indicator="2">2</div>
+        <div class="pro-step-dot" data-step-indicator="3">3</div>
+        <div class="pro-step-dot" data-step-indicator="4">4</div>
+      </div>
+
+      <!-- Step 1: Primary Service -->
+      <div class="pro-form-step" data-step="1">
+        <h3 class="pro-step-title">Step 1 of 4 — Primary Service</h3>
+        <p class="pro-step-help">What’s the main service you offer through your business?</p>
+
+        <label class="pro-field-label" for="primary-service">Primary service</label>
+        <select id="primary-service" name="primaryService" class="pro-input">
+          <option value="">Select a service…</option>
+          {services.map((s) => (
+            <option value={s}>{s}</option>
+          ))}
+        </select>
+
+        <div id="primary-service-other-wrap" class="hidden">
+          <label class="pro-field-label" for="primary-service-other">Describe your service</label>
+          <input
+            id="primary-service-other"
+            name="primaryServiceOther"
+            type="text"
+            class="pro-input"
+            placeholder="e.g. High‑end kitchen remodels, commercial IT support…"
+          />
+        </div>
+
+        <div class="pro-step-actions">
+          <button type="button" class="pro-btn-primary" data-next-step="2">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 2: ZIP Code -->
+      <div class="pro-form-step hidden" data-step="2">
+        <h3 class="pro-step-title">Step 2 of 4 — Service Area</h3>
+        <p class="pro-step-help">Where is your primary service area based?</p>
+
+        <label class="pro-field-label" for="zip">ZIP code</label>
+        <input
+          id="zip"
+          name="zip"
+          type="text"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          maxlength="10"
+          class="pro-input"
+          placeholder="e.g. 90210"
+        />
+
+        <div class="pro-step-actions">
+          <button type="button" class="pro-btn-ghost" data-prev-step="1">Back</button>
+          <button type="button" class="pro-btn-primary" data-next-step="3">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Business details -->
+      <div class="pro-form-step hidden" data-step="3">
+        <h3 class="pro-step-title">Step 3 of 4 — Business Details</h3>
+        <p class="pro-step-help">Tell us about your business setup.</p>
+
+        <label class="pro-field-label" for="business-name">Business name</label>
+        <input
+          id="business-name"
+          name="businessName"
+          type="text"
+          class="pro-input"
+          placeholder="Your business or legal entity name"
+        />
+
+        <label class="pro-checkbox">
+          <input type="checkbox" name="hasLiabilityInsurance" value="yes" />
+          <span>I have active liability insurance for my work.</span>
+        </label>
+
+        <div class="pro-step-actions">
+          <button type="button" class="pro-btn-ghost" data-prev-step="2">Back</button>
+          <button type="button" class="pro-btn-primary" data-next-step="4">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Contact details -->
+      <div class="pro-form-step hidden" data-step="4">
+        <h3 class="pro-step-title">Step 4 of 4 — Contact Details</h3>
+        <p class="pro-step-help">How should we contact you about your application?</p>
+
+        <div class="pro-grid-two">
+          <div>
+            <label class="pro-field-label" for="first-name">First name</label>
+            <input id="first-name" name="firstName" type="text" class="pro-input" />
+          </div>
+          <div>
+            <label class="pro-field-label" for="last-name">Last name</label>
+            <input id="last-name" name="lastName" type="text" class="pro-input" />
+          </div>
+        </div>
+
+        <label class="pro-field-label" for="email">Email</label>
+        <input id="email" name="email" type="email" class="pro-input" />
+
+        <label class="pro-field-label" for="phone">Phone number</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          class="pro-input"
+          placeholder="(555) 000‑0000"
+        />
+
+        <div class="pro-step-actions">
+          <button type="button" class="pro-btn-ghost" data-prev-step="3">Back</button>
+          <button type="submit" class="pro-btn-primary" id="pro-submit-btn">Submit application</button>
+        </div>
+      </div>
+
+      <p id="pro-form-message" class="pro-form-message" hidden></p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .pro-application-section {
+    padding: 3rem 1.5rem;
+    background: #f7f3ec;
+  }
+  .hidden {
+    display: none !important;
+  }
+  .pro-form-container {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.25rem 2rem;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+    border: 1px solid #e5e7eb;
+  }
+  .pro-form-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    margin: 0 0 0.25rem;
+    color: #111827;
+  }
+  .pro-form-subtitle {
+    margin: 0 0 1.75rem;
+    color: #6b7280;
+    font-size: 0.95rem;
+  }
+  .pro-steps-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .pro-step-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #6b7280;
+    background: #f9fafb;
+  }
+  .pro-step-dot--active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #111827;
+    font-weight: 600;
+  }
+  .pro-form-step {
+    display: block;
+  }
+  .pro-step-title {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+    color: #111827;
+  }
+  .pro-step-help {
+    margin: 0 0 1.25rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+  .pro-field-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6b7280;
+  }
+  .pro-input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    color: #111827;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .pro-input:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.35);
+  }
+  select.pro-input {
+    background-color: #ffffff;
+    color: #111827;
+  }
+  select.pro-input option {
+    color: #111827;
+  }
+  .pro-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .pro-checkbox input {
+    margin-top: 0.2rem;
+  }
+  .pro-step-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .pro-btn-primary,
+  .pro-btn-ghost {
+    border-radius: 999px;
+    padding: 0.55rem 1.3rem;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+  }
+  .pro-btn-primary {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #111827;
+    font-weight: 600;
+  }
+  .pro-btn-primary:hover {
+    background: #d97706;
+    border-color: #d97706;
+    color: #ffffff;
+  }
+  .pro-btn-ghost {
+    background: #ffffff;
+    border-color: #d1d5db;
+    color: #374151;
+  }
+  .pro-btn-ghost:hover {
+    background: #f3f4f6;
+  }
+  .pro-grid-two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .pro-form-message {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: #065f46;
+    background: #ecfdf3;
+    border-radius: 10px;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #bbf7d0;
+  }
+  .pro-form-message--error {
+    color: #b91c1c;
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+
+  @media (max-width: 640px) {
+    .pro-form-container {
+      padding: 1.75rem 1.25rem;
+    }
+    .pro-grid-two {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('pro-application-form');
+    if (!form) return;
+
+    let currentStep = 1;
+    const totalSteps = 4;
+    const steps = Array.from(form.querySelectorAll('.pro-form-step'));
+    const dots = Array.from(form.querySelectorAll('[data-step-indicator]'));
+    const messageEl = document.getElementById('pro-form-message');
+    const submitBtn = document.getElementById('pro-submit-btn');
+
+    function setStep(step) {
+      currentStep = step;
+
+      steps.forEach((el) => {
+        const s = Number(el.getAttribute('data-step'));
+        if (s === step) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      dots.forEach((dot) => {
+        const s = Number(dot.getAttribute('data-step-indicator'));
+        if (s === step) {
+          dot.classList.add('pro-step-dot--active');
+        } else {
+          dot.classList.remove('pro-step-dot--active');
+        }
+      });
+    }
+
+    function clearMessage() {
+      if (!messageEl) return;
+      messageEl.hidden = true;
+      messageEl.textContent = '';
+      messageEl.classList.remove('pro-form-message--error');
+    }
+
+    function showError(msg) {
+      if (!messageEl) return;
+      messageEl.textContent = msg;
+      messageEl.classList.add('pro-form-message--error');
+      messageEl.hidden = false;
+    }
+
+    function validateStep(step) {
+      // Helper to trim value from element by id
+      const val = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return '';
+        return (/** @type {HTMLInputElement | HTMLSelectElement} */ (el)).value.trim();
+      };
+
+      if (step === 1) {
+        const primary = val('primary-service');
+        const other = val('primary-service-other');
+        if (!primary && !other) {
+          showError('Please choose your primary service or describe it.');
+          return false;
+        }
+        if (primary === 'Other' && !other) {
+          showError('Please describe your primary service.');
+          return false;
+        }
+      } else if (step === 2) {
+        const zip = val('zip');
+        if (!zip) {
+          showError('Please enter your primary ZIP code.');
+          return false;
+        }
+      } else if (step === 3) {
+        const businessName = val('business-name');
+        const insurance = /** @type {HTMLInputElement | null} */ (
+          document.querySelector('input[name="hasLiabilityInsurance"]')
+        );
+        if (!businessName) {
+          showError('Please enter your business name.');
+          return false;
+        }
+        if (!insurance || !insurance.checked) {
+          showError('Please confirm that you have active liability insurance.');
+          return false;
+        }
+      } else if (step === 4) {
+        const firstName = val('first-name');
+        const lastName = val('last-name');
+        const email = val('email');
+        const phone = val('phone');
+
+        if (!firstName || !lastName || !email || !phone) {
+          showError('Please complete all contact fields before submitting.');
+          return false;
+        }
+      }
+
+      clearMessage();
+      return true;
+    }
+
+    // Step navigation
+    const navButtons = form.querySelectorAll('[data-next-step],[data-prev-step]');
+    navButtons.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const target = event.currentTarget;
+        if (!(target instanceof HTMLElement)) return;
+
+        const nextAttr = target.getAttribute('data-next-step');
+        const prevAttr = target.getAttribute('data-prev-step');
+
+        if (nextAttr) {
+          const nextStep = Number(nextAttr);
+          if (nextStep >= 1 && nextStep <= totalSteps) {
+            if (!validateStep(currentStep)) return;
+            setStep(nextStep);
+          }
+        } else if (prevAttr) {
+          const prevStep = Number(prevAttr);
+          if (prevStep >= 1 && prevStep <= totalSteps) setStep(prevStep);
+        }
+      });
+    });
+
+    // Primary service "Other" toggle
+    const primarySelect = /** @type {HTMLSelectElement | null} */ (
+      document.getElementById('primary-service')
+    );
+    const primaryOtherWrap = document.getElementById('primary-service-other-wrap');
+    const primaryOtherInput = /** @type {HTMLInputElement | null} */ (
+      document.getElementById('primary-service-other')
+    );
+
+    if (primarySelect && primaryOtherWrap) {
+      const handlePrimaryChange = () => {
+        if (primarySelect.value === 'Other') {
+          primaryOtherWrap.classList.remove('hidden');
+          if (primaryOtherInput) primaryOtherInput.focus();
+        } else {
+          primaryOtherWrap.classList.add('hidden');
+          if (primaryOtherInput) primaryOtherInput.value = '';
+        }
+      };
+      primarySelect.addEventListener('change', handlePrimaryChange);
+      handlePrimaryChange();
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!messageEl || !submitBtn) return;
+
+      if (!validateStep(4)) {
+        return;
+      }
+
+      clearMessage();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action || '/api/apply', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        if (messageEl) {
+          messageEl.textContent =
+            'Thank you for applying as a pro. We\'ll review your details and reach out with next steps.';
+          messageEl.classList.remove('pro-form-message--error');
+          messageEl.hidden = false;
+        }
+        form.reset();
+        setStep(1);
+      } catch (error) {
+        console.error('Pro application error', error);
+        messageEl.textContent =
+          'Something went wrong submitting your application. Please try again or contact support.';
+        messageEl.classList.add('pro-form-message--error');
+        messageEl.hidden = false;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit application';
+      }
+    });
+
+    // Initialize first step and indicator
+    setStep(currentStep);
+  })();
+</script>
+
