@@ -155,7 +155,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Your computer shouldn\'t slow you down<br /><em>or leave you stranded.</em>',
       sub: 'Hardware failures, broken components, slow performance — our certified technicians come to you. We diagnose, repair, and get you back up and running with upfront pricing and a 30-day guarantee.',
-      image: '/images/tech-support/computer-repair-hero.jpg',
+      image: '/images/computer-repair-hero.jpg',
       imageAlt: 'Technician repairing a desktop computer on a workbench',
     },
     pain: {
@@ -194,7 +194,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'Upfront price, final price', text: 'We quote before we start. What we quote is what you pay — no hourly creep or hidden parts markup.' },
         { strong: 'Certified on your device', text: 'PC or Mac, desktop or laptop — we match you to a tech who knows your hardware and your OS.' },
       ],
-      image: '/images/tech-support/computer-repair-solution.jpg',
+      image: '/images/computer-repair-solution.jpg',
       imageAlt: 'Side view of an open computer case with components being tested',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From broken or slow to fixed in four steps.', steps: sharedProcessSteps },
