@@ -62,7 +62,7 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Smart Home & Security",
     services: [
-      { id: "wifi-networking", label: "Wi-Fi & Networking", href: "/services/router-setup/", badge: "Hot", description: "Setup, optimization & dead zones" },
+      { id: "wifi-networking", label: "Wi-Fi & Networking", href: "/services/wifi-network/", badge: "Hot", description: "Setup, optimization & dead zones" },
       { id: "security-cameras", label: "Security Camera Setup", href: "/services/security-cameras/", badge: "Hot", description: "Professional camera installation" },
       { id: "video-doorbell", label: "Video Doorbell Setup", href: "/services/video-doorbells/", description: "Video doorbell installation" },
       { id: "smart-lock", label: "Smart Lock Install", href: "/services/smart-locks/", description: "Smart lock installation and setup" },
