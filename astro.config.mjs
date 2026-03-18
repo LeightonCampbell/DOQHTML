@@ -69,6 +69,8 @@ const LEGACY_REDIRECTS = {
   '/services/virus-removal/': '/tech-support/virus-removal/',
   '/services/printer-setup/': '/tech-support/printer-setup/',
   '/services/data-backup/': '/tech-support/data-backup-recovery/',
+  // Legacy router-setup service → Wi‑Fi & Networking
+  '/services/router-setup/': '/services/wifi-network/',
   // Legacy tech-support contact → main contact page
   '/tech-support/contact/': '/contact/',
 };
