@@ -3,6 +3,7 @@ import Head from '../components/Head.astro';
 import HeroNav from '../components/HeroNav.astro';
 import Footer from '../components/Footer.astro';
 import Modals from '../components/Modals.astro';
+import TipsUpdates from '../components/TipsUpdates.astro';
 import '../styles/global.css';
 import '../styles/homepage.css';
 
@@ -16,6 +17,10 @@ interface Props {
 
 const { title, description, canonical, noindex = false } = Astro.props;
 const isHomePage = Astro.url.pathname === '/';
+const showSubscribe =
+  Astro.url.pathname === '/' ||
+  Astro.url.pathname === '/contact/' ||
+  Astro.url.pathname === '/faqs/';
 ---
 
 <!doctype html>
@@ -29,6 +34,7 @@ const isHomePage = Astro.url.pathname === '/';
     <main id="main-content" data-hero-nav="true">
       <slot />
     </main>
+    {showSubscribe ? <TipsUpdates /> : null}
     <Footer />
   </body>
 </html>

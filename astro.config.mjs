@@ -69,6 +69,8 @@ const LEGACY_REDIRECTS = {
   '/services/virus-removal/': '/tech-support/virus-removal/',
   '/services/printer-setup/': '/tech-support/printer-setup/',
   '/services/data-backup/': '/tech-support/data-backup-recovery/',
+  // Legacy tech-support contact → main contact page
+  '/tech-support/contact/': '/contact/',
 };
 
 /** Build /blog/[slug]/ → /articles/[slug]/ redirects (301 permanent). Uses canonical trailing-slash form only to avoid Astro route collisions. */

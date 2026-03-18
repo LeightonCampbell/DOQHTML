@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services Hero Layout — No Overlap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #141210;
+      --gold: #f59e0b;
+      --gold-light: #fcd34d;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: #1a1d22;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Wireframe / diagram overlay styling */
+    .diagram-label {
+      position: fixed;
+      top: 72px; /* Just below 64px header */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: rgba(245, 158, 11, 0.95);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+    }
+
+    /* ── FIXED HEADER (64px) ── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      z-index: 1000;
+      background: rgba(20, 18, 16, 0.97);
+      border-bottom: 2px solid rgba(245, 158, 11, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .header-height-label {
+      position: absolute;
+      right: 120px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(0,0,0,0.8);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(245,158,11,0.5);
+    }
+    .header-logo { font-weight: 700; font-size: 1.1rem; color: #fff; }
+    .header-nav { display: flex; gap: 20px; font-size: 14px; color: rgba(255,255,255,0.8); }
+
+    /* Spacer: hero content starts BELOW header — NO OVERLAP */
+    .header-spacer {
+      height: 64px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    /* Ruler line: clear boundary between header and hero */
+    .header-spacer::after {
+      content: '← Header ends here | Hero starts here →';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(245,158,11,0.15);
+      padding: 4px 12px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      border-top: 2px solid rgba(245,158,11,0.6);
+    }
+
+    /* ── HERO SECTION (starts below header) ── */
+    .hero-wrap {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #0a0e14 0%, #141a22 40%, #0d1218 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: 
+        linear-gradient(to bottom, rgba(10,14,20,0.52) 0%, rgba(10,14,20,0.38) 35%, rgba(10,14,20,0.55) 70%, rgba(10,14,20,0.82) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%231a2332" width="400" height="300"/><g fill="%23334455" opacity="0.3"><circle cx="50" cy="50" r="20"/><circle cx="350" cy="80" r="30"/><circle cx="200" cy="200" r="40"/></g></svg>');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    /* Wireframe border to show hero boundary */
+    .hero-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px dashed rgba(245, 158, 11, 0.5);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
+    .hero-breadcrumb span { color: rgba(255,255,255,0.3); }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(245,158,11,0.45);
+      color: var(--gold-light);
+      background: rgba(245,158,11,0.18);
+      margin-bottom: 16px;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero-title .line-white { color: #fff; display: block; }
+    .hero-title .line-yellow { color: var(--gold-light); display: block; font-style: italic; }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .search-bar {
+      width: 100%;
+      max-width: 520px;
+      background: rgba(255,255,255,0.97);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      margin-bottom: 16px;
+    }
+    .search-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background: transparent;
+      color: var(--ink);
+    }
+    .search-bar input::placeholder { color: #aaa; }
+    .search-bar .btn-quote {
+      background: var(--gold);
+      color: var(--ink);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .hero-tag {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .hero-tag:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: rgba(245,158,11,0.15);
+    }
+
+    /* Diagram annotation: "No overlap" zone */
+    .no-overlap-zone {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      z-index: 3;
+    }
+    .no-overlap-zone::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram-label">No overlap: hero starts below header (64px)</div>
+
+  <!-- Fixed header — 64px -->
+  <header class="header">
+    <span class="header-logo">Deals Of Quality</span>
+    <span class="header-height-label">64px</span>
+    <nav class="header-nav">
+      <a href="#">Services</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Spacer: ensures content flows below header. Hero starts HERE. -->
+  <div class="header-spacer"></div>
+
+  <!-- Hero section — starts below header, no overlap -->
+  <div class="hero-wrap">
+    <div class="hero-bg"></div>
+    <div class="no-overlap-zone">Hero starts here</div>
+
+    <section class="hero">
+      <div class="hero-container">
+        <nav class="hero-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span>›</span>
+          Services
+        </nav>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Browse & Book
+        </div>
+        <h1 class="hero-title">
+          <span class="line-white">Your next home project deserves</span>
+          <span class="line-yellow">a Qualified Professional</span>
+        </h1>
+        <p class="hero-sub">Search below or browse by category.</p>
+
+        <div class="search-bar">
+          <input type="text" placeholder="What do you need? e.g. House cleaning…" />
+          <button type="button" class="btn-quote">Get a Quote</button>
+        </div>
+
+        <div class="hero-tags">
+          <a href="#" class="hero-tag">House Cleaning</a>
+          <a href="#" class="hero-tag">Plumbing</a>
+          <a href="#" class="hero-tag">Handyman</a>
+          <a href="#" class="hero-tag">TV Mounting</a>
+          <a href="#" class="hero-tag">Electrical</a>
+          <a href="#" class="hero-tag">Security Cameras</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

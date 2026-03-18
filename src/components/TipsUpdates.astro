@@ -1,7 +1,3 @@
----
-// Newsletter section – form only; no backend/dialog in Phase 2
----
-
 <section class="py-16 md:py-20 bg-muted" aria-labelledby="tips-updates-heading">
   <div class="container-max px-4 md:px-8 lg:px-16">
     <div class="max-w-2xl mx-auto text-center">
@@ -12,9 +8,7 @@
         Get weekly insights, service updates, and exclusive offers directly in your inbox
       </p>
 
-      <form action="https://api.web3forms.com/submit" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-        <input type="hidden" name="access_key" value="e278f6a6-e5dd-479d-9b1f-eea31bc5b962">
-        <input type="hidden" name="redirect" value="https://dealsofquality.com/success">
+      <form action="/api/newsletter" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <input type="email" name="email" required placeholder="Enter your email" class="w-full min-w-0 flex-1 h-12 min-h-12 max-h-12 bg-background border border-border rounded-md px-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
         <button type="submit" class="h-12 px-8 rounded-md bg-cta text-cta-foreground font-semibold hover:bg-cta/90 transition-colors shrink-0">Subscribe</button>
       </form>

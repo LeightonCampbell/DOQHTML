@@ -154,7 +154,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     canonicalPath: '/tech-support/computer-repair/',
     hero: {
       h1: 'Your computer shouldn\'t slow you down<br /><em>or leave you stranded.</em>',
-      sub: 'Hardware failures, broken components, slow performance — our certified technicians come to you. We diagnose, repair, and get you back up and running with upfront pricing and a 30-day guarantee.',
+      sub: 'Hardware failures, broken components, slow performance — our certified technicians come to you. We diagnose, repair, and get you back up and running fast. Quality Repair Guaranteed.',
       image: '/images/computer-repair-hero.jpg',
       imageAlt: 'Technician repairing a desktop computer on a workbench',
     },
