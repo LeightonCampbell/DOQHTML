@@ -92,7 +92,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     hero: {
       h1: 'Stop staring at error messages<br /><em>that make no sense.</em>',
       sub: 'Our certified technicians connect securely to your device and fix software glitches, OS errors, and setup issues in real time — no drive, no wait. Available 24/7.',
-      image: '/images/tech-support/remote-support-hero.jpg',
+      image: '/images/remote-support-hero.jpg',
       imageAlt: 'Remote technician helping a customer over a secure connection',
     },
     pain: {
@@ -131,7 +131,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
         { strong: 'One price, no surprises', text: 'We quote before we start. What we quote is what you pay — no hourly creep or hidden fees.' },
         { strong: 'Certified on your platform', text: 'Windows, Mac, or mixed environment — our techs are certified on what you use, so you get the right fix the first time.' },
       ],
-      image: '/images/tech-support/remote-support-solution.jpg',
+      image: '/images/remote-support-solution.jpg',
       imageAlt: 'Laptop screen showing a remote support session in progress',
     },
     process: { eyebrow: 'HOW IT WORKS', heading: 'From "something\'s wrong" to "all set" in four steps.', steps: sharedProcessSteps },
