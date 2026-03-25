@@ -1,0 +1,540 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/tv-mounting-page.css';
+import { allServices } from '../../data/servicesData';
+import { getServiceLandingContent } from '../../data/serviceLandingData';
+
+const slug = 'hvac';
+const serviceItem = allServices.find((s) => s.slug === slug);
+const modalService = serviceItem?.label ?? 'HVAC (Heating & Air)';
+
+const content = getServiceLandingContent(slug, modalService, serviceItem?.description ?? '');
+const canonical = `https://www.dealsofquality.com/${content.canonicalPath}/`;
+
+const phoneTel = 'tel:8185847389';
+const heroBg = content.heroImage ?? '/images/service-hero.jpg';
+
+const testimonials = [
+  {
+    quote: 'They fixed our heating and the whole house finally feels even. The technician explained everything clearly.',
+    initials: 'LA',
+    author: 'Los Angeles, CA',
+    rating: 5,
+  },
+  {
+    quote: 'Our thermostat was acting up. They calibrated it, tuned the system, and the air quality feels better already.',
+    initials: 'SB',
+    author: 'Santa Monica, CA',
+    rating: 5,
+  },
+  {
+    quote: 'Fast diagnosis and clean work. We stopped the “hot room / cold room” problem without guessing.',
+    initials: 'BH',
+    author: 'Beverly Hills, CA',
+    rating: 5,
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do you handle heating and AC repair?',
+    a: 'Yes. We diagnose both heating and cooling problems, then repair or recommend the right upgrade options based on what your system needs.',
+  },
+  {
+    q: 'Can you install or calibrate a new thermostat?',
+    a: 'Absolutely. We install thermostats and verify settings so your comfort stays consistent instead of “cycling wrong.”',
+  },
+  {
+    q: 'Do you tune airflow and airflow distribution?',
+    a: 'We review airflow patterns and system setup so you get better distribution. If ducting or airflow improvements are needed, we’ll confirm first.',
+  },
+  {
+    q: 'How often should we get HVAC maintenance?',
+    a: 'Most homeowners benefit from maintenance at least once or twice per year. We’ll recommend a simple schedule based on your system and usage.',
+  },
+  {
+    q: 'Will you check refrigerant and system health?',
+    a: 'We perform the key checks needed to assess performance. If anything looks off, we explain options and what it means for efficiency and comfort.',
+  },
+  {
+    q: 'What areas do you serve?',
+    a: 'We serve the Los Angeles area and surrounding communities. Enter your ZIP code in the quote form to confirm availability.',
+  },
+];
+---
+<BaseLayout title={content.metaTitle} description={content.metaDescription} canonical={canonical}>
+  <div class="tvm-page">
+    <div class="urgency-banner">
+      <div class="urgency-dot"></div>
+      <span><span class="urgency-strong">Same-day HVAC appointments available.</span> Book before noon. <a href={phoneTel}>(818) 584-7389</a></span>
+    </div>
+
+    <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
+      <div
+        class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style="background-color:#0f172a; background-image: url('{heroBg}'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"
+      />
+      <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
+
+      <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
+        <div class="container-max max-w-[1100px] mx-auto px-6">
+          <div class="fade-up visible">
+            <div class="hero-breadcrumb">
+              <a href="/">Home</a><span>›</span>
+              <a href="/services/">Services</a><span>›</span>
+              HVAC
+            </div>
+
+            <div class="hero-service-pill">
+              <div class="hero-service-pill-dot"></div>
+              HVAC (HEATING &amp; AIR)
+            </div>
+          </div>
+
+          <h1 class="fade-up d1 visible">
+            Steady comfort.<br /><em>All season.</em>
+          </h1>
+          <p class="hero-sub fade-up d2 visible">
+            Heating and cooling issues should be predictable, not constant. We connect you with vetted HVAC techs to diagnose, repair, and tune your system so your home stays comfortable room to room.
+          </p>
+
+          <div class="hero-cta-row fade-up d3 visible">
+            <button type="button" class="btn-primary-gold" data-open-quote="true" data-service={modalService}>
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor" />
+              </svg>
+              Get a Free Quote
+            </button>
+            <a class="btn-ghost-white" href={phoneTel} style="color:#ffffff;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              (818) 584-7389
+            </a>
+          </div>
+
+          <div class="hero-trust-strip fade-up d4 visible">
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor" />
+              </svg>
+              Vetted HVAC techs
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
+              </svg>
+              Licensed &amp; insured
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3" />
+                <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+              </svg>
+              Same-day availability
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" />
+                <path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Diagnostics &amp; tuning
+            </div>
+            <div class="hts-item">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3" />
+                <path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Upfront pricing
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PAIN -->
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-intro fade-up visible">
+          <div class="section-eyebrow" style="color:#dc2626">THE REAL COST OF INCONSISTENT COMFORT</div>
+          <h2 class="section-heading">
+            Hot rooms, cold rooms, and <em>higher bills</em> add up.
+          </h2>
+          <p class="section-body">
+            If your HVAC cycles wrong, your thermostat lies, or airflow is blocked, comfort becomes a guessing game. Repairs should restore steady performance — not just patch the symptom.
+          </p>
+        </div>
+
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <div class="pain-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>Uneven heating &amp; cooling</h3>
+            <p>One bedroom is always too hot while another feels too cold. The system might be “working,” but it’s not distributing comfort the way it should.</p>
+          </div>
+
+          <div class="pain-card fade-up d1">
+            <div class="pain-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+                <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>Thermostat &amp; control issues</h3>
+            <p>Incorrect settings, calibration problems, or wiring issues can cause short cycling or poor performance — and you feel it immediately.</p>
+          </div>
+
+          <div class="pain-card fade-up d2">
+            <div class="pain-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </div>
+            <h3>Poor airflow and noisy operation</h3>
+            <p>Clogged filters, weak airflow, and system setup problems drive higher energy use and uncomfortable temperature swings.</p>
+          </div>
+        </div>
+
+        <div class="agitate-block fade-up d1">
+          <div class="agitate-text">
+            <h2>Your comfort is possible <em>with the right diagnostics.</em></h2>
+            <p>Most HVAC problems are fixable once the cause is identified. We connect you with vetted techs who tune settings, restore airflow, and verify performance so comfort is consistent again.</p>
+          </div>
+
+          <div class="agitate-stats">
+            <div class="agitate-stat fade-up d2">
+              <div class="as-num">3</div>
+              <div>
+                <div class="as-text-label">key areas we verify</div>
+                <div class="as-text-sub">controls, airflow, and system health</div>
+              </div>
+            </div>
+            <div class="agitate-stat fade-up d3">
+              <div class="as-num">1</div>
+              <div>
+                <div class="as-text-label">plan for lasting comfort</div>
+                <div class="as-text-sub">repair + tuning in the right order</div>
+              </div>
+            </div>
+            <div class="agitate-stat fade-up d4">
+              <div class="as-num">0</div>
+              <div>
+                <div class="as-text-label">guesswork left behind</div>
+                <div class="as-text-sub">verification so it stays stable</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider--cream"></div>
+
+    <!-- SOLUTION -->
+    <section class="solve-section">
+      <div class="container">
+        <div class="solve-grid">
+          <div class="solve-photo-col fade-up">
+            <img
+              class="solve-photo"
+              src={heroBg}
+              alt="HVAC service outcome"
+              loading="lazy"
+              width="900"
+              height="520"
+            />
+            <div class="solve-badge">
+              <div class="solve-badge-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor" />
+                </svg>
+              </div>
+              <div>
+                <div class="solve-badge-num">4.8★</div>
+                <div class="solve-badge-label">HVAC avg. rating</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="solve-copy fade-up d1">
+            <div class="section-eyebrow">THE SOLUTION</div>
+            <h2 class="solve-heading">
+              Diagnostics &amp; repair that restores <em>steady comfort</em>.
+            </h2>
+            <p>We connect you with vetted HVAC techs in Los Angeles who diagnose heating/cooling issues, restore correct settings, and verify system performance — so your home feels right again.</p>
+            <p>You’ll get a clear walkthrough, a practical plan, and workmanship you can trust.</p>
+
+            <div class="solve-points">
+              <div class="solve-point">
+                <div class="sp-icon" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="sp-text"><strong>Diagnostics first.</strong> <span>We find the real cause, not the closest symptom.</span></div>
+              </div>
+              <div class="solve-point">
+                <div class="sp-icon" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="sp-text"><strong>Repairs to specs.</strong> <span>Fixes designed to keep the system performing.</span></div>
+              </div>
+              <div class="solve-point">
+                <div class="sp-icon" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="sp-text"><strong>Maintenance tune-up.</strong> <span>Filters, settings, and performance checks.</span></div>
+              </div>
+              <div class="solve-point">
+                <div class="sp-icon" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="sp-text"><strong>Verification.</strong> <span>We confirm comfort so it stays steady.</span></div>
+              </div>
+            </div>
+
+            <button type="button" class="btn-primary-gold tvm-book-btn" data-open-booking="true" data-service={modalService}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Book HVAC Service Today
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SERVICES -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="services-intro">
+          <div class="section-eyebrow fade-up">HVAC SERVICES</div>
+          <h2 class="section-heading fade-up d1">Everything needed for steady comfort.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">
+            Heating and cooling work that restores performance — not guesswork.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          {[
+            { title: 'Thermostat Install &amp; Calibration', desc: 'Replace or calibrate thermostats so your temperature settings stay accurate.' },
+            { title: 'Heating &amp; AC Repair', desc: 'Repairs that restore correct performance and reduce constant cycling.' },
+            { title: 'Maintenance Tune-Up', desc: 'Seasonal tune-ups so your system runs efficiently when it matters.' },
+            { title: 'Airflow &amp; Duct Improvements', desc: 'Address distribution problems that leave rooms too hot or too cold.' },
+            { title: 'Indoor Air Quality Upgrades', desc: 'Filter and air quality improvements to help your home breathe easier.' },
+            { title: 'System Replacement Options', desc: 'If you need an upgrade, we help you choose the right solution for your home.' },
+          ].map((s, i) => (
+            <a
+              href="#"
+              class={`svc-card fade-up ${i === 0 ? 'd1' : i === 1 ? 'd2' : i === 2 ? 'd3' : i === 3 ? 'd4' : i === 4 ? 'd5' : ''}`}
+              data-open-quote="true"
+              data-service={modalService}
+            >
+              <div class="svc-card-top">
+                <div class="svc-card-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>{s.title}</h3>
+              </div>
+              <p>{s.desc}</p>
+              <span class="svc-card-link">
+                Get a quote
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process-section">
+      <div class="container">
+        <div class="process-intro fade-up d1">
+          <div class="section-eyebrow">OUR PROCESS</div>
+          <h2 class="section-heading fade-up d2">From inquiry to steady comfort.</h2>
+          <p class="section-body fade-up d3" style="margin:0 auto;">Predictable steps so you know what happens next.</p>
+        </div>
+
+        <div class="process-steps fade-up d1">
+          {[
+            { title: 'Tell us your HVAC needs', body: 'Call or request a quote. We’ll confirm symptoms and the likely system focus.' },
+            { title: 'We match a vetted HVAC tech', body: 'Get an arrival window and a clear quote before any work begins.' },
+            { title: 'Diagnose + repair/tune-up', body: 'Diagnostics, repairs, calibration, and performance checks.' },
+            { title: 'Walkthrough + you’re set', body: 'We verify comfort and share what to watch for season to season.' },
+          ].map((step, i) => (
+            <div class="process-step">
+              <div class="ps-num">{String(i + 1).padStart(2, '0')}</div>
+              <div class="ps-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  {i === 0 ? (
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  ) : i === 1 ? (
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  ) : i === 2 ? (
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  ) : (
+                    <path d="M20 6l-11 11-5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  )}
+                </svg>
+              </div>
+              <span class="ps-pill">Step {String(i + 1).padStart(2, '0')}</span>
+              <div class="ps-title">{step.title}</div>
+              <div class="ps-text">{step.body}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews-section">
+      <div class="container">
+        <div class="reviews-intro">
+          <div class="section-eyebrow fade-up">REAL REVIEWS</div>
+          <h2 class="section-heading fade-up d1">Trusted for HVAC repairs and tuning.</h2>
+          <p class="section-body fade-up d2" style="margin:0 auto;">Clean work, accurate diagnostics, and comfort you can count on.</p>
+        </div>
+
+        <div class="reviews-grid">
+          {testimonials.map((t, i) => (
+            <div class={`review-card fade-up ${i === 0 ? 'd1' : i === 1 ? 'd2' : 'd3'}`}>
+              <div class="review-stars" aria-hidden="true">★★★★★</div>
+              <blockquote class="review-quote">"{t.quote}"</blockquote>
+              <div class="review-author">
+                <span class="review-initials">{t.initials}</span>
+                <div>
+                  <strong>{t.author}</strong>
+                  <div class="review-source">
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Verified customer
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-intro fade-up visible">
+          <div class="section-eyebrow">FAQ</div>
+          <h2 class="section-heading fade-up d1">Quick answers before you book.</h2>
+          <p class="section-body fade-up d2">Everything you need to know about HVAC service and repair.</p>
+        </div>
+
+        <div class="faq-cols fade-up d1">
+          <div class="faq-col">
+            {faqs.slice(0, 3).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q" aria-expanded="false">
+                  {f.q}
+                  <span class="faq-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M6 2v8M2 6h8" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-answer">
+                  <p>{f.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="faq-col">
+            {faqs.slice(3).map((f) => (
+              <div class="faq-item">
+                <button type="button" class="faq-q" aria-expanded="false">
+                  {f.q}
+                  <span class="faq-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M6 2v8M2 6h8" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-answer">
+                  <p>{f.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <div class="section-eyebrow">READY TO BOOK</div>
+        <h2>Get HVAC service that restores comfort.</h2>
+        <p>Diagnostics, repair, and tuning so your home feels steady again.</p>
+        <div class="final-cta-btns">
+          <button type="button" class="btn-primary-gold" data-open-quote="true" data-service={modalService}>
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor" />
+            </svg>
+            Get a Free Quote
+          </button>
+          <a class="btn-ghost-white-final" href={phoneTel} style="color:#ffffff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Call (818) 584-7389
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.07, rootMargin: '0px 0px -28px 0px' }
+      );
+
+      document.querySelectorAll('.tvm-page .fade-up').forEach(function (el) {
+        obs.observe(el);
+      });
+
+      document.querySelectorAll('.tvm-page .faq-q').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.faq-item');
+          if (!item) return;
+          var open = item.classList.contains('open');
+          document.querySelectorAll('.tvm-page .faq-item.open').forEach(function (i) {
+            i.classList.remove('open');
+          });
+          if (!open) item.classList.add('open');
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
+
