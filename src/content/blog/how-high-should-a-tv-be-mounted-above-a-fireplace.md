@@ -5,7 +5,7 @@ pubDate: 2026-02-10
 author: "Deals of Quality"
 category: "TV Mounting"
 readingTime: 6
-heroImage: "/blog/pull-down-fireplace-tv-mount.jpg"
+heroImage: "/images/pull-down-fireplace-tv-mount.jpg"
 ---
 
 You've just unboxed a new TV. It's sitting on the floor, still wrapped in foam, and you're staring at the wall above the fireplace. It looks like the obvious spot. Clean. Centered. The kind of install you see in every design magazine.

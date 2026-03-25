@@ -5,7 +5,7 @@ pubDate: 2026-01-18
 author: "Deals of Quality"
 category: "Computers & Tech"
 readingTime: 12
-heroImage: "/blog/slow-computer-hero.jpg"
+heroImage: "/images/slow-computer-hero.jpg"
 ---
 
 A slow computer can drain your productivity and test your patience. The good news is that many causes of sluggish performance are fixable—either by you or with professional help. This guide walks you through common causes, quick fixes you can try at home, and when it's time to call in the experts.

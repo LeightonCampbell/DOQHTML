@@ -5,7 +5,7 @@ pubDate: 2026-01-31
 author: "Deals of Quality"
 category: "Handyman"
 readingTime: 12
-heroImage: "/handyman-hero.jpg"
+heroImage: "/images/handyman-hero.jpg"
 ---
 
 Finding vetted, professional handyman services in Los Angeles is the ultimate shortcut for homeowners who value their time as much as their property. In a city where "fly-by-night" contractors are common, choosing a service that pre-qualifies its professionals is the only way to ensure your home remains a sanctuary, not a project site.

@@ -5,7 +5,7 @@ pubDate: 2026-01-20
 author: "Deals of Quality"
 category: "Computers & Tech"
 readingTime: 8
-heroImage: "/blog/computer-support-thumb.png"
+heroImage: "/images/computer-support-thumb.png"
 ---
 
 Your computer doesn’t usually fail without warning. Long before it refuses to turn on, it starts sending signals — small annoyances that quietly turn into data loss, crashes, or a machine you can’t rely on.

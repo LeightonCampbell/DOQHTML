@@ -5,7 +5,7 @@ pubDate: 2026-01-15
 author: "Deals of Quality"
 category: "Website & Business"
 readingTime: 10
-heroImage: "/blog/website-article-thumb.png"
+heroImage: "/images/website-article-thumb.png"
 ---
 
 The brutal truth is this: **Your outdated website is actively costing you money.**

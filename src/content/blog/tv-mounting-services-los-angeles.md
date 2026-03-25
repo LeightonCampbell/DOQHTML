@@ -5,7 +5,7 @@ pubDate: 2026-01-25
 author: "Deals of Quality"
 category: "TV Mounting"
 readingTime: 5
-heroImage: "/blog/TV-mounting-services-in-los-angeles.jpg"
+heroImage: "/images/TV-mounting-services-in-los-angeles.jpg"
 ---
 
 Get your new TV on the wall today. Expert installation with hidden cables, perfect positioning, and a satisfaction guarantee. Serving all LA neighborhoods.
