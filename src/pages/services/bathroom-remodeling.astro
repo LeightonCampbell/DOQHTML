@@ -12,7 +12,7 @@ const content = getServiceLandingContent(slug, modalService, serviceItem?.descri
 const canonical = `https://www.dealsofquality.com/${content.canonicalPath}/`;
 
 const phoneTel = 'tel:8185847389';
-const heroBg = content.heroImage ?? '/images/service-hero.jpg';
+const heroBg = '/images/bathroom-hero.jpg';
 
 const testimonials = [
   {
@@ -74,7 +74,7 @@ const faqs = [
     <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
       <div
         class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style="background-color:#0f172a; background-image: url('{heroBg}'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;"
+        style={`background-color:#0f172a; background-image: url('${heroBg}'); background-position: center 40%; background-size: cover; background-repeat: no-repeat;`}
       />
       <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
 

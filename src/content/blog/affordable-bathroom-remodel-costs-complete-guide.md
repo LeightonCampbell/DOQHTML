@@ -5,7 +5,7 @@ pubDate: 2026-02-01
 author: "Deals of Quality"
 category: "Home Improvement"
 readingTime: 8
-heroImage: "/images/bathroom-remodel-article-thumb.jpg"
+heroImage: "/images/bath-remodel-thumb.jpg"
 ---
 
 You can already picture your dream bathroom: the sparkling new tile, the modern vanity, the spa-like shower. Then comes the big, scary question: **how much to remodel a bathroom?** If you feel lost figuring out a budget, you are not alone.
