@@ -22,7 +22,7 @@ const DOWNLOAD_LINK = "https://my.splashtop.com/team_deployment/download/KHHWJ5L
           <p class="text-lg md:text-xl text-muted-foreground mb-8">
             Get expert tech help from the comfort of your home. Our certified pros can securely connect to your computer and resolve issues in real-time.
           </p>
-          <a href={DOWNLOAD_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-md text-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 py-6">
+          <a href={DOWNLOAD_LINK} target="_blank" rel="noopener noreferrer" class="remote-download-btn btn-primary inline-flex items-center justify-center gap-2">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
             Download Remote Support App
           </a>
@@ -116,7 +116,7 @@ const DOWNLOAD_LINK = "https://my.splashtop.com/team_deployment/download/KHHWJ5L
             Download the remote support app and call us at <a href="tel:+18185847389" class="text-accent font-semibold hover:underline">(818) 584-7389</a> to start your session.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={DOWNLOAD_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-md text-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8">
+            <a href={DOWNLOAD_LINK} target="_blank" rel="noopener noreferrer" class="remote-download-btn btn-primary inline-flex items-center justify-center gap-2">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
               Download Now
             </a>
@@ -134,4 +134,23 @@ const DOWNLOAD_LINK = "https://my.splashtop.com/team_deployment/download/KHHWJ5L
       </div>
     </section>
   </main>
+
+  <style is:global>
+    /* Override global #main-content a { color: inherit; } and .btn-primary { display: inline-block } */
+    #main-content .remote-download-btn {
+      display: inline-flex !important;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      color: #fff !important;
+    }
+    #main-content .remote-download-btn:hover {
+      color: #fff !important;
+    }
+    #main-content .remote-download-btn svg {
+      flex-shrink: 0;
+    }
+  </style>
 </BaseLayout>

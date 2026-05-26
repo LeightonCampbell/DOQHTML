@@ -28,6 +28,7 @@
   -webkit-font-smoothing: antialiased;
 }
 #main-content a { text-decoration: none; color: inherit; }
+#main-content a.bg-primary { color: hsl(var(--primary-foreground)) !important; }
 
 /* ── HERO ── */
 .hero {
@@ -106,7 +107,7 @@
   display: inline-block;
 }
 .btn-primary:hover { background: #0062cc; transform: translateY(-1px); }
-#main-content a.btn-primary { color: var(--white); }
+#main-content a.btn-primary { color: var(--white) !important; }
 
 .btn-outline {
   background: transparent;
