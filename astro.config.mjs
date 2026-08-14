@@ -73,6 +73,8 @@ const LEGACY_REDIRECTS = {
   '/services/router-setup/': '/services/wifi-network/',
   // Legacy tech-support contact → main contact page
   '/tech-support/contact/': '/contact/',
+  // Download UI lives on the remote-support page
+  '/remote-support/download/': '/remote-support/',
 };
 
 /** Build /blog/[slug]/ → /articles/[slug]/ redirects (301 permanent). Uses canonical trailing-slash form only to avoid Astro route collisions. */
