@@ -8,10 +8,10 @@ const canonical = 'https://www.dealsofquality.com/';
   description="Trusted by thousands of homeowners. Fast, reliable, and vetted local pros for every essential home service need in Los Angeles. Get a free quote in minutes."
   canonical={canonical}
 >
-  <!-- Urgency banner (below mainNav when useHeroNav) — prototype: fixed top 64px, gold dot, #fcd34d link -->
-  <div class="home-urgency bg-[#141210] text-white/90 text-center py-2.5 px-6 text-[13px] flex items-center justify-center gap-2.5 flex-wrap">
+  <!-- Urgency banner (below mainNav when useHeroNav) — blue bg, amber dot, white link -->
+  <div class="home-urgency bg-[#0073e6] text-white/90 text-center py-2.5 px-6 text-[13px] flex items-center justify-center gap-2.5 flex-wrap">
     <span class="home-urgency-dot w-[7px] h-[7px] rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
-    <span><strong class="text-white font-medium">Same-day appointments available today</strong> — call before noon to book. <a href="tel:8185847389" class="text-[#F59E0B] font-medium no-underline hover:text-white">(818) 584-7389</a></span>
+    <span><strong class="text-white font-medium">Same-day appointments available today</strong> — call before noon to book. <a href="tel:8185847389" class="text-white font-semibold underline underline-offset-2 hover:no-underline">(818) 584-7389</a></span>
   </div>
 
   <!-- Hero — full-bleed photo + dark overlay (prototype) -->
@@ -24,30 +24,30 @@ const canonical = 'https://www.dealsofquality.com/';
     <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
       <div class="container-max max-w-[1100px] mx-auto px-6">
         <div class="home-fade">
-          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(245,158,11,0.45)] text-[#fcd34d] bg-[rgba(245,158,11,0.18)]">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
+          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(0,115,230,0.55)] text-white bg-[rgba(0,115,230,0.18)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" aria-hidden="true"></span>
             Quality Service When You Need It
           </div>
         </div>
         <h1 class="home-fade home-d1 font-display text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.06] tracking-[-0.025em] max-w-[900px] mx-auto mb-5 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
           <span class="block md:whitespace-nowrap">Home Services<br class="md:hidden" aria-hidden="true" /> Done Right —</span>
-          <em class="block md:whitespace-nowrap italic text-[#fcd34d]">Get a Quote in Minutes.</em>
+          <em class="block md:whitespace-nowrap italic !text-[#0073e6]">Get a Quote in Minutes.</em>
         </h1>
         <p class="home-fade home-d2 hero-sub text-[clamp(1rem,2vw,1.25rem)] font-light max-w-[520px] mx-auto leading-[1.65]" style="color: rgba(255,255,255,0.78); text-shadow: 0 1px 8px rgba(0,0,0,0.25);">
           Get thoroughly vetted, licensed, and insured professionals for any home project. No guesswork. No runaround. Just quality you can count on.
         </p>
 
-        <!-- Search bar (prototype: gold focus, gold button) -->
+        <!-- Search bar (blue focus, blue button) -->
         <div class="home-fade home-d3 mt-10 mx-auto max-w-[640px] w-full">
           <div class="search-wrap-rel relative">
-            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
+            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#0073e6] focus-within:shadow-[0_0_0_4px_rgba(0,115,230,0.25),0_8px_32px_rgba(0,0,0,0.25)]">
               <div class="flex flex-1 min-w-0">
                 <span class="py-0 px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
                   <svg class="w-[18px] h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                 </span>
-                <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa] min-w-0" />
+                <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 !outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa] min-w-0" />
               </div>
-              <button type="button" onclick="handleSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-3 px-6 m-[7px] rounded-[9px] text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
+              <button type="button" onclick="handleSearch()" class="bg-[#0073e6] text-white border-0 cursor-pointer py-3 px-6 m-[7px] rounded-[9px] text-sm font-semibold whitespace-nowrap hover:bg-[#005bb5] transition-colors">Get a Quote</button>
             </div>
             <div id="search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
           </div>
@@ -60,7 +60,7 @@ const canonical = 'https://www.dealsofquality.com/';
               { label: 'Electrical', href: '/services/electrical/' },
               { label: 'Security Cameras', href: '/services/security-cameras/' },
             ].map(({ label, href }) => (
-              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
+              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#0073e6] hover:bg-[rgba(0,115,230,0.35)]" style="color: #ffffff;">{label}</a>
             ))}
           </div>
         </div>
@@ -87,34 +87,34 @@ const canonical = 'https://www.dealsofquality.com/';
   <!-- Trust bar (prototype: gold icons, #fff bg) -->
   <div class="home-fade border-t border-b border-[#E8E5E0] py-5 px-6 flex items-center justify-center gap-12 flex-wrap bg-white">
     <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#F59E0B] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg></span>
+      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg></span>
       Thoroughly vetted professionals
     </div>
     <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#F59E0B] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5.5v5c0 3.5 3 6.5 7 7.5 4-1 7-4 7-7.5v-5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5.5v5c0 3.5 3 6.5 7 7.5 4-1 7-4 7-7.5v-5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Licensed &amp; insured
     </div>
     <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#F59E0B] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       Same-day service available
     </div>
     <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#F59E0B] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Your data never sold
     </div>
   </div>
 
-  <!-- Guarantee banner (prototype: gold-light #FEF3C7, #fde68a border, #78350f/#92400e text) -->
-  <div class="home-fade bg-[#FEF3C7] border-t border-b border-[#fde68a] py-4 px-6 flex items-center justify-center gap-3.5 flex-wrap">
-    <div class="w-[38px] h-[38px] rounded-full bg-[#F59E0B] flex items-center justify-center flex-shrink-0">
+  <!-- Guarantee banner (blue-light #EAF3FD, #BFDBFE border, #0B3A66/#005bb5 text) -->
+  <div class="home-fade bg-[#EAF3FD] border-t border-b border-[#BFDBFE] py-4 px-6 flex items-center justify-center gap-3.5 flex-wrap">
+    <div class="w-[38px] h-[38px] rounded-full bg-[#0073e6] flex items-center justify-center flex-shrink-0">
       <svg class="w-[18px] h-[18px] text-white" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <p class="text-sm text-[#78350f]"><strong class="font-semibold text-[#92400e]">Our Quality Guarantee — No Questions Asked.</strong> Not satisfied? We'll come back and make it right, free of charge. Every job, every time.</p>
+    <p class="text-sm text-[#0B3A66]"><strong class="font-semibold text-[#005bb5]">Our Quality Guarantee — No Questions Asked.</strong> Not satisfied? We'll come back and make it right, free of charge. Every job, every time.</p>
   </div>
 
   <div class="h-px bg-[#E8E5E0]" aria-hidden="true"></div>
 
-  <!-- Services — photo cards (prototype: img, gold accent bar on hover) -->
+  <!-- Services — photo cards (prototype: img, blue border on hover) -->
   <section id="services" class="bg-white py-20">
     <div class="container-max max-w-[1100px] mx-auto px-6">
       <div class="text-center mb-13">
@@ -133,10 +133,9 @@ const canonical = 'https://www.dealsofquality.com/';
           { name: 'Smart Home Integration', desc: 'Thermostats, locks, doorbells & more', term: 'Smart Home', img: '/smart-thermostats-hero.png', href: '/services/smart-home/' },
           { name: 'Wi-Fi & Networking', desc: 'Setup, optimization & dead zones', term: 'Wi-Fi', img: '/wifi-hero.jpg', href: '/services/wifi-network/' },
         ].map((s, i) => {
-          const cardClass = `group home-fade border border-[#E8E5E0] rounded-2xl overflow-hidden bg-[#FAFAF8] flex flex-col cursor-pointer transition-all hover:border-[#F59E0B] hover:shadow-[0_8px_24px_rgba(245,158,11,0.13)] hover:-translate-y-1 text-left no-underline text-inherit ${i === 1 || i === 5 ? 'home-d1' : ''} ${i === 2 || i === 6 ? 'home-d2' : ''} ${i === 3 || i === 7 ? 'home-d3' : ''}`;
+          const cardClass = `group home-fade border border-[#E8E5E0] rounded-2xl overflow-hidden bg-[#FAFAF8] flex flex-col cursor-pointer transition-all hover:border-[#0073e6] hover:shadow-[0_8px_24px_rgba(0,115,230,0.15)] hover:-translate-y-1 text-left no-underline text-inherit ${i === 1 || i === 5 ? 'home-d1' : ''} ${i === 2 || i === 6 ? 'home-d2' : ''} ${i === 3 || i === 7 ? 'home-d3' : ''}`;
           return (
             <a href={s.href} class={cardClass}>
-              <div class="sc-accent-bar h-[3px] bg-[#F59E0B] opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true"></div>
               <img class="w-full h-[145px] object-cover block" src={s.img} alt={s.name} loading="lazy" />
               <div class="p-4 pt-4 pb-5 flex-1"><div class="text-sm font-medium mb-1">{s.name}</div><div class="text-xs text-[#6B6560] leading-[1.5]">{s.desc}</div></div>
             </a>
@@ -174,7 +173,7 @@ const canonical = 'https://www.dealsofquality.com/';
               { num: '02', title: 'Manual vetting, not algorithms', text: "We personally verify every license, insurance certificate, and background check. Automated systems miss things. We don't." },
               { num: '03', title: 'The quality benchmark', text: "Every professional meets the same standard we'd hold for work done in our own homes. No shortcuts, ever." },
             ].map((c, i) => (
-              <div class={`home-fade why-card border border-[#EDE8DF] rounded-[14px] p-5 relative overflow-hidden bg-white transition-colors hover:border-[#F59E0B] ${i === 0 ? 'home-d2' : ''} ${i === 1 ? 'home-d3' : ''} ${i === 2 ? 'home-d4' : ''}`}>
+              <div class={`home-fade why-card border border-[#EDE8DF] rounded-[14px] p-5 relative overflow-hidden bg-white transition-colors hover:border-[#0073e6] ${i === 0 ? 'home-d2' : ''} ${i === 1 ? 'home-d3' : ''} ${i === 2 ? 'home-d4' : ''}`}>
                 <div class="font-display text-5xl leading-none text-[#EDE8DF] absolute top-2.5 right-4">{c.num}</div>
                 <div class="text-[15px] font-medium mb-1">{c.title}</div>
                 <div class="text-[13px] text-[#6B6560] leading-[1.6] max-w-[90%]">{c.text}</div>
@@ -236,11 +235,11 @@ const canonical = 'https://www.dealsofquality.com/';
           { quote: '"The finish was flawless — the kind of clean, careful work you see in design magazines, not typical home service installs. Absolutely worth it."', name: 'Rachel V.', initials: 'RV', meta: 'Culver City, CA' },
         ].map((r, i) => (
           <div class={`home-fade border border-[#EDE8DF] rounded-2xl p-7 relative bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 ${i === 1 ? 'home-d1' : ''} ${i === 2 ? 'home-d2' : ''}`}>
-            <span class="absolute top-4 right-4 text-[10px] font-medium bg-[#FEF3C7] text-[#D97706] py-0.5 px-2 rounded-full border border-[#fde68a]">✓ Verified</span>
+            <span class="absolute top-4 right-4 text-[10px] font-medium bg-[#0073e6] text-white py-0.5 px-2 rounded-full border border-[#0073e6]">✓ Verified</span>
             <div class="text-[14px] text-[#F59E0B] tracking-[0.2em] mb-3">★★★★★</div>
             <div class="text-sm leading-[1.7] mb-4 italic font-display text-[#141210]">{r.quote}</div>
             <div class="flex items-center gap-2.5">
-              <div class="w-[38px] h-[38px] rounded-full bg-[#FEF3C7] flex items-center justify-center text-xs font-semibold text-[#D97706] flex-shrink-0 border-2 border-[#fde68a]">{r.initials}</div>
+              <div class="w-[38px] h-[38px] rounded-full bg-[#E6F2FF] flex items-center justify-center text-xs font-semibold text-[#0073e6] flex-shrink-0 border-2 border-[#BFDBFE]">{r.initials}</div>
               <div>
                 <div class="text-[13px] font-medium">{r.name}</div>
                 <div class="text-[11px] text-[#6B6560] flex items-center gap-1 mt-0.5"><svg class="w-2.5 h-2.5" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.6L10 4l-2 2 .5 3L6 7.8 3.5 9l.5-3L2 4l2.8-.4L6 1z" fill="currentColor"/></svg> {r.meta}</div>
@@ -383,7 +382,7 @@ const canonical = 'https://www.dealsofquality.com/';
                 <label for="i-phone" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Phone Number</label>
                 <input id="i-phone" type="tel" placeholder="(555) 000-0000" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
               </div>
-              <button type="button" id="inline-submit-btn" onclick="submitInline()" class="btn-next-home gold w-full bg-[#F59E0B] text-[#141210] border-0 rounded-[10px] py-3.5 text-[15px] font-semibold cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#D97706] hover:text-white hover:-translate-y-px transition-all">
+              <button type="button" id="inline-submit-btn" onclick="submitInline()" class="btn-next-home w-full bg-[#0073e6] text-white border-0 rounded-[10px] py-3.5 text-[15px] font-semibold cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#0058b0] hover:-translate-y-px transition-all">
                 Get Free Quote <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
               <p class="text-[11px] text-[#6B6560] text-center mt-3 flex items-center justify-center gap-1.5">
@@ -430,7 +429,7 @@ const canonical = 'https://www.dealsofquality.com/';
           <div class="home-faq-item border-b border-[#E8E5E0] first:border-t first:border-[#E8E5E0]">
             <button type="button" class="home-faq-question w-full flex items-center justify-between py-5 px-1 bg-transparent border-0 cursor-pointer text-left gap-4">
               <span class="text-[15px] font-medium leading-snug">{faq.q}</span>
-              <div class="home-faq-icon w-6 h-6 flex-shrink-0 rounded-full bg-[#FEF3C7] border border-[#fde68a] flex items-center justify-center transition-colors"><svg class="w-3 h-3 text-[#0073e6] transition-transform" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+              <div class="home-faq-icon w-6 h-6 flex-shrink-0 flex items-center justify-center" aria-hidden="true"><svg class="w-[18px] h-[18px] text-[#0073e6] transition-transform duration-300" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </button>
             <div class="home-faq-answer text-sm text-[#6B6560] leading-[1.75] max-h-0 overflow-hidden transition-[max-height,padding] duration-300 ease-out px-1">
               {faq.a}
@@ -465,7 +464,7 @@ const canonical = 'https://www.dealsofquality.com/';
           <div class="text-[11px] text-white/40 tracking-widest uppercase mb-2">Free &amp; no commitment</div>
           <div class="font-display text-xl text-white mb-2.5">Get a free quote</div>
           <div class="text-[13px] text-white/55 leading-relaxed mb-4">Fill out the 60-second form. We follow up within the hour with pricing and availability.</div>
-          <button type="button" data-open-quote="true" class="inline-flex items-center gap-1.5 bg-[#F59E0B] text-[#141210] text-[13px] font-semibold py-2.5 px-4 rounded-lg border-0 cursor-pointer transition-colors hover:bg-[#D97706] hover:text-white">
+          <button type="button" data-open-quote="true" class="inline-flex items-center gap-1.5 bg-[#0073e6] text-white text-[13px] font-semibold py-2.5 px-4 rounded-lg border-0 cursor-pointer transition-colors hover:bg-[#0058b0]">
             Get a Free Quote
             <svg class="w-[13px] h-[13px]" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
@@ -663,8 +662,7 @@ const canonical = 'https://www.dealsofquality.com/';
     .home-fade.home-d5 { transition-delay: 0.50s; }
     .home-urgency-dot { animation: home-pulse-dot 2s infinite; }
     @keyframes home-pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.4); } }
-    .home-faq-item.open .home-faq-icon { background: #0073e6; border-color: #0073e6; }
-    .home-faq-item.open .home-faq-icon svg { color: #fff; transform: rotate(45deg); }
+    .home-faq-item.open .home-faq-icon svg { transform: rotate(180deg); }
     .home-faq-icon svg { color: #0073e6; }
     .home-faq-item.open .home-faq-answer { max-height: 320px; padding-bottom: 20px; }
     .suggestion-item:hover { background: #FEF3C7 !important; }
