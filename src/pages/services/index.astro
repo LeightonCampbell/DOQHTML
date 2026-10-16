@@ -144,17 +144,13 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
       <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
       <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
         <div class="container-max max-w-[1100px] mx-auto px-6">
-          <nav class="services-hero-breadcrumb flex items-center justify-center gap-2 mb-4 text-xs text-white/55" aria-label="Breadcrumb">
-            <a href="/" class="text-white/55 no-underline hover:text-white/90">Home</a>
-            <span class="text-white/30">›</span>
-            Services
-          </nav>
-          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(245,158,11,0.45)] text-[#fcd34d] bg-[rgba(245,158,11,0.18)]">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
+          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(0,115,230,0.55)] text-white bg-[rgba(0,115,230,0.18)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" aria-hidden="true"></span>
             Browse & Book
           </div>
-          <h1 class="font-display text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.06] tracking-[-0.025em] max-w-[900px] mx-auto mb-5 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
-            Your next home project deserves<br /><em class="italic text-[#fcd34d]">a Qualified Professional</em>
+          <h1 class="font-display text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.06] tracking-[-0.025em] max-w-[900px] mx-auto mb-5 text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.55), 0 4px 28px rgba(0,0,0,0.6);">
+            Your next home project deserves
+            <em class="block md:whitespace-nowrap italic !text-[#0073e6]">a Qualified Professional</em>
           </h1>
           <p class="hero-sub text-[clamp(1rem,2vw,1.25rem)] font-light max-w-[520px] mx-auto leading-[1.65] mb-10" style="color: rgba(255,255,255,0.78); text-shadow: 0 1px 8px rgba(0,0,0,0.25);">
             Search below or browse by category.
@@ -163,20 +159,20 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
           <!-- Search bar (same as homepage) -->
           <div class="mt-10 mx-auto max-w-[640px] w-full">
             <div class="search-wrap-rel relative">
-              <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
+              <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#0073e6] focus-within:shadow-[0_0_0_4px_rgba(0,115,230,0.25),0_8px_32px_rgba(0,0,0,0.25)]">
                 <div class="flex flex-1 min-w-0">
                   <span class="py-0 px-3 sm:px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
                     <svg class="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                   </span>
-                  <input id="services-search-input" type="text" placeholder="What do you need? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[14px] sm:text-[15px] text-[#141210] bg-transparent py-[14px] sm:py-[17px] placeholder:text-[#aaa] min-w-0" />
+                  <input id="services-search-input" type="text" placeholder="What do you need? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 !outline-none text-[14px] sm:text-[15px] text-[#141210] bg-transparent py-[14px] sm:py-[17px] placeholder:text-[#aaa] min-w-0" />
                 </div>
-                <button type="button" onclick="handleServicesSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-2.5 sm:py-3 px-4 sm:px-6 m-[6px] sm:m-[7px] rounded-[9px] text-[13px] sm:text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
+                <button type="button" onclick="handleServicesSearch()" class="bg-[#0073e6] text-white border-0 cursor-pointer py-2.5 sm:py-3 px-4 sm:px-6 m-[6px] sm:m-[7px] rounded-[9px] text-[13px] sm:text-sm font-semibold whitespace-nowrap hover:bg-[#005bb5] transition-colors">Get a Quote</button>
               </div>
               <div id="services-search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
             </div>
             <div class="flex flex-wrap gap-2 justify-center mt-3 sm:mt-3.5">
               {heroTags.map(({ label, href }) => (
-                <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
+                <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#0073e6] hover:bg-[rgba(0,115,230,0.35)]" style="color: #ffffff;">{label}</a>
               ))}
             </div>
           </div>
@@ -274,14 +270,14 @@ const searchServiceNames = categories.flatMap((c) => c.items.map((i) => i.name))
     .services-dir-name { font-size: 0.875rem; font-weight: 500; color: #1e293b; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
     .services-dir-desc { font-size: 0.75rem; color: #64748b; }
     .services-dir-hot { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #fff7ed; color: #ea580c; padding: 0.15rem 0.4rem; border-radius: 4px; }
-    .services-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: #0a0e14; border-top: 2px solid #F59E0B; padding: 0.75rem 1rem; padding-bottom: env(safe-area-inset-bottom, 0.75rem); }
+    .services-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: #0a0e14; border-top: 2px solid #0073e6; padding: 0.75rem 1rem; padding-bottom: env(safe-area-inset-bottom, 0.75rem); }
     .services-sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; max-width: 1100px; margin: 0 auto; }
     .services-sticky-left { display: flex; align-items: center; }
     .services-sticky-text { color: rgba(255,255,255,0.95); font-size: 0.9rem; white-space: nowrap; }
-    .services-sticky-highlight { color: #F59E0B; font-weight: 600; }
+    .services-sticky-highlight { color: #0073e6; font-weight: 600; }
     .services-sticky-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
     .services-sticky-phone { color: #ffffff !important; font-weight: 600; font-size: 0.9rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; padding: 0.5rem 0.75rem; white-space: nowrap; }
-    .services-sticky-btn { background: #F59E0B; color: #000; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; white-space: nowrap; }
+    .services-sticky-btn { background: #0073e6; color: #fff; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; white-space: nowrap; }
     .services-sticky-dismiss { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.25rem; cursor: pointer; padding: 0 0.25rem; line-height: 1; }
     @media (max-width: 640px) {
       .services-sticky-inner { flex-wrap: wrap; }
