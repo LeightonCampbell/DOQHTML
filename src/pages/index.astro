@@ -24,30 +24,30 @@ const canonical = 'https://www.dealsofquality.com/';
     <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
       <div class="container-max max-w-[1100px] mx-auto px-6">
         <div class="home-fade">
-          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(0,115,230,0.55)] text-white bg-[rgba(0,115,230,0.18)]">
-            <span class="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" aria-hidden="true"></span>
+          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(245,158,11,0.45)] text-[#fcd34d] bg-[rgba(245,158,11,0.18)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
             Quality Service When You Need It
           </div>
         </div>
         <h1 class="home-fade home-d1 font-display text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.06] tracking-[-0.025em] max-w-[900px] mx-auto mb-5 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
           <span class="block md:whitespace-nowrap">Home Services<br class="md:hidden" aria-hidden="true" /> Done Right —</span>
-          <em class="block md:whitespace-nowrap italic !text-[#0073e6]">Get a Quote in Minutes.</em>
+          <em class="block md:whitespace-nowrap italic text-[#fcd34d]">Get a Quote in Minutes.</em>
         </h1>
         <p class="home-fade home-d2 hero-sub text-[clamp(1rem,2vw,1.25rem)] font-light max-w-[520px] mx-auto leading-[1.65]" style="color: rgba(255,255,255,0.78); text-shadow: 0 1px 8px rgba(0,0,0,0.25);">
           Get thoroughly vetted, licensed, and insured professionals for any home project. No guesswork. No runaround. Just quality you can count on.
         </p>
 
-        <!-- Search bar (blue focus, blue button) -->
+        <!-- Search bar (prototype: gold focus, gold button) -->
         <div class="home-fade home-d3 mt-10 mx-auto max-w-[640px] w-full">
           <div class="search-wrap-rel relative">
-            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#0073e6] focus-within:shadow-[0_0_0_4px_rgba(0,115,230,0.25),0_8px_32px_rgba(0,0,0,0.25)]">
+            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
               <div class="flex flex-1 min-w-0">
                 <span class="py-0 px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
                   <svg class="w-[18px] h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                 </span>
-                <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 !outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa] min-w-0" />
+                <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa] min-w-0" />
               </div>
-              <button type="button" onclick="handleSearch()" class="bg-[#0073e6] text-white border-0 cursor-pointer py-3 px-6 m-[7px] rounded-[9px] text-sm font-semibold whitespace-nowrap hover:bg-[#005bb5] transition-colors">Get a Quote</button>
+              <button type="button" onclick="handleSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-3 px-6 m-[7px] rounded-[9px] text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
             </div>
             <div id="search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
           </div>
@@ -60,7 +60,7 @@ const canonical = 'https://www.dealsofquality.com/';
               { label: 'Electrical', href: '/services/electrical/' },
               { label: 'Security Cameras', href: '/services/security-cameras/' },
             ].map(({ label, href }) => (
-              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#0073e6] hover:bg-[rgba(0,115,230,0.35)]" style="color: #ffffff;">{label}</a>
+              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
             ))}
           </div>
         </div>
