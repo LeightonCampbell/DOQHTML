@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { GUARANTEE_LINE } from '../data/marketplace';
 
 const faqs = [
   {
     category: "General",
     questions: [
-      { question: "What's your service guarantee?", answer: "We stand behind our work 100%. If you're not completely satisfied, we'll return to fix any issues at no additional charge. Our workmanship is guaranteed for at least 90 days, and we offer extended warranties as needed." },
+      { question: "What's your service guarantee?", answer: GUARANTEE_LINE },
       { question: "Are your technicians certified and insured?", answer: "Yes! All our technicians are fully certified, background-checked, and insured. They undergo continuous training to stay current with the latest technology and installation best practices." },
       { question: "How quickly can you schedule service?", answer: "We offer same-day service for most requests when you call before noon. For non-urgent appointments, we typically can schedule within 24-48 hours. Weekend appointments are also available." },
       { question: "What are your rates/pricing structure?", answer: "We provide upfront, transparent pricing before any work begins. Basic installations start at $79, and we offer free estimates for larger projects. There are never any hidden fees or surprise charges." },

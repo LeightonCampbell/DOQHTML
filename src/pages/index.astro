@@ -1,115 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TrustBar from '../components/TrustBar.astro';
+import { GUARANTEE_LINE, HOMEOWNER_REASSURANCE, homeownerConfirmation } from '../data/marketplace';
 const canonical = 'https://www.dealsofquality.com/';
+const matchedCopy = homeownerConfirmation();
+const homeownerSteps = [
+  { n: '1', title: 'Post your project', text: 'Post your project (what, where, when).' },
+  { n: '2', title: 'Get matched', text: 'Get matched with a vetted pro who fits the job.' },
+  { n: '3', title: 'Get it done', text: 'Get it done, and rate your pro when it’s finished.' },
+];
 ---
 
 <BaseLayout
-  title="Deals of Quality – Expert Home Services on Demand"
-  description="Trusted by thousands of homeowners. Fast, reliable, and vetted local pros for every essential home service need in Los Angeles. Get a free quote in minutes."
+  title="Post your project. Get matched with a vetted pro. Done."
+  description="Tell us what you need in two minutes. Deals of Quality matches you with a licensed, background-checked local pro. Free to post. You only pay for the work."
   canonical={canonical}
 >
-  <!-- Urgency banner (below mainNav when useHeroNav) — blue bg, amber dot, white link -->
-  <div class="home-urgency bg-[#0073e6] text-white/90 text-center py-2.5 px-6 text-[13px] flex items-center justify-center gap-2.5 flex-wrap">
-    <span class="home-urgency-dot w-[7px] h-[7px] rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
-    <span><strong class="text-white font-medium">Same-day appointments available today</strong> — call before noon to book. <a href="tel:8185847389" class="text-white font-semibold underline underline-offset-2 hover:no-underline">(818) 584-7389</a></span>
-  </div>
-
-  <!-- Hero — full-bleed photo + dark overlay (prototype) -->
-  <div class="hero-wrap relative overflow-hidden min-h-screen flex flex-col">
+  <div class="hero-wrap relative overflow-hidden flex flex-col">
     <div
       class="hero-bg-photo absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
       style="background-image: url('/images/homepage-hero.jpg');"
     ></div>
     <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
-    <section class="hero-content relative z-[2] flex-1 flex flex-col items-center justify-center py-[90px] pb-20 px-6 text-center" aria-label="Hero">
-      <div class="container-max max-w-[1100px] mx-auto px-6">
-        <div class="home-fade">
-          <div class="inline-flex items-center gap-2 text-xs font-medium tracking-[0.09em] uppercase py-1.5 px-4 rounded-full mb-6 backdrop-blur-sm border border-[rgba(245,158,11,0.45)] text-[#fcd34d] bg-[rgba(245,158,11,0.18)]">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" aria-hidden="true"></span>
-            Quality Service When You Need It
-          </div>
-        </div>
-        <h1 class="home-fade home-d1 font-display text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.06] tracking-[-0.025em] max-w-[900px] mx-auto mb-5 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
-          <span class="block md:whitespace-nowrap">Home Services<br class="md:hidden" aria-hidden="true" /> Done Right —</span>
-          <em class="block md:whitespace-nowrap italic text-[#fcd34d]">Get a Quote in Minutes.</em>
+    <section class="home-hero relative z-[2] flex flex-col items-center px-4 text-center" aria-label="Find your pro">
+      <div class="container-max max-w-[1100px] mx-auto w-full">
+        <TrustBar tone="on-dark" />
+        <p class="home-fade text-xs font-medium tracking-[0.12em] uppercase text-[#fcd34d] mb-4">Home services marketplace</p>
+        <h1 class="home-fade home-d1 font-display text-[clamp(2.1rem,5.4vw,4.4rem)] leading-[1.08] tracking-[-0.025em] max-w-[920px] mx-auto mb-4 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
+          Post your project. Get matched with a vetted pro. Done.
         </h1>
-        <p class="home-fade home-d2 hero-sub text-[clamp(1rem,2vw,1.25rem)] font-light max-w-[520px] mx-auto leading-[1.65]" style="color: rgba(255,255,255,0.78); text-shadow: 0 1px 8px rgba(0,0,0,0.25);">
-          Get thoroughly vetted, licensed, and insured professionals for any home project. No guesswork. No runaround. Just quality you can count on.
+        <p class="home-fade home-d2 text-[clamp(1rem,2vw,1.2rem)] font-light max-w-[640px] mx-auto leading-[1.6]" style="color: rgba(255,255,255,0.86); text-shadow: 0 1px 8px rgba(0,0,0,0.25);">
+          Tell us what you need in two minutes. We match you with a licensed, background-checked local pro, and you only pay for the work.
         </p>
-
-        <!-- Search bar (prototype: gold focus, gold button) -->
-        <div class="home-fade home-d3 mt-10 mx-auto max-w-[640px] w-full">
-          <div class="search-wrap-rel relative">
-            <div class="flex hero-search-bar bg-white/[0.97] border-2 border-transparent rounded-[14px] overflow-hidden transition-[border-color,box-shadow] duration-200 shadow-[0_8px_32px_rgba(0,0,0,0.25)] focus-within:border-[#F59E0B] focus-within:shadow-[0_0_0_4px_rgba(245,158,11,0.2),0_8px_32px_rgba(0,0,0,0.25)]">
-              <div class="flex flex-1 min-w-0">
-                <span class="py-0 px-4 flex items-center text-[#6B6560] flex-shrink-0" aria-hidden="true">
-                  <svg class="w-[18px] h-[18px]" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </span>
-                <input id="search-input" type="text" placeholder="What do you need help with? e.g. House cleaning…" autocomplete="off" class="flex-1 border-0 outline-none text-[15px] text-[#141210] bg-transparent py-[17px] placeholder:text-[#aaa] min-w-0" />
-              </div>
-              <button type="button" onclick="handleSearch()" class="bg-[#F59E0B] text-[#141210] border-0 cursor-pointer py-3 px-6 m-[7px] rounded-[9px] text-sm font-semibold whitespace-nowrap hover:bg-[#D97706] hover:text-white transition-colors">Get a Quote</button>
-            </div>
-            <div id="search-suggestions" class="absolute top-full left-0 right-0 bg-white border border-[#E8E5E0] rounded-xl mt-2 shadow-[0_12px_36px_rgba(0,0,0,0.18)] z-[300] hidden"></div>
-          </div>
-          <div class="flex flex-wrap gap-2 justify-center mt-3.5">
-            {[
-              { label: 'House Cleaning', href: '/services/house-cleaning/' },
-              { label: 'Plumbing', href: '/services/plumbing/' },
-              { label: 'Handyman', href: '/services/handyman-services/' },
-              { label: 'TV Mounting', href: '/services/tv-mounting/' },
-              { label: 'Electrical', href: '/services/electrical/' },
-              { label: 'Security Cameras', href: '/services/security-cameras/' },
-            ].map(({ label, href }) => (
-              <a href={href} class="hero-service-tag text-xs bg-white/10 border border-white/25 rounded-full py-1.5 px-3.5 no-underline transition-all hover:border-[#F59E0B] hover:text-[#fcd34d] hover:bg-[rgba(245,158,11,0.15)]" style="color: #ffffff;">{label}</a>
-            ))}
-          </div>
+        <div class="home-fade home-d3 mt-7">
+          <button type="button" data-open-quote="true" class="inline-flex items-center justify-center rounded-xl h-12 px-8 text-base font-semibold bg-[#0073e6] !text-white hover:bg-[#0058b0] shadow-lg transition-colors">
+            Find your pro
+          </button>
+          <p class="mt-3 text-sm text-white/80 max-w-[520px] mx-auto">{HOMEOWNER_REASSURANCE}</p>
         </div>
-
-        <!-- Stats (prototype: 3 cells, glassmorphism) -->
-        <div class="home-fade home-d4 flex justify-center items-stretch mt-11 mx-auto max-w-[480px] w-full rounded-2xl overflow-hidden bg-white/10 border border-white/20 backdrop-blur-xl max-[420px]:flex-col">
-          <div class="flex-1 text-center py-5 px-4 border-r border-white/15 last:border-r-0 max-[420px]:border-r-0 max-[420px]:border-b max-[420px]:last:border-b-0">
-            <div class="font-display text-[28px] leading-tight text-white">20,000+</div>
-            <div class="text-[11px] text-white/60 mt-1 tracking-wide">Jobs Completed</div>
-          </div>
-          <div class="flex-1 text-center py-5 px-4 border-r border-white/15 max-[420px]:border-r-0 max-[420px]:border-b">
-            <div class="font-display text-[28px] leading-tight text-white">100%</div>
-            <div class="text-[11px] text-white/60 mt-1 tracking-wide">Licensed Pros</div>
-          </div>
-          <div class="flex-1 text-center py-5 px-4">
-            <div class="font-display text-[28px] leading-tight text-white">4.8★</div>
-            <div class="text-[11px] text-white/60 mt-1 tracking-wide">Avg. Rating</div>
-          </div>
-        </div>
+        <ol class="home-fade home-d4 home-steps">
+          {homeownerSteps.map((step) => (
+            <li>
+              <span>{step.n}</span>
+              <strong>{step.title}</strong>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="home-fade home-d5 home-guarantee-line">{GUARANTEE_LINE}</p>
       </div>
     </section>
-  </div>
-
-  <!-- Trust bar (prototype: gold icons, #fff bg) -->
-  <div class="home-fade border-t border-b border-[#E8E5E0] py-5 px-6 flex items-center justify-center gap-12 flex-wrap bg-white">
-    <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg></span>
-      Thoroughly vetted professionals
-    </div>
-    <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5.5v5c0 3.5 3 6.5 7 7.5 4-1 7-4 7-7.5v-5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      Licensed &amp; insured
-    </div>
-    <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-      Same-day service available
-    </div>
-    <div class="flex items-center gap-2 text-[13px] text-[#6B6560]">
-      <span class="text-[#0073e6] flex-shrink-0"><svg class="w-4 h-4" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      Your data never sold
-    </div>
-  </div>
-
-  <!-- Guarantee banner (blue-light #EAF3FD, #BFDBFE border, #0B3A66/#005bb5 text) -->
-  <div class="home-fade bg-[#EAF3FD] border-t border-b border-[#BFDBFE] py-4 px-6 flex items-center justify-center gap-3.5 flex-wrap">
-    <div class="w-[38px] h-[38px] rounded-full bg-[#0073e6] flex items-center justify-center flex-shrink-0">
-      <svg class="w-[18px] h-[18px] text-white" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 4 9 8 10 4-1 8-5 8-10V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <p class="text-sm text-[#0B3A66]"><strong class="font-semibold text-[#005bb5]">Our Quality Guarantee — No Questions Asked.</strong> Not satisfied? We'll come back and make it right, free of charge. Every job, every time.</p>
   </div>
 
   <div class="h-px bg-[#E8E5E0]" aria-hidden="true"></div>
@@ -120,7 +60,7 @@ const canonical = 'https://www.dealsofquality.com/';
       <div class="text-center mb-13">
         <p class="home-fade text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6]">Popular Services</p>
         <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">Expert help for every corner of your home.</h2>
-        <p class="home-fade home-d2 text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mx-auto">Every service backed by our vetting standard, Our Quality Guarantee, and same-day availability.</p>
+        <p class="home-fade home-d2 text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mx-auto">Post a project in any of these trades. We match you with a vetted local pro. {GUARANTEE_LINE}</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[18px]">
         {[
@@ -160,18 +100,18 @@ const canonical = 'https://www.dealsofquality.com/';
             <div class="why-badge-icon w-9 h-9 rounded-[10px] bg-[#FEF3C7] flex items-center justify-center flex-shrink-0">
               <svg class="w-[18px] h-[18px] text-[#D97706]" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
             </div>
-            <div><div class="text-[13px] font-semibold text-[#141210]">4.8★ Average Rating</div><div class="text-[11px] text-[#6B6560] mt-0.5">Across thousands of completed jobs</div></div>
+            <div><div class="text-[13px] font-semibold text-[#141210]">Verified Pro</div><div class="text-[11px] text-[#6B6560] mt-0.5">Licensed, insured, and background-checked</div></div>
           </div>
         </div>
         <div>
           <p class="home-fade text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6] mb-3.5">Why It Matters</p>
-          <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">The anti-marketplace for people who care about quality.</h2>
-          <p class="home-fade home-d2 text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mb-7">Most home service platforms are built for volume. We're built for trust. Every decision we make reflects one commitment: your home deserves better.</p>
+          <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">A marketplace built around one vetted match.</h2>
+          <p class="home-fade home-d2 text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mb-7">You post the project. We match you with a licensed, background-checked local pro. You only pay for the work.</p>
           <div class="why-cards flex flex-col gap-3.5">
             {[
-              { num: '01', title: 'No information selling', text: "Standard marketplaces sell your contact to 10 companies simultaneously. We don't. One curated match, one professional, zero spam." },
-              { num: '02', title: 'Manual vetting, not algorithms', text: "We personally verify every license, insurance certificate, and background check. Automated systems miss things. We don't." },
-              { num: '03', title: 'The quality benchmark', text: "Every professional meets the same standard we'd hold for work done in our own homes. No shortcuts, ever." },
+              { num: '01', title: 'One match', text: 'Your details only go to the pro you’re matched with. No spam calls.' },
+              { num: '02', title: 'Vetted before the match', text: 'License, insurance, and a background check come before a pro is matched to your job.' },
+              { num: '03', title: 'You rate the work', text: 'When the job is finished, you rate your pro. That rating is how the next homeowner chooses with confidence.' },
             ].map((c, i) => (
               <div class={`home-fade why-card border border-[#EDE8DF] rounded-[14px] p-5 relative overflow-hidden bg-white transition-colors hover:border-[#0073e6] ${i === 0 ? 'home-d2' : ''} ${i === 1 ? 'home-d3' : ''} ${i === 2 ? 'home-d4' : ''}`}>
                 <div class="font-display text-5xl leading-none text-[#EDE8DF] absolute top-2.5 right-4">{c.num}</div>
@@ -191,28 +131,28 @@ const canonical = 'https://www.dealsofquality.com/';
   <section id="how" class="py-20">
     <div class="max-w-[760px] mx-auto px-6 text-center mb-14">
       <p class="home-fade text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6]">How It Works</p>
-      <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] max-w-[520px] mx-auto mb-3">Three steps to a job done right.</h2>
-      <p class="home-fade home-d2 text-base text-[#6B6560] font-light leading-[1.7] mx-auto">No marketplace chaos, no waiting for callbacks. A direct, professional process from first contact to finished work.</p>
+      <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] max-w-[520px] mx-auto mb-3">How it works</h2>
+      <p class="home-fade home-d2 text-base text-[#6B6560] font-light leading-[1.7] mx-auto">Post the project, get one vetted match, and rate the work when it’s finished.</p>
     </div>
     <div class="container-max max-w-[1100px] mx-auto px-6">
       <div class="home-fade home-d1 grid grid-cols-1 md:grid-cols-3 gap-0.5 mt-14 border border-[#E8E5E0] rounded-2xl overflow-hidden bg-[#E8E5E0]">
         <div class="bg-[#FAFAF8] p-9 md:py-9 md:px-7">
           <div class="w-11 h-11 bg-[#E6F2FF] rounded-xl flex items-center justify-center mb-4"><svg class="w-[22px] h-[22px] text-[#0073e6]" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="text-xs text-[#0073e6] tracking-wider font-medium block mb-3">Step 01</span>
-          <div class="text-[17px] font-medium mb-2">Request your service</div>
-          <div class="text-[13px] text-[#6B6560] leading-[1.65]">Use the form, search bar, or call (818) 584-7389. We ask the right questions upfront so your match is precise, not approximate.</div>
+          <div class="text-[17px] font-medium mb-2">Post your project</div>
+          <div class="text-[13px] text-[#6B6560] leading-[1.65]">Post your project (what, where, when).</div>
         </div>
         <div class="bg-[#FAFAF8] p-9 md:py-9 md:px-7">
           <div class="w-11 h-11 bg-[#E6F2FF] rounded-xl flex items-center justify-center mb-4"><svg class="w-[22px] h-[22px] text-[#0073e6]" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6v6c0 5.5 4 9.5 9 11 5-1.5 9-5.5 9-11V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="text-xs text-[#0073e6] tracking-wider font-medium block mb-3">Step 02</span>
-          <div class="text-[17px] font-medium mb-2">We curate your match</div>
-          <div class="text-[13px] text-[#6B6560] leading-[1.65]">We identify the best-suited vetted professional from our network — verified license, insurance, and the right specialty for your project.</div>
+          <div class="text-[17px] font-medium mb-2">Get matched</div>
+          <div class="text-[13px] text-[#6B6560] leading-[1.65]">Get matched with a vetted pro who fits the job.</div>
         </div>
         <div class="bg-[#FAFAF8] p-9 md:py-9 md:px-7">
           <div class="w-11 h-11 bg-[#E6F2FF] rounded-xl flex items-center justify-center mb-4"><svg class="w-[22px] h-[22px] text-[#0073e6]" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="text-xs text-[#0073e6] tracking-wider font-medium block mb-3">Step 03</span>
-          <div class="text-[17px] font-medium mb-2">Job done. Guaranteed.</div>
-          <div class="text-[13px] text-[#6B6560] leading-[1.65]">Your professional arrives on time and completes the job to our standard. Backed by our quality guarantee.</div>
+          <div class="text-[17px] font-medium mb-2">Get it done</div>
+          <div class="text-[13px] text-[#6B6560] leading-[1.65]">Get it done, and rate your pro when it’s finished. {GUARANTEE_LINE}</div>
         </div>
       </div>
     </div>
@@ -248,19 +188,8 @@ const canonical = 'https://www.dealsofquality.com/';
           </div>
         ))}
       </div>
-      <div class="home-fade home-d1 grid grid-cols-1 sm:grid-cols-3 gap-0.5 mt-2.5 border border-[#E8E5E0] rounded-2xl overflow-hidden bg-[#E8E5E0]">
-        <div class="bg-[#FAFAF8] py-8 px-6 text-center">
-          <div class="font-display text-[44px] leading-none mb-1.5">20,000+</div>
-          <div class="text-[13px] text-[#6B6560]">Jobs completed</div>
-        </div>
-        <div class="bg-[#FAFAF8] py-8 px-6 text-center">
-          <div class="font-display text-[44px] leading-none mb-1.5">4.8 / 5</div>
-          <div class="text-[13px] text-[#6B6560]">Average customer rating</div>
-        </div>
-        <div class="bg-[#FAFAF8] py-8 px-6 text-center">
-          <div class="font-display text-[44px] leading-none mb-1.5">0</div>
-          <div class="text-[13px] text-[#6B6560]">Customer data sold</div>
-        </div>
+      <div class="home-fade home-d1 mt-2.5 border border-[#E8E5E0] rounded-2xl bg-[#FAFAF8] py-6 px-6 text-center text-sm text-[#6B6560]">
+        {GUARANTEE_LINE}
       </div>
     </div>
   </section>
@@ -272,15 +201,15 @@ const canonical = 'https://www.dealsofquality.com/';
     <div class="container-max max-w-[1100px] mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[72px] items-start">
         <div class="home-fade quote-copy">
-          <p class="text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6] mb-3.5">Get a Free Quote</p>
-          <h2 class="font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">Tell us what you need. We'll handle the rest.</h2>
-          <p class="text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mb-8">Takes 60 seconds. No commitment, no spam. A real person follows up within the hour to confirm your appointment and match you with the right pro.</p>
+          <p class="text-[11px] font-medium tracking-[0.1em] uppercase text-[#0073e6] mb-3.5">Find your pro</p>
+          <h2 class="font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] mb-4 text-[#141210]">Post your project in two minutes.</h2>
+          <p class="text-base text-[#6B6560] font-light leading-[1.7] max-w-[540px] mb-8">{HOMEOWNER_REASSURANCE}</p>
           <div class="flex flex-col gap-3.5 quote-trust">
             {[
-              { label: 'Response within 1 hour', sub: 'A real team member reviews every submission.' },
-              { label: 'Matched by skill, not just availability', sub: 'We pick the right professional for your specific project.' },
-              { label: 'Transparent pricing upfront', sub: 'Full quote before work begins. No hidden fees, ever.' },
-              { label: 'Our Quality Guarantee', sub: "We stand behind every job, no questions asked." },
+              { label: 'What, where, and when', sub: 'Tell us the project, the ZIP code, and when you need it done.' },
+              { label: 'One vetted match', sub: 'A licensed, background-checked local pro who fits the job.' },
+              { label: 'You only pay for the work', sub: 'Free to post. The pro contacts you after the match.' },
+              { label: 'Guarantee', sub: GUARANTEE_LINE },
             ].map((item) => (
               <div class="bt-row flex items-start gap-3">
                 <div class="bt-icon w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#FEF3C7] border border-[#fde68a]">
@@ -369,7 +298,11 @@ const canonical = 'https://www.dealsofquality.com/';
                 <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back
               </button>
               <div class="step-title font-display text-[21px] mb-1 text-[#141210]">Your Contact Info</div>
-              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">How should we reach you to confirm your appointment?</div>
+              <div class="step-subtitle text-[13px] text-[#6B6560] mb-5">How should your matched pro reach you?</div>
+              <div class="absolute left-[-9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                <label for="i-company">Company website</label>
+                <input id="i-company" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="form-group mb-4">
                 <label for="i-name" class="text-xs font-medium text-[#141210] tracking-wide mb-1.5 block">Full Name</label>
                 <input id="i-name" type="text" placeholder="Jane Smith" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
@@ -383,12 +316,10 @@ const canonical = 'https://www.dealsofquality.com/';
                 <input id="i-phone" type="tel" placeholder="(555) 000-0000" class="form-control-home border-[1.5px] border-[#E8E5E0] rounded-[10px] py-3 px-3.5 text-sm text-[#141210] bg-[#FAFAF8] outline-none w-full focus:border-[#0073e6] focus:ring-[3px] focus:ring-[#0073e6]/10" />
               </div>
               <button type="button" id="inline-submit-btn" onclick="submitInline()" class="btn-next-home w-full bg-[#0073e6] text-white border-0 rounded-[10px] py-3.5 text-[15px] font-semibold cursor-pointer flex items-center justify-center gap-2 mt-2 hover:bg-[#0058b0] hover:-translate-y-px transition-all">
-                Get Free Quote <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Find your pro
               </button>
-              <p class="text-[11px] text-[#6B6560] text-center mt-3 flex items-center justify-center gap-1.5">
-                <svg class="w-3 h-3 text-[#16a34a] flex-shrink-0" viewBox="0 0 14 14" fill="none"><path d="M7 1L3 2.5v4c0 2.5 2 4.5 4 5 2-.5 4-2.5 4-5v-4L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 7l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Your information is private and never sold to third parties.
-              </p>
+              <p id="inline-error" class="hidden text-sm text-red-700 mt-3 text-center" role="alert"></p>
+              <p class="text-[11px] text-[#6B6560] text-center mt-3">{HOMEOWNER_REASSURANCE}</p>
             </div>
           </div>
 
@@ -396,8 +327,8 @@ const canonical = 'https://www.dealsofquality.com/';
             <div class="w-[60px] h-[60px] rounded-full bg-[#dcfce7] flex items-center justify-center mx-auto mb-4">
               <svg class="w-[30px] h-[30px] text-[#16a34a]" viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6 12-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3 class="font-display text-2xl mb-2.5 text-[#141210]">You're all set!</h3>
-            <p class="text-sm text-[#6B6560] leading-[1.65]">We received your request and will follow up within the hour to confirm your appointment and match you with the right professional.</p>
+            <h3 class="font-display text-2xl mb-2.5 text-[#141210]">You're matched</h3>
+            <p class="text-sm text-[#6B6560] leading-[1.65]">{matchedCopy}</p>
             <p class="mt-3 text-[13px]">Need faster? Call us: <a href="tel:8185847389" class="text-[#0073e6] font-medium">(818) 584-7389</a></p>
           </div>
         </div>
@@ -416,15 +347,15 @@ const canonical = 'https://www.dealsofquality.com/';
       <div class="max-w-[780px] mx-auto home-fade home-d1">
         {[
           { q: 'How do you vet your service professionals?', a: 'We carefully screen every professional in our network. All pros undergo comprehensive background checks, license verification, insurance confirmation, and skills assessment. We only work with experienced, reliable professionals who share our commitment to quality service.' },
-          { q: "What's your service guarantee?", a: "We stand behind our work 100%. If you're not completely satisfied, we'll return to fix any issues at no additional charge. Our workmanship is guaranteed for at least 90 days, and many services include extended warranties. Your satisfaction is our top priority." },
+          { q: "What's your service guarantee?", a: GUARANTEE_LINE },
           { q: 'Are your professionals licensed and insured?', a: 'Yes. All our professionals are fully licensed where required by law, background-checked, and carry comprehensive liability insurance. This protects you and ensures you\'re working with qualified, reputable service providers.' },
           { q: 'How quickly can you schedule service?', a: 'We offer same-day service for many requests when you call before noon. For most services, we can typically schedule within 24–48 hours. Weekend and evening appointments are also available to fit your schedule. Emergency services may be available depending on your location.' },
           { q: 'What types of home services do you offer?', a: 'We offer comprehensive premium home services, including plumbing, electrical, HVAC, remodeling, painting, flooring, roofing, cleaning, landscaping, smart home installation, and much more. Browse our services page to see our complete range of offerings.' },
           { q: 'How does pricing work?', a: "We provide upfront, transparent pricing before any work begins. You'll receive a clear estimate that outlines all costs, and there are never any hidden fees or surprise charges. Payment is typically due upon completion of satisfactory work. Free estimates are available for larger projects." },
           { q: 'Can you handle large remodeling projects?', a: 'Absolutely. We coordinate everything from small repairs to complete home remodels. Our network includes experienced contractors for kitchen and bathroom remodels, additions, and whole-home renovations. We handle project management, permits, and ensure quality work from start to finish.' },
-          { q: 'Do you offer warranties on your work?', a: "Yes, all our work comes with a satisfaction guarantee and warranty. Specific warranty terms vary by service type, but we typically offer at least 90 days on workmanship. Many services include manufacturer warranties as well. We'll clearly explain warranty coverage before work begins." },
+          { q: 'Do you offer warranties on your work?', a: GUARANTEE_LINE },
           { q: 'What areas do you serve?', a: 'We serve customers nationwide through our carefully vetted network of local professionals. When you book a service, we match you with qualified pros in your area. Contact us to confirm availability in your specific location.' },
-          { q: 'How do I schedule a service?', a: 'You can schedule service in several ways: fill out the free quote form above, call us at (818) 584-7389, or use the search bar on our homepage to find and book a specific service. We\'ll confirm your appointment and connect you with a qualified professional in your area.' },
+          { q: 'How do I schedule a service?', a: 'Post your project with the form on this page, or call (818) 584-7389. We match you with a vetted pro in your area. You only pay for the work.' },
         ].map((faq) => (
           <div class="home-faq-item border-b border-[#E8E5E0] first:border-t first:border-[#E8E5E0]">
             <button type="button" class="home-faq-question w-full flex items-center justify-between py-5 px-1 bg-transparent border-0 cursor-pointer text-left gap-4">
@@ -446,8 +377,8 @@ const canonical = 'https://www.dealsofquality.com/';
   <section id="contact" class="bg-[#141210] py-20 px-6 text-center">
     <div class="max-w-[760px] mx-auto">
       <p class="home-fade text-[11px] font-medium tracking-[0.1em] uppercase text-[#60a5fa]">Ready to Get Started?</p>
-      <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] text-[#FAFAF8] mb-4">Your home deserves quality you can trust.</h2>
-      <p class="home-fade home-d2 text-base text-white/50 mx-auto mb-9 max-w-[540px]">Join thousands of homeowners who've trusted Deals of Quality for premium, vetted home services. Same-day availability and a smoother, no‑nonsense experience.</p>
+      <h2 class="home-fade home-d1 font-display text-[clamp(1.75rem,4vw,3.125rem)] leading-tight tracking-[-0.02em] text-[#FAFAF8] mb-4">Post your project. Get matched with a vetted pro.</h2>
+      <p class="home-fade home-d2 text-base text-white/50 mx-auto mb-9 max-w-[540px]">{HOMEOWNER_REASSURANCE} {GUARANTEE_LINE}</p>
     </div>
     <div class="container-max max-w-[1100px] mx-auto px-6">
       <div class="home-fade home-d2 final-cta-cards grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[600px] mx-auto">
@@ -462,10 +393,10 @@ const canonical = 'https://www.dealsofquality.com/';
         </div>
         <div class="final-cta-card-quote bg-white/[0.06] border border-white/10 rounded-[14px] p-6 text-left">
           <div class="text-[11px] text-white/40 tracking-widest uppercase mb-2">Free &amp; no commitment</div>
-          <div class="font-display text-xl text-white mb-2.5">Get a free quote</div>
-          <div class="text-[13px] text-white/55 leading-relaxed mb-4">Fill out the 60-second form. We follow up within the hour with pricing and availability.</div>
+          <div class="font-display text-xl text-white mb-2.5">Find your pro</div>
+          <div class="text-[13px] text-white/55 leading-relaxed mb-4">Post the project. We match you with a vetted local pro.</div>
           <button type="button" data-open-quote="true" class="inline-flex items-center gap-1.5 bg-[#0073e6] text-white text-[13px] font-semibold py-2.5 px-4 rounded-lg border-0 cursor-pointer transition-colors hover:bg-[#0058b0]">
-            Get a Free Quote
+            Find your pro
             <svg class="w-[13px] h-[13px]" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
@@ -586,7 +517,14 @@ const canonical = 'https://www.dealsofquality.com/';
         const name = document.getElementById('i-name')?.value?.trim() || '';
         const email = document.getElementById('i-email')?.value?.trim() || '';
         const phone = document.getElementById('i-phone')?.value?.trim() || '';
-        if (!name || !email || !phone) { alert('Please fill in your name, email, and phone number.'); return; }
+        const errorEl = document.getElementById('inline-error');
+        const showError = (message) => {
+          if (!errorEl) return;
+          errorEl.textContent = message;
+          errorEl.classList.remove('hidden');
+        };
+        if (errorEl) errorEl.classList.add('hidden');
+        if (!name || !email || !phone) { showError('Enter your name, email, and phone so your pro can reach you.'); return; }
         const btn = document.getElementById('inline-submit-btn');
         if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
         const formData = {
@@ -597,20 +535,24 @@ const canonical = 'https://www.dealsofquality.com/';
           service: document.getElementById('i-service')?.value || '',
           preferredTiming: inlineTiming || undefined,
           details: document.getElementById('i-notes')?.value?.trim() || undefined,
-          formType: 'booking'
+          company_website: document.getElementById('i-company')?.value || '',
+          formType: 'project'
         };
         try {
-          const res = await fetch('/api/send-email', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
-          if (res.ok) {
+          const res = await fetch('/api/quote/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.success) {
             document.getElementById('inline-form-wrap').style.display = 'none';
+            document.querySelector('.progress-wrap')?.style && (document.querySelector('.progress-wrap').style.display = 'none');
             document.getElementById('inline-success').style.display = 'block';
+            document.getElementById('inline-success').classList.remove('hidden');
           } else {
-            alert('Something went wrong. Please try again or call us.');
+            showError(data.error || 'We couldn’t send your project. Please try again, or call (818) 584-7389.');
           }
         } catch (_) {
-          alert('Something went wrong. Please try again or call us.');
+          showError('We couldn’t send your project. Check your connection and try again, or call (818) 584-7389.');
         } finally {
-          if (btn) { btn.disabled = false; btn.innerHTML = 'Get Free Quote <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
+          if (btn) { btn.disabled = false; btn.textContent = 'Find your pro'; }
         }
       };
     });
@@ -625,6 +567,17 @@ const canonical = 'https://www.dealsofquality.com/';
     /* Prototype: fonts and colors for homepage */
     #main-content { --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     #main-content .font-display, #main-content h1, #main-content h2, #main-content .step-title, #main-content .quote-form-card .form-success h3 { font-family: var(--serif); }
+    .home-hero { padding: 88px 16px 56px; }
+    .home-steps { list-style: none; display: grid; grid-template-columns: 1fr; gap: 10px; margin: 28px auto 0; padding: 0; max-width: 860px; text-align: left; }
+    .home-steps li { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 14px 14px 14px 52px; position: relative; color: rgba(255,255,255,0.88); }
+    .home-steps li span { position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 999px; background: #0073e6; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .home-steps li strong { display: block; color: #fff; font-size: 14px; margin-bottom: 2px; }
+    .home-steps li p { margin: 0; font-size: 13px; line-height: 1.45; }
+    .home-guarantee-line { margin: 18px auto 0; max-width: 640px; color: #fcd34d; font-size: 15px; font-weight: 600; }
+    @media (min-width: 768px) {
+      .home-hero { padding: 104px 24px 72px; }
+      .home-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
 
     /* Hero gradient overlay (prototype) */
     .hero-bg-overlay {

@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { GUARANTEE_LINE } from '../data/marketplace';
 const lastUpdated = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 ---
 
 <BaseLayout
   title="Terms of Service | Deals Of Quality"
-  description="Terms of Service for Deals of Quality. Read our terms and conditions for using our tech support and home services."
+  description="Terms of Service for the Deals of Quality marketplace, where homeowners post a project and get matched with a vetted local pro."
   canonical="https://www.dealsofquality.com/terms/"
 >
   <main class="flex-1 bg-background">
@@ -47,7 +48,7 @@ const lastUpdated = new Date().toLocaleDateString('en-US', { month: 'long', day:
 
           <h2 class="font-display text-2xl font-bold text-foreground mb-4">5. Warranty and Guarantees</h2>
           <p class="mb-6">
-            We stand behind our work and offer a satisfaction guarantee on all services. If you are not satisfied with our service, please contact us within 30 days of service completion, and we will work to resolve the issue. Warranties on parts and materials are subject to manufacturer terms.
+            {GUARANTEE_LINE} Warranties on parts and materials follow the manufacturer.
           </p>
 
           <h2 class="font-display text-2xl font-bold text-foreground mb-4">6. Limitation of Liability</h2>

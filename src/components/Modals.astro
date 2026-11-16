@@ -1,9 +1,10 @@
 ---
 /**
  * Global Quote and Booking modals using native <dialog>.
- * Migrated from legacy React BookingModal.tsx – 4-step quote flow with semantic HTML and vanilla JS.
  * Trigger: any element with data-open-quote or data-open-booking.
  */
+import { PRO_CONTACT_WITHIN_HOURS } from '../data/marketplace';
+
 const services = [
   { value: "house-cleaning", label: "House Cleaning" },
   { value: "tv-mounting", label: "TV Mounting" },
@@ -78,8 +79,9 @@ const bookingCategories = [
       </svg>
     </button>
 
-    <form id="quote-form" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
+    <form id="quote-form" method="post" action="/api/quote/">
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
+      <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
       <input type="hidden" id="quote-hidden-service" name="service" value="" />
       <input type="hidden" id="quote-hidden-zip" name="zip" value="" />
       <input type="hidden" id="quote-hidden-urgency" name="urgency" value="" />
@@ -202,8 +204,8 @@ const bookingCategories = [
               <span class="flex h-12 w-12 mx-auto mb-3 items-center justify-center rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
               </span>
-              <h3 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News!<br>There are <span id="quote-pro-counter">0</span>+ Pros near you.</h3>
-              <p class="text-slate-500 w-full text-center">Complete your details to get a quote</p>
+              <h3 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Good news, we have vetted pros serving your area.</h3>
+              <p class="text-slate-500 w-full text-center">Post your project and we’ll match you with one.</p>
             </div>
             <div class="space-y-3">
               <div>
@@ -221,16 +223,16 @@ const bookingCategories = [
             </div>
             <div class="flex w-full gap-3 mt-6 pt-2">
               <button type="button" class="quote-back flex-1 min-w-0 h-12 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0073e6] focus:ring-offset-2" data-quote-goto="3">← Back</button>
-              <button type="submit" id="quote-submit-btn" class="flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 whitespace-nowrap">Get My Free Quote</button>
+              <button type="submit" id="quote-submit-btn" class="flex-1 min-w-0 h-12 rounded-lg bg-[#f97415] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#f97415] focus:ring-offset-2 whitespace-nowrap">Find your pro</button>
             </div>
             <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
           </div>
-          <div id="quote-step-4-success" class="hidden text-center py-4">
-            <p class="text-lg font-semibold text-emerald-600 mb-2">Thanks, we will be in touch!</p>
-            <p class="text-slate-500 text-sm">Redirecting...</p>
+          <div id="quote-step-4-success" class="hidden text-center py-6">
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-2">You're matched</h3>
+            <p class="text-slate-600">You're matched, a pro will contact you within {PRO_CONTACT_WITHIN_HOURS} hours.</p>
           </div>
           <div id="quote-step-4-error" class="hidden text-center py-4">
-            <p class="text-red-600 font-medium mb-2">Something went wrong. Please try again or call us.</p>
+            <p id="quote-error-text" class="text-red-600 font-medium mb-2">We couldn’t send your project. Please try again, or call (818) 584-7389.</p>
             <button type="button" id="quote-try-again" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Try again</button>
           </div>
         </div>
@@ -248,7 +250,8 @@ const bookingCategories = [
       </svg>
     </button>
 
-    <form id="booking-form" method="post" action="https://formspree.io/f/YOUR_ENDPOINT_HERE">
+    <form id="booking-form" method="post" action="/api/quote/">
+      <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
       <input type="hidden" name="_subject" value="Booking request from Deals of Quality" />
       <input type="hidden" name="form_type" value="booking" />
       <input type="hidden" id="booking-hidden-category" name="category" value="" />
@@ -346,8 +349,8 @@ const bookingCategories = [
         <div id="booking-step-4" class="booking-step hidden space-y-6">
           <div id="booking-step-4-form">
             <div class="w-full text-center">
-              <h2 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Great News! There are <span id="booking-pro-counter">0</span>+ Pros available.</h2>
-              <p class="text-slate-500 w-full text-center">Complete your details to book your appointment</p>
+              <h2 class="font-display text-2xl font-bold text-slate-900 mb-2 w-full text-center">Good news, we have vetted pros serving your area.</h2>
+              <p class="text-slate-500 w-full text-center">Share your details and we’ll match you with one.</p>
             </div>
             <div class="space-y-3">
               <div>
@@ -369,12 +372,12 @@ const bookingCategories = [
             </div>
             <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
           </div>
-          <div id="booking-step-4-success" class="hidden text-center py-4">
-            <p class="text-lg font-semibold text-emerald-600 mb-2">Thanks, we will be in touch!</p>
-            <p class="text-slate-500 text-sm">Redirecting...</p>
+          <div id="booking-step-4-success" class="hidden text-center py-6">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">You're matched</h2>
+            <p class="text-slate-600">You're matched, a pro will contact you within {PRO_CONTACT_WITHIN_HOURS} hours.</p>
           </div>
           <div id="booking-step-4-error" class="hidden text-center py-4">
-            <p class="text-red-600 font-medium mb-2">Something went wrong. Please try again or call us.</p>
+            <p id="booking-error-text" class="text-red-600 font-medium mb-2">We couldn’t send your project. Please try again, or call (818) 584-7389.</p>
             <button type="button" id="booking-try-again" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Try again</button>
           </div>
       </div>
@@ -540,7 +543,7 @@ const bookingCategories = [
       if (formBlock) formBlock.classList.remove('hidden');
       if (successBlock) successBlock.classList.add('hidden');
       if (errorBlock) errorBlock.classList.add('hidden');
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get My Free Quote'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Find your pro'; }
     }
 
     function setBookingStep(step) {
@@ -830,11 +833,9 @@ const bookingCategories = [
               setTimeout(function () {
                 findingEl.classList.add('hidden');
                 setQuoteStep(4);
-                animateCounter('quote-pro-counter', 14, 32);
               }, 1500);
             } else {
               setQuoteStep(4);
-              animateCounter('quote-pro-counter', 14, 32);
             }
             return;
           }
@@ -902,34 +903,37 @@ const bookingCategories = [
           service: (document.getElementById('quote-hidden-service') && document.getElementById('quote-hidden-service').value) || '',
           zip: (document.getElementById('quote-hidden-zip') && document.getElementById('quote-hidden-zip').value) || '',
           urgency: (urgencyRadio && urgencyRadio.value) || '',
-          details: (document.getElementById('quote-details') && document.getElementById('quote-details').value) || ''
+          details: (document.getElementById('quote-details') && document.getElementById('quote-details').value) || '',
+          company_website: (quoteForm.querySelector('[name="company_website"]') && quoteForm.querySelector('[name="company_website"]').value) || '',
+          _gotcha: (quoteForm.querySelector('[name="_gotcha"]') && quoteForm.querySelector('[name="_gotcha"]').value) || ''
         };
         if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
-        fetch('/api/send-email', {
+        fetch('/api/quote/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         }).then(function (res) {
-          if (res.ok) {
-            if (formBlock) formBlock.classList.add('hidden');
-            if (errorBlock) errorBlock.classList.add('hidden');
-            if (successBlock) successBlock.classList.remove('hidden');
-            setTimeout(function () {
-            closeDialog(QUOTE_ID);
-              resetQuoteModal();
-              window.location.href = '/quote-received/';
-            }, 1500);
-          } else {
-            if (formBlock) formBlock.classList.add('hidden');
-            if (successBlock) successBlock.classList.add('hidden');
-            if (errorBlock) errorBlock.classList.remove('hidden');
-            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get My Free Quote'; }
-          }
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (res.ok && data.success) {
+              if (formBlock) formBlock.classList.add('hidden');
+              if (errorBlock) errorBlock.classList.add('hidden');
+              if (successBlock) successBlock.classList.remove('hidden');
+            } else {
+              var errorText = document.getElementById('quote-error-text');
+              if (errorText) errorText.textContent = data.error || 'We couldn’t send your project. Please try again, or call (818) 584-7389.';
+              if (formBlock) formBlock.classList.add('hidden');
+              if (successBlock) successBlock.classList.add('hidden');
+              if (errorBlock) errorBlock.classList.remove('hidden');
+              if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Find your pro'; }
+            }
+          });
         }).catch(function () {
+          var errorText = document.getElementById('quote-error-text');
+          if (errorText) errorText.textContent = 'We couldn’t send your project. Check your connection and try again, or call (818) 584-7389.';
           if (formBlock) formBlock.classList.add('hidden');
           if (successBlock) successBlock.classList.add('hidden');
           if (errorBlock) errorBlock.classList.remove('hidden');
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get My Free Quote'; }
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Find your pro'; }
         });
       });
       document.getElementById('quote-try-again') && document.getElementById('quote-try-again').addEventListener('click', function () {
@@ -968,7 +972,6 @@ const bookingCategories = [
             if (zipErr) { zipErr.classList.add('hidden'); zipErr.textContent = ''; }
           }
           setBookingStep(goto);
-          if (goto === 4) animateCounter('booking-pro-counter', 25, 45);
           return;
         }
         if (backBtn) {
@@ -1009,30 +1012,32 @@ const bookingCategories = [
           category: (document.getElementById('booking-hidden-category') && document.getElementById('booking-hidden-category').value) || '',
           zip: (document.getElementById('booking-hidden-zip') && document.getElementById('booking-hidden-zip').value) || '',
           preferredTiming: (timingRadio && timingRadio.value) || '',
-          details: (document.getElementById('booking-details') && document.getElementById('booking-details').value) || ''
+          details: (document.getElementById('booking-details') && document.getElementById('booking-details').value) || '',
+          company_website: (bookingForm.querySelector('[name="company_website"]') && bookingForm.querySelector('[name="company_website"]').value) || ''
         };
         if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
-        fetch('/api/send-email', {
+        fetch('/api/quote/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         }).then(function (res) {
-          if (res.ok) {
-            if (formBlock) formBlock.classList.add('hidden');
-            if (errorBlock) errorBlock.classList.add('hidden');
-            if (successBlock) successBlock.classList.remove('hidden');
-            setTimeout(function () {
-              closeDialog(BOOKING_ID);
-              resetBookingModal();
-              window.location.href = '/booking-confirmed/';
-            }, 1500);
-          } else {
-            if (formBlock) formBlock.classList.add('hidden');
-            if (successBlock) successBlock.classList.add('hidden');
-            if (errorBlock) errorBlock.classList.remove('hidden');
-            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Appointment'; }
-          }
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (res.ok && data.success) {
+              if (formBlock) formBlock.classList.add('hidden');
+              if (errorBlock) errorBlock.classList.add('hidden');
+              if (successBlock) successBlock.classList.remove('hidden');
+            } else {
+              var errorText = document.getElementById('booking-error-text');
+              if (errorText) errorText.textContent = data.error || 'We couldn’t send your project. Please try again, or call (818) 584-7389.';
+              if (formBlock) formBlock.classList.add('hidden');
+              if (successBlock) successBlock.classList.add('hidden');
+              if (errorBlock) errorBlock.classList.remove('hidden');
+              if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Appointment'; }
+            }
+          });
         }).catch(function () {
+          var errorText = document.getElementById('booking-error-text');
+          if (errorText) errorText.textContent = 'We couldn’t send your project. Check your connection and try again, or call (818) 584-7389.';
           if (formBlock) formBlock.classList.add('hidden');
           if (successBlock) successBlock.classList.add('hidden');
           if (errorBlock) errorBlock.classList.remove('hidden');

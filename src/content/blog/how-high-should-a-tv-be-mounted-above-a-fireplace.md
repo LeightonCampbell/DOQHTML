@@ -70,7 +70,7 @@ What happens when people use the wrong anchors? The anchor grips at first. It fe
 
 ## Closing
 
-If the fireplace wall is giving you second thoughts, we mount TVs above fireplaces in [TV mounting in Los Angeles](/services/tv-mounting-los-angeles/) every week. Same-day slots are usually open. We bring the right tilt mount for your setup, handle the masonry if that's what you're working with, and take care of [hiding the cables](/articles/how-to-hide-tv-wires-without-cutting-the-wall/) so the wall stays clean. We back every install with a 90-day guarantee. No pressure — just an option if you'd rather skip the measuring tape and the hammer drill. [(818) 584-7389](tel:8185847389)
+If the fireplace wall is giving you second thoughts, we mount TVs above fireplaces in [TV mounting in Los Angeles](/services/tv-mounting-los-angeles/) every week. Same-day slots are usually open. We bring the right tilt mount for your setup, handle the masonry if that's what you're working with, and take care of [hiding the cables](/articles/how-to-hide-tv-wires-without-cutting-the-wall/) so the wall stays clean. We back every install with a work guarantee. No pressure — just an option if you'd rather skip the measuring tape and the hammer drill. [(818) 584-7389](tel:8185847389)
 
 <div class="my-12">
   <h2 class="font-display text-xl md:text-2xl font-bold text-foreground mb-6">Related Articles & Services</h2>

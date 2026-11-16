@@ -14,15 +14,19 @@ export async function POST({ request, locals }: any) {
       );
     }
 
-    const apiKey =
-      import.meta.env.RESEND_API_KEY || locals?.runtime?.env?.RESEND_API_KEY;
+    const runtimeEnv = locals?.runtime?.env ?? {};
+    const apiKey = import.meta.env.RESEND_API_KEY || runtimeEnv.RESEND_API_KEY;
     const fromEmail =
+      import.meta.env.RESEND_FROM ||
+      runtimeEnv.RESEND_FROM ||
       import.meta.env.FROM_EMAIL ||
-      locals?.runtime?.env?.FROM_EMAIL ||
+      runtimeEnv.FROM_EMAIL ||
       'onboarding@resend.dev';
     const toEmail =
+      import.meta.env.NOTIFY_EMAIL_TO ||
+      runtimeEnv.NOTIFY_EMAIL_TO ||
       import.meta.env.NOTIFICATION_EMAIL ||
-      locals?.runtime?.env?.NOTIFICATION_EMAIL ||
+      runtimeEnv.NOTIFICATION_EMAIL ||
       'notifications@dealsofquality.com';
 
     if (!apiKey) {

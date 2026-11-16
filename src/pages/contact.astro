@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { contactConfirmation } from '../data/marketplace';
+const receivedCopy = contactConfirmation();
 ---
 
 <BaseLayout
-  title="Contact Us | Deals Of Quality"
-  description="Get in touch with Deals of Quality for expert tech support and home services. Call us or send a message through our contact form."
+  title="Contact the Deals of Quality marketplace"
+  description="Questions about posting a project or getting jobs? Send a message to Deals of Quality. We match homeowners with vetted local pros."
   canonical="https://www.dealsofquality.com/contact/"
 >
   <main class="flex-1">
@@ -12,10 +14,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="container-max">
         <div class="text-center max-w-3xl mx-auto">
           <h1 class="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Get In Touch
+            Contact the marketplace
           </h1>
           <p class="text-lg text-muted-foreground">
-            Have a question or need assistance? We're here to help. Send us a message and our team will respond within 24 hours.
+            Questions about posting a project or getting jobs? Send a message and we’ll reply.
           </p>
         </div>
       </div>
@@ -29,10 +31,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <h2 class="font-display text-2xl font-bold text-foreground mb-6">
                 Send Us a Message
               </h2>
-              <form action="#" method="post" class="space-y-6">
+              <form id="contact-form" action="/api/contact/" method="post" class="space-y-6">
                 <div class="absolute left-[-9999px] top-auto w-px h-px overflow-hidden opacity-0 pointer-events-none" aria-hidden="true">
                   <label for="website_url">Website URL</label>
-                  <input id="website_url" name="website_url" type="text" tabindex="-1" autocomplete="off" />
+                  <input id="website_url" name="company_website" type="text" tabindex="-1" autocomplete="off" />
                 </div>
                 <div class="space-y-2">
                   <label for="name" class="block text-sm font-medium text-foreground">Name *</label>
@@ -50,11 +52,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <label for="message" class="block text-sm font-medium text-foreground">Message *</label>
                   <textarea id="message" name="message" placeholder="How can we help you?" rows="5" required class="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></textarea>
                 </div>
-                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 w-full">
+                <p id="contact-error" class="hidden text-sm text-red-700" role="alert"></p>
+                <button type="submit" id="contact-submit" class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 w-full">
                   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3 21 9 17 21 12 9 7 3 11" /></svg>
                   Send Message
                 </button>
               </form>
+              <div id="contact-confirmation" class="hidden text-center py-10">
+                <h3 class="font-display text-2xl font-bold text-foreground mb-3">Message received</h3>
+                <p class="text-muted-foreground">{receivedCopy}</p>
+              </div>
             </div>
           </div>
 
@@ -106,4 +113,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
   </main>
+<script>
+    const form = document.getElementById('contact-form');
+    const confirmation = document.getElementById('contact-confirmation');
+    const errorEl = document.getElementById('contact-error');
+    const submitBtn = document.getElementById('contact-submit');
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form || !submitBtn) return;
+      errorEl?.classList.add('hidden');
+      submitBtn.setAttribute('disabled', 'true');
+      const original = submitBtn.textContent;
+      submitBtn.textContent = 'Sending…';
+      try {
+        const response = await fetch('/api/contact/', { method: 'POST', body: new FormData(form) });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || 'Request failed');
+        }
+        form.classList.add('hidden');
+        confirmation?.classList.remove('hidden');
+      } catch (error) {
+        if (errorEl) {
+          errorEl.textContent = error instanceof Error && error.message !== 'Request failed'
+            ? error.message
+            : 'We couldn’t send your message. Please try again, or call (818) 584-7389.';
+          errorEl.classList.remove('hidden');
+        }
+        submitBtn.removeAttribute('disabled');
+        submitBtn.textContent = original;
+      }
+    });
+  </script>
 </BaseLayout>

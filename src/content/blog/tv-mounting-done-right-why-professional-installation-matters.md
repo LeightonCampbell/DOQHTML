@@ -161,7 +161,7 @@ When you're ready for a safe, beautiful installation, our expert [TV mounting](/
 <div class="my-12 rounded-2xl border border-[hsl(var(--accent)/0.3)] bg-[hsl(var(--accent)/0.05)] p-6 md:p-8">
   <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">Ready for a Flawless Install?</h2>
   <p class="text-lg text-foreground leading-relaxed mb-4">When it comes to mounting your TV, the risks of DIY far outweigh the potential savings. Professional installation ensures your TV is mounted safely, securely, and optimally — protecting both your investment and your family.</p>
-  <p class="text-lg text-foreground leading-relaxed mb-6">Our expert technicians handle <a href="/services/tv-mounting/" class="text-[#0073e6] hover:underline font-semibold">TV mounting</a> for all sizes, from compact displays to massive 85-inch+ screens. Upfront pricing. 90-day guarantee. Clean work, every time.</p>
+  <p class="text-lg text-foreground leading-relaxed mb-6">Our expert technicians handle <a href="/services/tv-mounting/" class="text-[#0073e6] hover:underline font-semibold">TV mounting</a> for all sizes, from compact displays to massive 85-inch+ screens. Upfront pricing. work guarantee. Clean work, every time.</p>
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
     <button type="button" data-open-quote="true" data-service="TV Mounting" class="inline-flex items-center justify-center rounded-lg h-12 px-8 text-base font-semibold shadow-lg" style="background:#F59E0B;color:#000;border:none;cursor:pointer;gap:8px;">
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"/></svg>
