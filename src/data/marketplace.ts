@@ -5,12 +5,15 @@
  * before the trust bar is treated as a real claim. These strings are
  * stand-ins, not performance numbers.
  *
- * TODO(leighton): Confirm the exact guarantee terms. The public line below
- * is the only guarantee wording the site should use until you confirm it.
+ * TODO(leighton): Confirm the exact homeowner guarantee terms. GUARANTEE_LINE
+ * is the homeowner-facing wording. PRO_GUARANTEE_LINE is the pro-facing line.
  */
 
 export const GUARANTEE_LINE =
   "If the work isn't done as agreed, we'll make it right.";
+
+/** Shown on pro-facing pages, including the /join-as-pro/ trust bar. */
+export const PRO_GUARANTEE_LINE = 'Only pay for the jobs you win';
 
 export const trustBar = {
   verifiedProLabel: 'Verified Pro',

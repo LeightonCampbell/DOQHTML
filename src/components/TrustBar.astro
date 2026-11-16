@@ -4,9 +4,11 @@ import { GUARANTEE_LINE, trustBar } from '../data/marketplace';
 interface Props {
   /** on-dark sits on the photo hero. on-light sits on the pro page. */
   tone?: 'on-dark' | 'on-light';
+  /** Fourth trust-bar line. Homeowners use the work guarantee; pros pass their own line. */
+  line?: string;
 }
 
-const { tone = 'on-dark' } = Astro.props;
+const { tone = 'on-dark', line = GUARANTEE_LINE } = Astro.props;
 ---
 
 <div class:list={['trust-bar', tone === 'on-light' && 'trust-bar--light']} role="list" aria-label="Trust">
@@ -31,7 +33,7 @@ const { tone = 'on-dark' } = Astro.props;
   </div>
   <div class="trust-bar__item trust-bar__item--guarantee" role="listitem">
     <span class="trust-bar__meta">Guarantee</span>
-    <span class="trust-bar__strong">{GUARANTEE_LINE}</span>
+    <span class="trust-bar__strong">{line}</span>
   </div>
 </div>
 
