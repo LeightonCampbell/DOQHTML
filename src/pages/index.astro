@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TrustBar from '../components/TrustBar.astro';
-import { GUARANTEE_LINE, HOMEOWNER_REASSURANCE, homeownerConfirmation } from '../data/marketplace';
+import TestimonialStrip from '../components/TestimonialStrip.astro';
+import { GUARANTEE_LINE, HOMEOWNER_REASSURANCE, homeownerConfirmation, testimonials } from '../data/marketplace';
 const canonical = 'https://www.dealsofquality.com/';
 const matchedCopy = homeownerConfirmation();
 const homeownerSteps = [
-  { n: '1', title: 'Post your project', text: 'Post your project (what, where, when).' },
+  { n: '1', title: 'Post your project', text: 'What, Where, When.' },
   { n: '2', title: 'Get matched', text: 'Get matched with a vetted pro who fits the job.' },
   { n: '3', title: 'Get it done', text: 'Get it done, and rate your pro when it’s finished.' },
 ];
@@ -50,6 +51,8 @@ const homeownerSteps = [
       </div>
     </section>
   </div>
+
+  <TestimonialStrip quote={testimonials.homeowner.quote} name={testimonials.homeowner.name} />
 
   <div class="h-px bg-[#E8E5E0]" aria-hidden="true"></div>
 
@@ -139,7 +142,7 @@ const homeownerSteps = [
           <div class="w-11 h-11 bg-[#E6F2FF] rounded-xl flex items-center justify-center mb-4"><svg class="w-[22px] h-[22px] text-[#0073e6]" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="text-xs text-[#0073e6] tracking-wider font-medium block mb-3">Step 01</span>
           <div class="text-[17px] font-medium mb-2">Post your project</div>
-          <div class="text-[13px] text-[#6B6560] leading-[1.65]">Post your project (what, where, when).</div>
+          <div class="text-[13px] text-[#6B6560] leading-[1.65]">What, Where, When.</div>
         </div>
         <div class="bg-[#FAFAF8] p-9 md:py-9 md:px-7">
           <div class="w-11 h-11 bg-[#E6F2FF] rounded-xl flex items-center justify-center mb-4"><svg class="w-[22px] h-[22px] text-[#0073e6]" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6v6c0 5.5 4 9.5 9 11 5-1.5 9-5.5 9-11V6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>

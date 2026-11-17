@@ -48,3 +48,14 @@ export const PRO_APPLICATION_CONFIRMATION =
 
 export const HOMEOWNER_REASSURANCE =
   'Free to post. No spam calls, and your details only go to the pro you’re matched with.';
+
+export const testimonials = {
+  homeowner: {
+    quote: '...this is what home services should feel like.',
+    name: 'Marcus C.',
+  },
+  pro: {
+    quote: 'I never fish for leads anymore; they come to me.',
+    name: 'Michael W.',
+  },
+} as const;

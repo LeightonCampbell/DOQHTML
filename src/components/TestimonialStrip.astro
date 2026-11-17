@@ -1,0 +1,44 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+}
+
+const { quote, name } = Astro.props;
+---
+
+<section class="testimonial-strip" aria-label="Testimonial">
+  <blockquote class="testimonial-strip__quote">
+    <p>{quote}</p>
+    <footer>{name}</footer>
+  </blockquote>
+</section>
+
+<style>
+  .testimonial-strip {
+    width: 100%;
+    background: #f7f3ec;
+    border-top: 1px solid #ede8df;
+    border-bottom: 1px solid #ede8df;
+  }
+  .testimonial-strip__quote {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 20px;
+    text-align: center;
+  }
+  .testimonial-strip__quote p {
+    margin: 0;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    line-height: 1.35;
+    color: #141210;
+  }
+  .testimonial-strip__quote footer {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #0073e6;
+  }
+</style>
