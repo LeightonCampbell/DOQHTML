@@ -1,4 +1,6 @@
 ---
+import { proApplicationConfirmation } from '../data/marketplace';
+
 const services = [
   'House Cleaning / Maid Service',
   'Plumbing',
@@ -144,7 +146,7 @@ const services = [
     </form>
     <div id="pro-confirmation" class="pro-confirmation" hidden>
       <h3>Application received</h3>
-      <p>We'll review your license and insurance, then follow up about jobs in your trade and area.</p>
+      <p>{proApplicationConfirmation()}</p>
     </div>
   </div>
 </section>

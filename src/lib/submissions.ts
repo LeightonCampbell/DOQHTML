@@ -1,7 +1,7 @@
 import {
-  PRO_APPLICATION_CONFIRMATION,
   contactConfirmation,
   homeownerConfirmation,
+  proApplicationConfirmation,
 } from '../data/marketplace';
 import { createNotifier, isDryRun, readNotifyEnv } from './notify';
 
@@ -193,7 +193,7 @@ function prepare(kind: SubmissionKind, fields: Fields): { ok: true; prepared: Pr
         ownerHtml: `<h1>New pro application</h1>${lines.map(([l, v]) => row(l, v)).join('')}`,
         visitorEmail: email,
         visitorSubject: 'We received your application — Deals of Quality',
-        visitorHtml: `<p>Hi ${escapeHtml(first)},</p><p>${escapeHtml(PRO_APPLICATION_CONFIRMATION)}</p>`,
+        visitorHtml: `<p>Hi ${escapeHtml(first)},</p><p>${escapeHtml(proApplicationConfirmation())}</p>`,
         notifyTitle: 'New pro application',
         notifyBody: lines.map(([l, v]) => `${l}: ${v}`).join('\n'),
       },

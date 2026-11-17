@@ -29,8 +29,11 @@ export function contactConfirmation(
   return `Message received. We'll reply within ${hours} hours.`;
 }
 
-export const PRO_APPLICATION_CONFIRMATION =
-  "Application received. We'll review your license and insurance, then follow up about jobs in your trade and area.";
+export function proApplicationConfirmation(
+  hours: number = PRO_CONTACT_WITHIN_HOURS,
+): string {
+  return `Thanks! We'll reach out within ${hours} hours to verify your license and insurance, then start matching you with jobs in your trade and area.`;
+}
 
 export const HOMEOWNER_REASSURANCE =
   'Free to post. No spam calls, and your details only go to the pro you’re matched with.';
