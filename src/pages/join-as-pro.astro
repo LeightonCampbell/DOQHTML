@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProApplicationForm from '../components/ProApplicationForm.astro';
-import TestimonialStrip from '../components/TestimonialStrip.astro';
-import { PRO_GUARANTEE_LINE, testimonials } from '../data/marketplace';
+import { PRO_GUARANTEE_LINE } from '../data/marketplace';
 
 const steps = [
   { n: '1', title: 'Apply and get verified', text: 'Apply and get verified with your license and insurance.' },
@@ -44,8 +43,6 @@ const steps = [
         <p class="text-center text-sm font-semibold text-[#0B3A66] mt-6">{PRO_GUARANTEE_LINE}</p>
       </div>
     </section>
-
-    <TestimonialStrip quote={testimonials.pro.quote} name={testimonials.pro.name} />
 
     <ProApplicationForm />
   </main>

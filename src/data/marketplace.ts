@@ -11,16 +11,6 @@ export const GUARANTEE_LINE =
 /** Shown under the pro how-it-works steps. */
 export const PRO_GUARANTEE_LINE = 'Only pay for the jobs you win';
 
-export const trustBar = {
-  verifiedProLabel: 'Verified Pro',
-  /** Main line beside the star. Not a numeric rating. */
-  ratingLabel: 'Real Customer',
-  /** Small line under the rating label. */
-  ratingMeta: 'reviews',
-  /** Main line for completed work. */
-  completedProjects: '20000+',
-} as const;
-
 /**
  * Hours named in homeowner and contact confirmations.
  * TODO(leighton): confirm the real response window before this is a promise.
@@ -44,10 +34,3 @@ export const PRO_APPLICATION_CONFIRMATION =
 
 export const HOMEOWNER_REASSURANCE =
   'Free to post. No spam calls, and your details only go to the pro you’re matched with.';
-
-export const testimonials = {
-  pro: {
-    quote: 'I never fish for leads anymore; they come to me.',
-    name: 'Michael W.',
-  },
-} as const;
