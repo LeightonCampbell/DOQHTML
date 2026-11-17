@@ -21,7 +21,7 @@ const homeownerSteps = [
       style="background-image: url('/images/homepage-hero.jpg');"
     ></div>
     <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
-    <section class="home-hero relative z-[2] flex flex-col items-center px-4 text-center" aria-label="Find your pro">
+    <section class="home-hero relative z-[2] flex min-h-dvh w-full flex-col items-center justify-center text-center" aria-label="Find your pro">
       <div class="container-max max-w-[1100px] mx-auto w-full">
         <h1 class="home-fade home-d1 font-display text-[clamp(2.1rem,5.4vw,4.4rem)] leading-[1.08] tracking-[-0.025em] max-w-[920px] mx-auto mb-4 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
           Post your project. Get matched with a vetted pro. Done.
@@ -564,7 +564,17 @@ const homeownerSteps = [
     /* Prototype: fonts and colors for homepage */
     #main-content { --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     #main-content .font-display, #main-content h1, #main-content h2, #main-content .step-title, #main-content .quote-form-card .form-success h3 { font-family: var(--serif); }
-    .home-hero { padding: 88px 16px 56px; }
+    .hero-wrap { min-height: 100vh; min-height: 100dvh; }
+    #main-content .home-hero {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      justify-content: center;
+      /* 64px header, then the same gutter below the content so the block
+         sits in the visible area under the fixed nav. */
+      padding: calc(64px + 28px) 16px 28px;
+    }
     .home-steps { list-style: none; display: grid; grid-template-columns: 1fr; gap: 10px; margin: 28px auto 0; padding: 0; max-width: 860px; text-align: left; }
     .home-steps li { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 14px 14px 14px 52px; position: relative; color: rgba(255,255,255,0.88); }
     .home-steps li span { position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 999px; background: #0073e6; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
@@ -572,7 +582,7 @@ const homeownerSteps = [
     .home-steps li p { margin: 0; font-size: 13px; line-height: 1.45; }
     .home-guarantee-line { margin: 18px auto 0; max-width: 640px; color: #fcd34d; font-size: 15px; font-weight: 600; }
     @media (min-width: 768px) {
-      .home-hero { padding: 104px 24px 72px; }
+      #main-content .home-hero { padding: calc(64px + 48px) 24px 48px; }
       .home-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
