@@ -311,7 +311,21 @@ function prepare(kind: SubmissionKind, fields: Fields): { ok: true; prepared: Pr
   };
 }
 
-async function sendResend(apiKey: string, payload: Record<string, unknown>): Promise<{ id: string }> {
+type ResendFailure = { ok: false; status: number; name: string; message: string; body: string };
+type ResendResult = { ok: true; id: string } | ResendFailure;
+
+function resendErrorFields(raw: string): { name: string; message: string } {
+  try {
+    const parsed = raw ? (JSON.parse(raw) as { name?: unknown; message?: unknown }) : {};
+    const name = typeof parsed.name === 'string' ? parsed.name : '';
+    const message = typeof parsed.message === 'string' ? parsed.message : '';
+    return { name, message };
+  } catch {
+    return { name: '', message: '' };
+  }
+}
+
+async function sendResend(apiKey: string, payload: Record<string, unknown>): Promise<ResendResult> {
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -321,17 +335,18 @@ async function sendResend(apiKey: string, payload: Record<string, unknown>): Pro
     body: JSON.stringify(payload),
   });
   const raw = await response.text();
-  let parsed: { id?: unknown } = {};
-  try {
-    parsed = raw ? (JSON.parse(raw) as { id?: unknown }) : {};
-  } catch {
-    parsed = {};
-  }
   if (!response.ok) {
-    console.error(`[submission] Resend error status=${response.status} body=${raw.slice(0, 500)}`);
-    throw new Error(`Resend failed (${response.status}).`);
+    const { name, message } = resendErrorFields(raw);
+    return { ok: false, status: response.status, name, message, body: raw.slice(0, 500) };
   }
-  return { id: typeof parsed.id === 'string' ? parsed.id : '' };
+  let id = '';
+  try {
+    const parsed = raw ? (JSON.parse(raw) as { id?: unknown }) : {};
+    if (typeof parsed.id === 'string') id = parsed.id;
+  } catch {
+    id = '';
+  }
+  return { ok: true, id };
 }
 
 export async function handleSubmission(
@@ -376,26 +391,44 @@ export async function handleSubmission(
   }
 
   const { prepared } = result;
-  let resendId = '';
+  let owner: ResendResult;
   try {
-    const owner = await sendResend(env.RESEND_API_KEY, {
+    owner = await sendResend(env.RESEND_API_KEY, {
       from: env.RESEND_FROM,
       to: env.NOTIFY_EMAIL_TO,
       reply_to: prepared.visitorEmail,
       subject: prepared.subject,
       html: `<div style="font-family:sans-serif;line-height:1.5">${prepared.ownerHtml}</div>`,
     });
-    resendId = owner.id;
+  } catch (error) {
+    console.error(`[submission] owner email failed kind=${kind} name=fetch message=${error instanceof Error ? error.message : 'request failed'}`);
+    return json({ success: false, error: USER_ERROR }, 502);
+  }
+  if (!owner.ok) {
+    console.error(
+      `[submission] owner email failed kind=${kind} status=${owner.status} name=${owner.name || 'unknown'} message=${owner.message || owner.body}`,
+    );
+    return json({ success: false, error: USER_ERROR }, 502);
+  }
+  const resendId = owner.id;
+  console.info(`[submission] owner email sent kind=${kind} resendId=${resendId}`);
+
+  try {
     const visitor = await sendResend(env.RESEND_API_KEY, {
       from: env.RESEND_FROM,
       to: prepared.visitorEmail,
       subject: prepared.visitorSubject,
       html: `<div style="font-family:sans-serif;line-height:1.5">${prepared.visitorHtml}</div>`,
     });
-    console.info(`[submission] email sent kind=${kind} resendId=${resendId} visitorId=${visitor.id}`);
+    if (!visitor.ok) {
+      console.error(
+        `[submission] customer confirmation failed kind=${kind} resendId=${resendId} status=${visitor.status} name=${visitor.name || 'unknown'} message=${visitor.message || ''} body=${visitor.body}`,
+      );
+    }
   } catch (error) {
-    console.error(`[submission] email failed kind=${kind} resendId=${resendId || 'none'}`, error);
-    return json({ success: false, error: USER_ERROR }, 502);
+    console.error(
+      `[submission] customer confirmation failed kind=${kind} resendId=${resendId} status=0 body=${error instanceof Error ? error.message : 'request failed'}`,
+    );
   }
 
   const telegramMissing: string[] = [];

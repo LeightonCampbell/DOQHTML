@@ -46,7 +46,7 @@ Set these on the Cloudflare Pages project `doqhtml`, for both Production and Pre
 | `TELEGRAM_BOT_TOKEN` | Secret, for the chat ping | Bot token from BotFather |
 | `TELEGRAM_CHAT_ID` | For the chat ping | Chat that receives the message |
 
-If `RESEND_API_KEY`, `RESEND_FROM`, or `NOTIFY_EMAIL_TO` is missing, the function logs the missing names and returns an error. The form shows that error instead of the success screen. A failed Telegram send is logged with the Resend message id, and the form still succeeds because the email already has the lead.
+If `RESEND_API_KEY`, `RESEND_FROM`, or `NOTIFY_EMAIL_TO` is missing, or the email to `NOTIFY_EMAIL_TO` fails, the function logs the missing names or Resend's error name and message and returns an error. The form shows that error instead of the success screen. The customer confirmation email and the Telegram ping are sent after that. If either fails, it is logged with the Resend message id and the form still succeeds, because the owner email already has the lead.
 
 `NOTIFY_DRY_RUN=1` skips both sends. Use it only for local checks.
 
