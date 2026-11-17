@@ -3,7 +3,7 @@
  * Global Quote and Booking modals using native <dialog>.
  * Trigger: any element with data-open-quote or data-open-booking.
  */
-import { PRO_CONTACT_WITHIN_HOURS } from '../data/marketplace';
+import { HOMEOWNER_CONFIRMATION_HEADING, homeownerConfirmation } from '../data/marketplace';
 
 const services = [
   { value: "house-cleaning", label: "House Cleaning" },
@@ -228,8 +228,8 @@ const bookingCategories = [
             <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
           </div>
           <div id="quote-step-4-success" class="hidden text-center py-6">
-            <h3 class="font-display text-2xl font-bold text-slate-900 mb-2">You're matched</h3>
-            <p class="text-slate-600">You're matched, a pro will contact you within {PRO_CONTACT_WITHIN_HOURS} hours.</p>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-2">{HOMEOWNER_CONFIRMATION_HEADING}</h3>
+            <p class="text-slate-600">{homeownerConfirmation()}</p>
           </div>
           <div id="quote-step-4-error" class="hidden text-center py-4">
             <p id="quote-error-text" class="text-red-600 font-medium mb-2">We couldn’t send your project. Please try again, or call (818) 584-7389.</p>
@@ -373,8 +373,8 @@ const bookingCategories = [
             <p class="text-xs text-center text-slate-500">By submitting, you agree to our <a href="/terms/" class="text-[#0073e6] underline hover:no-underline">Terms of Service</a> and <a href="/privacy/" class="text-[#0073e6] underline hover:no-underline">Privacy Policy</a>.</p>
           </div>
           <div id="booking-step-4-success" class="hidden text-center py-6">
-            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">You're matched</h2>
-            <p class="text-slate-600">You're matched, a pro will contact you within {PRO_CONTACT_WITHIN_HOURS} hours.</p>
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-2">{HOMEOWNER_CONFIRMATION_HEADING}</h2>
+            <p class="text-slate-600">{homeownerConfirmation()}</p>
           </div>
           <div id="booking-step-4-error" class="hidden text-center py-4">
             <p id="booking-error-text" class="text-red-600 font-medium mb-2">We couldn’t send your project. Please try again, or call (818) 584-7389.</p>

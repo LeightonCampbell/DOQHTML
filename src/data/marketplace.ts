@@ -12,15 +12,15 @@ export const GUARANTEE_LINE =
 export const PRO_GUARANTEE_LINE = 'Only pay for the jobs you win';
 
 /**
- * Hours named in homeowner and contact confirmations.
+ * Hours named in the contact reply and the pro application confirmation.
  * TODO(leighton): confirm the real response window before this is a promise.
  */
 export const PRO_CONTACT_WITHIN_HOURS = 24;
 
-export function homeownerConfirmation(
-  hours: number = PRO_CONTACT_WITHIN_HOURS,
-): string {
-  return `You're matched, a pro will contact you within ${hours} hours.`;
+export const HOMEOWNER_CONFIRMATION_HEADING = "We've got your request!";
+
+export function homeownerConfirmation(): string {
+  return 'A DoQuality agent will be in touch shortly to discuss your needs and connect you with the right Pro.';
 }
 
 export function contactConfirmation(

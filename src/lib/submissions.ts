@@ -1,4 +1,5 @@
 import {
+  HOMEOWNER_CONFIRMATION_HEADING,
   contactConfirmation,
   homeownerConfirmation,
   proApplicationConfirmation,
@@ -153,7 +154,7 @@ function prepare(kind: SubmissionKind, fields: Fields): { ok: true; prepared: Pr
         ownerHtml: `<h1>New homeowner project</h1>${lines.map(([l, v]) => row(l, v)).join('')}`,
         visitorEmail: email,
         visitorSubject: 'Your project is posted — Deals of Quality',
-        visitorHtml: `<p>Hi ${escapeHtml(name.split(' ')[0] || 'there')},</p><p>${escapeHtml(confirmation)}</p><p>You only pay for the work. Call (818) 584-7389 if you need to add a detail.</p>`,
+        visitorHtml: `<p>Hi ${escapeHtml(name.split(' ')[0] || 'there')},</p><p><strong>${escapeHtml(HOMEOWNER_CONFIRMATION_HEADING)}</strong></p><p>${escapeHtml(confirmation)}</p><p>You only pay for the work. Call (818) 584-7389 if you need to add a detail.</p>`,
         notifyTitle: 'New homeowner project',
         notifyBody: lines.map(([l, v]) => `${l}: ${v}`).join('\n'),
       },
