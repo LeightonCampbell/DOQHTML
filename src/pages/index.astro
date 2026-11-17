@@ -24,7 +24,6 @@ const homeownerSteps = [
     <div class="hero-bg-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
     <section class="home-hero relative z-[2] flex flex-col items-center px-4 text-center" aria-label="Find your pro">
       <div class="container-max max-w-[1100px] mx-auto w-full">
-        <TrustBar tone="on-dark" />
         <h1 class="home-fade home-d1 font-display text-[clamp(2.1rem,5.4vw,4.4rem)] leading-[1.08] tracking-[-0.025em] max-w-[920px] mx-auto mb-4 text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
           Post your project. Get matched with a vetted pro. Done.
         </h1>
@@ -36,6 +35,7 @@ const homeownerSteps = [
             Find your pro
           </button>
           <p class="mt-3 text-sm text-white/80 max-w-[520px] mx-auto">{HOMEOWNER_REASSURANCE}</p>
+          <TrustBar tone="on-dark" />
         </div>
         <ol class="home-fade home-d4 home-steps">
           {homeownerSteps.map((step) => (
