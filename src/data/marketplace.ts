@@ -1,10 +1,6 @@
 /**
  * Canonical marketplace copy and public figures.
  *
- * TODO(leighton): Replace every PLACEHOLDER below with a verified figure
- * before the trust bar is treated as a real claim. These strings are
- * stand-ins, not performance numbers.
- *
  * TODO(leighton): Confirm the exact homeowner guarantee terms. GUARANTEE_LINE
  * is the homeowner-facing wording. PRO_GUARANTEE_LINE is the pro-facing line.
  */
@@ -17,12 +13,12 @@ export const PRO_GUARANTEE_LINE = 'Only pay for the jobs you win';
 
 export const trustBar = {
   verifiedProLabel: 'Verified Pro',
-  /** TODO(leighton): verified average star rating, for example "4.8". */
-  starRating: 'PLACEHOLDER',
-  /** TODO(leighton): verified review count, for example "326". */
-  reviewCount: 'PLACEHOLDER',
-  /** TODO(leighton): verified completed-project count, for example "1,240". */
-  completedProjects: 'PLACEHOLDER',
+  /** Main line beside the star. Not a numeric rating. */
+  ratingLabel: 'Real Customer',
+  /** Small line under the rating label. */
+  ratingMeta: 'reviews',
+  /** Main line for completed work. */
+  completedProjects: '20000+',
 } as const;
 
 /**
@@ -50,10 +46,6 @@ export const HOMEOWNER_REASSURANCE =
   'Free to post. No spam calls, and your details only go to the pro you’re matched with.';
 
 export const testimonials = {
-  homeowner: {
-    quote: '...this is what home services should feel like.',
-    name: 'Marcus C.',
-  },
   pro: {
     quote: 'I never fish for leads anymore; they come to me.',
     name: 'Michael W.',

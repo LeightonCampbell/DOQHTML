@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TestimonialStrip from '../components/TestimonialStrip.astro';
-import { GUARANTEE_LINE, HOMEOWNER_REASSURANCE, homeownerConfirmation, testimonials } from '../data/marketplace';
+import { GUARANTEE_LINE, HOMEOWNER_REASSURANCE, homeownerConfirmation } from '../data/marketplace';
 const canonical = 'https://www.dealsofquality.com/';
 const matchedCopy = homeownerConfirmation();
 const homeownerSteps = [
@@ -50,7 +50,7 @@ const homeownerSteps = [
     </section>
   </div>
 
-  <TestimonialStrip quote={testimonials.homeowner.quote} name={testimonials.homeowner.name} />
+  <TestimonialStrip />
 
   <div class="h-px bg-[#E8E5E0]" aria-hidden="true"></div>
 

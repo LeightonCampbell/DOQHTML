@@ -2,14 +2,14 @@
 import { trustBar } from '../data/marketplace';
 
 interface Props {
-  quote: string;
-  name: string;
+  quote?: string;
+  name?: string;
 }
 
 const { quote, name } = Astro.props;
 ---
 
-<section class="testimonial-strip" aria-label="Testimonial">
+<section class="testimonial-strip" aria-label={quote ? 'Testimonial' : 'Trust'}>
   <div class="testimonial-strip__inner">
     <div class="testimonial-strip__trust" role="list" aria-label="Trust">
       <div class="testimonial-strip__item" role="listitem">
@@ -22,18 +22,20 @@ const { quote, name } = Astro.props;
         <span class="testimonial-strip__strong">{trustBar.verifiedProLabel}</span>
       </div>
       <div class="testimonial-strip__item" role="listitem">
-        <span class="testimonial-strip__strong" aria-label={`Star rating ${trustBar.starRating}, ${trustBar.reviewCount} reviews`}>★ {trustBar.starRating}</span>
-        <span class="testimonial-strip__meta">{trustBar.reviewCount} reviews</span>
+        <span class="testimonial-strip__strong" aria-label={`${trustBar.ratingLabel} ${trustBar.ratingMeta}`}>★ {trustBar.ratingLabel}</span>
+        <span class="testimonial-strip__meta">{trustBar.ratingMeta}</span>
       </div>
       <div class="testimonial-strip__item" role="listitem">
         <span class="testimonial-strip__strong">{trustBar.completedProjects}</span>
         <span class="testimonial-strip__meta">completed projects</span>
       </div>
     </div>
-    <blockquote class="testimonial-strip__quote">
-      <p>{quote}</p>
-      <footer>{name}</footer>
-    </blockquote>
+    {quote && name && (
+      <blockquote class="testimonial-strip__quote">
+        <p>{quote}</p>
+        <footer>{name}</footer>
+      </blockquote>
+    )}
   </div>
 </section>
 
