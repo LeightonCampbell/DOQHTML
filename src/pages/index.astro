@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TrustBar from '../components/TrustBar.astro';
 import TestimonialStrip from '../components/TestimonialStrip.astro';
 import { GUARANTEE_LINE, HOMEOWNER_REASSURANCE, homeownerConfirmation, testimonials } from '../data/marketplace';
 const canonical = 'https://www.dealsofquality.com/';
@@ -36,7 +35,6 @@ const homeownerSteps = [
             Find your pro
           </button>
           <p class="mt-3 text-sm text-white/80 max-w-[520px] mx-auto">{HOMEOWNER_REASSURANCE}</p>
-          <TrustBar tone="on-dark" />
         </div>
         <ol class="home-fade home-d4 home-steps">
           {homeownerSteps.map((step) => (

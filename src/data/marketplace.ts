@@ -12,7 +12,7 @@
 export const GUARANTEE_LINE =
   "If the work isn't done as agreed, we'll make it right.";
 
-/** Shown on pro-facing pages, including the /join-as-pro/ trust bar. */
+/** Shown under the pro how-it-works steps. */
 export const PRO_GUARANTEE_LINE = 'Only pay for the jobs you win';
 
 export const trustBar = {

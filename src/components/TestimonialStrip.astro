@@ -1,4 +1,6 @@
 ---
+import { trustBar } from '../data/marketplace';
+
 interface Props {
   quote: string;
   name: string;
@@ -8,10 +10,31 @@ const { quote, name } = Astro.props;
 ---
 
 <section class="testimonial-strip" aria-label="Testimonial">
-  <blockquote class="testimonial-strip__quote">
-    <p>{quote}</p>
-    <footer>{name}</footer>
-  </blockquote>
+  <div class="testimonial-strip__inner">
+    <div class="testimonial-strip__trust" role="list" aria-label="Trust">
+      <div class="testimonial-strip__item" role="listitem">
+        <span class="testimonial-strip__badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14">
+            <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+            <path d="M8.5 12.2l2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+        <span class="testimonial-strip__strong">{trustBar.verifiedProLabel}</span>
+      </div>
+      <div class="testimonial-strip__item" role="listitem">
+        <span class="testimonial-strip__strong" aria-label={`Star rating ${trustBar.starRating}, ${trustBar.reviewCount} reviews`}>★ {trustBar.starRating}</span>
+        <span class="testimonial-strip__meta">{trustBar.reviewCount} reviews</span>
+      </div>
+      <div class="testimonial-strip__item" role="listitem">
+        <span class="testimonial-strip__strong">{trustBar.completedProjects}</span>
+        <span class="testimonial-strip__meta">completed projects</span>
+      </div>
+    </div>
+    <blockquote class="testimonial-strip__quote">
+      <p>{quote}</p>
+      <footer>{name}</footer>
+    </blockquote>
+  </div>
 </section>
 
 <style>
@@ -21,10 +44,64 @@ const { quote, name } = Astro.props;
     border-top: 1px solid #ede8df;
     border-bottom: 1px solid #ede8df;
   }
-  .testimonial-strip__quote {
-    max-width: 760px;
+  .testimonial-strip__inner {
+    max-width: 860px;
     margin: 0 auto;
-    padding: 28px 20px;
+    padding: 22px 16px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .testimonial-strip__trust {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    max-width: 640px;
+  }
+  .testimonial-strip__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    min-height: 0;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e4ddd2;
+    color: #141210;
+    text-align: left;
+  }
+  .testimonial-strip__item:first-child {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+  .testimonial-strip__badge {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #0073e6;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .testimonial-strip__strong {
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  .testimonial-strip__meta {
+    font-size: 10px;
+    line-height: 1.25;
+    color: #5c6570;
+  }
+  .testimonial-strip__quote {
+    margin: 0;
+    max-width: 720px;
     text-align: center;
   }
   .testimonial-strip__quote p {
@@ -35,10 +112,9 @@ const { quote, name } = Astro.props;
     color: #141210;
   }
   .testimonial-strip__quote footer {
-    margin-top: 12px;
+    margin-top: 10px;
     font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.01em;
     color: #0073e6;
   }
 </style>
