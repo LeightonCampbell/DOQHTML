@@ -1,8 +1,7 @@
-import { DiscordNotifier } from './discord';
-import { TelegramNotifier } from './telegram';
-import type { Notifier, NotifyEnv } from './types';
+import type { NotifyEnv } from './types';
 
-export type { Notifier, NotifyEnv, NotifyMessage } from './types';
+export type { NotifyEnv, NotifyMessage } from './types';
+export { sendTelegram } from './telegram';
 
 function pick(runtime: Record<string, string | undefined>, key: string): string {
   const fromRuntime = runtime[key];
@@ -19,8 +18,6 @@ export function readNotifyEnv(locals: { runtime?: { env?: Record<string, string>
     RESEND_API_KEY: pick(runtime, 'RESEND_API_KEY'),
     RESEND_FROM: pick(runtime, 'RESEND_FROM') || pick(runtime, 'FROM_EMAIL'),
     NOTIFY_EMAIL_TO: pick(runtime, 'NOTIFY_EMAIL_TO') || pick(runtime, 'NOTIFICATION_EMAIL'),
-    DISCORD_WEBHOOK_URL: pick(runtime, 'DISCORD_WEBHOOK_URL'),
-    NOTIFY_CHANNEL: (pick(runtime, 'NOTIFY_CHANNEL') || 'discord').toLowerCase(),
     TELEGRAM_BOT_TOKEN: pick(runtime, 'TELEGRAM_BOT_TOKEN'),
     TELEGRAM_CHAT_ID: pick(runtime, 'TELEGRAM_CHAT_ID'),
     NOTIFY_DRY_RUN: pick(runtime, 'NOTIFY_DRY_RUN'),
@@ -32,13 +29,11 @@ export function isDryRun(env: NotifyEnv): boolean {
   return flag === '1' || flag === 'true' || flag === 'yes' || env.RESEND_API_KEY === 'test';
 }
 
-/** Discord by default. Set NOTIFY_CHANNEL=telegram to switch senders. */
-export function createNotifier(env: NotifyEnv): Notifier {
-  if (env.NOTIFY_CHANNEL === 'telegram') {
-    return new TelegramNotifier(env.TELEGRAM_BOT_TOKEN, env.TELEGRAM_CHAT_ID);
-  }
-  if (env.NOTIFY_CHANNEL !== 'discord') {
-    throw new Error(`Unknown NOTIFY_CHANNEL "${env.NOTIFY_CHANNEL}". Use discord or telegram.`);
-  }
-  return new DiscordNotifier(env.DISCORD_WEBHOOK_URL);
+/** Names of the Resend settings that are still empty after the documented fallbacks. */
+export function missingResendNames(env: NotifyEnv): string[] {
+  const missing: string[] = [];
+  if (!env.RESEND_API_KEY) missing.push('RESEND_API_KEY');
+  if (!env.RESEND_FROM) missing.push('RESEND_FROM');
+  if (!env.NOTIFY_EMAIL_TO) missing.push('NOTIFY_EMAIL_TO');
+  return missing;
 }

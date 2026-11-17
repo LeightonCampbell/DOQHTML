@@ -905,7 +905,8 @@ const bookingCategories = [
           urgency: (urgencyRadio && urgencyRadio.value) || '',
           details: (document.getElementById('quote-details') && document.getElementById('quote-details').value) || '',
           company_website: (quoteForm.querySelector('[name="company_website"]') && quoteForm.querySelector('[name="company_website"]').value) || '',
-          _gotcha: (quoteForm.querySelector('[name="_gotcha"]') && quoteForm.querySelector('[name="_gotcha"]').value) || ''
+          _gotcha: (quoteForm.querySelector('[name="_gotcha"]') && quoteForm.querySelector('[name="_gotcha"]').value) || '',
+          page: window.location.pathname
         };
         if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
         fetch('/api/quote/', {
@@ -1013,7 +1014,8 @@ const bookingCategories = [
           zip: (document.getElementById('booking-hidden-zip') && document.getElementById('booking-hidden-zip').value) || '',
           preferredTiming: (timingRadio && timingRadio.value) || '',
           details: (document.getElementById('booking-details') && document.getElementById('booking-details').value) || '',
-          company_website: (bookingForm.querySelector('[name="company_website"]') && bookingForm.querySelector('[name="company_website"]').value) || ''
+          company_website: (bookingForm.querySelector('[name="company_website"]') && bookingForm.querySelector('[name="company_website"]').value) || '',
+          page: window.location.pathname
         };
         if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
         fetch('/api/quote/', {

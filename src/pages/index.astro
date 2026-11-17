@@ -557,7 +557,8 @@ const homeownerSteps = [
           preferredTiming: inlineTiming || undefined,
           details: document.getElementById('i-notes')?.value?.trim() || undefined,
           company_website: document.getElementById('i-company')?.value || '',
-          formType: 'project'
+          formType: 'project',
+          page: location.pathname
         };
         try {
           const res = await fetch('/api/quote/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });

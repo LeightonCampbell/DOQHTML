@@ -481,9 +481,27 @@ const phone = 'tel:+18185847389';
         var email = document.getElementById('sh-email').value.trim();
         var phone = document.getElementById('sh-phone').value.trim();
         if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
-        document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('sh-form-success').style.display = 'block';
-        document.querySelector('#sh-quote-form .progress-wrap').style.display = 'none';
+        var btn = document.querySelector('#form-wrap .btn-next.gold');
+        if (btn) btn.disabled = true;
+        window.doqSubmitLead({
+          formType: 'quote',
+          name: name,
+          email: email,
+          phone: phone,
+          service: 'Smart Home',
+          zip: (document.getElementById('sh-zip') || {}).value || '',
+          issue: (document.getElementById('sh-issue') || {}).value || '',
+          details: (document.getElementById('sh-notes') || {}).value || '',
+          page: location.pathname
+        }).then(function () {
+          document.getElementById('form-wrap').style.display = 'none';
+          document.getElementById('sh-form-success').style.display = 'block';
+          var progress = document.querySelector('#sh-quote-form .progress-wrap');
+          if (progress) progress.style.display = 'none';
+        }).catch(function (err) {
+          if (btn) btn.disabled = false;
+          window.doqShowLeadError('form-wrap', err && err.message);
+        });
       };
     })();
   </script>

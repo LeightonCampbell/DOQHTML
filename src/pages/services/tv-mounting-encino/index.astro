@@ -432,9 +432,31 @@ const locations = TV_MOUNTING_CITIES.map(({ slug: s, name }) => ({
         var email = document.getElementById('f-email').value.trim();
         var phone = document.getElementById('f-phone').value.trim();
         if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
-        document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-        document.querySelector('.tvm-page .progress-wrap').style.display = 'none';
+        var btn = document.querySelector('#form-wrap .btn-next.gold');
+        if (btn) btn.disabled = true;
+        var sizeEl = document.getElementById('f-tvsize');
+        var notesEl = document.getElementById('f-notes');
+        var zipEl = document.getElementById('f-zip');
+        window.doqSubmitLead({
+          formType: 'quote',
+          name: name,
+          email: email,
+          phone: phone,
+          service: 'TV Mounting',
+          zip: zipEl ? zipEl.value : '',
+          preferredTiming: window.selectedTiming || '',
+          tvSize: sizeEl ? sizeEl.value : '',
+          details: notesEl ? notesEl.value.trim() : '',
+          page: location.pathname
+        }).then(function () {
+          document.getElementById('form-wrap').style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+          var progress = document.querySelector('.tvm-page .progress-wrap');
+          if (progress) progress.style.display = 'none';
+        }).catch(function (err) {
+          if (btn) btn.disabled = false;
+          window.doqShowLeadError('form-wrap', err && err.message);
+        });
       };
       window.scrollToQuote = function(e) {
         if (e) e.preventDefault();

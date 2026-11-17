@@ -278,9 +278,28 @@ const quoteFormServices = [
         var email = document.getElementById('ts-email').value.trim();
         var phone = document.getElementById('ts-phone').value.trim();
         if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
-        document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('ts-form-success').style.display = 'block';
-        document.querySelector('#quote-form .progress-wrap').style.display = 'none';
+        var btn = document.querySelector('#form-wrap .btn-next.gold');
+        if (btn) btn.disabled = true;
+        window.doqSubmitLead({
+          formType: 'quote',
+          name: name,
+          email: email,
+          phone: phone,
+          service: 'Tech Support',
+          zip: (document.getElementById('ts-zip') || {}).value || '',
+          issue: (document.getElementById('ts-issue') || {}).value || '',
+          preferredTiming: window.selectedTsMode || '',
+          details: (document.getElementById('ts-notes') || {}).value || '',
+          page: location.pathname
+        }).then(function () {
+          document.getElementById('form-wrap').style.display = 'none';
+          document.getElementById('ts-form-success').style.display = 'block';
+          var progress = document.querySelector('#quote-form .progress-wrap');
+          if (progress) progress.style.display = 'none';
+        }).catch(function (err) {
+          if (btn) btn.disabled = false;
+          window.doqShowLeadError('form-wrap', err && err.message);
+        });
       };
     })();
   </script>

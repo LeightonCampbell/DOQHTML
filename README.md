@@ -32,6 +32,24 @@ src/
 - **Head component:** Every page passes `title`, `description`, and `canonical` (full URL). One set of meta tags per page.
 - **Folder-based routing:** `src/pages/services/tv-mounting-los-angeles/index.astro` → `dist/services/tv-mounting-los-angeles/index.html` (trailing-slash structure for SEO parity).
 
+## Form notifications
+
+Every lead form posts to a Pages function that calls `handleSubmission` in `src/lib/submissions.ts`. Resend email is required. Telegram is a second ping and does not block the confirmation if it is not configured.
+
+Set these on the Cloudflare Pages project `doqhtml`, for both Production and Preview. Do not commit values.
+
+| Name | Required | Notes |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Yes, secret | Resend API key |
+| `RESEND_FROM` | Yes | Verified sender. `FROM_EMAIL` is used when this is empty |
+| `NOTIFY_EMAIL_TO` | Yes | Inbox that receives every submission. `NOTIFICATION_EMAIL` is used when this is empty |
+| `TELEGRAM_BOT_TOKEN` | Secret, for the chat ping | Bot token from BotFather |
+| `TELEGRAM_CHAT_ID` | For the chat ping | Chat that receives the message |
+
+If `RESEND_API_KEY`, `RESEND_FROM`, or `NOTIFY_EMAIL_TO` is missing, the function logs the missing names and returns an error. The form shows that error instead of the success screen. A failed Telegram send is logged with the Resend message id, and the form still succeeds because the email already has the lead.
+
+`NOTIFY_DRY_RUN=1` skips both sends. Use it only for local checks.
+
 ## Commands
 
 | Command        | Action           |

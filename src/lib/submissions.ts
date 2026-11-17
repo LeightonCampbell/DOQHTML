@@ -4,12 +4,12 @@ import {
   homeownerConfirmation,
   proApplicationConfirmation,
 } from '../data/marketplace';
-import { createNotifier, isDryRun, readNotifyEnv } from './notify';
+import { isDryRun, missingResendNames, readNotifyEnv, sendTelegram } from './notify';
 
-export type SubmissionKind = 'project' | 'pro' | 'contact';
+export type SubmissionKind = 'project' | 'pro' | 'contact' | 'newsletter';
 
 const USER_ERROR =
-  "We couldn't send that just now. Please try again, or call (818) 584-7389.";
+  "Something went wrong. Please call (818) 584-7389 or email us and we'll take it from here.";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const HONEYPOT_FIELDS = ['company_website', 'website_url', '_gotcha'];
@@ -114,6 +114,58 @@ type Prepared = {
   notifyBody: string;
 };
 
+const SKIP_EXTRAS = new Set([
+  ...HONEYPOT_FIELDS,
+  'formType',
+  'form_type',
+  '_subject',
+  'page',
+  'name',
+  'email',
+  'phone',
+  'service',
+  'serviceOther',
+  'zip',
+  'preferredTiming',
+  'urgency',
+  'timing',
+  'details',
+  'message',
+  'firstName',
+  'lastName',
+  'businessName',
+  'primaryService',
+  'primaryServiceOther',
+  'hasLiabilityInsurance',
+  'category',
+]);
+
+function pageValue(fields: Fields): string {
+  return clean(fields.page, 300) || 'Not provided';
+}
+
+function extraFieldLines(fields: Fields): [string, string][] {
+  const lines: [string, string][] = [];
+  for (const [key, value] of Object.entries(fields)) {
+    if (SKIP_EXTRAS.has(key)) continue;
+    const cleaned = clean(value, 2000);
+    if (!cleaned) continue;
+    lines.push([key, cleaned]);
+  }
+  return lines;
+}
+
+function describe(kind: SubmissionKind, lines: readonly (readonly [string, string])[]): {
+  ownerHtml: string;
+  notifyBody: string;
+} {
+  const full = [['Form', kind], ...lines] as const;
+  return {
+    ownerHtml: full.map(([label, value]) => row(label, value)).join(''),
+    notifyBody: full.map(([label, value]) => `${label}: ${value}`).join('\n'),
+  };
+}
+
 function row(label: string, value: string): string {
   return `<p style="margin:0 0 8px;"><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value || '—')}</p>`;
 }
@@ -145,18 +197,21 @@ function prepare(kind: SubmissionKind, fields: Fields): { ok: true; prepared: Pr
       ['ZIP', zip],
       ['Timing', timing || 'Not specified'],
       ['Details', details || 'None'],
+      ['Page', pageValue(fields)],
+      ...extraFieldLines(fields),
     ] as const;
+    const described = describe('project', lines);
     const confirmation = homeownerConfirmation();
     return {
       ok: true,
       prepared: {
         subject: `New project — ${service} — ${zip}`,
-        ownerHtml: `<h1>New homeowner project</h1>${lines.map(([l, v]) => row(l, v)).join('')}`,
+        ownerHtml: `<h1>New homeowner project</h1>${described.ownerHtml}`,
         visitorEmail: email,
         visitorSubject: 'Your project is posted — Deals of Quality',
         visitorHtml: `<p>Hi ${escapeHtml(name.split(' ')[0] || 'there')},</p><p><strong>${escapeHtml(HOMEOWNER_CONFIRMATION_HEADING)}</strong></p><p>${escapeHtml(confirmation)}</p><p>You only pay for the work. Call (818) 584-7389 if you need to add a detail.</p>`,
         notifyTitle: 'New homeowner project',
-        notifyBody: lines.map(([l, v]) => `${l}: ${v}`).join('\n'),
+        notifyBody: described.notifyBody,
       },
     };
   }
@@ -186,17 +241,42 @@ function prepare(kind: SubmissionKind, fields: Fields): { ok: true; prepared: Pr
       ['Trade', service],
       ['ZIP', zip],
       ['Liability insurance', hasInsurance ? 'Yes' : 'Not confirmed'],
+      ['Page', pageValue(fields)],
+      ...extraFieldLines(fields),
     ] as const;
+    const described = describe('pro', lines);
     return {
       ok: true,
       prepared: {
         subject: `New pro application — ${business}`,
-        ownerHtml: `<h1>New pro application</h1>${lines.map(([l, v]) => row(l, v)).join('')}`,
+        ownerHtml: `<h1>New pro application</h1>${described.ownerHtml}`,
         visitorEmail: email,
         visitorSubject: 'We received your application — Deals of Quality',
         visitorHtml: `<p>Hi ${escapeHtml(first)},</p><p>${escapeHtml(proApplicationConfirmation())}</p>`,
         notifyTitle: 'New pro application',
-        notifyBody: lines.map(([l, v]) => `${l}: ${v}`).join('\n'),
+        notifyBody: described.notifyBody,
+      },
+    };
+  }
+
+  if (kind === 'newsletter') {
+    const email = clean(fields.email, 160).toLowerCase();
+    const lines = [
+      ['Email', email],
+      ['Page', pageValue(fields)],
+      ...extraFieldLines(fields),
+    ] as const;
+    const described = describe('newsletter', lines);
+    return {
+      ok: true,
+      prepared: {
+        subject: 'New newsletter signup',
+        ownerHtml: `<h1>New newsletter signup</h1>${described.ownerHtml}`,
+        visitorEmail: email,
+        visitorSubject: 'You are subscribed — Deals of Quality',
+        visitorHtml: `<p>Thanks for subscribing. We'll send occasional tips to this address.</p>`,
+        notifyTitle: 'New newsletter signup',
+        notifyBody: described.notifyBody,
       },
     };
   }
@@ -213,22 +293,25 @@ function prepare(kind: SubmissionKind, fields: Fields): { ok: true; prepared: Pr
     ['Email', email],
     ['Phone', phone || 'Not provided'],
     ['Message', message],
+    ['Page', pageValue(fields)],
+    ...extraFieldLines(fields),
   ] as const;
+  const described = describe('contact', lines);
   return {
     ok: true,
     prepared: {
       subject: `New message — ${name}`,
-      ownerHtml: `<h1>New contact message</h1>${lines.map(([l, v]) => row(l, v)).join('')}`,
+      ownerHtml: `<h1>New contact message</h1>${described.ownerHtml}`,
       visitorEmail: email,
       visitorSubject: 'We received your message — Deals of Quality',
       visitorHtml: `<p>Hi ${escapeHtml(name.split(' ')[0] || 'there')},</p><p>${escapeHtml(contactConfirmation())}</p><p>Call (818) 584-7389 if you would rather talk it through.</p>`,
       notifyTitle: 'New contact message',
-      notifyBody: lines.map(([l, v]) => `${l}: ${v}`).join('\n'),
+      notifyBody: described.notifyBody,
     },
   };
 }
 
-async function sendResend(apiKey: string, payload: Record<string, unknown>): Promise<void> {
+async function sendResend(apiKey: string, payload: Record<string, unknown>): Promise<{ id: string }> {
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -237,9 +320,18 @@ async function sendResend(apiKey: string, payload: Record<string, unknown>): Pro
     },
     body: JSON.stringify(payload),
   });
+  const raw = await response.text();
+  let parsed: { id?: unknown } = {};
+  try {
+    parsed = raw ? (JSON.parse(raw) as { id?: unknown }) : {};
+  } catch {
+    parsed = {};
+  }
   if (!response.ok) {
+    console.error(`[submission] Resend error status=${response.status} body=${raw.slice(0, 500)}`);
     throw new Error(`Resend failed (${response.status}).`);
   }
+  return { id: typeof parsed.id === 'string' ? parsed.id : '' };
 }
 
 export async function handleSubmission(
@@ -254,7 +346,17 @@ export async function handleSubmission(
     return json({ success: false, error: 'We could not read that submission. Please try again.' }, 400);
   }
 
+  if (!clean(fields.page, 300)) {
+    const referer = request.headers.get('referer') || '';
+    try {
+      fields.page = new URL(referer).pathname || referer;
+    } catch {
+      if (referer) fields.page = clean(referer, 300);
+    }
+  }
+
   if (honeypotTripped(fields)) {
+    console.warn(`[submission] honeypot rejected form=${kind}`);
     return json({ success: true }, 200);
   }
 
@@ -267,36 +369,49 @@ export async function handleSubmission(
     return json({ success: true, dryRun: true }, 200);
   }
 
-  if (!env.RESEND_API_KEY || !env.RESEND_FROM || !env.NOTIFY_EMAIL_TO) {
-    console.error('[submission] Missing RESEND_API_KEY, RESEND_FROM, or NOTIFY_EMAIL_TO');
+  const missing = missingResendNames(env);
+  if (missing.length) {
+    console.error(`[submission] Missing required env: ${missing.join(', ')}`);
     return json({ success: false, error: USER_ERROR }, 500);
   }
 
   const { prepared } = result;
+  let resendId = '';
   try {
-    await sendResend(env.RESEND_API_KEY, {
+    const owner = await sendResend(env.RESEND_API_KEY, {
       from: env.RESEND_FROM,
       to: env.NOTIFY_EMAIL_TO,
       reply_to: prepared.visitorEmail,
       subject: prepared.subject,
       html: `<div style="font-family:sans-serif;line-height:1.5">${prepared.ownerHtml}</div>`,
     });
-    await sendResend(env.RESEND_API_KEY, {
+    resendId = owner.id;
+    const visitor = await sendResend(env.RESEND_API_KEY, {
       from: env.RESEND_FROM,
       to: prepared.visitorEmail,
       subject: prepared.visitorSubject,
       html: `<div style="font-family:sans-serif;line-height:1.5">${prepared.visitorHtml}</div>`,
     });
+    console.info(`[submission] email sent kind=${kind} resendId=${resendId} visitorId=${visitor.id}`);
   } catch (error) {
-    console.error('[submission] email failed', error);
+    console.error(`[submission] email failed kind=${kind} resendId=${resendId || 'none'}`, error);
     return json({ success: false, error: USER_ERROR }, 502);
   }
 
+  const telegramMissing: string[] = [];
+  if (!env.TELEGRAM_BOT_TOKEN) telegramMissing.push('TELEGRAM_BOT_TOKEN');
+  if (!env.TELEGRAM_CHAT_ID) telegramMissing.push('TELEGRAM_CHAT_ID');
+  if (telegramMissing.length) {
+    console.error(
+      `[submission] Telegram not sent; missing ${telegramMissing.join(', ')}; resendId=${resendId}`,
+    );
+    return json({ success: true }, 200);
+  }
+
   try {
-    const notifier = createNotifier(env);
-    await notifier.send({ title: prepared.notifyTitle, body: prepared.notifyBody });
+    await sendTelegram(env, { title: prepared.notifyTitle, body: prepared.notifyBody });
   } catch (error) {
-    console.error('[submission] notification failed', error);
+    console.error(`[submission] Telegram failed; resendId=${resendId}`, error);
   }
 
   return json({ success: true }, 200);

@@ -514,6 +514,7 @@ const services = [
 
       try {
         const formData = new FormData(form);
+        formData.set('page', window.location.pathname);
         const response = await fetch(form.action || '/api/apply/', {
           method: 'POST',
           body: formData,
