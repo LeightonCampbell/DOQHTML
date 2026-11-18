@@ -1,0 +1,39 @@
+/**
+ * Canonical marketplace copy and public figures.
+ *
+ * TODO(leighton): Confirm the exact homeowner guarantee terms. GUARANTEE_LINE
+ * is the homeowner-facing wording. PRO_GUARANTEE_LINE is the pro-facing line.
+ */
+
+export const GUARANTEE_LINE =
+  "If the work isn't done as agreed, we'll make it right.";
+
+/** Shown under the pro how-it-works steps. */
+export const PRO_GUARANTEE_LINE = 'Only pay for the jobs you win';
+
+/**
+ * Hours named in the contact reply and the pro application confirmation.
+ * TODO(leighton): confirm the real response window before this is a promise.
+ */
+export const PRO_CONTACT_WITHIN_HOURS = 24;
+
+export const HOMEOWNER_CONFIRMATION_HEADING = "We've got your request!";
+
+export function homeownerConfirmation(): string {
+  return 'A DoQuality agent will be in touch shortly to discuss your needs and connect you with the right Pro.';
+}
+
+export function contactConfirmation(
+  hours: number = PRO_CONTACT_WITHIN_HOURS,
+): string {
+  return `Message received. We'll reply within ${hours} hours.`;
+}
+
+export function proApplicationConfirmation(
+  hours: number = PRO_CONTACT_WITHIN_HOURS,
+): string {
+  return `Thanks! We'll reach out within ${hours} hours to verify your license and insurance, then start matching you with jobs in your trade and area.`;
+}
+
+export const HOMEOWNER_REASSURANCE =
+  'Free to post. No spam calls, and your details only go to the pro you’re matched with.';

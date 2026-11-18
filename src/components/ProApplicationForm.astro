@@ -1,4 +1,6 @@
 ---
+import { proApplicationConfirmation } from '../data/marketplace';
+
 const services = [
   'House Cleaning / Maid Service',
   'Plumbing',
@@ -14,10 +16,14 @@ const services = [
 
 <section class="pro-application-section" id="join-as-a-pro">
   <div class="pro-form-container">
-    <h2 class="pro-form-title">Join as a Pro</h2>
-    <p class="pro-form-subtitle">Tell us a bit about your business and we’ll reach out with next steps.</p>
+    <h2 class="pro-form-title">Get jobs</h2>
+    <p class="pro-form-subtitle">Apply and get verified with your license and insurance.</p>
 
-    <form id="pro-application-form" method="post" action="/api/apply">
+    <form id="pro-application-form" method="post" action="/api/apply/">
+      <div class="pro-honeypot" aria-hidden="true">
+        <label for="pro-company-website">Company website</label>
+        <input id="pro-company-website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
       <div class="pro-steps-indicator" aria-hidden="true">
         <div class="pro-step-dot" data-step-indicator="1">1</div>
         <div class="pro-step-dot" data-step-indicator="2">2</div>
@@ -138,6 +144,10 @@ const services = [
 
       <p id="pro-form-message" class="pro-form-message" hidden></p>
     </form>
+    <div id="pro-confirmation" class="pro-confirmation" hidden>
+      <h3>Application received</h3>
+      <p>{proApplicationConfirmation()}</p>
+    </div>
   </div>
 </section>
 
@@ -148,6 +158,28 @@ const services = [
   }
   .hidden {
     display: none !important;
+  }
+  .pro-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .pro-confirmation {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+  .pro-confirmation h3 {
+    font-size: 1.75rem;
+    margin: 0 0 0.75rem;
+    color: #141210;
+  }
+  .pro-confirmation p {
+    margin: 0 auto;
+    max-width: 36rem;
+    color: #3f4a56;
+    line-height: 1.6;
   }
   .pro-form-container {
     max-width: 640px;
@@ -482,27 +514,26 @@ const services = [
 
       try {
         const formData = new FormData(form);
-        const response = await fetch(form.action || '/api/apply', {
+        formData.set('page', window.location.pathname);
+        const response = await fetch(form.action || '/api/apply/', {
           method: 'POST',
           body: formData,
         });
+        const data = await response.json().catch(() => ({}));
 
-        if (!response.ok) {
-          throw new Error('Request failed');
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || 'Request failed');
         }
 
-        if (messageEl) {
-          messageEl.textContent =
-            'Thank you for applying as a pro. We\'ll review your details and reach out with next steps.';
-          messageEl.classList.remove('pro-form-message--error');
-          messageEl.hidden = false;
-        }
-        form.reset();
-        setStep(1);
+        form.hidden = true;
+        const confirmation = document.getElementById('pro-confirmation');
+        if (confirmation) confirmation.hidden = false;
       } catch (error) {
         console.error('Pro application error', error);
         messageEl.textContent =
-          'Something went wrong submitting your application. Please try again or contact support.';
+          error instanceof Error && error.message && error.message !== 'Request failed'
+            ? error.message
+            : 'We couldn’t send your application. Please try again, or call (818) 584-7389.';
         messageEl.classList.add('pro-form-message--error');
         messageEl.hidden = false;
       } finally {

@@ -85,7 +85,7 @@ const quoteFormServices = [
             <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.5H13l-3 2 1 3.5L8 8.5 5 10l1-3.5-3-2h3.5L8 1Z" fill="currentColor"></path></svg> On‑site &amp; remote</div>
             <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg> Certified technicians</div>
             <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> 24/7 remote available</div>
-            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3"></path><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> 30-day guarantee</div>
+            <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1Z" stroke="currentColor" stroke-width="1.3"></path><path d="M5.5 8l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> work guarantee</div>
             <div class="hts-item"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg> Upfront pricing</div>
           </div>
         </div>
@@ -98,7 +98,7 @@ const quoteFormServices = [
           <div class="proof-cell"><span class="proof-num">50+</span><span class="proof-lbl">Cities served</span></div>
           <div class="proof-cell"><span class="counter" data-target="4.8" data-suffix="★" data-decimal="1">4.8★</span><span class="proof-lbl">Average rating</span></div>
           <div class="proof-cell"><span class="counter" data-target="98" data-suffix="%">98%</span><span class="proof-lbl">Satisfaction rate</span></div>
-          <div class="proof-cell"><span class="proof-num">30</span><span class="proof-lbl">Day guarantee</span></div>
+          <div class="proof-cell"><span class="proof-num">✓</span><span class="proof-lbl">Work guarantee</span></div>
         </div>
       </div>
     </section>
@@ -116,7 +116,7 @@ const quoteFormServices = [
           <div class="solve-copy fade-up d1 visible">
             <div class="section-eyebrow">Every Tech Problem. Solved.</div>
             <h2 class="solve-heading">On‑site or online. <em>Fixed fast.</em></h2>
-            <p>We don't leave you guessing. Tell us what's wrong — we match you to the right kind of help and fix it on‑site or over a secure remote session. Microsoft Certified, Apple Authorized, CompTIA A+ techs. Flat-rate quotes before we start. A 30-day guarantee if the same issue returns.</p>
+            <p>We don't leave you guessing. Tell us what's wrong — we match you to the right kind of help and fix it on‑site or over a secure remote session. Microsoft Certified, Apple Authorized, CompTIA A+ techs. Flat-rate quotes before we start. A work guarantee if the same issue returns.</p>
             <button type="button" class="btn-primary-gold tvm-book-btn" data-open-quote="true" data-service="Tech Support"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Tech Support Quote</button>
           </div>
         </div>
@@ -208,7 +208,7 @@ const quoteFormServices = [
       <div class="container">
         <div class="section-eyebrow">Your Tech Problem Ends Today</div>
         <h2>On-site or online. We fix it.</h2>
-        <p>50+ cities. Microsoft Certified, Apple Authorized, CompTIA A+ techs. Remote support in under 15 minutes. Same transparent pricing, same 30-day guarantee.</p>
+        <p>50+ cities. Microsoft Certified, Apple Authorized, CompTIA A+ techs. Remote support in under 15 minutes. Same transparent pricing, same work guarantee.</p>
         <div class="final-cta-btns">
           <button type="button" class="btn-primary-gold" data-open-quote="true" data-service="Tech Support"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12 5.5 15 7 10 3 7h5L10 2Z" fill="currentColor"></path></svg> Get a Free Quote</button>
           <a class="btn-ghost-white-final" href={phone} style="color:#ffffff;">
@@ -278,9 +278,28 @@ const quoteFormServices = [
         var email = document.getElementById('ts-email').value.trim();
         var phone = document.getElementById('ts-phone').value.trim();
         if (!name || !email || !phone) { alert('Please fill in all contact fields.'); return; }
-        document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('ts-form-success').style.display = 'block';
-        document.querySelector('#quote-form .progress-wrap').style.display = 'none';
+        var btn = document.querySelector('#form-wrap .btn-next.gold');
+        if (btn) btn.disabled = true;
+        window.doqSubmitLead({
+          formType: 'quote',
+          name: name,
+          email: email,
+          phone: phone,
+          service: 'Tech Support',
+          zip: (document.getElementById('ts-zip') || {}).value || '',
+          issue: (document.getElementById('ts-issue') || {}).value || '',
+          preferredTiming: window.selectedTsMode || '',
+          details: (document.getElementById('ts-notes') || {}).value || '',
+          page: location.pathname
+        }).then(function () {
+          document.getElementById('form-wrap').style.display = 'none';
+          document.getElementById('ts-form-success').style.display = 'block';
+          var progress = document.querySelector('#quote-form .progress-wrap');
+          if (progress) progress.style.display = 'none';
+        }).catch(function (err) {
+          if (btn) btn.disabled = false;
+          window.doqShowLeadError('form-wrap', err && err.message);
+        });
       };
     })();
   </script>

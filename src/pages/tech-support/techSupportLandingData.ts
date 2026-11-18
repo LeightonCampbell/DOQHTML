@@ -64,7 +64,7 @@ const sharedProcessSteps: ProcessStep[] = [
 ];
 
 const sharedGuarantee = [
-  { title: '30-Day Service Guarantee', body: 'If the same issue returns within 30 days of our visit, we come back and fix it at no additional charge. No runaround.' },
+  { title: 'Work guarantee', body: 'If the work isn\'t done as agreed, we\'ll make it right.' },
   { title: 'Upfront Price. Final Price.', body: 'We quote before we start. What we quote is what you pay. No surprise charges, no hourly billing that drags on forever.' },
   { title: 'Certified, background-checked technicians', body: 'Every technician is certified on the platforms they work on and has passed a thorough background check. We don\'t cut corners on who enters your home or accesses your devices.' },
 ];
@@ -124,7 +124,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
       heading: 'Real technicians. Secure connection. <em>Fixed in real time.</em>',
       paragraphs: [
         'Deals of Quality remote support isn\'t a call center reading from a script. You get a certified technician who connects securely to your device, sees exactly what you see, and fixes the issue while you watch — or step away and grab coffee. We use the same remote tools that enterprise IT departments use, with the same security and transparency.',
-        'You describe the problem. We connect, diagnose, and fix. When we\'re done, we explain what was wrong and how to avoid it next time. If the same issue comes back within 30 days, we fix it again at no extra charge.',
+        'You describe the problem. We connect, diagnose, and fix. When we\'re done, we explain what was wrong and how to avoid it next time. If the work isn\'t done as agreed, we\'ll make it right.',
       ],
       points: [
         { strong: 'No driving, no waiting', text: 'We connect to your device over a secure link. Same-day and next-day slots available; many issues can be handled in under an hour.' },
@@ -150,7 +150,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
     slug: 'computer-repair',
     serviceLabel: 'Computer Repair',
     title: 'Computer & Device Repair | Deals of Quality – On-Site PC & Mac Repair',
-    description: 'On-site PC and Mac repair for hardware failures, slow performance, and broken components. Certified technicians at your location. Transparent pricing, 30-day guarantee.',
+    description: 'On-site PC and Mac repair for hardware failures, slow performance, and broken components. Certified technicians at your location. Transparent pricing, work guarantee.',
     canonicalPath: '/tech-support/computer-repair/',
     hero: {
       h1: 'Your computer shouldn\'t slow you down<br /><em>or leave you stranded.</em>',
@@ -174,11 +174,11 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
       paragraphs: [
         'You tell yourself you\'ll back everything up "this weekend." You\'ll take it in "when things calm down." Meanwhile, every boot gets slower, every crash more frequent. One day the drive doesn\'t spin up at all.',
         'Data recovery is possible in many cases — but it\'s expensive and not guaranteed. The real fix is getting a proper diagnosis and repair before the point of no return. And when you do get help, you want someone who won\'t upsell you, lose your files, or leave you with the same problem in a month.',
-        'We exist so you get a certified technician at your door, a clear price before any work starts, and a 30-day guarantee so the fix actually holds.',
+        'We exist so you get a certified technician at your door, a clear price before any work starts, and a work guarantee so the fix actually holds.',
       ],
       stats: [
         { num: '67%', label: 'of users who delayed repair said the problem got worse', sub: '...and cost more to fix — or led to data loss.' },
-        { num: '30 days', label: 'service guarantee on every repair', sub: 'Same issue returns? We fix it again at no extra charge.' },
+        { num: 'Guarantee', label: "If the work isn\'t done as agreed, we\'ll make it right.", sub: 'That is the promise on every repair.' },
         { num: 'On-site', label: 'we come to you', sub: 'No lugging your tower or laptop to a strip-mall shop.' },
       ],
     },
@@ -187,7 +187,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
       heading: 'Certified repair. At your location. <em>Done right.</em>',
       paragraphs: [
         'Deals of Quality computer repair brings certified technicians to your home or office. We diagnose hardware and software issues, perform repairs and upgrades, and get your PC or Mac back to speed — with upfront pricing and no surprise parts bills.',
-        'We don\'t replace parts for the sake of it. We find the root cause, fix it, and leave you with a machine that works and a clear explanation of what was wrong. If the same issue comes back within 30 days, we come back and make it right at no additional charge.',
+        'We don\'t replace parts for the sake of it. We find the root cause, fix it, and leave you with a machine that works and a clear explanation of what was wrong. If the work isn\'t done as agreed, we\'ll make it right.',
       ],
       points: [
         { strong: 'We come to you', text: 'No need to unplug, pack, or drive. We work at your location and leave your setup intact.' },
@@ -313,7 +313,7 @@ const content: Record<TechLandingSlug, TechLandingContent> = {
       heading: 'Complete removal. No traces. <em>And a system that stays clean.</em>',
       paragraphs: [
         'Deals of Quality virus and malware removal starts with a thorough diagnosis. We run professional-grade scans, check for rootkits and persistence mechanisms, and remove every trace of the threat. Then we harden your system — updates, settings, and best practices — so you\'re not left vulnerable again.',
-        'We work remotely or on-site, depending on the situation. When we\'re done, we explain what we found, what we did, and what you should do next. If the same type of infection returns within 30 days due to our oversight, we address it at no extra charge.',
+        'We work remotely or on-site, depending on the situation. When we\'re done, we explain what we found, what we did, and what you should do next. If the work isn\'t done as agreed, we\'ll make it right.',
       ],
       points: [
         { strong: 'Deep scan, not just a quick fix', text: 'We use multiple tools and manual review to find and remove every trace — including what generic scans miss.' },

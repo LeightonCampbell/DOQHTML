@@ -8,10 +8,47 @@
         Get monthly insights, service updates, and exclusive offers directly in your inbox
       </p>
 
-      <form action="/api/newsletter" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <form id="newsletter-form" action="/api/newsletter/" method="post" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <div class="absolute left-[-9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+          <label for="newsletter-company">Company</label>
+          <input id="newsletter-company" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
         <input type="email" name="email" required placeholder="Enter your email" class="w-full min-w-0 flex-1 h-12 min-h-12 max-h-12 bg-background border border-border rounded-md px-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
         <button type="submit" class="h-12 px-8 rounded-md bg-cta text-cta-foreground font-semibold hover:bg-cta/90 transition-colors shrink-0">Subscribe</button>
       </form>
+      <p id="newsletter-error" class="hidden text-sm text-red-700 mt-4" role="alert"></p>
+      <p id="newsletter-success" class="hidden text-sm text-foreground mt-4">You're subscribed. Watch your inbox for occasional tips.</p>
+      <script>
+        const form = document.getElementById('newsletter-form');
+        const errorEl = document.getElementById('newsletter-error');
+        const successEl = document.getElementById('newsletter-success');
+        form?.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          if (!(form instanceof HTMLFormElement)) return;
+          const button = form.querySelector('button');
+          errorEl?.classList.add('hidden');
+          if (button) button.setAttribute('disabled', 'true');
+          const body = new FormData(form);
+          body.set('page', window.location.pathname);
+          try {
+            const response = await fetch('/api/newsletter/', { method: 'POST', body });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok || !data.success) {
+              throw new Error(data.error || 'Request failed');
+            }
+            form.classList.add('hidden');
+            successEl?.classList.remove('hidden');
+          } catch (error) {
+            if (errorEl) {
+              errorEl.textContent = error instanceof Error && error.message !== 'Request failed'
+                ? error.message
+                : "Something went wrong. Please call (818) 584-7389 or email us and we'll take it from here.";
+              errorEl.classList.remove('hidden');
+            }
+            if (button) button.removeAttribute('disabled');
+          }
+        });
+      </script>
 
       <p class="text-xs text-muted-foreground mt-4">
         By signing up, you agree to our{" "}
